@@ -1,12 +1,408 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateToy(
+  $input: CreateToyInput!
+  $condition: ModelToyConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createToy(input: $input, condition: $condition) {
     id
-    name
-    description
+    toyname
+    toydescription
+    image
+    price
+    condition
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+=======
+    usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+  }
+}
+mutation UpdateToy(
+  $input: UpdateToyInput!
+  $condition: ModelToyConditionInput
+) {
+  updateToy(input: $input, condition: $condition) {
+    id
+    toyname
+    toydescription
+    image
+    price
+    condition
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+=======
+    usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+  }
+}
+mutation DeleteToy(
+  $input: DeleteToyInput!
+  $condition: ModelToyConditionInput
+) {
+  deleteToy(input: $input, condition: $condition) {
+    id
+    toyname
+    toydescription
+    image
+    price
+    condition
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+=======
+    usersToysId
+  }
+}
+mutation CreateStore(
+  $input: CreateStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  createStore(input: $input, condition: $condition) {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+mutation UpdateStore(
+  $input: UpdateStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  updateStore(input: $input, condition: $condition) {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+mutation DeleteStore(
+  $input: DeleteStoreInput!
+  $condition: ModelStoreConditionInput
+) {
+  deleteStore(input: $input, condition: $condition) {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+mutation CreateComment(
+  $input: CreateCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  createComment(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+mutation UpdateComment(
+  $input: UpdateCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  updateComment(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+mutation DeleteComment(
+  $input: DeleteCommentInput!
+  $condition: ModelCommentConditionInput
+) {
+  deleteComment(input: $input, condition: $condition) {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+mutation CreateUsers(
+  $input: CreateUsersInput!
+  $condition: ModelUsersConditionInput
+) {
+  createUsers(input: $input, condition: $condition) {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+mutation UpdateUsers(
+  $input: UpdateUsersInput!
+  $condition: ModelUsersConditionInput
+) {
+  updateUsers(input: $input, condition: $condition) {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+mutation DeleteUsers(
+  $input: DeleteUsersInput!
+  $condition: ModelUsersConditionInput
+) {
+  deleteUsers(input: $input, condition: $condition) {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+mutation CreateEvent(
+  $input: CreateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  createEvent(input: $input, condition: $condition) {
+    id
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
     createdAt
     updatedAt
     _version
@@ -14,14 +410,45 @@ mutation CreateTodo(
     _lastChangedAt
   }
 }
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateEvent(
+  $input: UpdateEventInput!
+  $condition: ModelEventConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateEvent(input: $input, condition: $condition) {
     id
-    name
-    description
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
     createdAt
     updatedAt
     _version
@@ -29,18 +456,50 @@ mutation UpdateTodo(
     _lastChangedAt
   }
 }
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteEvent(
+  $input: DeleteEventInput!
+  $condition: ModelEventConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteEvent(input: $input, condition: $condition) {
     id
-    name
-    description
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }

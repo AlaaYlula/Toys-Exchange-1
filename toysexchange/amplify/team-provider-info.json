@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-toysexchange-dev-121228-authRole",
+      "UnauthRoleArn": "arn:aws:iam::140515213255:role/amplify-toysexchange-dev-121228-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::140515213255:role/amplify-toysexchange-dev-121228-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-toysexchange-dev-121228-deployment",
+      "UnauthRoleName": "amplify-toysexchange-dev-121228-unauthRole",
+      "StackName": "amplify-toysexchange-dev-121228",
+      "StackId": "arn:aws:cloudformation:us-east-1:140515213255:stack/amplify-toysexchange-dev-121228/f36f36b0-efaf-11ec-9a91-123b790b6551",
+      "AmplifyAppId": "d3kpp8hzmbxtrw"
+    }
+  }
+}

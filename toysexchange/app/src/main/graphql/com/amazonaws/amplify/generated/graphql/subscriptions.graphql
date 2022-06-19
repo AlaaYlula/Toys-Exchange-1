@@ -1,28 +1,451 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateTodo {
-  onCreateTodo {
+subscription OnCreateToy {
+  onCreateToy {
     id
-    name
-    description
+    toyname
+    toydescription
+    image
+    price
+    condition
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersToysId
   }
 }
-subscription OnUpdateTodo {
-  onUpdateTodo {
+subscription OnUpdateToy {
+  onUpdateToy {
     id
-    name
-    description
+    toyname
+    toydescription
+    image
+    price
+    condition
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersToysId
   }
 }
-subscription OnDeleteTodo {
-  onDeleteTodo {
+subscription OnDeleteToy {
+  onDeleteToy {
     id
-    name
-    description
+    toyname
+    toydescription
+    image
+    price
+    condition
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersToysId
+  }
+}
+subscription OnCreateStore {
+  onCreateStore {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+subscription OnUpdateStore {
+  onUpdateStore {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+subscription OnDeleteStore {
+  onDeleteStore {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+subscription OnCreateComment {
+  onCreateComment {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+subscription OnUpdateComment {
+  onUpdateComment {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+subscription OnDeleteComment {
+  onDeleteComment {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+subscription OnCreateUsers {
+  onCreateUsers {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+subscription OnUpdateUsers {
+  onUpdateUsers {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+subscription OnDeleteUsers {
+  onDeleteUsers {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

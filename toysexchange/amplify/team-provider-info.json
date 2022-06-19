@@ -10,6 +10,20 @@
       "StackName": "amplify-toysexchange-dev-121228",
       "StackId": "arn:aws:cloudformation:us-east-1:140515213255:stack/amplify-toysexchange-dev-121228/f36f36b0-efaf-11ec-9a91-123b790b6551",
       "AmplifyAppId": "d3kpp8hzmbxtrw"
+    },
+    "categories": {
+      "auth": {
+        "toysexchangef366a192": {},
+        "true": {},
+        "toysexchange148b8dd1": {},
+        "toysexchange44067892": {}
+      },
+      "function": {
+        "S3Triggerbedd7153": {
+          "deploymentBucketName": "amplify-toysexchange-dev-121228-deployment",
+          "s3Key": "amplify-builds/S3Triggerbedd7153-774a49566e4939444431-build.zip"
+        }
+      }
     }
   }
 }

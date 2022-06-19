@@ -1,26 +1,437 @@
 # this is an auto generated file. This will be overwritten
-query GetTodo($id: ID!) {
-  getTodo(id: $id) {
+query GetToy($id: ID!) {
+  getToy(id: $id) {
     id
-    name
-    description
+    toyname
+    toydescription
+    image
+    price
+    condition
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersToysId
   }
 }
-query ListTodos(
-  $filter: ModelTodoFilterInput
+query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
+  listToys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersToysId
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncToys(
+  $filter: ModelToyFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncToys(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersToysId
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetStore($id: ID!) {
+  getStore(id: $id) {
+    id
+    storename
+    storedescription
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersStoresId
+  }
+}
+query ListStores(
+  $filter: ModelStoreFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listStores(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      description
+      storename
+      storedescription
+      latitude
+      longitude
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersStoresId
     }
     nextToken
+    startedAt
+  }
+}
+query SyncStores(
+  $filter: ModelStoreFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncStores(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      storename
+      storedescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersStoresId
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    text
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    usersCommentsId
+    eventCommentsId
+  }
+}
+query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      text
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersCommentsId
+      eventCommentsId
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncComments(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      text
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      usersCommentsId
+      eventCommentsId
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetUsers($id: ID!) {
+  getUsers(id: $id) {
+    id
+    idcognito
+    username
+    toys {
+      items {
+        id
+        toyname
+        toydescription
+        image
+        price
+        condition
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersToysId
+      }
+      nextToken
+      startedAt
+    }
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    stores {
+      items {
+        id
+        storename
+        storedescription
+        latitude
+        longitude
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersStoresId
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    eventUsersId
+  }
+}
+query ListUsers(
+  $filter: ModelUsersFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      idcognito
+      username
+      toys {
+        nextToken
+        startedAt
+      }
+      comments {
+        nextToken
+        startedAt
+      }
+      stores {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      eventUsersId
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncUsers(
+  $filter: ModelUsersFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncUsers(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      idcognito
+      username
+      toys {
+        nextToken
+        startedAt
+      }
+      comments {
+        nextToken
+        startedAt
+      }
+      stores {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      eventUsersId
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetEvent($id: ID!) {
+  getEvent(id: $id) {
+    id
+    eventdescription
+    comments {
+      items {
+        id
+        text
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        usersCommentsId
+        eventCommentsId
+      }
+      nextToken
+      startedAt
+    }
+    users {
+      items {
+        id
+        idcognito
+        username
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        eventUsersId
+      }
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      eventdescription
+      comments {
+        nextToken
+        startedAt
+      }
+      users {
+        nextToken
+        startedAt
+      }
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncEvents(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      eventdescription
+      comments {
+        nextToken
+        startedAt
+      }
+      users {
+        nextToken
+        startedAt
+      }
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
   }
 }

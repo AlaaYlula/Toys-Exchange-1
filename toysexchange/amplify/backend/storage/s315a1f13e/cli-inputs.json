@@ -1,0 +1,14 @@
+{
+  "resourceName": "s315a1f13e",
+  "policyUUID": "15a1f13e",
+  "bucketName": "toysexchange8fc8e57b82414348855489a783caffc4",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

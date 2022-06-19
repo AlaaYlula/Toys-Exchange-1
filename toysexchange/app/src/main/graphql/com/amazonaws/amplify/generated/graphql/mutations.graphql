@@ -9,6 +9,9 @@ mutation CreateTodo(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateTodo(
@@ -21,6 +24,9 @@ mutation UpdateTodo(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteTodo(
@@ -33,5 +39,8 @@ mutation DeleteTodo(
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

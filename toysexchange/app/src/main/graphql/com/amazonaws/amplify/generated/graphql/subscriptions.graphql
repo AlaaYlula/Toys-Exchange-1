@@ -6,6 +6,9 @@ subscription OnCreateTodo {
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnUpdateTodo {
@@ -15,6 +18,9 @@ subscription OnUpdateTodo {
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnDeleteTodo {
@@ -24,5 +30,8 @@ subscription OnDeleteTodo {
     description
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

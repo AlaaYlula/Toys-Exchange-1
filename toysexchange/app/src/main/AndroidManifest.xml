@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
+
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />

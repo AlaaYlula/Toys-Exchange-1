@@ -11,6 +11,5 @@ projects:
         generatedFileName: ''
         docsFilePath: app/src/main/graphql/com/amazonaws/amplify/generated/graphql
         maxDepth: 2
-extensions:
-  amplify:
-    version: 3
+        version: 3
+

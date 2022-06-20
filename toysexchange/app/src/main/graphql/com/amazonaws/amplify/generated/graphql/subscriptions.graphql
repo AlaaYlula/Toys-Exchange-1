@@ -12,7 +12,10 @@ subscription OnCreateToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 subscription OnUpdateToy {
@@ -28,7 +31,10 @@ subscription OnUpdateToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 subscription OnDeleteToy {
@@ -44,6 +50,8 @@ subscription OnDeleteToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
   }
 }
@@ -447,5 +455,6 @@ subscription OnDeleteEvent {
     _version
     _deleted
     _lastChangedAt
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }

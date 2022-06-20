@@ -629,6 +629,59 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "syncTodos",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "filter",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelTodoFilterInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "limit",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "nextToken",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "lastSync",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "AWSTimestamp",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "ModelTodoConnection",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -814,6 +867,8 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+<<<<<<< HEAD
+=======
                     },
                     {
                         "name": "usersToysId",
@@ -826,6 +881,7 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                     }
                 ],
                 "inputFields": null,
@@ -1949,6 +2005,16 @@
                         "type": {
                             "kind": "INPUT_OBJECT",
                             "name": "ModelIDInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "_version",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -3981,6 +4047,8 @@
                         "defaultValue": null
                     },
                     {
+<<<<<<< HEAD
+=======
                         "name": "image",
                         "description": null,
                         "type": {
@@ -4011,6 +4079,7 @@
                         "defaultValue": null
                     },
                     {
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                         "name": "_version",
                         "description": null,
                         "type": {
@@ -4019,6 +4088,8 @@
                             "ofType": null
                         },
                         "defaultValue": null
+<<<<<<< HEAD
+=======
                     },
                     {
                         "name": "usersToysId",
@@ -4029,6 +4100,7 @@
                             "ofType": null
                         },
                         "defaultValue": null
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                     }
                 ],
                 "interfaces": null,
@@ -4064,6 +4136,8 @@
                             "ofType": null
                         },
                         "defaultValue": null
+<<<<<<< HEAD
+=======
                     }
                 ],
                 "interfaces": null,
@@ -5104,6 +5178,7 @@
                             "ofType": null
                         },
                         "defaultValue": null
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                     }
                 ],
                 "interfaces": null,

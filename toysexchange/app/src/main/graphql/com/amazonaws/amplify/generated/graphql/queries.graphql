@@ -12,7 +12,10 @@ query GetToy($id: ID!) {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
@@ -97,19 +100,31 @@ query ListStores(
       _version
       _deleted
       _lastChangedAt
+<<<<<<< HEAD
+=======
       usersStoresId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
     }
     nextToken
     startedAt
   }
 }
+<<<<<<< HEAD
+query SyncTodos(
+  $filter: ModelTodoFilterInput
+=======
 query SyncStores(
   $filter: ModelStoreFilterInput
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
+<<<<<<< HEAD
+  syncTodos(
+=======
   syncStores(
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -117,6 +132,10 @@ query SyncStores(
   ) {
     items {
       id
+<<<<<<< HEAD
+      name
+      description
+=======
       storename
       storedescription
       latitude
@@ -425,6 +444,7 @@ query SyncEvents(
       }
       latitude
       longitude
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
       createdAt
       updatedAt
       _version

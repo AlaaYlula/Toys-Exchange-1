@@ -15,7 +15,10 @@ mutation CreateToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 mutation UpdateToy(
@@ -34,7 +37,10 @@ mutation UpdateToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 mutation DeleteToy(
@@ -53,6 +59,8 @@ mutation DeleteToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     usersToysId
   }
 }
@@ -492,5 +500,6 @@ mutation DeleteEvent(
     _version
     _deleted
     _lastChangedAt
+>>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }

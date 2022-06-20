@@ -13,7 +13,16 @@
     },
     "categories": {
       "auth": {
+        "toysexchangef366a192": {},
+        "true": {},
+        "toysexchange148b8dd1": {},
         "toysexchange44067892": {}
+      },
+      "function": {
+        "S3Triggerbedd7153": {
+          "deploymentBucketName": "amplify-toysexchange-dev-121228-deployment",
+          "s3Key": "amplify-builds/S3Triggerbedd7153-774a49566e4939444431-build.zip"
+        }
       }
     }
   }

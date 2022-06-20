@@ -26,10 +26,10 @@ public class AmplifyApplication extends Application {
 
     private void configureAmplify() {
         try {
-//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
-//            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
 //            Amplify.addPlugin(new AWSPredictionsPlugin());
 //            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(this));
             Amplify.configure(getApplicationContext());

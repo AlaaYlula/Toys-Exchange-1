@@ -13,4 +13,5 @@
     <string name="prompt_username">prompt_username</string>
     <string name="action_sign_up">action_sign_up</string>
     <string name="label_enter_code">label_enter_code</string>
+    <string name="title_activity_signup">title_activity_signup</string>
 </resources>

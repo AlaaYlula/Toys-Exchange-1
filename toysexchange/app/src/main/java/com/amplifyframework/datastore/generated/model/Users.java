@@ -24,16 +24,16 @@ public final class Users implements Model {
   public static final QueryField ID = field("Users", "id");
   public static final QueryField IDCOGNITO = field("Users", "idcognito");
   public static final QueryField USERNAME = field("Users", "username");
-  public static final QueryField EVENT_USERS_ID = field("Users", "eventUsersId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String idcognito;
   private final @ModelField(targetType="String", isRequired = true) String username;
   private final @ModelField(targetType="Toy") @HasMany(associatedWith = "usersToysId", type = Toy.class) List<Toy> toys = null;
   private final @ModelField(targetType="Comment") @HasMany(associatedWith = "usersCommentsId", type = Comment.class) List<Comment> comments = null;
   private final @ModelField(targetType="Store") @HasMany(associatedWith = "usersStoresId", type = Store.class) List<Store> stores = null;
+  private final @ModelField(targetType="Event") @HasMany(associatedWith = "usersEventsaddedId", type = Event.class) List<Event> eventsadded = null;
+  private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "users", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String eventUsersId;
   public String getId() {
       return id;
   }
@@ -58,6 +58,14 @@ public final class Users implements Model {
       return stores;
   }
   
+  public List<Event> getEventsadded() {
+      return eventsadded;
+  }
+  
+  public List<UserAttendEvent> getEventsattend() {
+      return eventsattend;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -66,15 +74,10 @@ public final class Users implements Model {
       return updatedAt;
   }
   
-  public String getEventUsersId() {
-      return eventUsersId;
-  }
-  
-  private Users(String id, String idcognito, String username, String eventUsersId) {
+  private Users(String id, String idcognito, String username) {
     this.id = id;
     this.idcognito = idcognito;
     this.username = username;
-    this.eventUsersId = eventUsersId;
   }
   
   @Override
@@ -89,8 +92,7 @@ public final class Users implements Model {
               ObjectsCompat.equals(getIdcognito(), users.getIdcognito()) &&
               ObjectsCompat.equals(getUsername(), users.getUsername()) &&
               ObjectsCompat.equals(getCreatedAt(), users.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), users.getUpdatedAt()) &&
-              ObjectsCompat.equals(getEventUsersId(), users.getEventUsersId());
+              ObjectsCompat.equals(getUpdatedAt(), users.getUpdatedAt());
       }
   }
   
@@ -102,7 +104,6 @@ public final class Users implements Model {
       .append(getUsername())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getEventUsersId())
       .toString()
       .hashCode();
   }
@@ -115,8 +116,7 @@ public final class Users implements Model {
       .append("idcognito=" + String.valueOf(getIdcognito()) + ", ")
       .append("username=" + String.valueOf(getUsername()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("eventUsersId=" + String.valueOf(getEventUsersId()))
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -137,7 +137,6 @@ public final class Users implements Model {
     return new Users(
       id,
       null,
-      null,
       null
     );
   }
@@ -145,8 +144,7 @@ public final class Users implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       idcognito,
-      username,
-      eventUsersId);
+      username);
   }
   public interface UsernameStep {
     BuildStep username(String username);
@@ -157,7 +155,6 @@ public final class Users implements Model {
     Users build();
     BuildStep id(String id);
     BuildStep idcognito(String idcognito);
-    BuildStep eventUsersId(String eventUsersId);
   }
   
 
@@ -165,7 +162,6 @@ public final class Users implements Model {
     private String id;
     private String username;
     private String idcognito;
-    private String eventUsersId;
     @Override
      public Users build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -173,8 +169,7 @@ public final class Users implements Model {
         return new Users(
           id,
           idcognito,
-          username,
-          eventUsersId);
+          username);
     }
     
     @Override
@@ -190,12 +185,6 @@ public final class Users implements Model {
         return this;
     }
     
-    @Override
-     public BuildStep eventUsersId(String eventUsersId) {
-        this.eventUsersId = eventUsersId;
-        return this;
-    }
-    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -208,11 +197,10 @@ public final class Users implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String idcognito, String username, String eventUsersId) {
+    private CopyOfBuilder(String id, String idcognito, String username) {
       super.id(id);
       super.username(username)
-        .idcognito(idcognito)
-        .eventUsersId(eventUsersId);
+        .idcognito(idcognito);
     }
     
     @Override
@@ -223,11 +211,6 @@ public final class Users implements Model {
     @Override
      public CopyOfBuilder idcognito(String idcognito) {
       return (CopyOfBuilder) super.idcognito(idcognito);
-    }
-    
-    @Override
-     public CopyOfBuilder eventUsersId(String eventUsersId) {
-      return (CopyOfBuilder) super.eventUsersId(eventUsersId);
     }
   }
   

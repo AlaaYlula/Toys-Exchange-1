@@ -4,11 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:name=".AmplifyApplication"
         android:allowBackup="true"
@@ -18,9 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
-            android:name=".UI.EventActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".UI.data.model.EventDetailsActivity"
             android:exported="false" />
+        <activity
+            android:name=".UI.EventActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />
@@ -40,7 +43,7 @@
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

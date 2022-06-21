@@ -17,23 +17,23 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Users type in your schema. */
+/** This is an auto generated class representing the Account type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Users")
-public final class Users implements Model {
-  public static final QueryField ID = field("Users", "id");
-  public static final QueryField IDCOGNITO = field("Users", "idcognito");
-  public static final QueryField USERNAME = field("Users", "username");
-  public static final QueryField EVENT_USERS_ID = field("Users", "eventUsersId");
+@ModelConfig(pluralName = "Accounts")
+public final class Account implements Model {
+  public static final QueryField ID = field("Account", "id");
+  public static final QueryField IDCOGNITO = field("Account", "idcognito");
+  public static final QueryField USERNAME = field("Account", "username");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String idcognito;
   private final @ModelField(targetType="String", isRequired = true) String username;
-  private final @ModelField(targetType="Toy") @HasMany(associatedWith = "usersToysId", type = Toy.class) List<Toy> toys = null;
-  private final @ModelField(targetType="Comment") @HasMany(associatedWith = "usersCommentsId", type = Comment.class) List<Comment> comments = null;
-  private final @ModelField(targetType="Store") @HasMany(associatedWith = "usersStoresId", type = Store.class) List<Store> stores = null;
+  private final @ModelField(targetType="Toy") @HasMany(associatedWith = "accountToysId", type = Toy.class) List<Toy> toys = null;
+  private final @ModelField(targetType="Comment") @HasMany(associatedWith = "accountCommentsId", type = Comment.class) List<Comment> comments = null;
+  private final @ModelField(targetType="Store") @HasMany(associatedWith = "accountStoresId", type = Store.class) List<Store> stores = null;
+  private final @ModelField(targetType="Event") @HasMany(associatedWith = "accountEventsaddedId", type = Event.class) List<Event> eventsadded = null;
+  private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "account", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String eventUsersId;
   public String getId() {
       return id;
   }
@@ -58,6 +58,14 @@ public final class Users implements Model {
       return stores;
   }
   
+  public List<Event> getEventsadded() {
+      return eventsadded;
+  }
+  
+  public List<UserAttendEvent> getEventsattend() {
+      return eventsattend;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -66,15 +74,10 @@ public final class Users implements Model {
       return updatedAt;
   }
   
-  public String getEventUsersId() {
-      return eventUsersId;
-  }
-  
-  private Users(String id, String idcognito, String username, String eventUsersId) {
+  private Account(String id, String idcognito, String username) {
     this.id = id;
     this.idcognito = idcognito;
     this.username = username;
-    this.eventUsersId = eventUsersId;
   }
   
   @Override
@@ -84,13 +87,12 @@ public final class Users implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Users users = (Users) obj;
-      return ObjectsCompat.equals(getId(), users.getId()) &&
-              ObjectsCompat.equals(getIdcognito(), users.getIdcognito()) &&
-              ObjectsCompat.equals(getUsername(), users.getUsername()) &&
-              ObjectsCompat.equals(getCreatedAt(), users.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), users.getUpdatedAt()) &&
-              ObjectsCompat.equals(getEventUsersId(), users.getEventUsersId());
+      Account account = (Account) obj;
+      return ObjectsCompat.equals(getId(), account.getId()) &&
+              ObjectsCompat.equals(getIdcognito(), account.getIdcognito()) &&
+              ObjectsCompat.equals(getUsername(), account.getUsername()) &&
+              ObjectsCompat.equals(getCreatedAt(), account.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), account.getUpdatedAt());
       }
   }
   
@@ -102,7 +104,6 @@ public final class Users implements Model {
       .append(getUsername())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getEventUsersId())
       .toString()
       .hashCode();
   }
@@ -110,13 +111,12 @@ public final class Users implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Users {")
+      .append("Account {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("idcognito=" + String.valueOf(getIdcognito()) + ", ")
       .append("username=" + String.valueOf(getUsername()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("eventUsersId=" + String.valueOf(getEventUsersId()))
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
@@ -133,10 +133,9 @@ public final class Users implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static Users justId(String id) {
-    return new Users(
+  public static Account justId(String id) {
+    return new Account(
       id,
-      null,
       null,
       null
     );
@@ -145,8 +144,7 @@ public final class Users implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       idcognito,
-      username,
-      eventUsersId);
+      username);
   }
   public interface UsernameStep {
     BuildStep username(String username);
@@ -154,10 +152,9 @@ public final class Users implements Model {
   
 
   public interface BuildStep {
-    Users build();
+    Account build();
     BuildStep id(String id);
     BuildStep idcognito(String idcognito);
-    BuildStep eventUsersId(String eventUsersId);
   }
   
 
@@ -165,16 +162,14 @@ public final class Users implements Model {
     private String id;
     private String username;
     private String idcognito;
-    private String eventUsersId;
     @Override
-     public Users build() {
+     public Account build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Users(
+        return new Account(
           id,
           idcognito,
-          username,
-          eventUsersId);
+          username);
     }
     
     @Override
@@ -190,12 +185,6 @@ public final class Users implements Model {
         return this;
     }
     
-    @Override
-     public BuildStep eventUsersId(String eventUsersId) {
-        this.eventUsersId = eventUsersId;
-        return this;
-    }
-    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -208,11 +197,10 @@ public final class Users implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String idcognito, String username, String eventUsersId) {
+    private CopyOfBuilder(String id, String idcognito, String username) {
       super.id(id);
       super.username(username)
-        .idcognito(idcognito)
-        .eventUsersId(eventUsersId);
+        .idcognito(idcognito);
     }
     
     @Override
@@ -223,11 +211,6 @@ public final class Users implements Model {
     @Override
      public CopyOfBuilder idcognito(String idcognito) {
       return (CopyOfBuilder) super.idcognito(idcognito);
-    }
-    
-    @Override
-     public CopyOfBuilder eventUsersId(String eventUsersId) {
-      return (CopyOfBuilder) super.eventUsersId(eventUsersId);
     }
   }
   

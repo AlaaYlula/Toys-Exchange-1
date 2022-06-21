@@ -31,20 +31,24 @@ type Comment @model{
   text : String!
 }
 
-type Users @model {
+type Account @model {
   id: ID!
   idcognito: String
   username: String!
   toys : [Toy] @hasMany
   comments : [Comment] @hasMany
   stores : [Store] @hasMany
+  eventsadded : [Event] @hasMany
+  eventsattend : [Event] @manyToMany(relationName: "UserAttendEvent")
+
 }
 
 type Event @model{
   id: ID!
+  title : String!
   eventdescription : String!
   comments : [Comment] @hasMany
-  users : [Users] @hasMany
+  usersattend : [Account] @manyToMany(relationName: "UserAttendEvent")
   latitude : Float
   longitude : Float
 }

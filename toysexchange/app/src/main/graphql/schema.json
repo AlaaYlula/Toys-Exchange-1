@@ -385,7 +385,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "getUsers",
+                        "name": "getAccount",
                         "description": null,
                         "args": [
                             {
@@ -405,14 +405,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "listUsers",
+                        "name": "listAccounts",
                         "description": null,
                         "args": [
                             {
@@ -420,7 +420,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersFilterInput",
+                                    "name": "ModelAccountFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -448,14 +448,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelUsersConnection",
+                            "name": "ModelAccountConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "syncUsers",
+                        "name": "syncAccounts",
                         "description": null,
                         "args": [
                             {
@@ -463,7 +463,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersFilterInput",
+                                    "name": "ModelAccountFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -501,7 +501,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelUsersConnection",
+                            "name": "ModelAccountConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -631,7 +631,34 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "syncTodos",
+                        "name": "getUserAttendEvent",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "id",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "ID",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "listUserAttendEvents",
                         "description": null,
                         "args": [
                             {
@@ -639,7 +666,50 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelTodoFilterInput",
+                                    "name": "ModelUserAttendEventFilterInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "limit",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "nextToken",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "ModelUserAttendEventConnection",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "syncUserAttendEvents",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "filter",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelUserAttendEventFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -677,7 +747,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelTodoConnection",
+                            "name": "ModelUserAttendEventConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -867,11 +937,9 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
-<<<<<<< HEAD
-=======
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -881,7 +949,6 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                     }
                 ],
                 "inputFields": null,
@@ -1083,7 +1150,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1888,7 +1955,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -2000,21 +2067,11 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
                             "name": "ModelIDInput",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "_version",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "Int",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -2193,7 +2250,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -2287,7 +2344,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2368,7 +2425,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "Users",
+                "name": "Account",
                 "description": null,
                 "fields": [
                     {
@@ -2575,6 +2632,112 @@
                         "deprecationReason": null
                     },
                     {
+                        "name": "eventsadded",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "filter",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelEventFilterInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "sortDirection",
+                                "description": null,
+                                "type": {
+                                    "kind": "ENUM",
+                                    "name": "ModelSortDirection",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "limit",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "nextToken",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "ModelEventConnection",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "eventsattend",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "filter",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelUserAttendEventFilterInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "sortDirection",
+                                "description": null,
+                                "type": {
+                                    "kind": "ENUM",
+                                    "name": "ModelSortDirection",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "limit",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "Int",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "nextToken",
+                                "description": null,
+                                "type": {
+                                    "kind": "SCALAR",
+                                    "name": "String",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "ModelUserAttendEventConnection",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
                         "name": "createdAt",
                         "description": null,
                         "args": [],
@@ -2649,18 +2812,6 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
-                    },
-                    {
-                        "name": "eventUsersId",
-                        "description": null,
-                        "args": [],
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "ID",
-                            "ofType": null
-                        },
-                        "isDeprecated": false,
-                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -2693,7 +2844,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelUsersFilterInput",
+                "name": "ModelEventFilterInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -2708,7 +2859,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "idcognito",
+                        "name": "title",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2718,11 +2869,31 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "username",
+                        "name": "eventdescription",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
                             "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "latitude",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelFloatInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "longitude",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelFloatInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -2735,7 +2906,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersFilterInput",
+                                "name": "ModelEventFilterInput",
                                 "ofType": null
                             }
                         },
@@ -2749,7 +2920,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersFilterInput",
+                                "name": "ModelEventFilterInput",
                                 "ofType": null
                             }
                         },
@@ -2760,13 +2931,13 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelUsersFilterInput",
+                            "name": "ModelEventFilterInput",
                             "ofType": null
                         },
                         "defaultValue": null
                     },
                     {
-                        "name": "eventUsersId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2782,7 +2953,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "ModelUsersConnection",
+                "name": "ModelEventConnection",
                 "description": null,
                 "fields": [
                     {
@@ -2797,7 +2968,7 @@
                                 "name": null,
                                 "ofType": {
                                     "kind": "OBJECT",
-                                    "name": "Users",
+                                    "name": "Event",
                                     "ofType": null
                                 }
                             }
@@ -2850,6 +3021,22 @@
                             "ofType": {
                                 "kind": "SCALAR",
                                 "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "title",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
                                 "ofType": null
                             }
                         },
@@ -2926,7 +3113,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "users",
+                        "name": "usersattend",
                         "description": null,
                         "args": [
                             {
@@ -2934,7 +3121,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersFilterInput",
+                                    "name": "ModelUserAttendEventFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -2972,7 +3159,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelUsersConnection",
+                            "name": "ModelUserAttendEventConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -3077,6 +3264,18 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "accountEventsaddedId",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -3086,7 +3285,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelEventFilterInput",
+                "name": "ModelUserAttendEventFilterInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -3101,31 +3300,21 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "eventdescription",
+                        "name": "accountID",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelStringInput",
+                            "name": "ModelIDInput",
                             "ofType": null
                         },
                         "defaultValue": null
                     },
                     {
-                        "name": "latitude",
+                        "name": "eventID",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelFloatInput",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "longitude",
-                        "description": null,
-                        "type": {
-                            "kind": "INPUT_OBJECT",
-                            "name": "ModelFloatInput",
+                            "name": "ModelIDInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -3138,7 +3327,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelEventFilterInput",
+                                "name": "ModelUserAttendEventFilterInput",
                                 "ofType": null
                             }
                         },
@@ -3152,7 +3341,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelEventFilterInput",
+                                "name": "ModelUserAttendEventFilterInput",
                                 "ofType": null
                             }
                         },
@@ -3163,7 +3352,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelEventFilterInput",
+                            "name": "ModelUserAttendEventFilterInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -3175,7 +3364,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "ModelEventConnection",
+                "name": "ModelUserAttendEventConnection",
                 "description": null,
                 "fields": [
                     {
@@ -3190,7 +3379,308 @@
                                 "name": null,
                                 "ofType": {
                                     "kind": "OBJECT",
-                                    "name": "Event",
+                                    "name": "UserAttendEvent",
+                                    "ofType": null
+                                }
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "nextToken",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "startedAt",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "AWSTimestamp",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    }
+                ],
+                "inputFields": null,
+                "interfaces": [],
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "OBJECT",
+                "name": "UserAttendEvent",
+                "description": null,
+                "fields": [
+                    {
+                        "name": "id",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "accountID",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "eventID",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "account",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "OBJECT",
+                                "name": "Account",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "event",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "OBJECT",
+                                "name": "Event",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "createdAt",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "AWSDateTime",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "updatedAt",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "AWSDateTime",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "_version",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "Int",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "_deleted",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Boolean",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "_lastChangedAt",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "AWSTimestamp",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    }
+                ],
+                "inputFields": null,
+                "interfaces": [],
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "ModelAccountFilterInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "id",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIDInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "idcognito",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "username",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "and",
+                        "description": null,
+                        "type": {
+                            "kind": "LIST",
+                            "name": null,
+                            "ofType": {
+                                "kind": "INPUT_OBJECT",
+                                "name": "ModelAccountFilterInput",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "or",
+                        "description": null,
+                        "type": {
+                            "kind": "LIST",
+                            "name": null,
+                            "ofType": {
+                                "kind": "INPUT_OBJECT",
+                                "name": "ModelAccountFilterInput",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "not",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelAccountFilterInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    }
+                ],
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "OBJECT",
+                "name": "ModelAccountConnection",
+                "description": null,
+                "fields": [
+                    {
+                        "name": "items",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "OBJECT",
+                                    "name": "Account",
                                     "ofType": null
                                 }
                             }
@@ -3567,7 +4057,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "createUsers",
+                        "name": "createAccount",
                         "description": null,
                         "args": [
                             {
@@ -3578,7 +4068,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "CreateUsersInput",
+                                        "name": "CreateAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -3589,7 +4079,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -3597,14 +4087,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "updateUsers",
+                        "name": "updateAccount",
                         "description": null,
                         "args": [
                             {
@@ -3615,7 +4105,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "UpdateUsersInput",
+                                        "name": "UpdateAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -3626,7 +4116,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -3634,14 +4124,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "deleteUsers",
+                        "name": "deleteAccount",
                         "description": null,
                         "args": [
                             {
@@ -3652,7 +4142,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "DeleteUsersInput",
+                                        "name": "DeleteAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -3663,7 +4153,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -3671,7 +4161,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -3787,6 +4277,117 @@
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
+                    },
+                    {
+                        "name": "createUserAttendEvent",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "input",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "INPUT_OBJECT",
+                                        "name": "CreateUserAttendEventInput",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "condition",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelUserAttendEventConditionInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "updateUserAttendEvent",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "input",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "INPUT_OBJECT",
+                                        "name": "UpdateUserAttendEventInput",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "condition",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelUserAttendEventConditionInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "deleteUserAttendEvent",
+                        "description": null,
+                        "args": [
+                            {
+                                "name": "input",
+                                "description": null,
+                                "type": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "INPUT_OBJECT",
+                                        "name": "DeleteUserAttendEventInput",
+                                        "ofType": null
+                                    }
+                                },
+                                "defaultValue": null
+                            },
+                            {
+                                "name": "condition",
+                                "description": null,
+                                "type": {
+                                    "kind": "INPUT_OBJECT",
+                                    "name": "ModelUserAttendEventConditionInput",
+                                    "ofType": null
+                                },
+                                "defaultValue": null
+                            }
+                        ],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
                     }
                 ],
                 "inputFields": null,
@@ -3883,7 +4484,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -3992,7 +4593,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -4047,8 +4648,6 @@
                         "defaultValue": null
                     },
                     {
-<<<<<<< HEAD
-=======
                         "name": "image",
                         "description": null,
                         "type": {
@@ -4079,7 +4678,6 @@
                         "defaultValue": null
                     },
                     {
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                         "name": "_version",
                         "description": null,
                         "type": {
@@ -4088,11 +4686,9 @@
                             "ofType": null
                         },
                         "defaultValue": null
-<<<<<<< HEAD
-=======
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4100,7 +4696,6 @@
                             "ofType": null
                         },
                         "defaultValue": null
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
                     }
                 ],
                 "interfaces": null,
@@ -4136,8 +4731,6 @@
                             "ofType": null
                         },
                         "defaultValue": null
-<<<<<<< HEAD
-=======
                     }
                 ],
                 "interfaces": null,
@@ -4219,7 +4812,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4318,7 +4911,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -4403,7 +4996,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4493,7 +5086,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4572,7 +5165,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -4637,7 +5230,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4698,7 +5291,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "CreateUsersInput",
+                "name": "CreateAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -4745,16 +5338,6 @@
                             "ofType": null
                         },
                         "defaultValue": null
-                    },
-                    {
-                        "name": "eventUsersId",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "ID",
-                            "ofType": null
-                        },
-                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -4763,7 +5346,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelUsersConditionInput",
+                "name": "ModelAccountConditionInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -4795,7 +5378,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersConditionInput",
+                                "name": "ModelAccountConditionInput",
                                 "ofType": null
                             }
                         },
@@ -4809,7 +5392,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersConditionInput",
+                                "name": "ModelAccountConditionInput",
                                 "ofType": null
                             }
                         },
@@ -4820,17 +5403,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelUsersConditionInput",
-                            "ofType": null
-                        },
-                        "defaultValue": null
-                    },
-                    {
-                        "name": "eventUsersId",
-                        "description": null,
-                        "type": {
-                            "kind": "INPUT_OBJECT",
-                            "name": "ModelIDInput",
+                            "name": "ModelAccountConditionInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -4842,7 +5415,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "UpdateUsersInput",
+                "name": "UpdateAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -4889,16 +5462,6 @@
                             "ofType": null
                         },
                         "defaultValue": null
-                    },
-                    {
-                        "name": "eventUsersId",
-                        "description": null,
-                        "type": {
-                            "kind": "SCALAR",
-                            "name": "ID",
-                            "ofType": null
-                        },
-                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -4907,7 +5470,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "DeleteUsersInput",
+                "name": "DeleteAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -4957,6 +5520,20 @@
                         "defaultValue": null
                     },
                     {
+                        "name": "title",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
                         "name": "eventdescription",
                         "description": null,
                         "type": {
@@ -4999,6 +5576,16 @@
                             "ofType": null
                         },
                         "defaultValue": null
+                    },
+                    {
+                        "name": "accountEventsaddedId",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -5011,6 +5598,16 @@
                 "description": null,
                 "fields": null,
                 "inputFields": [
+                    {
+                        "name": "title",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
                     {
                         "name": "eventdescription",
                         "description": null,
@@ -5078,6 +5675,16 @@
                             "ofType": null
                         },
                         "defaultValue": null
+                    },
+                    {
+                        "name": "accountEventsaddedId",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIDInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -5101,6 +5708,16 @@
                                 "name": "ID",
                                 "ofType": null
                             }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "title",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
+                            "ofType": null
                         },
                         "defaultValue": null
                     },
@@ -5143,6 +5760,16 @@
                             "ofType": null
                         },
                         "defaultValue": null
+                    },
+                    {
+                        "name": "accountEventsaddedId",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -5178,7 +5805,224 @@
                             "ofType": null
                         },
                         "defaultValue": null
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+                    }
+                ],
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "CreateUserAttendEventInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "id",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "accountID",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventID",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "_version",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    }
+                ],
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "ModelUserAttendEventConditionInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "accountID",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIDInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventID",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelIDInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "and",
+                        "description": null,
+                        "type": {
+                            "kind": "LIST",
+                            "name": null,
+                            "ofType": {
+                                "kind": "INPUT_OBJECT",
+                                "name": "ModelUserAttendEventConditionInput",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "or",
+                        "description": null,
+                        "type": {
+                            "kind": "LIST",
+                            "name": null,
+                            "ofType": {
+                                "kind": "INPUT_OBJECT",
+                                "name": "ModelUserAttendEventConditionInput",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "not",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelUserAttendEventConditionInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    }
+                ],
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "UpdateUserAttendEventInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "id",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "accountID",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventID",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "ID",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "_version",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    }
+                ],
+                "interfaces": null,
+                "enumValues": null,
+                "possibleTypes": null
+            },
+            {
+                "kind": "INPUT_OBJECT",
+                "name": "DeleteUserAttendEventInput",
+                "description": null,
+                "fields": null,
+                "inputFields": [
+                    {
+                        "name": "id",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "ID",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "_version",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "Int",
+                            "ofType": null
+                        },
+                        "defaultValue": null
                     }
                 ],
                 "interfaces": null,
@@ -5299,36 +6143,36 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "onCreateUsers",
+                        "name": "onCreateAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onUpdateUsers",
+                        "name": "onUpdateAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onDeleteUsers",
+                        "name": "onDeleteAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -5365,6 +6209,42 @@
                         "type": {
                             "kind": "OBJECT",
                             "name": "Event",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onCreateUserAttendEvent",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onUpdateUserAttendEvent",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
+                            "ofType": null
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "onDeleteUserAttendEvent",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "OBJECT",
+                            "name": "UserAttendEvent",
                             "ofType": null
                         },
                         "isDeprecated": false,

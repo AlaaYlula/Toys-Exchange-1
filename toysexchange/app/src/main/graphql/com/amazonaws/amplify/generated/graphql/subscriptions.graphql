@@ -12,10 +12,7 @@ subscription OnCreateToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+    accountToysId
   }
 }
 subscription OnUpdateToy {
@@ -31,10 +28,7 @@ subscription OnUpdateToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+    accountToysId
   }
 }
 subscription OnDeleteToy {
@@ -50,9 +44,7 @@ subscription OnDeleteToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
+    accountToysId
   }
 }
 subscription OnCreateStore {
@@ -67,7 +59,7 @@ subscription OnCreateStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnUpdateStore {
@@ -82,7 +74,7 @@ subscription OnUpdateStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnDeleteStore {
@@ -97,7 +89,7 @@ subscription OnDeleteStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnCreateComment {
@@ -109,7 +101,7 @@ subscription OnCreateComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -122,7 +114,7 @@ subscription OnUpdateComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -135,62 +127,32 @@ subscription OnDeleteComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
-subscription OnCreateUsers {
-  onCreateUsers {
+subscription OnCreateAccount {
+  onCreateAccount {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -199,61 +161,30 @@ subscription OnCreateUsers {
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
-subscription OnUpdateUsers {
-  onUpdateUsers {
+subscription OnUpdateAccount {
+  onUpdateAccount {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -262,61 +193,30 @@ subscription OnUpdateUsers {
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
-subscription OnDeleteUsers {
-  onDeleteUsers {
+subscription OnDeleteAccount {
+  onDeleteAccount {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -325,40 +225,18 @@ subscription OnDeleteUsers {
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
 subscription OnCreateEvent {
   onCreateEvent {
     id
+    title
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
+    usersattend {
       nextToken
       startedAt
     }
@@ -369,44 +247,83 @@ subscription OnCreateEvent {
     _version
     _deleted
     _lastChangedAt
+    accountEventsaddedId
   }
 }
 subscription OnUpdateEvent {
   onUpdateEvent {
     id
+    title
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
+    usersattend {
       nextToken
       startedAt
     }
     latitude
     longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    accountEventsaddedId
+  }
+}
+subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    title
+    eventdescription
+    comments {
+      nextToken
+      startedAt
+    }
+    usersattend {
+      nextToken
+      startedAt
+    }
+    latitude
+    longitude
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    accountEventsaddedId
+  }
+}
+subscription OnCreateUserAttendEvent {
+  onCreateUserAttendEvent {
+    id
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
+    }
     createdAt
     updatedAt
     _version
@@ -414,47 +331,73 @@ subscription OnUpdateEvent {
     _lastChangedAt
   }
 }
-subscription OnDeleteEvent {
-  onDeleteEvent {
+subscription OnUpdateUserAttendEvent {
+  onUpdateUserAttendEvent {
     id
-    eventdescription
-    comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
-      nextToken
-      startedAt
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
-      nextToken
-      startedAt
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
     }
-    latitude
-    longitude
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+  }
+}
+subscription OnDeleteUserAttendEvent {
+  onDeleteUserAttendEvent {
+    id
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

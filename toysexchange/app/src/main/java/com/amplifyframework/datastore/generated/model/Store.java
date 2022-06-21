@@ -25,7 +25,7 @@ public final class Store implements Model {
   public static final QueryField STOREDESCRIPTION = field("Store", "storedescription");
   public static final QueryField LATITUDE = field("Store", "latitude");
   public static final QueryField LONGITUDE = field("Store", "longitude");
-  public static final QueryField USERS_STORES_ID = field("Store", "usersStoresId");
+  public static final QueryField ACCOUNT_STORES_ID = field("Store", "accountStoresId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String storename;
   private final @ModelField(targetType="String", isRequired = true) String storedescription;
@@ -33,7 +33,7 @@ public final class Store implements Model {
   private final @ModelField(targetType="Float") Double longitude;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String usersStoresId;
+  private final @ModelField(targetType="ID") String accountStoresId;
   public String getId() {
       return id;
   }
@@ -62,17 +62,17 @@ public final class Store implements Model {
       return updatedAt;
   }
   
-  public String getUsersStoresId() {
-      return usersStoresId;
+  public String getAccountStoresId() {
+      return accountStoresId;
   }
   
-  private Store(String id, String storename, String storedescription, Double latitude, Double longitude, String usersStoresId) {
+  private Store(String id, String storename, String storedescription, Double latitude, Double longitude, String accountStoresId) {
     this.id = id;
     this.storename = storename;
     this.storedescription = storedescription;
     this.latitude = latitude;
     this.longitude = longitude;
-    this.usersStoresId = usersStoresId;
+    this.accountStoresId = accountStoresId;
   }
   
   @Override
@@ -90,7 +90,7 @@ public final class Store implements Model {
               ObjectsCompat.equals(getLongitude(), store.getLongitude()) &&
               ObjectsCompat.equals(getCreatedAt(), store.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), store.getUpdatedAt()) &&
-              ObjectsCompat.equals(getUsersStoresId(), store.getUsersStoresId());
+              ObjectsCompat.equals(getAccountStoresId(), store.getAccountStoresId());
       }
   }
   
@@ -104,7 +104,7 @@ public final class Store implements Model {
       .append(getLongitude())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getUsersStoresId())
+      .append(getAccountStoresId())
       .toString()
       .hashCode();
   }
@@ -120,7 +120,7 @@ public final class Store implements Model {
       .append("longitude=" + String.valueOf(getLongitude()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("usersStoresId=" + String.valueOf(getUsersStoresId()))
+      .append("accountStoresId=" + String.valueOf(getAccountStoresId()))
       .append("}")
       .toString();
   }
@@ -154,7 +154,7 @@ public final class Store implements Model {
       storedescription,
       latitude,
       longitude,
-      usersStoresId);
+      accountStoresId);
   }
   public interface StorenameStep {
     StoredescriptionStep storename(String storename);
@@ -171,7 +171,7 @@ public final class Store implements Model {
     BuildStep id(String id);
     BuildStep latitude(Double latitude);
     BuildStep longitude(Double longitude);
-    BuildStep usersStoresId(String usersStoresId);
+    BuildStep accountStoresId(String accountStoresId);
   }
   
 
@@ -181,7 +181,7 @@ public final class Store implements Model {
     private String storedescription;
     private Double latitude;
     private Double longitude;
-    private String usersStoresId;
+    private String accountStoresId;
     @Override
      public Store build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -192,7 +192,7 @@ public final class Store implements Model {
           storedescription,
           latitude,
           longitude,
-          usersStoresId);
+          accountStoresId);
     }
     
     @Override
@@ -222,8 +222,8 @@ public final class Store implements Model {
     }
     
     @Override
-     public BuildStep usersStoresId(String usersStoresId) {
-        this.usersStoresId = usersStoresId;
+     public BuildStep accountStoresId(String accountStoresId) {
+        this.accountStoresId = accountStoresId;
         return this;
     }
     
@@ -239,13 +239,13 @@ public final class Store implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String storename, String storedescription, Double latitude, Double longitude, String usersStoresId) {
+    private CopyOfBuilder(String id, String storename, String storedescription, Double latitude, Double longitude, String accountStoresId) {
       super.id(id);
       super.storename(storename)
         .storedescription(storedescription)
         .latitude(latitude)
         .longitude(longitude)
-        .usersStoresId(usersStoresId);
+        .accountStoresId(accountStoresId);
     }
     
     @Override
@@ -269,8 +269,8 @@ public final class Store implements Model {
     }
     
     @Override
-     public CopyOfBuilder usersStoresId(String usersStoresId) {
-      return (CopyOfBuilder) super.usersStoresId(usersStoresId);
+     public CopyOfBuilder accountStoresId(String accountStoresId) {
+      return (CopyOfBuilder) super.accountStoresId(accountStoresId);
     }
   }
   

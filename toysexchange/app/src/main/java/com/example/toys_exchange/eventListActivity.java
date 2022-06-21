@@ -8,15 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class eventListActivity extends AppCompatActivity {
 
-
-    private View.OnClickListener mClickprofile = new View.OnClickListener() {
+    private View.OnClickListener mClickBack = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
-            mProfile.setText("profile");
-            mProfile.setAllCaps(true);
+            mBack.setText("back");
+            mBack.setAllCaps(true);
 
             Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
             startActivity(startAllTasksIntent);
@@ -24,21 +23,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private TextView mProfile;
+    private TextView mBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_event_list);
 
-        ////////////////*********             Profile Button                **********//////////////////
+        Button btnBack = findViewById(R.id.back_events_profile);
+        mBack = findViewById(R.id.back_events_profile);
 
-
-
-        Button btnProfile = findViewById(R.id.btn_profile);
-        mProfile = findViewById(R.id.btn_profile);
-
-        btnProfile.setOnClickListener(mClickprofile);
+        btnBack.setOnClickListener(mClickBack);
 
     }
 }

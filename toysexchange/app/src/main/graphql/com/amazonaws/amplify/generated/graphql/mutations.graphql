@@ -15,10 +15,7 @@ mutation CreateToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 mutation UpdateToy(
@@ -37,10 +34,7 @@ mutation UpdateToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 mutation DeleteToy(
@@ -59,8 +53,6 @@ mutation DeleteToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
   }
 }
@@ -175,52 +167,14 @@ mutation CreateUsers(
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -241,52 +195,14 @@ mutation UpdateUsers(
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -307,52 +223,14 @@ mutation DeleteUsers(
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -372,32 +250,10 @@ mutation CreateEvent(
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -418,32 +274,10 @@ mutation UpdateEvent(
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -464,32 +298,10 @@ mutation DeleteEvent(
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -500,6 +312,5 @@ mutation DeleteEvent(
     _version
     _deleted
     _lastChangedAt
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }

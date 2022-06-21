@@ -12,10 +12,7 @@ subscription OnCreateToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 subscription OnUpdateToy {
@@ -31,10 +28,7 @@ subscription OnUpdateToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 subscription OnDeleteToy {
@@ -50,8 +44,6 @@ subscription OnDeleteToy {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
   }
 }
@@ -145,52 +137,14 @@ subscription OnCreateUsers {
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -208,52 +162,14 @@ subscription OnUpdateUsers {
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -271,52 +187,14 @@ subscription OnDeleteUsers {
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -333,32 +211,10 @@ subscription OnCreateEvent {
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -376,32 +232,10 @@ subscription OnUpdateEvent {
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -419,32 +253,10 @@ subscription OnDeleteEvent {
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -455,6 +267,5 @@ subscription OnDeleteEvent {
     _version
     _deleted
     _lastChangedAt
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }

@@ -22,6 +22,8 @@ public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = SignUpActivity.class.getSimpleName();
     private View loadingProgressBar;
     public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
+    public static final String USERID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(SignUpActivity.this, VerificationActivity.class);
                     intent.putExtra(EMAIL, email);
+                    intent.putExtra(USERNAME, username);
+                    intent.putExtra(USERID, result.getUser().getUserId());
                     startActivity(intent);
 
                     finish();

@@ -12,10 +12,7 @@ query GetToy($id: ID!) {
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
     usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   }
 }
 query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
@@ -100,31 +97,19 @@ query ListStores(
       _version
       _deleted
       _lastChangedAt
-<<<<<<< HEAD
-=======
       usersStoresId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
     }
     nextToken
     startedAt
   }
 }
-<<<<<<< HEAD
-query SyncTodos(
-  $filter: ModelTodoFilterInput
-=======
 query SyncStores(
   $filter: ModelStoreFilterInput
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
   $limit: Int
   $nextToken: String
   $lastSync: AWSTimestamp
 ) {
-<<<<<<< HEAD
-  syncTodos(
-=======
   syncStores(
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -132,10 +117,6 @@ query SyncStores(
   ) {
     items {
       id
-<<<<<<< HEAD
-      name
-      description
-=======
       storename
       storedescription
       latitude
@@ -218,52 +199,14 @@ query GetUsers($id: ID!) {
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
       nextToken
       startedAt
     }
@@ -285,18 +228,6 @@ query ListUsers(
       id
       idcognito
       username
-      toys {
-        nextToken
-        startedAt
-      }
-      comments {
-        nextToken
-        startedAt
-      }
-      stores {
-        nextToken
-        startedAt
-      }
       createdAt
       updatedAt
       _version
@@ -324,18 +255,6 @@ query SyncUsers(
       id
       idcognito
       username
-      toys {
-        nextToken
-        startedAt
-      }
-      comments {
-        nextToken
-        startedAt
-      }
-      stores {
-        nextToken
-        startedAt
-      }
       createdAt
       updatedAt
       _version
@@ -352,32 +271,10 @@ query GetEvent($id: ID!) {
     id
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
       nextToken
       startedAt
     }
@@ -399,14 +296,6 @@ query ListEvents(
     items {
       id
       eventdescription
-      comments {
-        nextToken
-        startedAt
-      }
-      users {
-        nextToken
-        startedAt
-      }
       latitude
       longitude
       createdAt
@@ -434,17 +323,8 @@ query SyncEvents(
     items {
       id
       eventdescription
-      comments {
-        nextToken
-        startedAt
-      }
-      users {
-        nextToken
-        startedAt
-      }
       latitude
       longitude
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
       createdAt
       updatedAt
       _version

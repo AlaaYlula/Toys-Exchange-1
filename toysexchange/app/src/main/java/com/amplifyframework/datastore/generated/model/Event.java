@@ -22,19 +22,27 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Events")
 public final class Event implements Model {
   public static final QueryField ID = field("Event", "id");
+  public static final QueryField TITLE = field("Event", "title");
   public static final QueryField EVENTDESCRIPTION = field("Event", "eventdescription");
   public static final QueryField LATITUDE = field("Event", "latitude");
   public static final QueryField LONGITUDE = field("Event", "longitude");
+  public static final QueryField ACCOUNT_EVENTSADDED_ID = field("Event", "accountEventsaddedId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
+  private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String eventdescription;
   private final @ModelField(targetType="Comment") @HasMany(associatedWith = "eventCommentsId", type = Comment.class) List<Comment> comments = null;
-  private final @ModelField(targetType="Users") @HasMany(associatedWith = "eventUsersId", type = Users.class) List<Users> users = null;
+  private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "event", type = UserAttendEvent.class) List<UserAttendEvent> usersattend = null;
   private final @ModelField(targetType="Float") Double latitude;
   private final @ModelField(targetType="Float") Double longitude;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
+  private final @ModelField(targetType="ID") String accountEventsaddedId;
   public String getId() {
       return id;
+  }
+  
+  public String getTitle() {
+      return title;
   }
   
   public String getEventdescription() {
@@ -45,8 +53,8 @@ public final class Event implements Model {
       return comments;
   }
   
-  public List<Users> getUsers() {
-      return users;
+  public List<UserAttendEvent> getUsersattend() {
+      return usersattend;
   }
   
   public Double getLatitude() {
@@ -65,11 +73,17 @@ public final class Event implements Model {
       return updatedAt;
   }
   
-  private Event(String id, String eventdescription, Double latitude, Double longitude) {
+  public String getAccountEventsaddedId() {
+      return accountEventsaddedId;
+  }
+  
+  private Event(String id, String title, String eventdescription, Double latitude, Double longitude, String accountEventsaddedId) {
     this.id = id;
+    this.title = title;
     this.eventdescription = eventdescription;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.accountEventsaddedId = accountEventsaddedId;
   }
   
   @Override
@@ -81,11 +95,13 @@ public final class Event implements Model {
       } else {
       Event event = (Event) obj;
       return ObjectsCompat.equals(getId(), event.getId()) &&
+              ObjectsCompat.equals(getTitle(), event.getTitle()) &&
               ObjectsCompat.equals(getEventdescription(), event.getEventdescription()) &&
               ObjectsCompat.equals(getLatitude(), event.getLatitude()) &&
               ObjectsCompat.equals(getLongitude(), event.getLongitude()) &&
               ObjectsCompat.equals(getCreatedAt(), event.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), event.getUpdatedAt());
+              ObjectsCompat.equals(getUpdatedAt(), event.getUpdatedAt()) &&
+              ObjectsCompat.equals(getAccountEventsaddedId(), event.getAccountEventsaddedId());
       }
   }
   
@@ -93,11 +109,13 @@ public final class Event implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
+      .append(getTitle())
       .append(getEventdescription())
       .append(getLatitude())
       .append(getLongitude())
       .append(getCreatedAt())
       .append(getUpdatedAt())
+      .append(getAccountEventsaddedId())
       .toString()
       .hashCode();
   }
@@ -107,16 +125,18 @@ public final class Event implements Model {
     return new StringBuilder()
       .append("Event {")
       .append("id=" + String.valueOf(getId()) + ", ")
+      .append("title=" + String.valueOf(getTitle()) + ", ")
       .append("eventdescription=" + String.valueOf(getEventdescription()) + ", ")
       .append("latitude=" + String.valueOf(getLatitude()) + ", ")
       .append("longitude=" + String.valueOf(getLongitude()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
-      .append("updatedAt=" + String.valueOf(getUpdatedAt()))
+      .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
+      .append("accountEventsaddedId=" + String.valueOf(getAccountEventsaddedId()))
       .append("}")
       .toString();
   }
   
-  public static EventdescriptionStep builder() {
+  public static TitleStep builder() {
       return new Builder();
   }
   
@@ -133,16 +153,25 @@ public final class Event implements Model {
       id,
       null,
       null,
+      null,
+      null,
       null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
+      title,
       eventdescription,
       latitude,
-      longitude);
+      longitude,
+      accountEventsaddedId);
   }
+  public interface TitleStep {
+    EventdescriptionStep title(String title);
+  }
+  
+
   public interface EventdescriptionStep {
     BuildStep eventdescription(String eventdescription);
   }
@@ -153,23 +182,35 @@ public final class Event implements Model {
     BuildStep id(String id);
     BuildStep latitude(Double latitude);
     BuildStep longitude(Double longitude);
+    BuildStep accountEventsaddedId(String accountEventsaddedId);
   }
   
 
-  public static class Builder implements EventdescriptionStep, BuildStep {
+  public static class Builder implements TitleStep, EventdescriptionStep, BuildStep {
     private String id;
+    private String title;
     private String eventdescription;
     private Double latitude;
     private Double longitude;
+    private String accountEventsaddedId;
     @Override
      public Event build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
         return new Event(
           id,
+          title,
           eventdescription,
           latitude,
-          longitude);
+          longitude,
+          accountEventsaddedId);
+    }
+    
+    @Override
+     public EventdescriptionStep title(String title) {
+        Objects.requireNonNull(title);
+        this.title = title;
+        return this;
     }
     
     @Override
@@ -191,6 +232,12 @@ public final class Event implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep accountEventsaddedId(String accountEventsaddedId) {
+        this.accountEventsaddedId = accountEventsaddedId;
+        return this;
+    }
+    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -203,11 +250,18 @@ public final class Event implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String eventdescription, Double latitude, Double longitude) {
+    private CopyOfBuilder(String id, String title, String eventdescription, Double latitude, Double longitude, String accountEventsaddedId) {
       super.id(id);
-      super.eventdescription(eventdescription)
+      super.title(title)
+        .eventdescription(eventdescription)
         .latitude(latitude)
-        .longitude(longitude);
+        .longitude(longitude)
+        .accountEventsaddedId(accountEventsaddedId);
+    }
+    
+    @Override
+     public CopyOfBuilder title(String title) {
+      return (CopyOfBuilder) super.title(title);
     }
     
     @Override
@@ -223,6 +277,11 @@ public final class Event implements Model {
     @Override
      public CopyOfBuilder longitude(Double longitude) {
       return (CopyOfBuilder) super.longitude(longitude);
+    }
+    
+    @Override
+     public CopyOfBuilder accountEventsaddedId(String accountEventsaddedId) {
+      return (CopyOfBuilder) super.accountEventsaddedId(accountEventsaddedId);
     }
   }
   

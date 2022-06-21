@@ -26,7 +26,7 @@ public final class Toy implements Model {
   public static final QueryField IMAGE = field("Toy", "image");
   public static final QueryField PRICE = field("Toy", "price");
   public static final QueryField CONDITION = field("Toy", "condition");
-  public static final QueryField USERS_TOYS_ID = field("Toy", "usersToysId");
+  public static final QueryField ACCOUNT_TOYS_ID = field("Toy", "accountToysId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String toyname;
   private final @ModelField(targetType="String", isRequired = true) String toydescription;
@@ -35,7 +35,7 @@ public final class Toy implements Model {
   private final @ModelField(targetType="Condition") Condition condition;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String usersToysId;
+  private final @ModelField(targetType="ID") String accountToysId;
   public String getId() {
       return id;
   }
@@ -68,18 +68,18 @@ public final class Toy implements Model {
       return updatedAt;
   }
   
-  public String getUsersToysId() {
-      return usersToysId;
+  public String getAccountToysId() {
+      return accountToysId;
   }
   
-  private Toy(String id, String toyname, String toydescription, String image, Double price, Condition condition, String usersToysId) {
+  private Toy(String id, String toyname, String toydescription, String image, Double price, Condition condition, String accountToysId) {
     this.id = id;
     this.toyname = toyname;
     this.toydescription = toydescription;
     this.image = image;
     this.price = price;
     this.condition = condition;
-    this.usersToysId = usersToysId;
+    this.accountToysId = accountToysId;
   }
   
   @Override
@@ -98,7 +98,7 @@ public final class Toy implements Model {
               ObjectsCompat.equals(getCondition(), toy.getCondition()) &&
               ObjectsCompat.equals(getCreatedAt(), toy.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), toy.getUpdatedAt()) &&
-              ObjectsCompat.equals(getUsersToysId(), toy.getUsersToysId());
+              ObjectsCompat.equals(getAccountToysId(), toy.getAccountToysId());
       }
   }
   
@@ -113,7 +113,7 @@ public final class Toy implements Model {
       .append(getCondition())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getUsersToysId())
+      .append(getAccountToysId())
       .toString()
       .hashCode();
   }
@@ -130,7 +130,7 @@ public final class Toy implements Model {
       .append("condition=" + String.valueOf(getCondition()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("usersToysId=" + String.valueOf(getUsersToysId()))
+      .append("accountToysId=" + String.valueOf(getAccountToysId()))
       .append("}")
       .toString();
   }
@@ -166,7 +166,7 @@ public final class Toy implements Model {
       image,
       price,
       condition,
-      usersToysId);
+      accountToysId);
   }
   public interface ToynameStep {
     ToydescriptionStep toyname(String toyname);
@@ -188,7 +188,7 @@ public final class Toy implements Model {
     BuildStep id(String id);
     BuildStep price(Double price);
     BuildStep condition(Condition condition);
-    BuildStep usersToysId(String usersToysId);
+    BuildStep accountToysId(String accountToysId);
   }
   
 
@@ -199,7 +199,7 @@ public final class Toy implements Model {
     private String image;
     private Double price;
     private Condition condition;
-    private String usersToysId;
+    private String accountToysId;
     @Override
      public Toy build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -211,7 +211,7 @@ public final class Toy implements Model {
           image,
           price,
           condition,
-          usersToysId);
+          accountToysId);
     }
     
     @Override
@@ -248,8 +248,8 @@ public final class Toy implements Model {
     }
     
     @Override
-     public BuildStep usersToysId(String usersToysId) {
-        this.usersToysId = usersToysId;
+     public BuildStep accountToysId(String accountToysId) {
+        this.accountToysId = accountToysId;
         return this;
     }
     
@@ -265,14 +265,14 @@ public final class Toy implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String toyname, String toydescription, String image, Double price, Condition condition, String usersToysId) {
+    private CopyOfBuilder(String id, String toyname, String toydescription, String image, Double price, Condition condition, String accountToysId) {
       super.id(id);
       super.toyname(toyname)
         .toydescription(toydescription)
         .image(image)
         .price(price)
         .condition(condition)
-        .usersToysId(usersToysId);
+        .accountToysId(accountToysId);
     }
     
     @Override
@@ -301,8 +301,8 @@ public final class Toy implements Model {
     }
     
     @Override
-     public CopyOfBuilder usersToysId(String usersToysId) {
-      return (CopyOfBuilder) super.usersToysId(usersToysId);
+     public CopyOfBuilder accountToysId(String accountToysId) {
+      return (CopyOfBuilder) super.accountToysId(accountToysId);
     }
   }
   

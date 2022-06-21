@@ -34,7 +34,7 @@ import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Todo;
 import com.amplifyframework.datastore.generated.model.Toy;
-import com.amplifyframework.datastore.generated.model.Users;
+
 import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.toys_exchange.R;
@@ -87,7 +87,7 @@ public class ToyActivity extends AppCompatActivity {
 
         setSpinner();
         authAttribute();
-        read();
+
 
         addToy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +128,7 @@ public class ToyActivity extends AppCompatActivity {
                     .image(URL)
                     .condition(Enum.valueOf(Condition.class, condition))
                     .price(Double.parseDouble(price))
-                    .usersToysId("5523b0e3-162d-4ddd-95b7-e664bf330ed1")
+                    //.usersToysId("5523b0e3-162d-4ddd-95b7-e664bf330ed1")
                     .build();
 
             Log.i(TAG,"-------------------------------------"+oneToy);
@@ -243,16 +243,6 @@ public class ToyActivity extends AppCompatActivity {
         );
     }
 
-   public void read(){
-       Amplify.API.query(
-               ModelQuery.list(Users.class, Users.IDCOGNITO.eq(userId)),
-               response -> {
-                   for (Users todo : response.getData()) {
-                       Log.i("MyAmplifyApp",todo.getId());
-                   }
-               },
-               error -> Log.e("MyAmplifyApp", "Query failure", error)
-       );
-   }
+
 
 }

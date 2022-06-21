@@ -30,8 +30,13 @@ public class AmplifyApplication extends Application {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSS3StoragePlugin());
+<<<<<<< HEAD
 //            Amplify.addPlugin(new AWSPredictionsPlugin());
 //            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(this));
+=======
+            //Amplify.addPlugin(new AWSPredictionsPlugin());
+            //Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(this));
+>>>>>>> 4ef47546a55765240a37dc9f818e794b0ceceee9
             Amplify.configure(getApplicationContext());
 
             Log.i(TAG, "Initialized Amplify");

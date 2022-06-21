@@ -54,7 +54,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         return commentsList.size();    }
 
     public interface CustomClickListener {
-        void onTaskClicked(int position);
+        void onCommentClicked(int position);
     }
 
     // CustomViewHolder //
@@ -73,7 +73,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             username = itemView.findViewById(R.id.username_comment);
             text = itemView.findViewById(R.id.text_comment);
 
-            itemView.setOnClickListener(view -> listener.onTaskClicked(getAdapterPosition()));
+            itemView.setOnClickListener(view -> listener.onCommentClicked(getAdapterPosition()));
         }
     }
 }

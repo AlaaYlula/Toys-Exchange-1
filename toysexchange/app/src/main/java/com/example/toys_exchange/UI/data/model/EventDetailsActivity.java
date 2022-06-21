@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.UserAttendEvent;
 import com.example.toys_exchange.Adaptors.adaptorComment;
 import com.example.toys_exchange.R;
 
@@ -36,7 +38,9 @@ import java.util.stream.Collectors;
 public class EventDetailsActivity extends AppCompatActivity {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
     adaptorComment commentRecyclerViewAdapter;
-    List<Comment> commentsListDatabase;
+    List<Comment> commentsListDatabase = new ArrayList<>();
+
+    String cognitoId;
 
     TextView username;
     TextView title ;
@@ -44,9 +48,16 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     Event event;
     Account user;
+
+    Account userWhoAttend;
+    UserAttendEvent userAttendEvent;
+
+    Account loginUser;
     Button addComment;
+    Button btnAttend;
 
     Handler handler;
+    Handler handler2;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +68,18 @@ public class EventDetailsActivity extends AppCompatActivity {
         String id = passedIntent.getStringExtra("id");
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
-            recyclerViewWork();
+            if(commentsListDatabase.size()!=0)
+                recyclerViewWork();
+
             return true;
         });
+        handler2 = new Handler(Looper.getMainLooper(), msg -> {
+                cognitoId = msg.getData().getString("Id");
+
+            return true;
+        });
+        // To get the cognito Id
+        authAttribute();
 
         username = findViewById(R.id.username_event);
         title = findViewById(R.id.title_eventDetail);
@@ -99,14 +119,91 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         });
 
+        // To Attend To the Event
+        btnAttend = findViewById(R.id.btn_attendEvent);
+        btnAttend.setOnClickListener(view->{
+            Amplify.Auth.fetchUserAttributes(
+                    attributes -> {
+                        Log.i(TAG, "Attributes => "+  attributes.get(0).getValue());
+                        runOnUiThread(() -> {
+                            Amplify.API.query(
+                                    ModelQuery.list(Account.class),
+                                    users -> {
+                                        for(Account userAccount:
+                                        users.getData()){
+                                            if(userAccount.getIdcognito().equals(attributes.get(0).getValue())){
+                                                userWhoAttend = userAccount;
+                                                userAttendEvent = UserAttendEvent.builder()
+                                                        .account(userAccount)
+                                                        .event(event)
+                                                        .build();
+                                            }
+                                        }
+
+                                        runOnUiThread(() -> {
+                                            // Use To do Sync
+                                            Amplify.DataStore.save(event,
+                                                    savedEvent -> {
+                                                        Log.i(TAG, "Event saved.");
+                                                        Amplify.DataStore.save(userWhoAttend,
+                                                                savedUserAttend -> {
+                                                                    Log.i(TAG, "User saved.");
+                                                                    Amplify.DataStore.save(userAttendEvent,
+                                                                            saved -> Log.i(TAG, "userAttendEvent saved."),
+                                                                            failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
+                                                                    );
+                                                                },
+                                                                failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
+                                                        );
+                                                    },
+                                                    failure -> Log.e(TAG, "Post not saved.", failure)
+                                            );
+                                            Amplify.API.mutate(
+                                                    ModelMutation.create(userAttendEvent),
+                                                    success -> {
+                                                        Log.i(TAG, "Saved item API: " + success.getData());
+                                                        runOnUiThread(() -> {
+                                                            Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
+                                                        });
+                                                    },
+                                                    error -> Log.e(TAG, "Could not save item to API", error)
+                                            );
 
 
+                                        });
+
+                                    },
+                                    error -> Log.e(TAG, error.toString(), error)
+                            );
+                        });
+                    },
+                    error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+            );
+
+        });
+
+
+    }
+    private void authAttribute(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    //  Send message to the handler to get the user Id >>
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Id",  attributes.get(0).getValue());
+
+                    Message message = new Message();
+                    message.setData(bundle);
+
+                    handler2.sendMessage(message);
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setEventValues() {
         Amplify.API.query(
-                ModelQuery.get(Event.class, "ba1de473-b108-4a70-8e12-255e7d793afd"),
+                ModelQuery.get(Event.class, "58f66ee2-1a57-4372-aaa3-64482f3c7381"),
                 events -> {
                     event = events.getData();
                     // Use To do Sync
@@ -117,12 +214,30 @@ public class EventDetailsActivity extends AppCompatActivity {
                                     user = users.getData();
                                     // Use To do Sync
                                     runOnUiThread(() -> {
+                                        Amplify.API.query(
+                                                ModelQuery.list(Account.class),
+                                                allUsers -> {
+                                                    for (Account userAc:
+                                                         allUsers.getData()) {
+                                                        if(userAc.getIdcognito().equals(cognitoId)){
+                                                            loginUser = userAc;
+                                                        }
+                                                    }
+                                                    runOnUiThread(() -> {
+                                                        if(event.getAccountEventsaddedId().equals(loginUser.getId())){
+                                                            btnAttend.setVisibility(View.INVISIBLE);
+                                                        }
 
-                                        username.setText(user.getUsername());
-                                        title.setText(event.getTitle());
-                                        description.setText(event.getEventdescription());
-                                        commentsListDatabase = new ArrayList<>();
-                                        getCommentsList();
+                                                        username.setText(user.getUsername());
+                                                        title.setText(event.getTitle());
+                                                        description.setText(event.getEventdescription());
+                                                        commentsListDatabase = new ArrayList<>();
+                                                        getCommentsList();
+                                                    });
+                                                            },
+                                                error -> Log.e(TAG, error.toString(), error)
+                                        );
+
                                     });
                                 },
                                 error -> Log.e(TAG, error.toString(), error)
@@ -139,16 +254,24 @@ public class EventDetailsActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Comment.class),
                 comments -> {
-                    for(Comment comment:
-                            comments.getData()){
-                        commentsListDatabase.add(comment);
+                    if(comments.hasData()) {
+                        for (Comment comment :
+                                comments.getData()) {
+                            commentsListDatabase.add(comment);
+                        }
+                        // Sort the Created At
+                        Collections.sort(commentsListDatabase, new SortByDate());
                     }
-                    // Sort the Created At
-                    Collections.sort(commentsListDatabase, new SortByDate());
                     // Use To do Sync
                     runOnUiThread(() -> {
                        // commentRecyclerViewAdapter.notifyDataSetChanged();
-                        handler.sendMessage(new Message());
+                        Bundle bundle = new Bundle();
+                        bundle.putString("commentsListUpdate", "commentsListUpdate");
+
+                        Message message = new Message();
+                        message.setData(bundle);
+
+                        handler.sendMessage(message);
                     });
                 },
                 error -> Log.e(TAG, error.toString(), error)

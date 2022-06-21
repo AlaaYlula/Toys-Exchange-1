@@ -2,11 +2,9 @@ package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 
 import android.content.Intent;
@@ -18,7 +16,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -27,7 +24,6 @@ public class SignUpActivity extends AppCompatActivity {
     public static final String USERID = "userId";
     private View loadingProgressBar;
     public static final String EMAIL = "email";
-    String flag = "true";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,31 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String username = usernameEditText.getText().toString();
 
-//                Amplify.API.query(
-//                        ModelQuery.list(Account.class, Account.USERNAME.eq(username)),
-//                        response -> {
-//                            if(response.hasData()) {
-//                                for (Account user : response.getData()) {
-//                                    if (user.getUsername().equals(username)) {
-//                                        Log.i(TAG, "User "+ user);
-//                                        flag = "false";
-//                                    }
-//                                }
-//                            }
-//                        },
-//                        error -> Log.e(TAG, error.toString(), error)
-//                );
-
-               // if(flag.equals("true")){
-                    signUp(username,
-                            emailEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                   // flag = "false";
-
-//                }else{
-//                    Toast.makeText(getApplicationContext(), "Username already exist... ", Toast.LENGTH_LONG).show();
-//                    startActivity(  new Intent(getApplicationContext(), SignUpActivity.class));
-//                }
+                signUp(username,
+                        emailEditText.getText().toString(),
+                        passwordEditText.getText().toString());
 
             }
         });

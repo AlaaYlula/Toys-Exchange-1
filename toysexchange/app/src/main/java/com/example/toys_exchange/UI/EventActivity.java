@@ -32,6 +32,7 @@ import com.example.toys_exchange.R;
 public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = EventActivity.class.getSimpleName() ;
+
     Button addEvent;
     Button cancelAdd;
 
@@ -186,53 +187,6 @@ public class EventActivity extends AppCompatActivity {
                     error -> Log.e(TAG, error.toString(), error)
             );
 
-//           two :
-//            Log.i(TAG, "ID Cognito => "+ userId);
-//            Amplify.API.query(
-//                    ModelQuery.list(Users.class, Users.IDCOGNITO.eq(userId)),
-//                    response -> {
-//                        Log.i(TAG, "Users => "+ response.getData());
-//
-//                        if(response.hasData()) {
-//                            for (Users user : response.getData()) {
-//                                if (user.getIdcognito().equals(userId)) {
-//                                    Log.i(TAG, "User has this Event"+ user);
-//
-//                                    Event event = Event.builder()
-//                                            .title(eventTitleText)
-//                                            .eventdescription(eventDescriptionText)
-//                                            .usersEventsaddedId(user.getId())
-//                                            .build();
-//
-//                                    Amplify.DataStore.save(event,
-//                                            success -> Log.i(TAG, "Saved item DataStore: " + success.item().getTitle()),
-//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-//                                    );
-//                                    // API save to backend
-//                                    Amplify.API.mutate(
-//                                            ModelMutation.create(event),
-//                                            success -> {
-//                                                Log.i(TAG, "Saved item API: " + success.getData().getTitle());
-//                                            },
-//                                            error -> Log.e(TAG, "Could not save item to API", error)
-//                                    );
-//                                    user.getEventsadded().add(event);
-//                                }
-//                            }
-//                        }
-//                    },
-//                    error -> Log.e(TAG, error.toString(), error)
-//            );
-
-            // three :
-//            Amplify.API.query(
-//                    ModelQuery.get(Users.class , userId),
-//                    user -> {
-//                        Log.i(TAG, "Users => "+ user.getData());
-//
-//                    },
-//                    error -> Log.e(TAG, error.toString(), error)
-//            );
             Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
             addEvent.setBackgroundColor(Color.RED);
         });

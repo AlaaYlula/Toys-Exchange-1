@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.3867753623188406" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.33242753623188404" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/main_toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />

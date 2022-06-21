@@ -15,10 +15,7 @@ mutation CreateToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+    accountToysId
   }
 }
 mutation UpdateToy(
@@ -37,10 +34,7 @@ mutation UpdateToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+    accountToysId
   }
 }
 mutation DeleteToy(
@@ -59,9 +53,7 @@ mutation DeleteToy(
     _version
     _deleted
     _lastChangedAt
-<<<<<<< HEAD
-=======
-    usersToysId
+    accountToysId
   }
 }
 mutation CreateStore(
@@ -79,7 +71,7 @@ mutation CreateStore(
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 mutation UpdateStore(
@@ -97,7 +89,7 @@ mutation UpdateStore(
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 mutation DeleteStore(
@@ -115,7 +107,7 @@ mutation DeleteStore(
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 mutation CreateComment(
@@ -130,7 +122,7 @@ mutation CreateComment(
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -146,7 +138,7 @@ mutation UpdateComment(
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -162,65 +154,35 @@ mutation DeleteComment(
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
-mutation CreateUsers(
-  $input: CreateUsersInput!
-  $condition: ModelUsersConditionInput
+mutation CreateAccount(
+  $input: CreateAccountInput!
+  $condition: ModelAccountConditionInput
 ) {
-  createUsers(input: $input, condition: $condition) {
+  createAccount(input: $input, condition: $condition) {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -229,64 +191,33 @@ mutation CreateUsers(
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
-mutation UpdateUsers(
-  $input: UpdateUsersInput!
-  $condition: ModelUsersConditionInput
+mutation UpdateAccount(
+  $input: UpdateAccountInput!
+  $condition: ModelAccountConditionInput
 ) {
-  updateUsers(input: $input, condition: $condition) {
+  updateAccount(input: $input, condition: $condition) {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -295,64 +226,33 @@ mutation UpdateUsers(
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
-mutation DeleteUsers(
-  $input: DeleteUsersInput!
-  $condition: ModelUsersConditionInput
+mutation DeleteAccount(
+  $input: DeleteAccountInput!
+  $condition: ModelAccountConditionInput
 ) {
-  deleteUsers(input: $input, condition: $condition) {
+  deleteAccount(input: $input, condition: $condition) {
     id
     idcognito
     username
     toys {
-      items {
-        id
-        toyname
-        toydescription
-        image
-        price
-        condition
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersToysId
-      }
       nextToken
       startedAt
     }
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
     stores {
-      items {
-        id
-        storename
-        storedescription
-        latitude
-        longitude
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersStoresId
-      }
+      nextToken
+      startedAt
+    }
+    eventsadded {
+      nextToken
+      startedAt
+    }
+    eventsattend {
       nextToken
       startedAt
     }
@@ -361,7 +261,6 @@ mutation DeleteUsers(
     _version
     _deleted
     _lastChangedAt
-    eventUsersId
   }
 }
 mutation CreateEvent(
@@ -370,34 +269,13 @@ mutation CreateEvent(
 ) {
   createEvent(input: $input, condition: $condition) {
     id
+    title
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
+    usersattend {
       nextToken
       startedAt
     }
@@ -408,6 +286,7 @@ mutation CreateEvent(
     _version
     _deleted
     _lastChangedAt
+    accountEventsaddedId
   }
 }
 mutation UpdateEvent(
@@ -416,34 +295,13 @@ mutation UpdateEvent(
 ) {
   updateEvent(input: $input, condition: $condition) {
     id
+    title
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
+    usersattend {
       nextToken
       startedAt
     }
@@ -454,6 +312,7 @@ mutation UpdateEvent(
     _version
     _deleted
     _lastChangedAt
+    accountEventsaddedId
   }
 }
 mutation DeleteEvent(
@@ -462,34 +321,13 @@ mutation DeleteEvent(
 ) {
   deleteEvent(input: $input, condition: $condition) {
     id
+    title
     eventdescription
     comments {
-      items {
-        id
-        text
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        usersCommentsId
-        eventCommentsId
-      }
       nextToken
       startedAt
     }
-    users {
-      items {
-        id
-        idcognito
-        username
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        eventUsersId
-      }
+    usersattend {
       nextToken
       startedAt
     }
@@ -500,6 +338,120 @@ mutation DeleteEvent(
     _version
     _deleted
     _lastChangedAt
->>>>>>> ab8d489e778db3ea0e9cac549707289161b6ffdb
+    accountEventsaddedId
+  }
+}
+mutation CreateUserAttendEvent(
+  $input: CreateUserAttendEventInput!
+  $condition: ModelUserAttendEventConditionInput
+) {
+  createUserAttendEvent(input: $input, condition: $condition) {
+    id
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateUserAttendEvent(
+  $input: UpdateUserAttendEventInput!
+  $condition: ModelUserAttendEventConditionInput
+) {
+  updateUserAttendEvent(input: $input, condition: $condition) {
+    id
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteUserAttendEvent(
+  $input: DeleteUserAttendEventInput!
+  $condition: ModelUserAttendEventConditionInput
+) {
+  deleteUserAttendEvent(input: $input, condition: $condition) {
+    id
+    accountID
+    eventID
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    event {
+      id
+      title
+      eventdescription
+      latitude
+      longitude
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountEventsaddedId
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

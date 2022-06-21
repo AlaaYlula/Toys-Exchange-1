@@ -6,7 +6,7 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Users;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 
 import android.content.Intent;
@@ -19,8 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -61,31 +59,31 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String username = usernameEditText.getText().toString();
 
-                Amplify.API.query(
-                        ModelQuery.list(Users.class, Users.USERNAME.eq(username)),
-                        response -> {
-                            if(response.hasData()) {
-                                for (Users user : response.getData()) {
-                                    if (user.getUsername().equals(username)) {
-                                        Log.i(TAG, "User "+ user);
-                                        flag = "false";
-                                    }
-                                }
-                            }
-                        },
-                        error -> Log.e(TAG, error.toString(), error)
-                );
+//                Amplify.API.query(
+//                        ModelQuery.list(Account.class, Account.USERNAME.eq(username)),
+//                        response -> {
+//                            if(response.hasData()) {
+//                                for (Account user : response.getData()) {
+//                                    if (user.getUsername().equals(username)) {
+//                                        Log.i(TAG, "User "+ user);
+//                                        flag = "false";
+//                                    }
+//                                }
+//                            }
+//                        },
+//                        error -> Log.e(TAG, error.toString(), error)
+//                );
 
-                if(flag.equals("true")){
+               // if(flag.equals("true")){
                     signUp(username,
                             emailEditText.getText().toString(),
                             passwordEditText.getText().toString());
-                    flag = "false";
+                   // flag = "false";
 
-                }else{
-                    Toast.makeText(getApplicationContext(), "Username already exist... ", Toast.LENGTH_LONG).show();
-                    startActivity(  new Intent(getApplicationContext(), SignUpActivity.class));
-                }
+//                }else{
+//                    Toast.makeText(getApplicationContext(), "Username already exist... ", Toast.LENGTH_LONG).show();
+//                    startActivity(  new Intent(getApplicationContext(), SignUpActivity.class));
+//                }
 
             }
         });

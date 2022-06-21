@@ -24,8 +24,8 @@ import android.widget.Toast;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.Users;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 
@@ -127,6 +127,7 @@ public class EventActivity extends AppCompatActivity {
     private void authAttribute(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
+                    Log.i(TAG, "Attributes => "+ attributes);
                     //  Send message to the handler to get the user Id >>
                     Bundle bundle = new Bundle();
                     bundle.putString("name",  attributes.get(2).getValue());
@@ -150,20 +151,20 @@ public class EventActivity extends AppCompatActivity {
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();
 
-//            Log.i(TAG, "ID Cognito => "+ userId);
+            Log.i(TAG, "ID Cognito => "+ userId);
             Amplify.API.query(
-                    ModelQuery.list(Users.class),
+                    ModelQuery.list(Account.class),
                     users -> {
                         Log.i(TAG, "Users => "+ users.getData());
                         if(users.hasData()) {
-                            for (Users user :
+                            for (Account user :
                                     users.getData()) {
                                 Log.i(TAG, "User add this Event" + user);
                                 if (user.getIdcognito().equals(userId)) {
                                     Event event = Event.builder()
                                             .title(eventTitleText)
                                             .eventdescription(eventDescriptionText)
-                                            .usersEventsaddedId(user.getId())
+                                            .accountEventsaddedId(user.getId())
                                             .build();
 
                                     Amplify.DataStore.save(event,
@@ -174,7 +175,7 @@ public class EventActivity extends AppCompatActivity {
                                     Amplify.API.mutate(
                                             ModelMutation.create(event),
                                             success -> {
-                                                Log.i(TAG, "Saved item API: " + success.getData().getTitle());
+                                                Log.i(TAG, "Saved item API: " + success.getData());
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
                                     );

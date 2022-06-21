@@ -12,7 +12,7 @@ subscription OnCreateToy {
     _version
     _deleted
     _lastChangedAt
-    usersToysId
+    accountToysId
   }
 }
 subscription OnUpdateToy {
@@ -28,7 +28,7 @@ subscription OnUpdateToy {
     _version
     _deleted
     _lastChangedAt
-    usersToysId
+    accountToysId
   }
 }
 subscription OnDeleteToy {
@@ -44,7 +44,7 @@ subscription OnDeleteToy {
     _version
     _deleted
     _lastChangedAt
-    usersToysId
+    accountToysId
   }
 }
 subscription OnCreateStore {
@@ -59,7 +59,7 @@ subscription OnCreateStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnUpdateStore {
@@ -74,7 +74,7 @@ subscription OnUpdateStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnDeleteStore {
@@ -89,7 +89,7 @@ subscription OnDeleteStore {
     _version
     _deleted
     _lastChangedAt
-    usersStoresId
+    accountStoresId
   }
 }
 subscription OnCreateComment {
@@ -101,7 +101,7 @@ subscription OnCreateComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -114,7 +114,7 @@ subscription OnUpdateComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
@@ -127,12 +127,12 @@ subscription OnDeleteComment {
     _version
     _deleted
     _lastChangedAt
-    usersCommentsId
+    accountCommentsId
     eventCommentsId
   }
 }
-subscription OnCreateUsers {
-  onCreateUsers {
+subscription OnCreateAccount {
+  onCreateAccount {
     id
     idcognito
     username
@@ -163,8 +163,8 @@ subscription OnCreateUsers {
     _lastChangedAt
   }
 }
-subscription OnUpdateUsers {
-  onUpdateUsers {
+subscription OnUpdateAccount {
+  onUpdateAccount {
     id
     idcognito
     username
@@ -195,8 +195,8 @@ subscription OnUpdateUsers {
     _lastChangedAt
   }
 }
-subscription OnDeleteUsers {
-  onDeleteUsers {
+subscription OnDeleteAccount {
+  onDeleteAccount {
     id
     idcognito
     username
@@ -247,7 +247,7 @@ subscription OnCreateEvent {
     _version
     _deleted
     _lastChangedAt
-    usersEventsaddedId
+    accountEventsaddedId
   }
 }
 subscription OnUpdateEvent {
@@ -270,7 +270,7 @@ subscription OnUpdateEvent {
     _version
     _deleted
     _lastChangedAt
-    usersEventsaddedId
+    accountEventsaddedId
   }
 }
 subscription OnDeleteEvent {
@@ -293,15 +293,15 @@ subscription OnDeleteEvent {
     _version
     _deleted
     _lastChangedAt
-    usersEventsaddedId
+    accountEventsaddedId
   }
 }
 subscription OnCreateUserAttendEvent {
   onCreateUserAttendEvent {
     id
-    usersID
+    accountID
     eventID
-    users {
+    account {
       id
       idcognito
       username
@@ -322,7 +322,7 @@ subscription OnCreateUserAttendEvent {
       _version
       _deleted
       _lastChangedAt
-      usersEventsaddedId
+      accountEventsaddedId
     }
     createdAt
     updatedAt
@@ -334,9 +334,9 @@ subscription OnCreateUserAttendEvent {
 subscription OnUpdateUserAttendEvent {
   onUpdateUserAttendEvent {
     id
-    usersID
+    accountID
     eventID
-    users {
+    account {
       id
       idcognito
       username
@@ -357,7 +357,7 @@ subscription OnUpdateUserAttendEvent {
       _version
       _deleted
       _lastChangedAt
-      usersEventsaddedId
+      accountEventsaddedId
     }
     createdAt
     updatedAt
@@ -369,9 +369,9 @@ subscription OnUpdateUserAttendEvent {
 subscription OnDeleteUserAttendEvent {
   onDeleteUserAttendEvent {
     id
-    usersID
+    accountID
     eventID
-    users {
+    account {
       id
       idcognito
       username
@@ -392,7 +392,7 @@ subscription OnDeleteUserAttendEvent {
       _version
       _deleted
       _lastChangedAt
-      usersEventsaddedId
+      accountEventsaddedId
     }
     createdAt
     updatedAt

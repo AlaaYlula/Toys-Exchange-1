@@ -20,14 +20,14 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 /** This is an auto generated class representing the UserAttendEvent type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "UserAttendEvents")
-@Index(name = "byUsers", fields = {"usersID"})
+@Index(name = "byAccount", fields = {"accountID"})
 @Index(name = "byEvent", fields = {"eventID"})
 public final class UserAttendEvent implements Model {
   public static final QueryField ID = field("UserAttendEvent", "id");
-  public static final QueryField USERS = field("UserAttendEvent", "usersID");
+  public static final QueryField ACCOUNT = field("UserAttendEvent", "accountID");
   public static final QueryField EVENT = field("UserAttendEvent", "eventID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="Users", isRequired = true) @BelongsTo(targetName = "usersID", type = Users.class) Users users;
+  private final @ModelField(targetType="Account", isRequired = true) @BelongsTo(targetName = "accountID", type = Account.class) Account account;
   private final @ModelField(targetType="Event", isRequired = true) @BelongsTo(targetName = "eventID", type = Event.class) Event event;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -35,8 +35,8 @@ public final class UserAttendEvent implements Model {
       return id;
   }
   
-  public Users getUsers() {
-      return users;
+  public Account getAccount() {
+      return account;
   }
   
   public Event getEvent() {
@@ -51,9 +51,9 @@ public final class UserAttendEvent implements Model {
       return updatedAt;
   }
   
-  private UserAttendEvent(String id, Users users, Event event) {
+  private UserAttendEvent(String id, Account account, Event event) {
     this.id = id;
-    this.users = users;
+    this.account = account;
     this.event = event;
   }
   
@@ -66,7 +66,7 @@ public final class UserAttendEvent implements Model {
       } else {
       UserAttendEvent userAttendEvent = (UserAttendEvent) obj;
       return ObjectsCompat.equals(getId(), userAttendEvent.getId()) &&
-              ObjectsCompat.equals(getUsers(), userAttendEvent.getUsers()) &&
+              ObjectsCompat.equals(getAccount(), userAttendEvent.getAccount()) &&
               ObjectsCompat.equals(getEvent(), userAttendEvent.getEvent()) &&
               ObjectsCompat.equals(getCreatedAt(), userAttendEvent.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), userAttendEvent.getUpdatedAt());
@@ -77,7 +77,7 @@ public final class UserAttendEvent implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getUsers())
+      .append(getAccount())
       .append(getEvent())
       .append(getCreatedAt())
       .append(getUpdatedAt())
@@ -90,7 +90,7 @@ public final class UserAttendEvent implements Model {
     return new StringBuilder()
       .append("UserAttendEvent {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("users=" + String.valueOf(getUsers()) + ", ")
+      .append("account=" + String.valueOf(getAccount()) + ", ")
       .append("event=" + String.valueOf(getEvent()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
@@ -98,7 +98,7 @@ public final class UserAttendEvent implements Model {
       .toString();
   }
   
-  public static UsersStep builder() {
+  public static AccountStep builder() {
       return new Builder();
   }
   
@@ -120,11 +120,11 @@ public final class UserAttendEvent implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      users,
+      account,
       event);
   }
-  public interface UsersStep {
-    EventStep users(Users users);
+  public interface AccountStep {
+    EventStep account(Account account);
   }
   
 
@@ -139,9 +139,9 @@ public final class UserAttendEvent implements Model {
   }
   
 
-  public static class Builder implements UsersStep, EventStep, BuildStep {
+  public static class Builder implements AccountStep, EventStep, BuildStep {
     private String id;
-    private Users users;
+    private Account account;
     private Event event;
     @Override
      public UserAttendEvent build() {
@@ -149,14 +149,14 @@ public final class UserAttendEvent implements Model {
         
         return new UserAttendEvent(
           id,
-          users,
+          account,
           event);
     }
     
     @Override
-     public EventStep users(Users users) {
-        Objects.requireNonNull(users);
-        this.users = users;
+     public EventStep account(Account account) {
+        Objects.requireNonNull(account);
+        this.account = account;
         return this;
     }
     
@@ -179,15 +179,15 @@ public final class UserAttendEvent implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Users users, Event event) {
+    private CopyOfBuilder(String id, Account account, Event event) {
       super.id(id);
-      super.users(users)
+      super.account(account)
         .event(event);
     }
     
     @Override
-     public CopyOfBuilder users(Users users) {
-      return (CopyOfBuilder) super.users(users);
+     public CopyOfBuilder account(Account account) {
+      return (CopyOfBuilder) super.account(account);
     }
     
     @Override

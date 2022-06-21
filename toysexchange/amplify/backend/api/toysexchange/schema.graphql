@@ -31,7 +31,7 @@ type Comment @model{
   text : String!
 }
 
-type Users @model {
+type Account @model {
   id: ID!
   idcognito: String
   username: String!
@@ -48,7 +48,7 @@ type Event @model{
   title : String!
   eventdescription : String!
   comments : [Comment] @hasMany
-  usersattend : [Users] @manyToMany(relationName: "UserAttendEvent")
+  usersattend : [Account] @manyToMany(relationName: "UserAttendEvent")
   latitude : Float
   longitude : Float
 }

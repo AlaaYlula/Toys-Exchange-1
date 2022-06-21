@@ -22,13 +22,13 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class Comment implements Model {
   public static final QueryField ID = field("Comment", "id");
   public static final QueryField TEXT = field("Comment", "text");
-  public static final QueryField USERS_COMMENTS_ID = field("Comment", "usersCommentsId");
+  public static final QueryField ACCOUNT_COMMENTS_ID = field("Comment", "accountCommentsId");
   public static final QueryField EVENT_COMMENTS_ID = field("Comment", "eventCommentsId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String text;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String usersCommentsId;
+  private final @ModelField(targetType="ID") String accountCommentsId;
   private final @ModelField(targetType="ID") String eventCommentsId;
   public String getId() {
       return id;
@@ -46,18 +46,18 @@ public final class Comment implements Model {
       return updatedAt;
   }
   
-  public String getUsersCommentsId() {
-      return usersCommentsId;
+  public String getAccountCommentsId() {
+      return accountCommentsId;
   }
   
   public String getEventCommentsId() {
       return eventCommentsId;
   }
   
-  private Comment(String id, String text, String usersCommentsId, String eventCommentsId) {
+  private Comment(String id, String text, String accountCommentsId, String eventCommentsId) {
     this.id = id;
     this.text = text;
-    this.usersCommentsId = usersCommentsId;
+    this.accountCommentsId = accountCommentsId;
     this.eventCommentsId = eventCommentsId;
   }
   
@@ -73,7 +73,7 @@ public final class Comment implements Model {
               ObjectsCompat.equals(getText(), comment.getText()) &&
               ObjectsCompat.equals(getCreatedAt(), comment.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), comment.getUpdatedAt()) &&
-              ObjectsCompat.equals(getUsersCommentsId(), comment.getUsersCommentsId()) &&
+              ObjectsCompat.equals(getAccountCommentsId(), comment.getAccountCommentsId()) &&
               ObjectsCompat.equals(getEventCommentsId(), comment.getEventCommentsId());
       }
   }
@@ -85,7 +85,7 @@ public final class Comment implements Model {
       .append(getText())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getUsersCommentsId())
+      .append(getAccountCommentsId())
       .append(getEventCommentsId())
       .toString()
       .hashCode();
@@ -99,7 +99,7 @@ public final class Comment implements Model {
       .append("text=" + String.valueOf(getText()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("usersCommentsId=" + String.valueOf(getUsersCommentsId()) + ", ")
+      .append("accountCommentsId=" + String.valueOf(getAccountCommentsId()) + ", ")
       .append("eventCommentsId=" + String.valueOf(getEventCommentsId()))
       .append("}")
       .toString();
@@ -129,7 +129,7 @@ public final class Comment implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       text,
-      usersCommentsId,
+      accountCommentsId,
       eventCommentsId);
   }
   public interface TextStep {
@@ -140,7 +140,7 @@ public final class Comment implements Model {
   public interface BuildStep {
     Comment build();
     BuildStep id(String id);
-    BuildStep usersCommentsId(String usersCommentsId);
+    BuildStep accountCommentsId(String accountCommentsId);
     BuildStep eventCommentsId(String eventCommentsId);
   }
   
@@ -148,7 +148,7 @@ public final class Comment implements Model {
   public static class Builder implements TextStep, BuildStep {
     private String id;
     private String text;
-    private String usersCommentsId;
+    private String accountCommentsId;
     private String eventCommentsId;
     @Override
      public Comment build() {
@@ -157,7 +157,7 @@ public final class Comment implements Model {
         return new Comment(
           id,
           text,
-          usersCommentsId,
+          accountCommentsId,
           eventCommentsId);
     }
     
@@ -169,8 +169,8 @@ public final class Comment implements Model {
     }
     
     @Override
-     public BuildStep usersCommentsId(String usersCommentsId) {
-        this.usersCommentsId = usersCommentsId;
+     public BuildStep accountCommentsId(String accountCommentsId) {
+        this.accountCommentsId = accountCommentsId;
         return this;
     }
     
@@ -192,10 +192,10 @@ public final class Comment implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String text, String usersCommentsId, String eventCommentsId) {
+    private CopyOfBuilder(String id, String text, String accountCommentsId, String eventCommentsId) {
       super.id(id);
       super.text(text)
-        .usersCommentsId(usersCommentsId)
+        .accountCommentsId(accountCommentsId)
         .eventCommentsId(eventCommentsId);
     }
     
@@ -205,8 +205,8 @@ public final class Comment implements Model {
     }
     
     @Override
-     public CopyOfBuilder usersCommentsId(String usersCommentsId) {
-      return (CopyOfBuilder) super.usersCommentsId(usersCommentsId);
+     public CopyOfBuilder accountCommentsId(String accountCommentsId) {
+      return (CopyOfBuilder) super.accountCommentsId(accountCommentsId);
     }
     
     @Override

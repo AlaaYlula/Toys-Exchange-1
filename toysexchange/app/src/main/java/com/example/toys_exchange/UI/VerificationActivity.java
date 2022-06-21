@@ -3,7 +3,6 @@ package com.example.toys_exchange.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,8 +11,7 @@ import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.Users;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 
 
@@ -47,7 +45,7 @@ public class VerificationActivity extends AppCompatActivity {
 
                     Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
                     // Add the user To API
-                    Users user = Users.builder()
+                    Account user = Account.builder()
                             .username(username)
                             .idcognito(userId)
                             .build();
@@ -61,13 +59,16 @@ public class VerificationActivity extends AppCompatActivity {
                             ModelMutation.create(user),
                             success -> {
                                 Log.i(TAG, "Saved User API: " + success.getData().getUsername());
+                                runOnUiThread(() -> {
+                                    Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(this, LoginActivity.class));
+                                    finish();
+                                        });
                             },
                             error -> Log.e(TAG, "Could not save item to API", error)
                     );
-                    Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(VerificationActivity.this, LoginActivity.class));
-                    finish();
                 },
                 error -> Log.e(TAG, error.toString())
         );

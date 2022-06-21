@@ -26,7 +26,7 @@ public final class Event implements Model {
   public static final QueryField EVENTDESCRIPTION = field("Event", "eventdescription");
   public static final QueryField LATITUDE = field("Event", "latitude");
   public static final QueryField LONGITUDE = field("Event", "longitude");
-  public static final QueryField USERS_EVENTSADDED_ID = field("Event", "usersEventsaddedId");
+  public static final QueryField ACCOUNT_EVENTSADDED_ID = field("Event", "accountEventsaddedId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String eventdescription;
@@ -36,7 +36,7 @@ public final class Event implements Model {
   private final @ModelField(targetType="Float") Double longitude;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
-  private final @ModelField(targetType="ID") String usersEventsaddedId;
+  private final @ModelField(targetType="ID") String accountEventsaddedId;
   public String getId() {
       return id;
   }
@@ -73,17 +73,17 @@ public final class Event implements Model {
       return updatedAt;
   }
   
-  public String getUsersEventsaddedId() {
-      return usersEventsaddedId;
+  public String getAccountEventsaddedId() {
+      return accountEventsaddedId;
   }
   
-  private Event(String id, String title, String eventdescription, Double latitude, Double longitude, String usersEventsaddedId) {
+  private Event(String id, String title, String eventdescription, Double latitude, Double longitude, String accountEventsaddedId) {
     this.id = id;
     this.title = title;
     this.eventdescription = eventdescription;
     this.latitude = latitude;
     this.longitude = longitude;
-    this.usersEventsaddedId = usersEventsaddedId;
+    this.accountEventsaddedId = accountEventsaddedId;
   }
   
   @Override
@@ -101,7 +101,7 @@ public final class Event implements Model {
               ObjectsCompat.equals(getLongitude(), event.getLongitude()) &&
               ObjectsCompat.equals(getCreatedAt(), event.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), event.getUpdatedAt()) &&
-              ObjectsCompat.equals(getUsersEventsaddedId(), event.getUsersEventsaddedId());
+              ObjectsCompat.equals(getAccountEventsaddedId(), event.getAccountEventsaddedId());
       }
   }
   
@@ -115,7 +115,7 @@ public final class Event implements Model {
       .append(getLongitude())
       .append(getCreatedAt())
       .append(getUpdatedAt())
-      .append(getUsersEventsaddedId())
+      .append(getAccountEventsaddedId())
       .toString()
       .hashCode();
   }
@@ -131,7 +131,7 @@ public final class Event implements Model {
       .append("longitude=" + String.valueOf(getLongitude()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()) + ", ")
-      .append("usersEventsaddedId=" + String.valueOf(getUsersEventsaddedId()))
+      .append("accountEventsaddedId=" + String.valueOf(getAccountEventsaddedId()))
       .append("}")
       .toString();
   }
@@ -165,7 +165,7 @@ public final class Event implements Model {
       eventdescription,
       latitude,
       longitude,
-      usersEventsaddedId);
+      accountEventsaddedId);
   }
   public interface TitleStep {
     EventdescriptionStep title(String title);
@@ -182,7 +182,7 @@ public final class Event implements Model {
     BuildStep id(String id);
     BuildStep latitude(Double latitude);
     BuildStep longitude(Double longitude);
-    BuildStep usersEventsaddedId(String usersEventsaddedId);
+    BuildStep accountEventsaddedId(String accountEventsaddedId);
   }
   
 
@@ -192,7 +192,7 @@ public final class Event implements Model {
     private String eventdescription;
     private Double latitude;
     private Double longitude;
-    private String usersEventsaddedId;
+    private String accountEventsaddedId;
     @Override
      public Event build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -203,7 +203,7 @@ public final class Event implements Model {
           eventdescription,
           latitude,
           longitude,
-          usersEventsaddedId);
+          accountEventsaddedId);
     }
     
     @Override
@@ -233,8 +233,8 @@ public final class Event implements Model {
     }
     
     @Override
-     public BuildStep usersEventsaddedId(String usersEventsaddedId) {
-        this.usersEventsaddedId = usersEventsaddedId;
+     public BuildStep accountEventsaddedId(String accountEventsaddedId) {
+        this.accountEventsaddedId = accountEventsaddedId;
         return this;
     }
     
@@ -250,13 +250,13 @@ public final class Event implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String eventdescription, Double latitude, Double longitude, String usersEventsaddedId) {
+    private CopyOfBuilder(String id, String title, String eventdescription, Double latitude, Double longitude, String accountEventsaddedId) {
       super.id(id);
       super.title(title)
         .eventdescription(eventdescription)
         .latitude(latitude)
         .longitude(longitude)
-        .usersEventsaddedId(usersEventsaddedId);
+        .accountEventsaddedId(accountEventsaddedId);
     }
     
     @Override
@@ -280,8 +280,8 @@ public final class Event implements Model {
     }
     
     @Override
-     public CopyOfBuilder usersEventsaddedId(String usersEventsaddedId) {
-      return (CopyOfBuilder) super.usersEventsaddedId(usersEventsaddedId);
+     public CopyOfBuilder accountEventsaddedId(String accountEventsaddedId) {
+      return (CopyOfBuilder) super.accountEventsaddedId(accountEventsaddedId);
     }
   }
   

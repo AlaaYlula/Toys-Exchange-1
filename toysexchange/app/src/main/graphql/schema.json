@@ -385,7 +385,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "getUsers",
+                        "name": "getAccount",
                         "description": null,
                         "args": [
                             {
@@ -405,14 +405,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "listUsers",
+                        "name": "listAccounts",
                         "description": null,
                         "args": [
                             {
@@ -420,7 +420,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersFilterInput",
+                                    "name": "ModelAccountFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -448,14 +448,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelUsersConnection",
+                            "name": "ModelAccountConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "syncUsers",
+                        "name": "syncAccounts",
                         "description": null,
                         "args": [
                             {
@@ -463,7 +463,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersFilterInput",
+                                    "name": "ModelAccountFilterInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -501,7 +501,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "ModelUsersConnection",
+                            "name": "ModelAccountConnection",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -939,7 +939,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -1150,7 +1150,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1955,7 +1955,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -2067,7 +2067,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2250,7 +2250,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -2344,7 +2344,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -2425,7 +2425,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "Users",
+                "name": "Account",
                 "description": null,
                 "fields": [
                     {
@@ -2937,7 +2937,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersEventsaddedId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -3266,7 +3266,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersEventsaddedId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "args": [],
                         "type": {
@@ -3300,7 +3300,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersID",
+                        "name": "accountID",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -3439,7 +3439,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "usersID",
+                        "name": "accountID",
                         "description": null,
                         "args": [],
                         "type": {
@@ -3471,7 +3471,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "users",
+                        "name": "account",
                         "description": null,
                         "args": [],
                         "type": {
@@ -3479,7 +3479,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "OBJECT",
-                                "name": "Users",
+                                "name": "Account",
                                 "ofType": null
                             }
                         },
@@ -3586,7 +3586,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelUsersFilterInput",
+                "name": "ModelAccountFilterInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -3628,7 +3628,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersFilterInput",
+                                "name": "ModelAccountFilterInput",
                                 "ofType": null
                             }
                         },
@@ -3642,7 +3642,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersFilterInput",
+                                "name": "ModelAccountFilterInput",
                                 "ofType": null
                             }
                         },
@@ -3653,7 +3653,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelUsersFilterInput",
+                            "name": "ModelAccountFilterInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -3665,7 +3665,7 @@
             },
             {
                 "kind": "OBJECT",
-                "name": "ModelUsersConnection",
+                "name": "ModelAccountConnection",
                 "description": null,
                 "fields": [
                     {
@@ -3680,7 +3680,7 @@
                                 "name": null,
                                 "ofType": {
                                     "kind": "OBJECT",
-                                    "name": "Users",
+                                    "name": "Account",
                                     "ofType": null
                                 }
                             }
@@ -4057,7 +4057,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "createUsers",
+                        "name": "createAccount",
                         "description": null,
                         "args": [
                             {
@@ -4068,7 +4068,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "CreateUsersInput",
+                                        "name": "CreateAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -4079,7 +4079,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -4087,14 +4087,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "updateUsers",
+                        "name": "updateAccount",
                         "description": null,
                         "args": [
                             {
@@ -4105,7 +4105,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "UpdateUsersInput",
+                                        "name": "UpdateAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -4116,7 +4116,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -4124,14 +4124,14 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "deleteUsers",
+                        "name": "deleteAccount",
                         "description": null,
                         "args": [
                             {
@@ -4142,7 +4142,7 @@
                                     "name": null,
                                     "ofType": {
                                         "kind": "INPUT_OBJECT",
-                                        "name": "DeleteUsersInput",
+                                        "name": "DeleteAccountInput",
                                         "ofType": null
                                     }
                                 },
@@ -4153,7 +4153,7 @@
                                 "description": null,
                                 "type": {
                                     "kind": "INPUT_OBJECT",
-                                    "name": "ModelUsersConditionInput",
+                                    "name": "ModelAccountConditionInput",
                                     "ofType": null
                                 },
                                 "defaultValue": null
@@ -4161,7 +4161,7 @@
                         ],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
@@ -4484,7 +4484,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4593,7 +4593,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -4688,7 +4688,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersToysId",
+                        "name": "accountToysId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4812,7 +4812,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -4911,7 +4911,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -4996,7 +4996,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersStoresId",
+                        "name": "accountStoresId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -5086,7 +5086,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -5165,7 +5165,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -5230,7 +5230,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersCommentsId",
+                        "name": "accountCommentsId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -5291,7 +5291,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "CreateUsersInput",
+                "name": "CreateAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -5346,7 +5346,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "ModelUsersConditionInput",
+                "name": "ModelAccountConditionInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -5378,7 +5378,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersConditionInput",
+                                "name": "ModelAccountConditionInput",
                                 "ofType": null
                             }
                         },
@@ -5392,7 +5392,7 @@
                             "name": null,
                             "ofType": {
                                 "kind": "INPUT_OBJECT",
-                                "name": "ModelUsersConditionInput",
+                                "name": "ModelAccountConditionInput",
                                 "ofType": null
                             }
                         },
@@ -5403,7 +5403,7 @@
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
-                            "name": "ModelUsersConditionInput",
+                            "name": "ModelAccountConditionInput",
                             "ofType": null
                         },
                         "defaultValue": null
@@ -5415,7 +5415,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "UpdateUsersInput",
+                "name": "UpdateAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -5470,7 +5470,7 @@
             },
             {
                 "kind": "INPUT_OBJECT",
-                "name": "DeleteUsersInput",
+                "name": "DeleteAccountInput",
                 "description": null,
                 "fields": null,
                 "inputFields": [
@@ -5578,7 +5578,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersEventsaddedId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -5677,7 +5677,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersEventsaddedId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -5762,7 +5762,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersEventsaddedId",
+                        "name": "accountEventsaddedId",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -5828,7 +5828,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersID",
+                        "name": "accountID",
                         "description": null,
                         "type": {
                             "kind": "NON_NULL",
@@ -5877,7 +5877,7 @@
                 "fields": null,
                 "inputFields": [
                     {
-                        "name": "usersID",
+                        "name": "accountID",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -5960,7 +5960,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "usersID",
+                        "name": "accountID",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
@@ -6143,36 +6143,36 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "onCreateUsers",
+                        "name": "onCreateAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onUpdateUsers",
+                        "name": "onUpdateAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,
                         "deprecationReason": null
                     },
                     {
-                        "name": "onDeleteUsers",
+                        "name": "onDeleteAccount",
                         "description": null,
                         "args": [],
                         "type": {
                             "kind": "OBJECT",
-                            "name": "Users",
+                            "name": "Account",
                             "ofType": null
                         },
                         "isDeprecated": false,

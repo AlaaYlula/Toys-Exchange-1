@@ -17,21 +17,21 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the Users type in your schema. */
+/** This is an auto generated class representing the Account type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Users")
-public final class Users implements Model {
-  public static final QueryField ID = field("Users", "id");
-  public static final QueryField IDCOGNITO = field("Users", "idcognito");
-  public static final QueryField USERNAME = field("Users", "username");
+@ModelConfig(pluralName = "Accounts")
+public final class Account implements Model {
+  public static final QueryField ID = field("Account", "id");
+  public static final QueryField IDCOGNITO = field("Account", "idcognito");
+  public static final QueryField USERNAME = field("Account", "username");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String idcognito;
   private final @ModelField(targetType="String", isRequired = true) String username;
-  private final @ModelField(targetType="Toy") @HasMany(associatedWith = "usersToysId", type = Toy.class) List<Toy> toys = null;
-  private final @ModelField(targetType="Comment") @HasMany(associatedWith = "usersCommentsId", type = Comment.class) List<Comment> comments = null;
-  private final @ModelField(targetType="Store") @HasMany(associatedWith = "usersStoresId", type = Store.class) List<Store> stores = null;
-  private final @ModelField(targetType="Event") @HasMany(associatedWith = "usersEventsaddedId", type = Event.class) List<Event> eventsadded = null;
-  private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "users", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
+  private final @ModelField(targetType="Toy") @HasMany(associatedWith = "accountToysId", type = Toy.class) List<Toy> toys = null;
+  private final @ModelField(targetType="Comment") @HasMany(associatedWith = "accountCommentsId", type = Comment.class) List<Comment> comments = null;
+  private final @ModelField(targetType="Store") @HasMany(associatedWith = "accountStoresId", type = Store.class) List<Store> stores = null;
+  private final @ModelField(targetType="Event") @HasMany(associatedWith = "accountEventsaddedId", type = Event.class) List<Event> eventsadded = null;
+  private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "account", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -74,7 +74,7 @@ public final class Users implements Model {
       return updatedAt;
   }
   
-  private Users(String id, String idcognito, String username) {
+  private Account(String id, String idcognito, String username) {
     this.id = id;
     this.idcognito = idcognito;
     this.username = username;
@@ -87,12 +87,12 @@ public final class Users implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      Users users = (Users) obj;
-      return ObjectsCompat.equals(getId(), users.getId()) &&
-              ObjectsCompat.equals(getIdcognito(), users.getIdcognito()) &&
-              ObjectsCompat.equals(getUsername(), users.getUsername()) &&
-              ObjectsCompat.equals(getCreatedAt(), users.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), users.getUpdatedAt());
+      Account account = (Account) obj;
+      return ObjectsCompat.equals(getId(), account.getId()) &&
+              ObjectsCompat.equals(getIdcognito(), account.getIdcognito()) &&
+              ObjectsCompat.equals(getUsername(), account.getUsername()) &&
+              ObjectsCompat.equals(getCreatedAt(), account.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), account.getUpdatedAt());
       }
   }
   
@@ -111,7 +111,7 @@ public final class Users implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Users {")
+      .append("Account {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("idcognito=" + String.valueOf(getIdcognito()) + ", ")
       .append("username=" + String.valueOf(getUsername()) + ", ")
@@ -133,8 +133,8 @@ public final class Users implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static Users justId(String id) {
-    return new Users(
+  public static Account justId(String id) {
+    return new Account(
       id,
       null,
       null
@@ -152,7 +152,7 @@ public final class Users implements Model {
   
 
   public interface BuildStep {
-    Users build();
+    Account build();
     BuildStep id(String id);
     BuildStep idcognito(String idcognito);
   }
@@ -163,10 +163,10 @@ public final class Users implements Model {
     private String username;
     private String idcognito;
     @Override
-     public Users build() {
+     public Account build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new Users(
+        return new Account(
           id,
           idcognito,
           username);

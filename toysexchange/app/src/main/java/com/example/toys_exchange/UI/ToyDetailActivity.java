@@ -20,6 +20,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.squareup.picasso.Picasso;
 
@@ -43,6 +44,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     private String userId;
     private String imageKey;
     private String imageURL;
+    private int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,14 @@ public class ToyDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
               //  addToWishList.setBackgroundColor(Color.RED);
+                Log.i(TAG, "onClick: before"+count);
                 addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                if(count==0){
+                    addToWish();
+                }
+                count++;
+
+                Log.i(TAG, "onClick: after"+count);
             }
         });
 
@@ -101,7 +110,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     public void getToys(){
         Amplify.API.query(
-                ModelQuery.list(Toy.class,Toy.ID.eq("1455dcd3-d2f0-4044-93d1-88b41b762185")),
+                ModelQuery.list(Toy.class,Toy.ID.eq("4cb5dd30-ce3f-493c-8c16-721bfaf94af8")),
                 toys -> {
                     Log.i(TAG, "getToys: ************************"+toys.getData());
                     for (Toy toy :
@@ -133,7 +142,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                            error -> Log.e("MyAmplifyApp", "URL generation failure", error)
                            );
 
-
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
@@ -156,13 +164,76 @@ public class ToyDetailActivity extends AppCompatActivity {
                             message.setData(bundle);
 
                             handler1.sendMessage(message);
-
-
                         }
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
+    }
+
+    // Get Auth Attribute
+    private void authAttribute(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    Log.i(TAG, "User attributes = " + attributes.get(0).getValue());
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+    public void addToWish(){
+        Amplify.API.query(
+                ModelQuery.list(Toy.class,Toy.ID.eq("4cb5dd30-ce3f-493c-8c16-721bfaf94af8")),
+                toys -> {
+                    Log.i(TAG, "getToys addToWish: ************************"+toys.getData());
+                    for (Toy toy :
+                            toys.getData()) {
+                              Amplify.Auth.fetchUserAttributes(
+                                 attributes -> {
+                                   Log.i(TAG, "User attributes = addToWish " + attributes.get(0).getValue());
+                                   String id=attributes.get(0).getValue();
+                                       Amplify.API.query(
+                                            ModelQuery.list(Account.class),
+                                                       accounts -> {
+                                                              for (Account user :
+                                                                  accounts.getData()) {
+                                                          if (user.getIdcognito().equals(id)) {
+                                                         UserWishList wishList=UserWishList.builder().toy(toy)
+                                                                .account(user).build();
+
+                                      Amplify.DataStore.save(wishList,
+                                    success -> Log.i(TAG, "Saved item DataStore addToWish: " + success),
+                                    error -> Log.e(TAG, "Could not save item to DataStore addToWish", error)
+                            );
+                            // API save to backend
+                            Amplify.API.mutate(
+                                    ModelMutation.create(wishList),
+                                    success -> {
+                                        Log.i(TAG, "Saved item API: addToWish " + success.getData());
+                                    },
+                                    error -> Log.e(TAG, "Could not save item to API addToWish", error)
+                            );
+
+                        }
+
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
+    },
+    error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+            );
+
+
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
+
+
     }
 
 

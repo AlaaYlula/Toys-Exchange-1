@@ -140,7 +140,7 @@ public class ToyActivity extends AppCompatActivity {
                                             .image(URL)
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .accountToysId(user.getId())
-                                            //.contactinfo(contact)
+                                            .contactinfo(contact)
                                             .build();
 
                                     Amplify.DataStore.save(oneToy,
@@ -163,7 +163,7 @@ public class ToyActivity extends AppCompatActivity {
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .price(Double.parseDouble(price))
                                             .accountToysId(user.getId())
-                                          //  .contactinfo(contact)
+                                            .contactinfo(contact)
                                             .build();
 
                                     Amplify.DataStore.save(oneToy,

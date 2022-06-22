@@ -26,23 +26,23 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        Button button=findViewById(R.id.btn);
-//        Button button1=findViewById(R.id.btn1);
-//
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(), ToyActivity.class));
-//            }
-//
-//        });
-//
-//        button1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(), ToyDetailActivity.class));
-//            }
-//        });
+        Button button=findViewById(R.id.btn);
+        Button button1=findViewById(R.id.btn1);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ToyActivity.class));
+            }
+
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ToyDetailActivity.class));
+            }
+        });
 
 
 //        Button addEventbtn = findViewById(R.id.addEvent);

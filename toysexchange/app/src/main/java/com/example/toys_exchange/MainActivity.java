@@ -25,7 +25,7 @@ import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.LoginActivity;
 import com.example.toys_exchange.UI.data.model.EventDetailsActivity;
-import com.example.toys_exchange.adapter.CustomAdapter;
+import com.example.toys_exchange.adapter.CustomToyAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
+    private Handler userHandler;
 
     private String userId;
-
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
 
-            CustomAdapter customAdapter = new CustomAdapter(toyList, new CustomAdapter.CustomClickListener() {
+            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
                 public void onTaskClickListener(int position) {
                     Intent intent = new Intent(getApplicationContext(),EventActivity.class);
@@ -97,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("image",toyList.get(position).getImage());
                     intent.putExtra("price",toyList.get(position).getPrice());
                     intent.putExtra("condition",toyList.get(position).getCondition());
+
+                    authAttribute();
+
+                    intent.putExtra("username", username);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 }
             });
@@ -190,5 +196,30 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
+
+
+
+    private void authAttribute(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    Log.i(TAG, "Attributes => "+ attributes);
+                    //  Send message to the handler to get the user Id >>
+                    username =attributes.get(2).getValue();
+                    userId = attributes.get(0).getValue();
+
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+    /*
+    handler = new Handler(Looper.getMainLooper(), msg -> {
+             String user = msg.getData().getString("name");
+             TextView name = findViewById(R.id.txt_username);
+             name.setText(user);
+             userId = msg.getData().getString("id");
+             return true;
+         });
+     */
 
 }

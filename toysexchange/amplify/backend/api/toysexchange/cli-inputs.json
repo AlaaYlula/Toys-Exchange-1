@@ -3,18 +3,14 @@
   "serviceConfiguration": {
     "apiName": "toysexchange",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Users\\user\\ASAC\\final-project\\Toys-Exchange\\toysexchange\\amplify\\backend\\api\\toysexchange\\schema.graphql",
+    "gqlSchemaPath": "C:\\Users\\HP\\IdeaProjects\\Labwork_level2\\project\\Toys-Exchange\\toysexchange\\amplify\\backend\\api\\toysexchange\\schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 7,
       "apiKeyExpirationDate": "2022-06-27T09:59:55.621Z",
       "keyDescription": ""
     },
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      }
-    },
+    "conflictResolution": {},
     "additionalAuthTypes": []
   }
 }

@@ -1,7 +1,5 @@
 package com.example.toys_exchange.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +9,8 @@ import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 
@@ -18,6 +18,8 @@ import com.example.toys_exchange.R;
 public class VerificationActivity extends AppCompatActivity {
 
     private static final String TAG = VerificationActivity.class.getSimpleName();
+//    private String username = "username";
+//    private String userId = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,10 @@ public class VerificationActivity extends AppCompatActivity {
         Button verifyButton = findViewById(R.id.verify_button);
 
         verifyButton.setOnClickListener(view -> {
-            verify(verificationCode.getText().toString(), email , username , userId);
+            verify(verificationCode.getText().toString(), email, username, userId);
         });
     }
+
 
     private void verify(String code, String email , String username , String userId) {
         Amplify.Auth.confirmSignUp(

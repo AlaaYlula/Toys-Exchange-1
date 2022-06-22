@@ -20,7 +20,11 @@ mutation CreateToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation UpdateToy(
@@ -44,7 +48,11 @@ mutation UpdateToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation DeleteToy(
@@ -68,7 +76,11 @@ mutation DeleteToy(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation CreateStore(
@@ -190,6 +202,8 @@ mutation CreateAccount(
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -202,6 +216,7 @@ mutation CreateAccount(
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -229,6 +244,8 @@ mutation UpdateAccount(
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -241,6 +258,7 @@ mutation UpdateAccount(
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -268,6 +286,8 @@ mutation DeleteAccount(
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -280,6 +300,7 @@ mutation DeleteAccount(
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -302,7 +323,11 @@ mutation CreateEvent(
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -328,7 +353,11 @@ mutation UpdateEvent(
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -354,7 +383,11 @@ mutation DeleteEvent(
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -365,6 +398,8 @@ mutation DeleteEvent(
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     accountEventsaddedId
   }
 }
@@ -600,5 +635,6 @@ mutation DeleteUserAttendEvent(
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }

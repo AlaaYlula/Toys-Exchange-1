@@ -1,21 +1,19 @@
 package com.amplifyframework.datastore.generated.model;
 
-import com.amplifyframework.core.model.annotations.HasMany;
-import com.amplifyframework.core.model.temporal.Temporal;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.Objects;
+import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
-import com.amplifyframework.core.model.annotations.Index;
+import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
+import com.amplifyframework.core.model.temporal.Temporal;
 
-import static com.amplifyframework.core.model.query.predicate.QueryField.field;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /** This is an auto generated class representing the Toy type in your schema. */
 @SuppressWarnings("all")
@@ -178,13 +176,13 @@ public final class Toy implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      toyname,
-      toydescription,
-      image,
-      price,
-      condition,
-      contactinfo,
-      accountToysId);
+            toyname,
+            toydescription,
+            image,
+            price,
+            condition,
+            contactinfo,
+            accountToysId);
   }
   public interface ToynameStep {
     ToydescriptionStep toyname(String toyname);
@@ -206,6 +204,7 @@ public final class Toy implements Model {
     BuildStep id(String id);
     BuildStep price(Double price);
     BuildStep condition(Condition condition);
+
     BuildStep contactinfo(String contactinfo);
     BuildStep accountToysId(String accountToysId);
   }
@@ -218,6 +217,7 @@ public final class Toy implements Model {
     private String image;
     private Double price;
     private Condition condition;
+
     private String contactinfo;
     private String accountToysId;
     @Override
@@ -269,6 +269,7 @@ public final class Toy implements Model {
     }
     
     @Override
+
      public BuildStep contactinfo(String contactinfo) {
         this.contactinfo = contactinfo;
         return this;
@@ -299,7 +300,7 @@ public final class Toy implements Model {
         .image(image)
         .price(price)
         .condition(condition)
-        .contactinfo(contactinfo)
+        .contactinfo(Toy.this.contactinfo)
         .accountToysId(accountToysId);
     }
     

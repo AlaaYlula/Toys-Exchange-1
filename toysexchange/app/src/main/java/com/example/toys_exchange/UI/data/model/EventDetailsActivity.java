@@ -1,10 +1,5 @@
 package com.example.toys_exchange.UI.data.model;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -278,6 +278,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void setEventValues() {
         Amplify.API.query(
                 ModelQuery.get(Event.class, "6c8bae84-0053-4309-9b1e-9ff23c2ef691"),
+
                 events -> {
                     event = events.getData();
                     // Use To do Sync

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.ToyDetailActivity"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+
+    <ImageView
+        android:id="@+id/image_view_toy"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        tools:srcCompat="@tools:sample/avatars"
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/txt_view_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:layout_marginStart="27dp"
+            android:text="name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.473"
+            app:srcCompat="@android:drawable/btn_star" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/txt_view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ext"
+            android:layout_margin="16dp"
+            />
+        <TextView
+            android:id="@+id/txt_view_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ext"
+            android:layout_margin="16dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_view_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
+
+
+</LinearLayout>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toys_exchange">
 
@@ -18,8 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+            android:name=".toyListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".eventListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.ToyDetailActivity"
+            android:exported="false"
+            />
+
+        <activity
             android:name=".UI.data.model.EventDetailsActivity"
             android:exported="false" />
+
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"
@@ -27,6 +43,7 @@
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />
+
         <activity
             android:name=".UI.LoginActivity"
             android:exported="true"
@@ -44,6 +61,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".UI.ToyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

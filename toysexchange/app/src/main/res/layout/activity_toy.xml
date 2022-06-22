@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.ToyActivity"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+    <EditText
+        android:id="@+id/edit_txt_toy_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Toy Name "
+        android:inputType="text"
+        android:layout_margin="16dp"
+        />
+    <EditText
+        android:id="@+id/edit_txt_toy_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Toy Description "
+        android:inputType="text"
+        android:layout_margin="16dp"
+        />
+    <EditText
+        android:id="@+id/edit_txt_toy_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Toy Price "
+        android:inputType="text"
+        android:layout_margin="16dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_txt_contact_nfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Contact Info "
+        android:inputType="text"
+        android:layout_margin="16dp"
+        />
+
+    <Spinner
+        android:id="@+id/spinner_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:padding="10dp"
+        android:text="Upload Image "
+        />
+
+    <Button
+        android:id="@+id/btn_add_toy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:padding="10dp"
+        android:text="Add toy "
+        />
+
+</LinearLayout>

@@ -12,11 +12,25 @@ mutation CreateToy(
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
+      startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation UpdateToy(
@@ -32,11 +46,25 @@ mutation UpdateToy(
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
+      startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation DeleteToy(
@@ -52,11 +80,25 @@ mutation DeleteToy(
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
+      startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 mutation CreateStore(
@@ -158,6 +200,8 @@ mutation CreateAccount(
       nextToken
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
     }
     eventsadded {
@@ -168,6 +212,11 @@ mutation CreateAccount(
     }
     wishtoys {
       nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
+      nextToken
+      startedAt
     }
     createdAt
     updatedAt
@@ -188,6 +237,8 @@ mutation UpdateAccount(
       nextToken
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
     }
     eventsadded {
@@ -198,6 +249,11 @@ mutation UpdateAccount(
     }
     wishtoys {
       nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
+      nextToken
+      startedAt
     }
     createdAt
     updatedAt
@@ -218,6 +274,8 @@ mutation DeleteAccount(
       nextToken
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
     }
     eventsadded {
@@ -228,6 +286,11 @@ mutation DeleteAccount(
     }
     wishtoys {
       nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
+      nextToken
+      startedAt
     }
     createdAt
     updatedAt
@@ -244,7 +307,11 @@ mutation CreateEvent(
     comments {
       nextToken
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
@@ -265,7 +332,11 @@ mutation UpdateEvent(
     comments {
       nextToken
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
@@ -286,13 +357,25 @@ mutation DeleteEvent(
     comments {
       nextToken
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
     longitude
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
+    _version
+    _deleted
+    _lastChangedAt
+<<<<<<< HEAD
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountEventsaddedId
   }
 }
@@ -314,6 +397,12 @@ mutation CreateUserWishList(
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
+      _version
+      _deleted
+      _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -322,9 +411,21 @@ mutation CreateUserWishList(
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
     }
     createdAt
     updatedAt
+=======
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 mutation UpdateUserWishList(
@@ -345,6 +446,12 @@ mutation UpdateUserWishList(
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
+      _version
+      _deleted
+      _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -353,9 +460,21 @@ mutation UpdateUserWishList(
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
     }
     createdAt
     updatedAt
+=======
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 mutation DeleteUserWishList(
@@ -376,6 +495,12 @@ mutation DeleteUserWishList(
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
+      _version
+      _deleted
+      _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -384,9 +509,21 @@ mutation DeleteUserWishList(
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
     }
     createdAt
     updatedAt
+=======
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 mutation CreateUserAttendEvent(
@@ -474,5 +611,12 @@ mutation DeleteUserAttendEvent(
     }
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
+    _version
+    _deleted
+    _lastChangedAt
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }

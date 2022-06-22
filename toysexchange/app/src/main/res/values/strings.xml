@@ -14,4 +14,17 @@
     <string name="action_sign_up">action_sign_up</string>
     <string name="label_enter_code">label_enter_code</string>
     <string name="title_activity_signup">title_activity_signup</string>
+    <string name="profileUsername">profileUsername</string>
+    <string name="bio"> My name </string>
+    <string name="eventList">My events</string>
+    <string name="toysList">My Toys</string>
+    <string name="eventsTitle">eventsTitle</string>
+    <string name="toysTitle">toysTitle</string>
+    <string name="back_toys">back</string>
+    <string name="back_events">back</string>
+    <string name="profile">profile</string>
+    <string name="logout">logout</string>
+    <string name="setting">setting</string>
+    <string name="Logout" />
+
 </resources>

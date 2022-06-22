@@ -25,6 +25,7 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.example.toys_exchange.UI.EventActivity;
+
 import com.example.toys_exchange.UI.LoginActivity;
 import com.example.toys_exchange.adapter.CustomAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,9 @@ import com.amplifyframework.datastore.generated.model.Toy;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.toys_exchange.UI.data.model.EventDetailsActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button button = findViewById(R.id.addEvent);
+
+        button.setOnClickListener(view -> {
+            startActivity(new Intent(this, EventDetailsActivity.class));
+        });
 
         mAdd = findViewById(R.id.add_fab);
         mAddEvent = findViewById(R.id.add_event);
@@ -73,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mAddEvent.setOnClickListener(view -> {
             startActivity(new Intent(this, EventActivity.class));
         });
+
 
     }
 

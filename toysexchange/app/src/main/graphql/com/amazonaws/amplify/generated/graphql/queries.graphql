@@ -7,6 +7,11 @@ query GetToy($id: ID!) {
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -24,6 +29,7 @@ query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
       image
       price
       condition
+      contactinfo
       createdAt
       updatedAt
       _version
@@ -54,6 +60,7 @@ query SyncToys(
       image
       price
       condition
+      contactinfo
       createdAt
       updatedAt
       _version
@@ -218,6 +225,10 @@ query GetAccount($id: ID!) {
       nextToken
       startedAt
     }
+    wishtoys {
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -341,6 +352,89 @@ query SyncEvents(
       _deleted
       _lastChangedAt
       accountEventsaddedId
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetUserWishList($id: ID!) {
+  getUserWishList(id: $id) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListUserWishLists(
+  $filter: ModelUserWishListFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUserWishLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      toyID
+      accountID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncUserWishLists(
+  $filter: ModelUserWishListFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncUserWishLists(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      toyID
+      accountID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
     nextToken
     startedAt

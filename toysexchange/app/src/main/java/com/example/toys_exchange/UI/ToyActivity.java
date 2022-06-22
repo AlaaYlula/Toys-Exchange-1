@@ -17,26 +17,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import android.os.Bundle;
+
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.widget.TextView;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
-import com.amplifyframework.api.aws.AWSApiPlugin;
+
+
 import com.amplifyframework.api.graphql.model.ModelMutation;
+
 import com.amplifyframework.api.graphql.model.ModelQuery;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
+
+import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
-import com.amplifyframework.datastore.generated.model.Todo;
+
+import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.Toy;
 
-import com.amplifyframework.predictions.aws.AWSPredictionsPlugin;
-import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
 import com.example.toys_exchange.R;
 
 import java.io.BufferedOutputStream;
@@ -45,6 +44,7 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 public class ToyActivity extends AppCompatActivity {
 
@@ -56,6 +56,7 @@ public class ToyActivity extends AppCompatActivity {
     private EditText toyPrice;
     private EditText toyDescription;
     private EditText toyName;
+    private EditText contactInfo;
 
     Button uploadImage;
     Button addToy;
@@ -81,6 +82,7 @@ public class ToyActivity extends AppCompatActivity {
          toyName=findViewById(R.id.edit_txt_toy_name);
          toyDescription=findViewById(R.id.edit_txt_toy_description);
          toyPrice=findViewById(R.id.edit_txt_toy_price);
+         contactInfo=findViewById(R.id.edit_txt_contact_nfo);
 
          uploadImage=findViewById(R.id.btn_upload);
          addToy=findViewById(R.id.btn_add_toy);
@@ -96,8 +98,9 @@ public class ToyActivity extends AppCompatActivity {
                 String description=toyDescription.getText().toString();
                 String price=toyPrice.getText().toString();
                 String toyCondition=mSpinnerCondition.getSelectedItem().toString();
+                String contact=contactInfo.getText().toString();
 
-                saveToCloud(name,description,price,toyCondition);
+                saveToCloud(name,description,price,toyCondition,contact);
 
             }
         });
@@ -119,33 +122,70 @@ public class ToyActivity extends AppCompatActivity {
         mSpinnerCondition.setAdapter(conditionAdapter);
     }
 
-    public void saveToCloud(String name,String description ,String price ,String condition){
+    public void saveToCloud(String name,String description ,String price ,String condition, String contact){
 
-        Log.i(TAG, "saveToCloud: "+ URL);
-            Toy oneToy=Toy.builder()
-                    .toyname(name)
-                    .toydescription(description)
-                    .image(URL)
-                    .condition(Enum.valueOf(Condition.class, condition))
-                    .price(Double.parseDouble(price))
-                    //.usersToysId("5523b0e3-162d-4ddd-95b7-e664bf330ed1")
-                    .build();
+        Amplify.API.query(
+                ModelQuery.list(Account.class),
+                users -> {
+                    Log.i(TAG, "Users => "+ users.getData());
+                    if(users.hasData()) {
+                        for (Account user :
+                                users.getData()) {
+                            Log.i(TAG, "User add this Event" + user);
+                            if (user.getIdcognito().equals(userId)) {
+                                if(Objects.equals(price, "")){
+                                    Toy oneToy=Toy.builder()
+                                            .toyname(name)
+                                            .toydescription(description)
+                                            .image(URL)
+                                            .condition(Enum.valueOf(Condition.class, condition))
+                                            .accountToysId(user.getId())
+                                            //.contactinfo(contact)
+                                            .build();
 
-            Log.i(TAG,"-------------------------------------"+oneToy);
+                                    Amplify.DataStore.save(oneToy,
+                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+                                    );
+                                    // API save to backend
+                                    Amplify.API.mutate(
+                                            ModelMutation.create(oneToy),
+                                            success -> {
+                                                Log.i(TAG, "Saved item API: " + success.getData());
+                                            },
+                                            error -> Log.e(TAG, "Could not save item to API", error)
+                                    );
+                                }else {
+                                    Toy oneToy=Toy.builder()
+                                            .toyname(name)
+                                            .toydescription(description)
+                                            .image(URL)
+                                            .condition(Enum.valueOf(Condition.class, condition))
+                                            .price(Double.parseDouble(price))
+                                            .accountToysId(user.getId())
+                                          //  .contactinfo(contact)
+                                            .build();
 
-            // save the data
-            Amplify.DataStore.save(oneToy,
-                    successful->  Log.i(TAG, "test: saved to data store" +successful),
-                    fail->Log.e(TAG, "test: fail to save " ));
+                                    Amplify.DataStore.save(oneToy,
+                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+                                    );
+                                    // API save to backend
+                                    Amplify.API.mutate(
+                                            ModelMutation.create(oneToy),
+                                            success -> {
+                                                Log.i(TAG, "Saved item API: " + success.getData());
+                                            },
+                                            error -> Log.e(TAG, "Could not save item to API", error)
+                                    );
+                                }
 
-            // save to backend
-            Amplify.API.mutate(
-                    ModelMutation.create(oneToy),
-                    success ->  Log.i(TAG, "Saved item: to api " + success.getData()),
-                    error ->  Log.e(TAG, "Could not save item to API", error)
-            );
-
-
+                            }
+                        }
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
     }
 
     private void pictureUpload() {
@@ -210,19 +250,6 @@ public class ToyActivity extends AppCompatActivity {
         parcelFileDescriptor.close();
 
         return image;
-    }
-
-    private void getImgUrl() {
-        String name=toyName.getText().toString();
-
-        Amplify.Storage.getUrl(
-                name+".jpg",
-                result -> {
-                    Log.i(TAG, "Successfully generated: " + result.getUrl());
-//                    URL=result.getUrl().toString();
-                },
-                error -> Log.e(TAG, "URL generation failure", error)
-        );
     }
 
     // Get Auth Attribute

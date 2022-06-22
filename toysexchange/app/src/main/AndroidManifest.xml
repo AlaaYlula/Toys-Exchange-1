@@ -4,11 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:name=".AmplifyApplication"
         android:allowBackup="true"
@@ -18,13 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
-<<<<<<< HEAD
-            android:name=".UI.ToyActivity"
-=======
-            android:name=".UI.EventActivity"
-            android:parentActivityName=".MainActivity"
->>>>>>> 4ef47546a55765240a37dc9f818e794b0ceceee9
+            android:name=".UI.ToyDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".UI.EventActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />
@@ -44,13 +43,11 @@
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"
-<<<<<<< HEAD
-            android:exported="false">
-
-        </activity>
-=======
-            android:exported="false"></activity>
->>>>>>> 4ef47546a55765240a37dc9f818e794b0ceceee9
+            android:exported="false" />
+        <activity
+            android:name=".UI.ToyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

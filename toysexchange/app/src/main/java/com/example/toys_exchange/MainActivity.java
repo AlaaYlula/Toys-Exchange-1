@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.toys_exchange.UI.ToyActivity;
+import com.example.toys_exchange.UI.ToyDetailActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,14 +20,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Button button=findViewById(R.id.btn);
+//        Button button=findViewById(R.id.btn);
+//        Button button1=findViewById(R.id.btn1);
+//
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), ToyActivity.class));
+//            }
+//
+//        });
+//
+//        button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(), ToyDetailActivity.class));
+//            }
+//        });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ToyActivity.class));
-            }
-
-        });
     }
 }

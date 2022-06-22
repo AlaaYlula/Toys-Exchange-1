@@ -2,9 +2,6 @@ package com.example.toys_exchange.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -16,10 +13,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.toys_exchange.R;
+
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.core.Amplify;
 import com.example.toys_exchange.MainActivity;
+import com.example.toys_exchange.R;
 
 
 public class LoginActivity extends AppCompatActivity {

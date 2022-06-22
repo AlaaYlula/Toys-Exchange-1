@@ -25,6 +25,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+//    namespace 'com.example.toys_exchange'
+
     buildFeatures {
         viewBinding true
     }
@@ -62,6 +65,8 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation "androidx.test.espresso:espresso-contrib:3.4.0"
+
+    implementation 'com.google.android.material:material:1.7.0-alpha02'
 
 
     implementation 'com.amplifyframework:aws-predictions:1.35.4'

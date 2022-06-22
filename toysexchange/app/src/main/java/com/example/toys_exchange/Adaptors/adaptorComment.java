@@ -19,6 +19,7 @@ import java.util.List;
 
 public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomViewHolder> {
     List<Comment> commentsList;
+    String name;
     CustomClickListener listener;
 
     public adaptorComment(List<Comment> commentList, CustomClickListener listener) {

@@ -14,4 +14,7 @@
     <string name="action_sign_up">action_sign_up</string>
     <string name="label_enter_code">label_enter_code</string>
     <string name="title_activity_signup">title_activity_signup</string>
+    <string name="profile">profile</string>
+    <string name="logout">logout</string>
+    <string name="setting">setting</string>
 </resources>

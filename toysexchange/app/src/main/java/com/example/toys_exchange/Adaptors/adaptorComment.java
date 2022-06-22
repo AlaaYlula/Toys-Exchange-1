@@ -22,8 +22,8 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
     String name;
     CustomClickListener listener;
 
-    public adaptorComment(List<Comment> tasksList, CustomClickListener listener) {
-        this.commentsList = tasksList;
+    public adaptorComment(List<Comment> commentList, CustomClickListener listener) {
+        this.commentsList = commentList;
         this.listener = listener;
     }
 
@@ -39,9 +39,11 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         String userId = commentsList.get(position).getAccountCommentsId();
+        Log.i("Adapter", "User Id = > "+ userId);
         Amplify.API.query(
                 ModelQuery.get(Account.class,userId),
                 user -> {
+                    Log.i("Adapter", "User Id = > "+ user.getData().getUsername());
                     holder.username.setText(user.getData().getUsername());
                 },
                 error -> Log.e("Adaptor", error.toString(), error)

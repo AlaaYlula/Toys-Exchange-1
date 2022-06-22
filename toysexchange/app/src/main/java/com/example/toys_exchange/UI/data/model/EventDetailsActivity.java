@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EventDetailsActivity extends AppCompatActivity {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
@@ -53,11 +51,13 @@ public class EventDetailsActivity extends AppCompatActivity {
     UserAttendEvent userAttendEvent;
 
     Account loginUser;
+
     Button addComment;
     Button btnAttend;
 
     Handler handler;
     Handler handler2;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +74,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             return true;
         });
         handler2 = new Handler(Looper.getMainLooper(), msg -> {
-                cognitoId = msg.getData().getString("Id");
-
+            cognitoId =  msg.getData().getString("Id");
             return true;
         });
         // To get the cognito Id
@@ -84,110 +83,122 @@ public class EventDetailsActivity extends AppCompatActivity {
         username = findViewById(R.id.username_event);
         title = findViewById(R.id.title_eventDetail);
         description = findViewById(R.id.description_eventDetail);
-
         // To set the Event Values
         setEventValues();
 
+
         // The Add Comment Button
+        // TODO: 6/22/2022 update on the user name for the comment 
         addComment = findViewById(R.id.btn_addCommentEvent);
-        addComment.setOnClickListener(view->{
-            EditText comment = findViewById(R.id.comment_text);
-            String comment_text = comment.getText().toString();
-            Comment commentAPI = Comment.builder()
-                  .text(comment_text)
-                  .accountCommentsId(user.getId())
-                  .eventCommentsId(event.getId())
-                  .build();
-
-            Amplify.DataStore.save(commentAPI,
-                    success -> Log.i(TAG, "Saved item DataStore: " + success.item()),
-                    error -> Log.e(TAG, "Could not save item to DataStore", error)
-            );
-            // API save to backend
-            Amplify.API.mutate(
-                    ModelMutation.create(commentAPI),
-                    success -> {
-                        Log.i(TAG, "Saved item API: " + success.getData());
-                        runOnUiThread(() -> {
-                            comment.setText("");
-                            Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_SHORT).show();
-                            setEventValues();
-                    });
-                    },
-                    error -> Log.e(TAG, "Could not save item to API", error)
-            );
-
-        });
-
-        // To Attend To the Event
         btnAttend = findViewById(R.id.btn_attendEvent);
-        btnAttend.setOnClickListener(view->{
-            Amplify.Auth.fetchUserAttributes(
-                    attributes -> {
-                        Log.i(TAG, "Attributes => "+  attributes.get(0).getValue());
-                        runOnUiThread(() -> {
-                            Amplify.API.query(
-                                    ModelQuery.list(Account.class),
-                                    users -> {
-                                        for(Account userAccount:
-                                        users.getData()){
-                                            if(userAccount.getIdcognito().equals(attributes.get(0).getValue())){
-                                                userWhoAttend = userAccount;
-                                                userAttendEvent = UserAttendEvent.builder()
-                                                        .account(userAccount)
-                                                        .event(event)
-                                                        .build();
-                                            }
-                                        }
-
-                                        runOnUiThread(() -> {
-                                            // Use To do Sync
-                                            Amplify.DataStore.save(event,
-                                                    savedEvent -> {
-                                                        Log.i(TAG, "Event saved.");
-                                                        Amplify.DataStore.save(userWhoAttend,
-                                                                savedUserAttend -> {
-                                                                    Log.i(TAG, "User saved.");
-                                                                    Amplify.DataStore.save(userAttendEvent,
-                                                                            saved -> Log.i(TAG, "userAttendEvent saved."),
-                                                                            failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
-                                                                    );
-                                                                },
-                                                                failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
-                                                        );
-                                                    },
-                                                    failure -> Log.e(TAG, "Post not saved.", failure)
-                                            );
-                                            Amplify.API.mutate(
-                                                    ModelMutation.create(userAttendEvent),
-                                                    success -> {
-                                                        Log.i(TAG, "Saved item API: " + success.getData());
-                                                        runOnUiThread(() -> {
-                                                            Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
-                                                        });
-                                                    },
-                                                    error -> Log.e(TAG, "Could not save item to API", error)
-                                            );
-
-
-                                        });
-
-                                    },
-                                    error -> Log.e(TAG, error.toString(), error)
-                            );
-                        });
-                    },
-                    error -> Log.e(TAG, "Failed to fetch user attributes.", error)
-            );
-
-        });
-
+        addBtnListner();
 
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void addBtnListner() {
+        addComment.setOnClickListener(view->{
+                EditText comment = findViewById(R.id.comment_text);
+                String comment_text = comment.getText().toString();
+                Comment commentAPI = Comment.builder()
+                        .text(comment_text)
+                        .accountCommentsId(loginUser.getId()) // User loginUser From function setEventValues
+                        .eventCommentsId(event.getId())
+                        .build();
+
+                Amplify.DataStore.save(commentAPI,
+                        success -> Log.i(TAG, "Saved item DataStore: " + success.item()),
+                        error -> Log.e(TAG, "Could not save item to DataStore", error)
+                );
+                // API save to backend
+                Amplify.API.mutate(
+                        ModelMutation.create(commentAPI),
+                        success -> {
+                            Log.i(TAG, "Saved item API: " + success.getData());
+                            runOnUiThread(() -> {
+                                comment.setText("");
+                                Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_SHORT).show();
+                                setEventValues();
+                            });
+                        },
+                        error -> Log.e(TAG, "Could not save item to API", error)
+                );
+
+            });
+
+        btnAttend.setOnClickListener(view->{
+            // If the User Not Attend the Event
+            if(btnAttend.getText().equals("Attend")) {
+                Amplify.Auth.fetchUserAttributes(
+                        attributes -> {
+                            Log.i(TAG, "Attributes => " + attributes.get(0).getValue());
+                            runOnUiThread(() -> {
+                                Amplify.API.query(
+                                        ModelQuery.list(Account.class),
+                                        users -> {
+                                            for (Account userAccount :
+                                                    users.getData()) {
+                                                if (userAccount.getIdcognito().equals(attributes.get(0).getValue())) {
+                                                    userWhoAttend = userAccount;
+                                                    userAttendEvent = UserAttendEvent.builder()
+                                                            .account(userAccount)
+                                                            .event(event)
+                                                            .build();
+                                                }
+                                            }
+
+                                            runOnUiThread(() -> {
+                                                // Use To do Sync
+                                                Amplify.DataStore.save(event,
+                                                        savedEvent -> {
+                                                            Log.i(TAG, "Event saved.");
+                                                            Amplify.DataStore.save(userWhoAttend,
+                                                                    savedUserAttend -> {
+                                                                        Log.i(TAG, "User saved.");
+                                                                        Amplify.DataStore.save(userAttendEvent,
+                                                                                saved -> Log.i(TAG, "userAttendEvent saved."),
+                                                                                failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
+                                                                        );
+                                                                    },
+                                                                    failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
+                                                            );
+                                                        },
+                                                        failure -> Log.e(TAG, "Post not saved.", failure)
+                                                );
+                                                Amplify.API.mutate(
+                                                        ModelMutation.create(userAttendEvent),
+                                                        success -> {
+                                                            Log.i(TAG, "Saved item API: " + success.getData());
+                                                            runOnUiThread(() -> {
+                                                                btnAttend.setText("Un Attend");
+                                                                Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
+                                                            });
+                                                        },
+                                                        error -> Log.e(TAG, "Could not save item to API", error)
+                                                );
+
+
+                                            });
+
+                                        },
+                                        error -> Log.e(TAG, error.toString(), error)
+                                );
+                            });
+                        },
+                        error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+                );
+            }else{ // User want Un Attend // Delete From tables
+
+
+            }
+        });
+
+    }
+
     private void authAttribute(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
-                    //  Send message to the handler to get the user Id >>
+//                    //  Send message to the handler to get the user Id >>
                     Bundle bundle = new Bundle();
                     bundle.putString("Id",  attributes.get(0).getValue());
 
@@ -203,7 +214,9 @@ public class EventDetailsActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setEventValues() {
         Amplify.API.query(
-                ModelQuery.get(Event.class, "ae70bfba-8485-4336-9148-6c891a77f658"),
+
+                ModelQuery.get(Event.class, "b6f7e655-a712-4810-a2bd-16ee827e8d61"),
+
                 events -> {
                     event = events.getData();
                     // Use To do Sync
@@ -211,6 +224,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                         Amplify.API.query(
                                 ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
                                 users -> {
+                                    // User who add the Event
                                     user = users.getData();
                                     // Use To do Sync
                                     runOnUiThread(() -> {
@@ -223,16 +237,37 @@ public class EventDetailsActivity extends AppCompatActivity {
                                                             loginUser = userAc;
                                                         }
                                                     }
+
                                                     runOnUiThread(() -> {
                                                         if(event.getAccountEventsaddedId().equals(loginUser.getId())){
                                                             btnAttend.setVisibility(View.INVISIBLE);
                                                         }
+                                                        // This Not Work for Attend
+//                                                        Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
+//                                                                usersAttend -> {
+//                                                                    for (UserAttendEvent user:
+//                                                                            usersAttend.getData()) {
+//                                                                        if(user.getAccount().equals(loginUser.getId())
+//                                                                                && user.getEvent().equals(event.getId())){
+//                                                                            btnAttend.setText("Un Attend");
+//                                                                            break;
+//                                                                        }
+//                                                                    }
+//
+//                                                                },
+//                                                                error -> Log.e(TAG, error.toString(), error)
+//                                                        );
 
                                                         username.setText(user.getUsername());
                                                         title.setText(event.getTitle());
                                                         description.setText(event.getEventdescription());
                                                         commentsListDatabase = new ArrayList<>();
                                                         getCommentsList();
+
+
+//                                                        runOnUiThread(() -> { // For PUT the Attend Button text value
+//
+//                                                        });
                                                     });
                                                             },
                                                 error -> Log.e(TAG, error.toString(), error)
@@ -248,6 +283,70 @@ public class EventDetailsActivity extends AppCompatActivity {
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
+  //  @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void setEventValues() {
+//        Amplify.API.query(
+//                ModelQuery.get(Event.class, "b6f7e655-a712-4810-a2bd-16ee827e8d61"),
+//                events -> {
+//                    event = events.getData();
+//                    // Use To do Sync
+//                    runOnUiThread(() -> {
+//                        Amplify.API.query(
+//                                ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
+//                                users -> {
+//                                    // User who add the Event
+//                                    user = users.getData();
+//                                    // Use To do Sync
+//                                    runOnUiThread(() -> {
+//                                        Amplify.API.query(
+//                                                ModelQuery.list(Account.class),
+//                                                allUsers -> {
+//                                                    for (Account userAc:
+//                                                            allUsers.getData()) {
+//                                                        if(userAc.getIdcognito().equals(cognitoId)){
+//                                                            loginUser = userAc;
+//                                                        }
+//                                                    }
+//                                                    runOnUiThread(() -> {
+//                                                        if(event.getAccountEventsaddedId().equals(loginUser.getId())){
+//                                                            btnAttend.setVisibility(View.INVISIBLE);
+//                                                        }
+//
+//                                                        username.setText(user.getUsername());
+//                                                        title.setText(event.getTitle());
+//                                                        description.setText(event.getEventdescription());
+//                                                        commentsListDatabase = new ArrayList<>();
+//                                                        getCommentsList();
+//
+//                                                        runOnUiThread(() -> { // For PUT the Attend Button text value
+//                                                            Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
+//                                                                    usersAttend -> {
+//                                                                        for (UserAttendEvent user:
+//                                                                                usersAttend.getData()) {
+//                                                                            if(user.getAccount().equals(loginUser.getId())){
+//                                                                                btnAttend.setText("Un Attend");
+//                                                                            }
+//                                                                        }
+//
+//                                                                    },
+//                                                                    error -> Log.e(TAG, error.toString(), error)
+//                                                            );
+//                                                        });
+//                                                    });
+//                                                },
+//                                                error -> Log.e(TAG, error.toString(), error)
+//                                        );
+//
+//                                    });
+//                                },
+//                                error -> Log.e(TAG, error.toString(), error)
+//                        );
+//
+//                    });
+//                },
+//                error -> Log.e(TAG, error.toString(), error)
+//        );
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getCommentsList() {
@@ -257,13 +356,14 @@ public class EventDetailsActivity extends AppCompatActivity {
                     if(comments.hasData()) {
                         for (Comment comment :
                                 comments.getData()) {
-                            commentsListDatabase.add(comment);
+                            if(comment.getEventCommentsId().equals("b6f7e655-a712-4810-a2bd-16ee827e8d61")) // Add For comments check
+                                  commentsListDatabase.add(comment);
                         }
                         // Sort the Created At
                         Collections.sort(commentsListDatabase, new SortByDate());
                     }
-                    // Use To do Sync
-                    runOnUiThread(() -> {
+//                    // Use To do Sync
+//                    runOnUiThread(() -> {
                        // commentRecyclerViewAdapter.notifyDataSetChanged();
                         Bundle bundle = new Bundle();
                         bundle.putString("commentsListUpdate", "commentsListUpdate");
@@ -272,7 +372,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                         message.setData(bundle);
 
                         handler.sendMessage(message);
-                    });
+                 //   });
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
@@ -304,27 +404,5 @@ public class EventDetailsActivity extends AppCompatActivity {
         Log.i(TAG, "onResume: called - The App is VISIBLE");
         super.onResume();
     }
-    // Get the List Of the Comments
-    // getCommentsList();
-    // Recycler View
-//        // get the recycler view object
-//        RecyclerView recyclerView = findViewById(R.id.recycler_view_Comment);
-//        // create an Adapter // Custom Adapter
-//        commentRecyclerViewAdapter = new adaptorComment(
-//                commentsListDatabase, position -> {
-////            Toast.makeText(
-////                    MainActivity.this,
-////                    "The task clicked => " + commentsListDatabase.get(position).getTitle(), Toast.LENGTH_SHORT).show();
-////
-////            Intent intent = new Intent(getApplicationContext(), DetailTask.class);
-////            //send the Id
-////            intent.putExtra("id", commentsListDatabase.get(position).getId());
-////            startActivity(intent);
-//        });
-//        // set adapter on recycler view
-//        recyclerView.setAdapter(commentRecyclerViewAdapter);
-//
-//        // set other important properties
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 }

@@ -18,9 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
+
+        <activity
+            android:name=".UI.ToyDetailActivity"
+            android:exported="false"
+            />
+
         <activity
             android:name=".UI.data.model.EventDetailsActivity"
             android:exported="false" />
+
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"
@@ -28,6 +35,7 @@
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />
+
         <activity
             android:name=".UI.LoginActivity"
             android:exported="true"
@@ -38,6 +46,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".UI.SignUpActivity"
             android:exported="false"
@@ -45,6 +54,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".UI.ToyActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

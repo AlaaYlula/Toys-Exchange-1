@@ -15,30 +15,30 @@ import com.amplifyframework.core.model.temporal.Temporal;
 import java.util.Objects;
 import java.util.UUID;
 
-/** This is an auto generated class representing the UserAttendEvent type in your schema. */
+/** This is an auto generated class representing the UserWishList type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "UserAttendEvents")
+@ModelConfig(pluralName = "UserWishLists")
+@Index(name = "byToy", fields = {"toyID"})
 @Index(name = "byAccount", fields = {"accountID"})
-@Index(name = "byEvent", fields = {"eventID"})
-public final class UserAttendEvent implements Model {
-  public static final QueryField ID = field("UserAttendEvent", "id");
-  public static final QueryField ACCOUNT = field("UserAttendEvent", "accountID");
-  public static final QueryField EVENT = field("UserAttendEvent", "eventID");
+public final class UserWishList implements Model {
+  public static final QueryField ID = field("UserWishList", "id");
+  public static final QueryField TOY = field("UserWishList", "toyID");
+  public static final QueryField ACCOUNT = field("UserWishList", "accountID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
+  private final @ModelField(targetType="Toy", isRequired = true) @BelongsTo(targetName = "toyID", type = Toy.class) Toy toy;
   private final @ModelField(targetType="Account", isRequired = true) @BelongsTo(targetName = "accountID", type = Account.class) Account account;
-  private final @ModelField(targetType="Event", isRequired = true) @BelongsTo(targetName = "eventID", type = Event.class) Event event;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
       return id;
   }
   
-  public Account getAccount() {
-      return account;
+  public Toy getToy() {
+      return toy;
   }
   
-  public Event getEvent() {
-      return event;
+  public Account getAccount() {
+      return account;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -49,10 +49,10 @@ public final class UserAttendEvent implements Model {
       return updatedAt;
   }
   
-  private UserAttendEvent(String id, Account account, Event event) {
+  private UserWishList(String id, Toy toy, Account account) {
     this.id = id;
+    this.toy = toy;
     this.account = account;
-    this.event = event;
   }
   
   @Override
@@ -62,12 +62,12 @@ public final class UserAttendEvent implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      UserAttendEvent userAttendEvent = (UserAttendEvent) obj;
-      return ObjectsCompat.equals(getId(), userAttendEvent.getId()) &&
-              ObjectsCompat.equals(getAccount(), userAttendEvent.getAccount()) &&
-              ObjectsCompat.equals(getEvent(), userAttendEvent.getEvent()) &&
-              ObjectsCompat.equals(getCreatedAt(), userAttendEvent.getCreatedAt()) &&
-              ObjectsCompat.equals(getUpdatedAt(), userAttendEvent.getUpdatedAt());
+      UserWishList userWishList = (UserWishList) obj;
+      return ObjectsCompat.equals(getId(), userWishList.getId()) &&
+              ObjectsCompat.equals(getToy(), userWishList.getToy()) &&
+              ObjectsCompat.equals(getAccount(), userWishList.getAccount()) &&
+              ObjectsCompat.equals(getCreatedAt(), userWishList.getCreatedAt()) &&
+              ObjectsCompat.equals(getUpdatedAt(), userWishList.getUpdatedAt());
       }
   }
   
@@ -75,8 +75,8 @@ public final class UserAttendEvent implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
+      .append(getToy())
       .append(getAccount())
-      .append(getEvent())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -86,17 +86,17 @@ public final class UserAttendEvent implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("UserAttendEvent {")
+      .append("UserWishList {")
       .append("id=" + String.valueOf(getId()) + ", ")
+      .append("toy=" + String.valueOf(getToy()) + ", ")
       .append("account=" + String.valueOf(getAccount()) + ", ")
-      .append("event=" + String.valueOf(getEvent()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static AccountStep builder() {
+  public static ToyStep builder() {
       return new Builder();
   }
   
@@ -108,8 +108,8 @@ public final class UserAttendEvent implements Model {
    * @param id the id of the existing item this instance will represent
    * @return an instance of this model with only ID populated
    */
-  public static UserAttendEvent justId(String id) {
-    return new UserAttendEvent(
+  public static UserWishList justId(String id) {
+    return new UserWishList(
       id,
       null,
       null
@@ -118,50 +118,50 @@ public final class UserAttendEvent implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      account,
-      event);
+      toy,
+      account);
   }
-  public interface AccountStep {
-    EventStep account(Account account);
+  public interface ToyStep {
+    AccountStep toy(Toy toy);
   }
   
 
-  public interface EventStep {
-    BuildStep event(Event event);
+  public interface AccountStep {
+    BuildStep account(Account account);
   }
   
 
   public interface BuildStep {
-    UserAttendEvent build();
+    UserWishList build();
     BuildStep id(String id);
   }
   
 
-  public static class Builder implements AccountStep, EventStep, BuildStep {
+  public static class Builder implements ToyStep, AccountStep, BuildStep {
     private String id;
+    private Toy toy;
     private Account account;
-    private Event event;
     @Override
-     public UserAttendEvent build() {
+     public UserWishList build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new UserAttendEvent(
+        return new UserWishList(
           id,
-          account,
-          event);
+          toy,
+          account);
     }
     
     @Override
-     public EventStep account(Account account) {
-        Objects.requireNonNull(account);
-        this.account = account;
+     public AccountStep toy(Toy toy) {
+        Objects.requireNonNull(toy);
+        this.toy = toy;
         return this;
     }
     
     @Override
-     public BuildStep event(Event event) {
-        Objects.requireNonNull(event);
-        this.event = event;
+     public BuildStep account(Account account) {
+        Objects.requireNonNull(account);
+        this.account = account;
         return this;
     }
     
@@ -177,20 +177,20 @@ public final class UserAttendEvent implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, Account account, Event event) {
+    private CopyOfBuilder(String id, Toy toy, Account account) {
       super.id(id);
-      super.account(account)
-        .event(event);
+      super.toy(toy)
+        .account(account);
+    }
+    
+    @Override
+     public CopyOfBuilder toy(Toy toy) {
+      return (CopyOfBuilder) super.toy(toy);
     }
     
     @Override
      public CopyOfBuilder account(Account account) {
       return (CopyOfBuilder) super.account(account);
-    }
-    
-    @Override
-     public CopyOfBuilder event(Event event) {
-      return (CopyOfBuilder) super.event(event);
     }
   }
   

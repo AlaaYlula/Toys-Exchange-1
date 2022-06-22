@@ -10,6 +10,11 @@ mutation CreateToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -29,6 +34,11 @@ mutation UpdateToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -48,6 +58,11 @@ mutation DeleteToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -186,6 +201,10 @@ mutation CreateAccount(
       nextToken
       startedAt
     }
+    wishtoys {
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -221,6 +240,10 @@ mutation UpdateAccount(
       nextToken
       startedAt
     }
+    wishtoys {
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -253,6 +276,10 @@ mutation DeleteAccount(
       startedAt
     }
     eventsattend {
+      nextToken
+      startedAt
+    }
+    wishtoys {
       nextToken
       startedAt
     }
@@ -339,6 +366,126 @@ mutation DeleteEvent(
     _deleted
     _lastChangedAt
     accountEventsaddedId
+  }
+}
+mutation CreateUserWishList(
+  $input: CreateUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  createUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateUserWishList(
+  $input: UpdateUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  updateUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteUserWishList(
+  $input: DeleteUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  deleteUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateUserAttendEvent(

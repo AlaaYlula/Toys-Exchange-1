@@ -7,6 +7,11 @@ subscription OnCreateToy {
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -23,6 +28,11 @@ subscription OnUpdateToy {
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -39,6 +49,11 @@ subscription OnDeleteToy {
     image
     price
     condition
+    wishuser {
+      nextToken
+      startedAt
+    }
+    contactinfo
     createdAt
     updatedAt
     _version
@@ -156,6 +171,10 @@ subscription OnCreateAccount {
       nextToken
       startedAt
     }
+    wishtoys {
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -188,6 +207,10 @@ subscription OnUpdateAccount {
       nextToken
       startedAt
     }
+    wishtoys {
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -217,6 +240,10 @@ subscription OnDeleteAccount {
       startedAt
     }
     eventsattend {
+      nextToken
+      startedAt
+    }
+    wishtoys {
       nextToken
       startedAt
     }
@@ -294,6 +321,117 @@ subscription OnDeleteEvent {
     _deleted
     _lastChangedAt
     accountEventsaddedId
+  }
+}
+subscription OnCreateUserWishList {
+  onCreateUserWishList {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateUserWishList {
+  onUpdateUserWishList {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteUserWishList {
+  onDeleteUserWishList {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 subscription OnCreateUserAttendEvent {

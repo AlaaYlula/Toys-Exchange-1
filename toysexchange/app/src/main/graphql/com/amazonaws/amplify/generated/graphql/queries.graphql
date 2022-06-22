@@ -7,11 +7,12 @@ query GetToy($id: ID!) {
     image
     price
     condition
+    wishuser {
+      nextToken
+    }
+    contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -24,45 +25,12 @@ query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
       image
       price
       condition
+      contactinfo
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountToysId
     }
     nextToken
-    startedAt
-  }
-}
-query SyncToys(
-  $filter: ModelToyFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncToys(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      toyname
-      toydescription
-      image
-      price
-      condition
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountToysId
-    }
-    nextToken
-    startedAt
   }
 }
 query GetStore($id: ID!) {
@@ -74,9 +42,6 @@ query GetStore($id: ID!) {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -94,42 +59,9 @@ query ListStores(
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountStoresId
     }
     nextToken
-    startedAt
-  }
-}
-query SyncStores(
-  $filter: ModelStoreFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncStores(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      storename
-      storedescription
-      latitude
-      longitude
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountStoresId
-    }
-    nextToken
-    startedAt
   }
 }
 query GetComment($id: ID!) {
@@ -138,9 +70,6 @@ query GetComment($id: ID!) {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -156,41 +85,10 @@ query ListComments(
       text
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountCommentsId
       eventCommentsId
     }
     nextToken
-    startedAt
-  }
-}
-query SyncComments(
-  $filter: ModelCommentFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncComments(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      text
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountCommentsId
-      eventCommentsId
-    }
-    nextToken
-    startedAt
   }
 }
 query GetAccount($id: ID!) {
@@ -200,29 +98,24 @@ query GetAccount($id: ID!) {
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
+    }
+    wishtoys {
+      nextToken
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 query ListAccounts(
@@ -237,38 +130,8 @@ query ListAccounts(
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncAccounts(
-  $filter: ModelAccountFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncAccounts(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      idcognito
-      username
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetEvent($id: ID!) {
@@ -278,19 +141,14 @@ query GetEvent($id: ID!) {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -308,42 +166,53 @@ query ListEvents(
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     nextToken
-    startedAt
   }
 }
-query SyncEvents(
-  $filter: ModelEventFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncEvents(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
+query GetUserWishList($id: ID!) {
+  getUserWishList(id: $id) {
+    id
+    toyID
+    accountID
+    toy {
       id
-      title
-      eventdescription
-      latitude
-      longitude
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountEventsaddedId
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListUserWishLists(
+  $filter: ModelUserWishListFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUserWishLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      toyID
+      accountID
+      createdAt
+      updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query GetUserAttendEvent($id: ID!) {
@@ -357,9 +226,6 @@ query GetUserAttendEvent($id: ID!) {
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -369,16 +235,10 @@ query GetUserAttendEvent($id: ID!) {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 query ListUserAttendEvents(
@@ -393,37 +253,7 @@ query ListUserAttendEvents(
       eventID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncUserAttendEvents(
-  $filter: ModelUserAttendEventFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncUserAttendEvents(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      accountID
-      eventID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
   }
 }

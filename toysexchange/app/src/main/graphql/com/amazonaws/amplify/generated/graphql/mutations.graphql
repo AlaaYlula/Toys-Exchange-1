@@ -10,11 +10,12 @@ mutation CreateToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+    }
+    contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -29,11 +30,12 @@ mutation UpdateToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+    }
+    contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -48,11 +50,12 @@ mutation DeleteToy(
     image
     price
     condition
+    wishuser {
+      nextToken
+    }
+    contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -68,9 +71,6 @@ mutation CreateStore(
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -86,9 +86,6 @@ mutation UpdateStore(
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -104,9 +101,6 @@ mutation DeleteStore(
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -119,9 +113,6 @@ mutation CreateComment(
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -135,9 +126,6 @@ mutation UpdateComment(
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -151,9 +139,6 @@ mutation DeleteComment(
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -168,29 +153,24 @@ mutation CreateAccount(
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
+    }
+    wishtoys {
+      nextToken
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation UpdateAccount(
@@ -203,29 +183,24 @@ mutation UpdateAccount(
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
+    }
+    wishtoys {
+      nextToken
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation DeleteAccount(
@@ -238,29 +213,24 @@ mutation DeleteAccount(
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
+    }
+    wishtoys {
+      nextToken
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation CreateEvent(
@@ -273,19 +243,14 @@ mutation CreateEvent(
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -299,19 +264,14 @@ mutation UpdateEvent(
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -325,20 +285,108 @@ mutation DeleteEvent(
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
+  }
+}
+mutation CreateUserWishList(
+  $input: CreateUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  createUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUserWishList(
+  $input: UpdateUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  updateUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteUserWishList(
+  $input: DeleteUserWishListInput!
+  $condition: ModelUserWishListConditionInput
+) {
+  deleteUserWishList(input: $input, condition: $condition) {
+    id
+    toyID
+    accountID
+    toy {
+      id
+      toyname
+      toydescription
+      image
+      price
+      condition
+      contactinfo
+      createdAt
+      updatedAt
+      accountToysId
+    }
+    account {
+      id
+      idcognito
+      username
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateUserAttendEvent(
@@ -355,9 +403,6 @@ mutation CreateUserAttendEvent(
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -367,16 +412,10 @@ mutation CreateUserAttendEvent(
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation UpdateUserAttendEvent(
@@ -393,9 +432,6 @@ mutation UpdateUserAttendEvent(
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -405,16 +441,10 @@ mutation UpdateUserAttendEvent(
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 mutation DeleteUserAttendEvent(
@@ -431,9 +461,6 @@ mutation DeleteUserAttendEvent(
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -443,15 +470,9 @@ mutation DeleteUserAttendEvent(
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }

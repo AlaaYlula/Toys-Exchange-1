@@ -25,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     private View loadingProgressBar;
     public static final String EMAIL = "email";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

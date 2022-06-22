@@ -17,7 +17,11 @@ subscription OnCreateToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnUpdateToy {
@@ -38,7 +42,11 @@ subscription OnUpdateToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnDeleteToy {
@@ -59,7 +67,11 @@ subscription OnDeleteToy {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnCreateStore {
@@ -160,6 +172,8 @@ subscription OnCreateAccount {
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -172,6 +186,7 @@ subscription OnCreateAccount {
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -196,6 +211,8 @@ subscription OnUpdateAccount {
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -208,6 +225,7 @@ subscription OnUpdateAccount {
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -232,6 +250,8 @@ subscription OnDeleteAccount {
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -244,6 +264,7 @@ subscription OnDeleteAccount {
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -263,7 +284,11 @@ subscription OnCreateEvent {
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -286,7 +311,11 @@ subscription OnUpdateEvent {
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -309,7 +338,11 @@ subscription OnDeleteEvent {
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -320,6 +353,8 @@ subscription OnDeleteEvent {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
     accountEventsaddedId
   }
 }
@@ -537,5 +572,6 @@ subscription OnDeleteUserAttendEvent {
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }

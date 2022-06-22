@@ -17,7 +17,11 @@ query GetToy($id: ID!) {
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
@@ -104,7 +108,11 @@ query ListStores(
       _version
       _deleted
       _lastChangedAt
+<<<<<<< HEAD
+      usersStoresId
+=======
       accountStoresId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
     }
     nextToken
     startedAt
@@ -214,6 +222,8 @@ query GetAccount($id: ID!) {
       startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
       startedAt
     }
@@ -226,6 +236,7 @@ query GetAccount($id: ID!) {
       startedAt
     }
     wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -291,7 +302,11 @@ query GetEvent($id: ID!) {
       nextToken
       startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
@@ -346,6 +361,8 @@ query SyncEvents(
       eventdescription
       latitude
       longitude
+<<<<<<< HEAD
+=======
       createdAt
       updatedAt
       _version
@@ -511,6 +528,7 @@ query SyncUserAttendEvents(
       id
       accountID
       eventID
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       createdAt
       updatedAt
       _version

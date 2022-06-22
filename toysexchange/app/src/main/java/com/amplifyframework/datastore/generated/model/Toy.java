@@ -176,13 +176,13 @@ public final class Toy implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      toyname,
-      toydescription,
-      image,
-      price,
-      condition,
-      contactinfo,
-      accountToysId);
+            toyname,
+            toydescription,
+            image,
+            price,
+            condition,
+            contactinfo,
+            accountToysId);
   }
   public interface ToynameStep {
     ToydescriptionStep toyname(String toyname);
@@ -204,6 +204,7 @@ public final class Toy implements Model {
     BuildStep id(String id);
     BuildStep price(Double price);
     BuildStep condition(Condition condition);
+
     BuildStep contactinfo(String contactinfo);
     BuildStep accountToysId(String accountToysId);
   }
@@ -216,6 +217,7 @@ public final class Toy implements Model {
     private String image;
     private Double price;
     private Condition condition;
+
     private String contactinfo;
     private String accountToysId;
     @Override
@@ -267,6 +269,7 @@ public final class Toy implements Model {
     }
     
     @Override
+
      public BuildStep contactinfo(String contactinfo) {
         this.contactinfo = contactinfo;
         return this;
@@ -297,7 +300,7 @@ public final class Toy implements Model {
         .image(image)
         .price(price)
         .condition(condition)
-        .contactinfo(contactinfo)
+        .contactinfo(Toy.this.contactinfo)
         .accountToysId(accountToysId);
     }
     

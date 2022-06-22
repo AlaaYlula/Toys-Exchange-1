@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
-            android:name=".toysListActivity"
+            android:name=".toyListActivity"
             android:exported="false" />
         <activity
             android:name=".eventListActivity"

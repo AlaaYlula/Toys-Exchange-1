@@ -43,7 +43,7 @@ public class profileActivity extends AppCompatActivity {
 //            mToysList.setText("My toys");
 //            mToysList.setAllCaps(true);
 
-            Intent startAllTasksIntent = new Intent(getApplicationContext(), toysListActivity.class);
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), toyListActivity.class);
             startActivity(startAllTasksIntent);
 
         }

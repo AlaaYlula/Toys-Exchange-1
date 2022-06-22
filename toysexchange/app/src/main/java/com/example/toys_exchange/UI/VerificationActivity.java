@@ -1,7 +1,5 @@
 package com.example.toys_exchange.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +9,9 @@ import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.Users;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 
 
@@ -39,30 +39,39 @@ public class VerificationActivity extends AppCompatActivity {
         });
     }
 
-    private void verify(String code, String email, String username, String userId) {
+
+    private void verify(String code, String email , String username , String userId) {
         Amplify.Auth.confirmSignUp(
                 email,
                 code,
                 result -> {
-                    Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
 
-                    Users user = Users.builder().username(username).idcognito(userId).build();
+                    Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
+                    // Add the user To API
+                    Account user = Account.builder()
+                            .username(username)
+                            .idcognito(userId)
+                            .build();
 
                     Amplify.DataStore.save(user,
-                            success -> Log.i(TAG, "save user: " + success.item().getUsername()),
-                            error -> Log.e(TAG, "could not save user: ", error)
+                            success -> Log.i(TAG, "Saved User DataStore: " + success.item().getUsername()),
+                            error -> Log.e(TAG, "Could not save item to DataStore", error)
                     );
-
+                    // API save to backend
                     Amplify.API.mutate(
                             ModelMutation.create(user),
-                            success -> Log.i(TAG, "save user in API: " + success.getData().getUsername()),
-                            error -> Log.e(TAG, "could not save user in API: ", error)
+                            success -> {
+                                Log.i(TAG, "Saved User API: " + success.getData().getUsername());
+                                runOnUiThread(() -> {
+                                    Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(this, LoginActivity.class));
+                                    finish();
+                                        });
+                            },
+                            error -> Log.e(TAG, "Could not save item to API", error)
                     );
 
-                    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(VerificationActivity.this, LoginActivity.class));
-                    finish();
                 },
                 error -> Log.e(TAG, error.toString())
         );

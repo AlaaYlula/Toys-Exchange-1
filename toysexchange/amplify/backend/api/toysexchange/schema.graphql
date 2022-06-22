@@ -16,6 +16,8 @@ type Toy @model {
   image: String!
   price: Float
   condition: Condition
+  wishuser:[Account] @manyToMany(relationName: "UserWishList")
+  contactinfo: String
 }
 
 type Store @model{
@@ -40,6 +42,7 @@ type Account @model {
   stores : [Store] @hasMany
   eventsadded : [Event] @hasMany
   eventsattend : [Event] @manyToMany(relationName: "UserAttendEvent")
+  wishtoys : [Toy] @manyToMany(relationName: "UserWishList")
 
 }
 

@@ -23,5 +23,8 @@
     <string name="back_toys">back</string>
     <string name="back_events">back</string>
     <string name="profile">profile</string>
-    <string name="Logout">Logout</string>
+    <string name="logout">logout</string>
+    <string name="setting">setting</string>
+    <string name="Logout" />
+
 </resources>

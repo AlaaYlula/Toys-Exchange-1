@@ -1,12 +1,5 @@
 package com.example.toys_exchange.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.amplifyframework.auth.AuthUserAttributeKey;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
-import com.amplifyframework.core.Amplify;
-import com.example.toys_exchange.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,19 +10,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
+import com.amplifyframework.core.Amplify;
+import com.example.toys_exchange.R;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = SignUpActivity.class.getSimpleName();
-    private View loadingProgressBar;
-    public static final String EMAIL = "email";
     public static final String USERNAME = "username";
     public static final String USERID = "userId";
+    private View loadingProgressBar;
+    public static final String EMAIL = "email";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText emailEditText = findViewById(R.id.email);
@@ -54,9 +54,12 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
 
-                signUp(usernameEditText.getText().toString(),
+                String username = usernameEditText.getText().toString();
+
+                signUp(username,
                         emailEditText.getText().toString(),
                         passwordEditText.getText().toString());
+
             }
         });
     }
@@ -73,6 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
         Amplify.Auth.signUp(email, password, options,
                 result -> {
                     Log.i(TAG, "Result: " + result.toString());
+
                     loadingProgressBar.setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent(SignUpActivity.this, VerificationActivity.class);

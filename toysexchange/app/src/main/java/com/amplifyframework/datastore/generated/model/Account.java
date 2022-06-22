@@ -31,7 +31,10 @@ public final class Account implements Model {
   private final @ModelField(targetType="Store") @HasMany(associatedWith = "accountStoresId", type = Store.class) List<Store> stores = null;
   private final @ModelField(targetType="Event") @HasMany(associatedWith = "accountEventsaddedId", type = Event.class) List<Event> eventsadded = null;
   private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "account", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   private final @ModelField(targetType="UserWishList") @HasMany(associatedWith = "account", type = UserWishList.class) List<UserWishList> wishtoys = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -67,7 +70,10 @@ public final class Account implements Model {
       return eventsattend;
   }
   
+<<<<<<< HEAD
+=======
 
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   public List<UserWishList> getWishtoys() {
       return wishtoys;
   }

@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //
 //
-        Button detailEventbtn = findViewById(R.id.DetailEvent);
-        detailEventbtn.setOnClickListener(view->{
-            startActivity(new Intent(this, EventDetailsActivity.class));
-        });
+//        Button detailEventbtn = findViewById(R.id.DetailEvent);
+//        detailEventbtn.setOnClickListener(view->{
+//            startActivity(new Intent(this, EventDetailsActivity.class));
+//        });
 
     }
 }

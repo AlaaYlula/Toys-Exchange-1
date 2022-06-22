@@ -3,18 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.1" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.12962962962962962" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.2203125" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.25416666666666665" />
-=======
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.1" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.2" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_sign_up.xml" value="0.17604166666666668" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/comment_layout.xml" value="0.264" />
->>>>>>> 775a96185fc307b24b0e6c602125a1cf48b68f0c
+        <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_verification.xml" value="0.1" />
+        <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/comment_layout.xml" value="0.1" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />

@@ -19,6 +19,7 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
+
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
@@ -26,6 +27,7 @@ import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -43,12 +45,17 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
+    private Handler userHandler;
 
     private String userId;
+
+
+    private String username;
 
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +110,57 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
+
+//        toyList =new ArrayList<>();
+//
+//        handler = new Handler(Looper.getMainLooper(),msg ->{
+//            RecyclerView recyclerView = findViewById(R.id.recycler_view);
+//
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
+//
+//            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+//                @Override
+//                public void onTaskClickListener(int position) {
+//                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
+//                    intent.putExtra("toyName",toyList.get(position).getToyname());
+//                    intent.putExtra("description",toyList.get(position).getToydescription());
+//                    intent.putExtra("image",toyList.get(position).getImage());
+//                    intent.putExtra("price",toyList.get(position).getPrice());
+//                    intent.putExtra("condition",toyList.get(position).getCondition());
+//
+//                    authAttribute();
+//
+//                    intent.putExtra("username", username);
+//                    intent.putExtra("userId", userId);
+//                    startActivity(intent);
+//                }
+//            });
+//            recyclerView.setAdapter(customAdapter);
+//
+//            recyclerView.setHasFixedSize(true);
+//
+//            recyclerView.setLayoutManager(gridLayoutManager);
+//            return  true;
+//        });
+//
+//
+//        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
+//
+//            for(Toy toy: success.getData()){
+//                Log.i("get toy ", toy.toString());
+//               toyList.add(toy);
+//            }
+//
+//                    Bundle bundle =new Bundle();
+//                    bundle.putString("data", "done");
+//
+//                    Message message = new Message();
+//                    message.setData(bundle);
+//                    handler.sendMessage(message);
+//        },error -> Log.e("error: ","-> ",error)
+//        );
+
 //
 //        toyList =new ArrayList<>();
 //
@@ -147,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
 //                    handler.sendMessage(message);
 //        },error -> Log.e("error: ","-> ",error)
 //        );
+
 
 
         super.onResume();
@@ -215,5 +274,30 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
+
+
+
+    private void authAttribute(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    Log.i(TAG, "Attributes => "+ attributes);
+                    //  Send message to the handler to get the user Id >>
+                    username =attributes.get(2).getValue();
+                    userId = attributes.get(0).getValue();
+
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+    /*
+    handler = new Handler(Looper.getMainLooper(), msg -> {
+             String user = msg.getData().getString("name");
+             TextView name = findViewById(R.id.txt_username);
+             name.setText(user);
+             userId = msg.getData().getString("id");
+             return true;
+         });
+     */
 
 }

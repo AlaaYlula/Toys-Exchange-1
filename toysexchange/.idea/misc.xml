@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.33242753623188404" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_recycle_view.xml" value="0.3875" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/event_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/main_event_items.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/main_toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/menu/main_menu.xml" value="0.1" />
+=======
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.1" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.2" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -13,6 +24,7 @@
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/event_layout.xml" value="0.15081521739130435" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.18229166666666666" />
+>>>>>>> 27bad448b46fc09f21dedc6e134aa303674a2ca1
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />

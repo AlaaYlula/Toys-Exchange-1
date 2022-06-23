@@ -16,7 +16,6 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.example.toys_exchange.R;
-import com.example.toys_exchange.UI.data.model.EventDetailsActivity;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
 
 import java.util.ArrayList;

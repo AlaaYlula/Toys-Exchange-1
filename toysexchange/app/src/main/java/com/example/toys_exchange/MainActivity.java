@@ -52,6 +52,8 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.LoginActivity;
+import com.example.toys_exchange.UI.ToyActivity;
+import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.UI.data.model.EventDetailsActivity;
 import com.example.toys_exchange.adapter.CustomAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -74,18 +76,18 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
 
 
-//    private View.OnClickListener mClickprofile = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//            mProfile.setText("profile");
-//            mProfile.setAllCaps(true);
-//
-//            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
-//            startActivity(startAllTasksIntent);
-//
-//        }
-//    };
+    private View.OnClickListener mClickprofile = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            mProfile.setText("profile");
+            mProfile.setAllCaps(true);
+
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
+            startActivity(startAllTasksIntent);
+
+        }
+    };
 
 
     @Override
@@ -97,17 +99,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        Button button=findViewById(R.id.btn);
+//        Button button0=findViewById(R.id.btn);
 //        Button button1=findViewById(R.id.btn1);
 //
-//        button.setOnClickListener(new View.OnClickListener() {
+//        button0.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
 //                startActivity(new Intent(getApplicationContext(), ToyActivity.class));
 //            }
 //
 //        });
-//
+////
 //        button1.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -116,10 +118,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 
-//        Button btnProfile = findViewById(R.id.btn_profile);
-//        mProfile = findViewById(R.id.btn_profile);
-//
-//        btnProfile.setOnClickListener(mClickprofile);
+        Button btnProfile = findViewById(R.id.btn_profilei);
+        mProfile = findViewById(R.id.btn_profilei);
+
+        btnProfile.setOnClickListener(mClickprofile);
 
         Button button = findViewById(R.id.addEvent);
 
@@ -163,12 +165,15 @@ public class MainActivity extends AppCompatActivity {
             CustomAdapter customAdapter = new CustomAdapter(toyList, new CustomAdapter.CustomClickListener() {
                 @Override
                 public void onTaskClickListener(int position) {
-                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),ToyDetailActivity.class);
                     intent.putExtra("toyName",toyList.get(position).getToyname());
                     intent.putExtra("description",toyList.get(position).getToydescription());
                     intent.putExtra("image",toyList.get(position).getImage());
                     intent.putExtra("price",toyList.get(position).getPrice());
                     intent.putExtra("condition",toyList.get(position).getCondition());
+//                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+//                    intent.putExtra("id",toyList.get(position).getAccountToysId());
+//                    intent.putExtra("toyId",toyList.get(position).getId());
                     startActivity(intent);
                 }
             });

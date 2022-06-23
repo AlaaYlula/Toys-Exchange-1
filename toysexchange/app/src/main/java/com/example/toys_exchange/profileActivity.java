@@ -14,7 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.core.Amplify;
-import com.example.toys_exchange.UI.LoginActivity;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.eventListActivity;
 
 public class profileActivity extends AppCompatActivity {
 

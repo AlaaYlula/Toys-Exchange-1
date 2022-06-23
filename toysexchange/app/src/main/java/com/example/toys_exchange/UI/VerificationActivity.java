@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 
 
 public class VerificationActivity extends AppCompatActivity {

@@ -13,6 +13,7 @@ import android.util.Log;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.example.toys_exchange.adapter.ToyRecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

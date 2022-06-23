@@ -1,4 +1,4 @@
-package com.example.toys_exchange.UI.data.model;
+package com.example.toys_exchange.UI;
 
 import android.content.Intent;
 import android.os.Build;
@@ -26,7 +26,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.UserAttendEvent;
-import com.example.toys_exchange.Adaptors.adaptorComment;
+import com.example.toys_exchange.adapter.adaptorComment;
 import com.example.toys_exchange.R;
 
 import java.util.ArrayList;

@@ -22,7 +22,7 @@
             android:name=".toyListActivity"
             android:exported="false" />
         <activity
-            android:name=".eventListActivity"
+            android:name=".UI.eventListActivity"
             android:exported="false" />
         <activity
             android:name=".profileActivity"
@@ -33,7 +33,7 @@
             />
 
         <activity
-            android:name=".UI.data.model.EventDetailsActivity"
+            android:name=".UI.EventDetailsActivity"
             android:exported="false" />
 
         <activity
@@ -45,7 +45,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".UI.LoginActivity"
+            android:name=".UI.data.model.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
             <intent-filter>

@@ -1,26 +1,21 @@
-package com.example.toys_exchange;
+package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.Toy;
+import com.example.toys_exchange.R;
+import com.example.toys_exchange.adapter.EventRecyclerViewAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 

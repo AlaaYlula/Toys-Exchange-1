@@ -40,6 +40,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     String cognitoId;
 
+
     TextView username;
     TextView title ;
     TextView description ;
@@ -215,7 +216,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void setEventValues() {
         Amplify.API.query(
 
-                ModelQuery.get(Event.class, "b6f7e655-a712-4810-a2bd-16ee827e8d61"),
+                ModelQuery.get(Event.class, "d5928b13-4e37-4ce0-ad1c-4885d65a8a7f"),
 
                 events -> {
                     event = events.getData();

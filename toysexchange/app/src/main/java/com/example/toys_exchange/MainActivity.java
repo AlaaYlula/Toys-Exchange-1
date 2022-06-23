@@ -74,18 +74,18 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
 
 
-//    private View.OnClickListener mClickprofile = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//            mProfile.setText("profile");
-//            mProfile.setAllCaps(true);
-//
-//            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
-//            startActivity(startAllTasksIntent);
-//
-//        }
-//    };
+    private View.OnClickListener mClickprofile = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            mProfile.setText("profile");
+            mProfile.setAllCaps(true);
+
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
+            startActivity(startAllTasksIntent);
+
+        }
+    };
 
 
     @Override
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//        Button btnProfile = findViewById(R.id.btn_profile);
-//        mProfile = findViewById(R.id.btn_profile);
-//
-//        btnProfile.setOnClickListener(mClickprofile);
+        Button btnProfile = findViewById(R.id.btn_profile);
+        mProfile = findViewById(R.id.btn_profile);
+
+        btnProfile.setOnClickListener(mClickprofile);
 
         Button button = findViewById(R.id.addEvent);
 

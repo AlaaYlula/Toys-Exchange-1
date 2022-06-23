@@ -7,19 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <Button-->
-<!--        android:id="@+id/btn_profile"-->
-<!--        android:layout_width="117dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:layout_marginTop="377dp"-->
-<!--        android:text="@string/profile"-->
-<!--        android:textColor="@color/white"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.62" />-->
+    <Button
+        android:id="@+id/btn_profile"
+        android:layout_width="117dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="377dp"
+        android:text="@string/profile"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
 
 
     <TextView

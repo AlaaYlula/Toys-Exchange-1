@@ -103,6 +103,7 @@ public class profileActivity extends AppCompatActivity {
 
 }
 
+
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(
                 attribute -> {

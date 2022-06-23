@@ -14,14 +14,14 @@ import com.example.toys_exchange.R;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.CustomViewHolder> {
 
-    private static final String TAG = CustomAdapter.class.getSimpleName();
+    private static final String TAG = CustomToyAdapter.class.getSimpleName();
     List<Toy> toysData;
 
     CustomClickListener listener;
 
-    public CustomAdapter(List<Toy> toysData, CustomClickListener listener) {
+    public CustomToyAdapter(List<Toy> toysData, CustomClickListener listener) {
         this.toysData = toysData;
         this.listener = listener;
     }
@@ -57,31 +57,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.toy_name);
-            toyImage = itemView.findViewById(R.id.toy_img);
+            toyName = itemView.findViewById(R.id.event_name);
+            toyImage = itemView.findViewById(R.id.event_img);
 
             itemView.setOnClickListener(view -> {
                 listener.onTaskClickListener(getAdapterPosition());
             });
         }
-
-//        private void setImage(String imageKey){
-//            Amplify.Storage.downloadFile(
-//                    imageKey,
-//                    new File( getApplicationContext().getFilesDir() + "/" + imageKey),
-//                    result -> {
-//                        Log.i(TAG, "The root path is: " + getApplicationContext().getFilesDir());
-//                        Log.i(TAG, "Successfully downloaded: " + result.getFile().getName());
-//
-//                        ImageView image = findViewById(R.id.image);
-//                        Bitmap bitmap = BitmapFactory.decodeFile(getApplicationContext().getFilesDir()+"/"+result.getFile().getName());
-//                        image.setImageBitmap(bitmap);
-//
-//
-//                    },
-//                    error -> Log.e(TAG,  "Download Failure", error)
-//            );
-//        }
     }
 
 

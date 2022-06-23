@@ -15,6 +15,7 @@ import com.amplifyframework.core.model.temporal.Temporal;
 import java.util.Objects;
 import java.util.UUID;
 
+
 /** This is an auto generated class representing the UserWishList type in your schema. */
 @SuppressWarnings("all")
 @ModelConfig(pluralName = "UserWishLists")

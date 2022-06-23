@@ -1,4 +1,4 @@
-package com.example.toys_exchange;
+package com.example.toys_exchange.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.example.toys_exchange.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.toys_exchange.Adaptors;
+package com.example.toys_exchange.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;

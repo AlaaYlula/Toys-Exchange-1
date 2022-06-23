@@ -91,6 +91,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         );
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
+            Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
             toyUser.setText(msg.getData().get("username").toString());
             return true;
         });

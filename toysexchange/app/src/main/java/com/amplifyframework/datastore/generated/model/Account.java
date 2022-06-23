@@ -1,19 +1,20 @@
 package com.amplifyframework.datastore.generated.model;
+import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.temporal.Temporal;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.Objects;
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
-import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
-import com.amplifyframework.core.model.temporal.Temporal;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 /** This is an auto generated class representing the Account type in your schema. */
 @SuppressWarnings("all")
@@ -30,6 +31,10 @@ public final class Account implements Model {
   private final @ModelField(targetType="Store") @HasMany(associatedWith = "accountStoresId", type = Store.class) List<Store> stores = null;
   private final @ModelField(targetType="Event") @HasMany(associatedWith = "accountEventsaddedId", type = Event.class) List<Event> eventsadded = null;
   private final @ModelField(targetType="UserAttendEvent") @HasMany(associatedWith = "account", type = UserAttendEvent.class) List<UserAttendEvent> eventsattend = null;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   private final @ModelField(targetType="UserWishList") @HasMany(associatedWith = "account", type = UserWishList.class) List<UserWishList> wishtoys = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -65,6 +70,10 @@ public final class Account implements Model {
       return eventsattend;
   }
   
+<<<<<<< HEAD
+=======
+
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   public List<UserWishList> getWishtoys() {
       return wishtoys;
   }

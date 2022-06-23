@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.model.query.Where;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
@@ -67,6 +68,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         Intent passedIntent = getIntent();
         String id = passedIntent.getStringExtra("id");
 
+
+
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0)
                 recyclerViewWork();
@@ -88,7 +91,6 @@ public class EventDetailsActivity extends AppCompatActivity {
 
 
         // The Add Comment Button
-        // TODO: 6/22/2022 update on the user name for the comment 
         addComment = findViewById(R.id.btn_addCommentEvent);
         btnAttend = findViewById(R.id.btn_attendEvent);
         addBtnListner();
@@ -119,6 +121,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                 comment.setText("");
                                 Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_SHORT).show();
                                 setEventValues();
+
                             });
                         },
                         error -> Log.e(TAG, "Could not save item to API", error)
@@ -188,7 +191,46 @@ public class EventDetailsActivity extends AppCompatActivity {
                         error -> Log.e(TAG, "Failed to fetch user attributes.", error)
                 );
             }else{ // User want Un Attend // Delete From tables
+                // https://docs.amplify.aws/lib/graphqlapi/mutate-data/q/platform/android/#run-a-mutation
+                Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
+                        usersAttend -> {
+                            for (UserAttendEvent user:
+                                    usersAttend.getData()) {
+                                if(user.getAccount().getId().equals(loginUser.getId())
+                                        && user.getEvent().getId().equals("6c8bae84-0053-4309-9b1e-9ff23c2ef691")){
+                                    runOnUiThread(() -> {
+                                        Amplify.DataStore.query(UserAttendEvent.class ,
+                                                Where.id(user.getId()), matches -> {
+                                            if(matches.hasNext()){
+                                                UserAttendEvent userAttend = matches.next();
+                                                Amplify.DataStore.delete(userAttend,
+                                                        deleted -> Log.i(TAG, "UserAttendEvent deleted from Datastore " ),
+                                                        error -> Log.e(TAG, "delete failed", error));
+                                            }
+                                        },
+                                                error -> Log.e(TAG, "delete failed", error)
+                                        );
 
+                                        Amplify.API.mutate(ModelMutation.delete(user),
+                                                response ->{
+                                                    Log.i(TAG, "UserAttendEvent deleted " + response.getData().getId());
+
+                                                    runOnUiThread(() -> {
+                                                        btnAttend.setText("Attend");
+
+                                                    });
+
+                                            },
+                                                error -> Log.e(TAG, "delete failed", error)
+                                        );
+                                    });
+                                    break;
+                                }
+                            }
+
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
 
             }
         });
@@ -211,11 +253,31 @@ public class EventDetailsActivity extends AppCompatActivity {
         );
     }
 
+    private void getUserAttend(){
+        // This Not Work for Attend
+        Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
+           usersAttend -> {
+            for (UserAttendEvent user:
+               usersAttend.getData()) {
+                   if(user.getAccount().getId().equals(loginUser.getId())
+                     && user.getEvent().getId().equals("6c8bae84-0053-4309-9b1e-9ff23c2ef691")){
+                       runOnUiThread(() -> {
+                           btnAttend.setText("Un Attend");
+
+                       });
+
+                          break;
+                    }
+            }
+
+          },
+        error -> Log.e(TAG, error.toString(), error)
+        );
+    }
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setEventValues() {
         Amplify.API.query(
-
-                ModelQuery.get(Event.class, "b6f7e655-a712-4810-a2bd-16ee827e8d61"),
+                ModelQuery.get(Event.class, "6c8bae84-0053-4309-9b1e-9ff23c2ef691"),
 
                 events -> {
                     event = events.getData();
@@ -242,32 +304,14 @@ public class EventDetailsActivity extends AppCompatActivity {
                                                         if(event.getAccountEventsaddedId().equals(loginUser.getId())){
                                                             btnAttend.setVisibility(View.INVISIBLE);
                                                         }
-                                                        // This Not Work for Attend
-//                                                        Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
-//                                                                usersAttend -> {
-//                                                                    for (UserAttendEvent user:
-//                                                                            usersAttend.getData()) {
-//                                                                        if(user.getAccount().equals(loginUser.getId())
-//                                                                                && user.getEvent().equals(event.getId())){
-//                                                                            btnAttend.setText("Un Attend");
-//                                                                            break;
-//                                                                        }
-//                                                                    }
-//
-//                                                                },
-//                                                                error -> Log.e(TAG, error.toString(), error)
-//                                                        );
 
                                                         username.setText(user.getUsername());
                                                         title.setText(event.getTitle());
                                                         description.setText(event.getEventdescription());
                                                         commentsListDatabase = new ArrayList<>();
                                                         getCommentsList();
+                                                        getUserAttend();
 
-
-//                                                        runOnUiThread(() -> { // For PUT the Attend Button text value
-//
-//                                                        });
                                                     });
                                                             },
                                                 error -> Log.e(TAG, error.toString(), error)
@@ -356,7 +400,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                     if(comments.hasData()) {
                         for (Comment comment :
                                 comments.getData()) {
-                            if(comment.getEventCommentsId().equals("b6f7e655-a712-4810-a2bd-16ee827e8d61")) // Add For comments check
+                            if(comment.getEventCommentsId().equals("6c8bae84-0053-4309-9b1e-9ff23c2ef691")) // Add For comments check
                                   commentsListDatabase.add(comment);
                         }
                         // Sort the Created At

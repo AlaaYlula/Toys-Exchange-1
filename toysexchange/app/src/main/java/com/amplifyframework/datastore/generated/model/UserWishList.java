@@ -1,19 +1,36 @@
 package com.amplifyframework.datastore.generated.model;
 
+<<<<<<< HEAD
+import com.amplifyframework.core.model.annotations.BelongsTo;
+import com.amplifyframework.core.model.temporal.Temporal;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.Objects;
+=======
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
+<<<<<<< HEAD
+=======
 import com.amplifyframework.core.model.annotations.BelongsTo;
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
 import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
+<<<<<<< HEAD
+
+import static com.amplifyframework.core.model.query.predicate.QueryField.field;
+=======
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.Objects;
 import java.util.UUID;
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
 
 /** This is an auto generated class representing the UserWishList type in your schema. */
 @SuppressWarnings("all")

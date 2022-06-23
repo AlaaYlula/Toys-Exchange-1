@@ -9,15 +9,25 @@ subscription OnCreateToy {
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
       startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnUpdateToy {
@@ -30,15 +40,25 @@ subscription OnUpdateToy {
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
       startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnDeleteToy {
@@ -51,15 +71,25 @@ subscription OnDeleteToy {
     condition
     wishuser {
       nextToken
+<<<<<<< HEAD
+=======
       startedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+    usersToysId
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnCreateStore {
@@ -71,9 +101,6 @@ subscription OnCreateStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -86,9 +113,6 @@ subscription OnUpdateStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -101,9 +125,6 @@ subscription OnDeleteStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -113,9 +134,6 @@ subscription OnCreateComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -126,9 +144,6 @@ subscription OnUpdateComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -139,9 +154,6 @@ subscription OnDeleteComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -153,33 +165,31 @@ subscription OnCreateAccount {
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
+      nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateAccount {
@@ -189,33 +199,31 @@ subscription OnUpdateAccount {
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
+      nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteAccount {
@@ -225,33 +233,31 @@ subscription OnDeleteAccount {
     username
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
+<<<<<<< HEAD
+=======
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
+      nextToken
+    }
+    wishtoys {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
       startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnCreateEvent {
@@ -261,19 +267,18 @@ subscription OnCreateEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -284,19 +289,18 @@ subscription OnUpdateEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -307,19 +311,26 @@ subscription OnDeleteEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
+<<<<<<< HEAD
+    users {
+=======
     usersattend {
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
     _version
     _deleted
     _lastChangedAt
+<<<<<<< HEAD
+=======
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountEventsaddedId
   }
 }
@@ -338,9 +349,12 @@ subscription OnCreateUserWishList {
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
       _version
       _deleted
       _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -349,6 +363,11 @@ subscription OnCreateUserWishList {
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
+    }
+    createdAt
+    updatedAt
+=======
       _version
       _deleted
       _lastChangedAt
@@ -358,6 +377,7 @@ subscription OnCreateUserWishList {
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnUpdateUserWishList {
@@ -375,9 +395,12 @@ subscription OnUpdateUserWishList {
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
       _version
       _deleted
       _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -386,6 +409,11 @@ subscription OnUpdateUserWishList {
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
+    }
+    createdAt
+    updatedAt
+=======
       _version
       _deleted
       _lastChangedAt
@@ -395,6 +423,7 @@ subscription OnUpdateUserWishList {
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnDeleteUserWishList {
@@ -412,9 +441,12 @@ subscription OnDeleteUserWishList {
       contactinfo
       createdAt
       updatedAt
+<<<<<<< HEAD
+=======
       _version
       _deleted
       _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
@@ -423,6 +455,11 @@ subscription OnDeleteUserWishList {
       username
       createdAt
       updatedAt
+<<<<<<< HEAD
+    }
+    createdAt
+    updatedAt
+=======
       _version
       _deleted
       _lastChangedAt
@@ -432,6 +469,7 @@ subscription OnDeleteUserWishList {
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnCreateUserAttendEvent {
@@ -445,9 +483,6 @@ subscription OnCreateUserAttendEvent {
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -457,16 +492,10 @@ subscription OnCreateUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateUserAttendEvent {
@@ -480,9 +509,6 @@ subscription OnUpdateUserAttendEvent {
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -492,16 +518,10 @@ subscription OnUpdateUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteUserAttendEvent {
@@ -515,9 +535,6 @@ subscription OnDeleteUserAttendEvent {
       username
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -527,15 +544,16 @@ subscription OnDeleteUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
+<<<<<<< HEAD
+=======
     _version
     _deleted
     _lastChangedAt
+>>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
+>>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }

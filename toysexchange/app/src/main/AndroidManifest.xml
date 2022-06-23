@@ -18,7 +18,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+<<<<<<< HEAD
             android:name=".EventRecycleView"
+=======
+            android:name=".toyListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".eventListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profileActivity"
+>>>>>>> 0b6fc03b311f314aaafa6be926203122a507107d
             android:exported="false" />
         <activity
             android:name=".UI.ToyDetailActivity"

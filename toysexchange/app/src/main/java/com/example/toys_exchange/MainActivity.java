@@ -3,6 +3,7 @@ package com.example.toys_exchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,21 +14,22 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.viewpager.widget.ViewPager;
+
 
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
-
-import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
-import com.example.toys_exchange.UI.EventDetailsActivity;
+
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -37,7 +39,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TOY_ID = "toyId";
     private FloatingActionButton mAdd;
     private TextView mProfile;
     private FloatingActionButton mAddEvent;
@@ -50,11 +54,26 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
 
 
+
+    private View.OnClickListener mClickprofile = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            mProfile.setText("profile");
+            mProfile.setAllCaps(true);
+
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
+            startActivity(startAllTasksIntent);
+
+        }
+    };
+
     private String username;
 
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 
 
     @Override
@@ -74,9 +93,25 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
+
+
+
+
+
+
+//        Button btnProfile = findViewById(R.id.btn_profilei);
+//        mProfile = findViewById(R.id.btn_profilei);
+
+//        btnProfile.setOnClickListener(mClickprofile);
+
+//        Button button = findViewById(R.id.add_event);
+//
+//        button.setOnClickListener(view -> {
+
         btnDetailEvent.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity2.class));
         });
+
         Button btnDetailToy = findViewById(R.id.detailToy);
 
         btnDetailToy.setOnClickListener(view -> {
@@ -86,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         mAdd = findViewById(R.id.add_fab);
         mAddEvent = findViewById(R.id.add_event);
         mAddToy = findViewById(R.id.add_toy);
+
 
 
         mAdd.setOnClickListener(view -> {
@@ -108,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -127,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 //                goToSetting();
                 return true;
             case R.id.action_profile:
-                Toast.makeText(this, "Copyright 2022 ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
 //                goToProfile();
                 startActivity(new Intent(this, profileActivity.class));
 
@@ -176,19 +213,6 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
-    private void authAttribute(){
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> {
-                    Log.i(TAG, "Attributes => "+ attributes);
-                    //  Send message to the handler to get the user Id >>
-                    username =attributes.get(2).getValue();
-                    userId = attributes.get(0).getValue();
-
-                },
-                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
-        );
-    }
-
     /*
     handler = new Handler(Looper.getMainLooper(), msg -> {
              String user = msg.getData().getString("name");
@@ -199,4 +223,8 @@ public class MainActivity extends AppCompatActivity {
          });
      */
 
+
+
+
 }
+

@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
 //        Button btnProfile = findViewById(R.id.btn_profilei);
 //        mProfile = findViewById(R.id.btn_profilei);
 
@@ -104,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         btnDetailEvent.setOnClickListener(view -> {
             startActivity(new Intent(this, EventDetailsActivity.class));
         });
+
         Button btnDetailToy = findViewById(R.id.detailToy);
 
         btnDetailToy.setOnClickListener(view -> {
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 //                goToSetting();
                 return true;
             case R.id.action_profile:
-                Toast.makeText(this, "Copyright 2022 ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
 //                goToProfile();
                 startActivity(new Intent(this, profileActivity.class));
 
@@ -222,14 +224,5 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    /*
-    handler = new Handler(Looper.getMainLooper(), msg -> {
-             String user = msg.getData().getString("name");
-             TextView name = findViewById(R.id.txt_username);
-             name.setText(user);
-             userId = msg.getData().getString("id");
-             return true;
-         });
-     */
-
 }
+

@@ -3,6 +3,8 @@ package com.example.toys_exchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +15,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
@@ -24,7 +30,9 @@ import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.UI.EventDetailsActivity;
+import com.example.toys_exchange.adapter.CustomToyAdapter;
 import com.example.toys_exchange.adapter.TabAdapter;
+import com.example.toys_exchange.adapter.ToyRecyclerViewAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
 
@@ -38,6 +46,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TOY_ID = "toyId";
     private FloatingActionButton mAdd;
     private TextView mProfile;
     private FloatingActionButton mAddEvent;
@@ -112,99 +121,54 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
 
-//        toyList =new ArrayList<>();
-//
-//        handler = new Handler(Looper.getMainLooper(),msg ->{
-//            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-//
-//            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-//                @Override
-//                public void onTaskClickListener(int position) {
-//                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
-//                    intent.putExtra("toyName",toyList.get(position).getToyname());
-//                    intent.putExtra("description",toyList.get(position).getToydescription());
-//                    intent.putExtra("image",toyList.get(position).getImage());
-//                    intent.putExtra("price",toyList.get(position).getPrice());
-//                    intent.putExtra("condition",toyList.get(position).getCondition());
-//
-//                    authAttribute();
-//
-//                    intent.putExtra("username", username);
-//                    intent.putExtra("userId", userId);
-//                    startActivity(intent);
-//                }
-//            });
-//            recyclerView.setAdapter(customAdapter);
-//
-//            recyclerView.setHasFixedSize(true);
-//
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//            return  true;
-//        });
-//
-//
-//        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
-//
-//            for(Toy toy: success.getData()){
-//                Log.i("get toy ", toy.toString());
-//               toyList.add(toy);
-//            }
-//
-//                    Bundle bundle =new Bundle();
-//                    bundle.putString("data", "done");
-//
-//                    Message message = new Message();
-//                    message.setData(bundle);
-//                    handler.sendMessage(message);
-//        },error -> Log.e("error: ","-> ",error)
-//        );
+        toyList =new ArrayList<>();
 
-//
-//        toyList =new ArrayList<>();
-//
-//        handler = new Handler(Looper.getMainLooper(),msg ->{
-//            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-//
-//            CustomAdapter customAdapter = new CustomAdapter(toyList, new CustomAdapter.CustomClickListener() {
-//                @Override
-//                public void onTaskClickListener(int position) {
-//                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
-//                    intent.putExtra("toyName",toyList.get(position).getToyname());
-//                    intent.putExtra("description",toyList.get(position).getToydescription());
-//                    intent.putExtra("image",toyList.get(position).getImage());
-//                    intent.putExtra("price",toyList.get(position).getPrice());
-//                    intent.putExtra("condition",toyList.get(position).getCondition());
-//                    startActivity(intent);
-//                }
-//            });
-//            recyclerView.setAdapter(customAdapter);
-//
-//            recyclerView.setHasFixedSize(true);
-//
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//            return  true;
-//        });
-//
-//
-//        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
-//
-//            for(Toy toy: success.getData()){
-//                Log.i("get toy ", toy.toString());
-//               toyList.add(toy);
-//            }
-//
-//                    Bundle bundle =new Bundle();
-//                    bundle.putString("data", "done");
-//
-//                    Message message = new Message();
-//                    message.setData(bundle);
-//                    handler.sendMessage(message);
-//        },error -> Log.e("error: ","-> ",error)
-//        );
+        handler = new Handler(Looper.getMainLooper(),msg ->{
+            RecyclerView recyclerView = findViewById(R.id.recycler_view);
+
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
+
+            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+                @Override
+                public void onTaskClickListener(int position) {
+                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
+                    intent.putExtra("toyName",toyList.get(position).getToyname());
+                    intent.putExtra("description",toyList.get(position).getToydescription());
+                    intent.putExtra("image",toyList.get(position).getImage());
+                    intent.putExtra("price",toyList.get(position).getPrice());
+                    intent.putExtra("condition",toyList.get(position).getCondition());
+
+                    authAttribute();
+
+                    intent.putExtra("username", username);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                }
+            });
+            recyclerView.setAdapter(customAdapter);
+
+            recyclerView.setHasFixedSize(true);
+
+            recyclerView.setLayoutManager(gridLayoutManager);
+            return  true;
+        });
+
+
+        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
+
+            for(Toy toy: success.getData()){
+                Log.i("get toy ", toy.toString());
+               toyList.add(toy);
+            }
+
+                    Bundle bundle =new Bundle();
+                    bundle.putString("data", "done");
+
+                    Message message = new Message();
+                    message.setData(bundle);
+                    handler.sendMessage(message);
+        },error -> Log.e("error: ","-> ",error)
+        );
 
 
 

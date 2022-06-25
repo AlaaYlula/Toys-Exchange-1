@@ -52,7 +52,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         toyImage=findViewById(R.id.image_view_toy);
 
 
-
         handler=new Handler(Looper.getMainLooper(), msg->{
             toyName.setText(msg.getData().get("name").toString());
             userId=msg.getData().get("id").toString();
@@ -149,14 +148,10 @@ public class ToyDetailActivity extends AppCompatActivity {
                             message.setData(bundle);
 
                             handler1.sendMessage(message);
-
-
                         }
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
-
-
 }

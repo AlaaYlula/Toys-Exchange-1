@@ -3,8 +3,7 @@ package com.example.toys_exchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.viewpager.widget.ViewPager;
 
-import com.amplifyframework.api.graphql.model.ModelQuery;
+
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
@@ -28,8 +25,7 @@ import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
-import com.example.toys_exchange.UI.EventDetailsActivity;
-import com.example.toys_exchange.adapter.CustomToyAdapter;
+
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
@@ -42,6 +38,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TOY_ID = "toyId";
@@ -150,6 +147,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        // get the loginUser cognitoId
+//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+//        cognitoId = logedInUser.getUserId();
+//
+//
+
         super.onResume();
     }
 
@@ -217,20 +220,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /*
+    handler = new Handler(Looper.getMainLooper(), msg -> {
+             String user = msg.getData().getString("name");
+             TextView name = findViewById(R.id.txt_username);
+             name.setText(user);
+             userId = msg.getData().getString("id");
+             return true;
+         });
+     */
 
 
-    private void authAttribute(){
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> {
-                    Log.i(TAG, "Attributes => "+ attributes);
-                    //  Send message to the handler to get the user Id >>
-                    username =attributes.get(2).getValue();
-                    userId = attributes.get(0).getValue();
 
-                },
-                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
-        );
-    }
 
 }
 

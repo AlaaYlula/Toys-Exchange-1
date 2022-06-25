@@ -19,15 +19,13 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
-
-import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
-import com.example.toys_exchange.UI.EventDetailsActivity;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String userId;
 
 
+
     private View.OnClickListener mClickprofile = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -62,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
     private String username;
 
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 
 
     @Override
@@ -87,11 +88,23 @@ public class MainActivity extends AppCompatActivity {
         Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
 
-//        Button btnProfile = findViewById(R.id.btn_profile);
-//        mProfile = findViewById(R.id.btn_profile);
-//
+
+
+
+
+
+//        Button btnProfile = findViewById(R.id.btn_profilei);
+//        mProfile = findViewById(R.id.btn_profilei);
+
 //        btnProfile.setOnClickListener(mClickprofile);
 
+//        Button button = findViewById(R.id.add_event);
+//
+//        button.setOnClickListener(view -> {
+
+        btnDetailEvent.setOnClickListener(view -> {
+            startActivity(new Intent(this, EventDetailsActivity.class));
+        });
 
         Button btnDetailToy = findViewById(R.id.detailToy);
 
@@ -102,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         mAdd = findViewById(R.id.add_fab);
         mAddEvent = findViewById(R.id.add_event);
         mAddToy = findViewById(R.id.add_toy);
+
 
 
         mAdd.setOnClickListener(view -> {
@@ -124,8 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onResume() {
+
         super.onResume();
     }
 

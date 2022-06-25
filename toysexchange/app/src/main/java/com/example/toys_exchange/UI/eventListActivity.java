@@ -1,16 +1,23 @@
 package com.example.toys_exchange.UI;
 
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
@@ -124,7 +131,8 @@ public class eventListActivity extends AppCompatActivity {
             // create an Adapter // Custom Adapter
         CustomEventAdapter customEventAdapter = new CustomEventAdapter(
                  eventList, position -> {
-
+            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+            startActivity(intent);
             });
             // set adapter on recycler view
             recyclerView.setAdapter(customEventAdapter);

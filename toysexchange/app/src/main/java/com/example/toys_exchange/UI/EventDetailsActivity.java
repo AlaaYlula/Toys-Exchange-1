@@ -26,8 +26,8 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.UserAttendEvent;
-import com.example.toys_exchange.adapter.adaptorComment;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.adapter.adaptorComment;
 
 import java.util.ArrayList;
 import java.util.Collections;

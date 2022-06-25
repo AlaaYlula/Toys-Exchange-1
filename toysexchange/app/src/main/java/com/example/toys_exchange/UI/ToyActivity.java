@@ -1,5 +1,6 @@
 package com.example.toys_exchange.UI;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -130,13 +131,13 @@ public class ToyActivity extends AppCompatActivity {
                                             .image(URL)
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .accountToysId(user.getId())
-                                            //.contactinfo(contact)
+                                            .contactinfo(contact)
                                             .build();
 
-                                    Amplify.DataStore.save(oneToy,
-                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                                    );
+//                                    Amplify.DataStore.save(oneToy,
+//                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+//                                    );
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),
@@ -153,13 +154,13 @@ public class ToyActivity extends AppCompatActivity {
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .price(Double.parseDouble(price))
                                             .accountToysId(user.getId())
-//                                            .contactinfo(contact)
+                                            .contactinfo(contact)
                                             .build();
 
-                                    Amplify.DataStore.save(oneToy,
-                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                                    );
+//                                    Amplify.DataStore.save(oneToy,
+//                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+//                                    );
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),
@@ -262,4 +263,9 @@ public class ToyActivity extends AppCompatActivity {
 
 
 
+
 }
+
+
+
+

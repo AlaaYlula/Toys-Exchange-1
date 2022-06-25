@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -125,6 +126,8 @@ public class toyListActivity extends AppCompatActivity {
         // create an Adapter // Custom Adapter
         CustomToyAdapter customToyAdapter = new CustomToyAdapter(
                 toyList, position -> {
+            Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
+            startActivity(intent);
 
         });
         // set adapter on recycler view

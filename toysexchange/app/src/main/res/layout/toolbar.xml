@@ -1,0 +1,19 @@
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ShopHopAppTheme.AppBarOverlay">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ShopHop_background_color"
+        android:theme="@style/ShopHopAppTheme.AppBarOverlay"
+        app:contentInsetStartWithNavigation="0dp"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:popupTheme="@style/ShopHopAppTheme.PopupOverlay"
+        app:titleTextColor="@color/ShopHop_textColorPrimary" />
+
+</com.google.android.material.appbar.AppBarLayout>

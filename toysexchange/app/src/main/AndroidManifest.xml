@@ -18,6 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
+        <activity
             android:name=".UI.toyListActivity"
             android:exported="false" />
         <activity
@@ -25,7 +30,6 @@
             android:exported="false" />
         <activity
             android:name=".profileActivity"
-
             android:exported="false" />
         <activity
             android:name=".UI.ToyDetailActivity"

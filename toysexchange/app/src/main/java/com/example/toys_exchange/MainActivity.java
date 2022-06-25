@@ -109,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
 //        button.setOnClickListener(view -> {
 
         btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, EventDetailsActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
 
         Button btnDetailToy = findViewById(R.id.detailToy);
 
         btnDetailToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, ToyDetailActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
 
         mAdd = findViewById(R.id.add_fab);
@@ -147,12 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        // get the loginUser cognitoId
-//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-//        cognitoId = logedInUser.getUserId();
-//
-//
-
         super.onResume();
     }
 
@@ -218,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },error -> Log.e(TAG, error.toString()));
     }
-
 
     /*
     handler = new Handler(Looper.getMainLooper(), msg -> {

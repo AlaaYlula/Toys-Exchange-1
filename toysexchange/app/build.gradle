@@ -71,4 +71,6 @@ dependencies {
     implementation 'com.amplifyframework:aws-predictions:1.35.4'
 
     implementation 'com.amplifyframework:aws-analytics-pinpoint:1.35.4'
+
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }

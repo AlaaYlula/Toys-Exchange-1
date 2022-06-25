@@ -1,37 +1,8 @@
 package com.example.toys_exchange;
-//
-//<<<<<<< HEAD
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.TextView;
-//
-//public class MainActivity extends AppCompatActivity {
-//
-//
-//    private View.OnClickListener mClickprofile = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//
-//            mProfile.setText("profile");
-//            mProfile.setAllCaps(true);
-//
-//            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
-//            startActivity(startAllTasksIntent);
-//
-//        }
-//    };
-//
-//    private TextView mProfile;
-//=======
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,19 +13,23 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
-import com.example.toys_exchange.UI.LoginActivity;
-import com.example.toys_exchange.UI.data.model.EventDetailsActivity;
-import com.example.toys_exchange.adapter.CustomAdapter;
+
+import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.ToyActivity;
+import com.example.toys_exchange.UI.ToyDetailActivity;
+import com.example.toys_exchange.UI.EventDetailsActivity;
+import com.example.toys_exchange.adapter.TabAdapter;
+import com.example.toys_exchange.fragmenrs.EventFragment;
+import com.example.toys_exchange.fragmenrs.ToyFragment;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
+    private Handler userHandler;
 
     private String userId;
 
@@ -86,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+    private String username;
+
+    private TabAdapter adapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
 
     @Override
@@ -93,19 +74,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ////////////////*********             Profile Button                **********//////////////////
+        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        adapter = new TabAdapter(getSupportFragmentManager());
+        adapter.addFragment(new EventFragment(), "Event");
+        adapter.addFragment(new ToyFragment(), "Toy");
+//        adapter.addFragment(new Tab3Fragment(), "Tab 3");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+        Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
 
+//        Button btnProfile = findViewById(R.id.btn_profile);
+//        mProfile = findViewById(R.id.btn_profile);
+//
+//        btnProfile.setOnClickListener(mClickprofile);
 
-        Button btnProfile = findViewById(R.id.btn_profile);
-        mProfile = findViewById(R.id.btn_profile);
 
-        btnProfile.setOnClickListener(mClickprofile);
+        Button btnDetailToy = findViewById(R.id.detailToy);
 
-        Button button = findViewById(R.id.addEvent);
-
-        button.setOnClickListener(view -> {
-            startActivity(new Intent(this, EventDetailsActivity.class));
+        btnDetailToy.setOnClickListener(view -> {
+            startActivity(new Intent(this, ToyDetailActivity.class));
         });
 
         mAdd = findViewById(R.id.add_fab);
@@ -127,57 +118,14 @@ public class MainActivity extends AppCompatActivity {
         mAddEvent.setOnClickListener(view -> {
             startActivity(new Intent(this, EventActivity.class));
         });
+        mAddToy.setOnClickListener(view -> {
+            startActivity(new Intent(this, ToyActivity.class));
+        });
 
     }
 
     @Override
     protected void onResume() {
-
-        toyList =new ArrayList<>();
-
-        handler = new Handler(Looper.getMainLooper(),msg ->{
-            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-
-            CustomAdapter customAdapter = new CustomAdapter(toyList, new CustomAdapter.CustomClickListener() {
-                @Override
-                public void onTaskClickListener(int position) {
-                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
-                    intent.putExtra("toyName",toyList.get(position).getToyname());
-                    intent.putExtra("description",toyList.get(position).getToydescription());
-                    intent.putExtra("image",toyList.get(position).getImage());
-                    intent.putExtra("price",toyList.get(position).getPrice());
-                    intent.putExtra("condition",toyList.get(position).getCondition());
-                    startActivity(intent);
-                }
-            });
-            recyclerView.setAdapter(customAdapter);
-
-            recyclerView.setHasFixedSize(true);
-
-            recyclerView.setLayoutManager(gridLayoutManager);
-            return  true;
-        });
-
-
-        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
-
-            for(Toy toy: success.getData()){
-                Log.i("get toy ", toy.toString());
-               toyList.add(toy);
-            }
-
-                    Bundle bundle =new Bundle();
-                    bundle.putString("data", "done");
-
-                    Message message = new Message();
-                    message.setData(bundle);
-                    handler.sendMessage(message);
-        },error -> Log.e("error: ","-> ",error)
-        );
-
-
         super.onResume();
     }
 
@@ -195,8 +143,10 @@ public class MainActivity extends AppCompatActivity {
 //                goToSetting();
                 return true;
             case R.id.action_profile:
-                Toast.makeText(this, "Copyright 2022 ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
 //                goToProfile();
+                startActivity(new Intent(this, profileActivity.class));
+
                 return true;
             case R.id.logout:
                 logout();
@@ -243,4 +193,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    private void authAttribute(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    Log.i(TAG, "Attributes => "+ attributes);
+                    //  Send message to the handler to get the user Id >>
+                    username =attributes.get(2).getValue();
+                    userId = attributes.get(0).getValue();
+
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
 }
+

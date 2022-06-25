@@ -1,4 +1,4 @@
-package com.example.toys_exchange.UI;
+package com.example.toys_exchange.UI.data.model;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.amplifyframework.core.Amplify;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.SignUpActivity;
 
 
 public class LoginActivity extends AppCompatActivity {

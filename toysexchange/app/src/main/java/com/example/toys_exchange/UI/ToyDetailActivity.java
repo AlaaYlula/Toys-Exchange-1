@@ -67,6 +67,21 @@ public class ToyDetailActivity extends AppCompatActivity {
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
 
+<<<<<<< HEAD
+
+        handler=new Handler(Looper.getMainLooper(), msg->{
+            toyName.setText(msg.getData().get("name").toString());
+            userId=msg.getData().get("id").toString();
+            toyDescription.setText(msg.getData().get("desc").toString());
+            toyCondition.setText(msg.getData().get("cond").toString());
+            Log.i(TAG, "onCreate: -------------------------->" + msg.getData().get("url"));
+
+
+//            imageKey=msg.getData().get("image").toString();
+//            Log.i(TAG, "onCreate: ------------------------------->"+ imageKey);
+            return true;
+        });
+=======
         Intent toyIntent=getIntent();
         String name=toyIntent.getStringExtra("toyName");
         String description=toyIntent.getStringExtra("description");
@@ -94,6 +109,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                 },
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
+>>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
          //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
@@ -252,6 +268,9 @@ public class ToyDetailActivity extends AppCompatActivity {
                         );
 
 
+<<<<<<< HEAD
+                            handler1.sendMessage(message);
+=======
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
@@ -274,6 +293,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
                             }
 
+>>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
                         }
                     }
                 },
@@ -282,6 +302,8 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
     }
+<<<<<<< HEAD
+=======
 
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
@@ -340,4 +362,5 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
 
+>>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
 }

@@ -17,12 +17,14 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 
+
 public class PaymentActivity extends AppCompatActivity {
 
     private static final String TAG = PaymentActivity.class.getSimpleName();
     private TextView toyName;
     private TextView toyCost;
     private Button btn;
+
     Toy toy;
 
 

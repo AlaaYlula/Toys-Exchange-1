@@ -132,7 +132,6 @@ public class ToyActivity extends AppCompatActivity {
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .accountToysId(user.getId())
                                             .contactinfo(contact)
-
                                             .build();
 
 //                                    Amplify.DataStore.save(oneToy,

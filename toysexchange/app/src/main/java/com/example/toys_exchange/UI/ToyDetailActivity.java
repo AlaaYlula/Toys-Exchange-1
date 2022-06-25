@@ -67,7 +67,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
 
-
         Intent toyIntent=getIntent();
         String name=toyIntent.getStringExtra("toyName");
         String description=toyIntent.getStringExtra("description");
@@ -95,6 +94,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                 },
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
+
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
          //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
@@ -251,6 +251,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                                 },
                                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
                         );
+
 
                     }
                 },

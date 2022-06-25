@@ -3,8 +3,55 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
+
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="ShopHop_colorPrimary">#f17015</color>
+    <color name="ShopHop_colorPrimaryDark">#f17015</color>
+    <color name="ShopHop_colorAccent">#f17015</color>
+
+    <color name="ShopHop_textColorPrimary">#212121</color>
+    <color name="ShopHop_textColorSecondary">#757575</color>
+    <color name="ShopHop_white">#ffffff</color>
+    <color name="ShopHop_semi_white">#F8F7F7</color>
+    <color name="ShopHop_black">#000000</color>
+    <color name="ShopHop_view_color">#eaeaea</color>
+    <color name="ShopHop_transparent">#00000000</color>
+
+    <color name="ShopHop_background_color">#FCFDFD</color>
+    <color name="ShopHop_editText_background">#F1F1F1</color>
+    <color name="ShopHop_tomato">#FF6347</color>
+    <color name="ShopHop_dots_color">#A5A5A5</color>
+    <color name="ShopHop_editText_background_active">#FDE9DA</color>
+    <color name="ShopHop_cat_1">#FA4352</color>
+    <color name="ShopHop_cat_2">#34B5C8</color>
+    <color name="ShopHop_cat_3">#FED76D</color>
+    <color name="ShopHop_cat_4">#0C5A93</color>
+    <color name="ShopHop_cat_5">#3CA69B</color>
+    <color name="ShopHop_sidebar_background">#EFEEEF</color>
+    <color name="ShopHop_favourite_background">#FFEBEC</color>
+    <color name="ShopHop_favourite_unselected_background">#ECECEC</color>
+    <color name="ShopHop_yellow">#FEBA39</color>
+    <color name="ShopHop_light_gray">#ECECEC</color>
+    <color name="ShopHop_green">#66953A</color>
+    <color name="ShopHop_red">#F61929</color>
+    <color name="ShopHop_light_green">#81C049</color>
+    <color name="ShopHop_more_infoHeading_background">#DDDDDD</color>
+    <color name="ShopHop_more_infoValue_background">#F3F3F3</color>
+    <color name="ShopHop_item_background">#EFF3F6</color>
+    <color name="ShopHop_bg_4star">#78c639</color>
+    <color name="ShopHop_light_grey">#FAFAFA</color>
+    <color name="ShopHop_checkbox_color">#DFDFDF</color>
+    <color name="ShopHop_itemText_background">#F8F8F8</color>
+    <color name="ShopHop_track_green">#64B931</color>
+    <color name="ShopHop_track_yellow">#ECC134</color>
+    <color name="ShopHop_track_red">#F61929</color>
+    <color name="ShopHop_track_grey">#D3D3D3</color>
+    <color name="ShopHop_radiobuttonTint">#4353FA</color>
+    <color name="ShopHop_scratch_start_gradient">#e5e5e5</color>
+    <color name="ShopHop_scratch_end_gradient">#cccccc</color>
 </resources>

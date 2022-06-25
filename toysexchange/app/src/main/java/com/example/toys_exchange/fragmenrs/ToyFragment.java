@@ -118,7 +118,7 @@ public class ToyFragment extends Fragment {
             //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
             recyclerView = mView.findViewById(R.id.recycler_view);
 
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
@@ -131,14 +131,19 @@ public class ToyFragment extends Fragment {
                     intent.putExtra("condition",toyList.get(position).getCondition());
                     startActivity(intent);
                 }
+
+                @Override
+                public void ontItemClickListener(int position) {
+
+                }
             });
 
             recyclerView.setAdapter(customAdapter);
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
-//          recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+//            recyclerView.setLayoutManager(gridLayoutManager);
+          recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
 
             // recyclerView.setLayoutManager(gridLayoutManager);

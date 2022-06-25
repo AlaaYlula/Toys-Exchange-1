@@ -75,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
         Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
         btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, EventDetailsActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
         Button btnDetailToy = findViewById(R.id.detailToy);
 
         btnDetailToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, ToyDetailActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
 
         mAdd = findViewById(R.id.add_fab);
@@ -110,104 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
-
-//        toyList =new ArrayList<>();
-//
-//        handler = new Handler(Looper.getMainLooper(),msg ->{
-//            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-//
-//            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-//                @Override
-//                public void onTaskClickListener(int position) {
-//                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
-//                    intent.putExtra("toyName",toyList.get(position).getToyname());
-//                    intent.putExtra("description",toyList.get(position).getToydescription());
-//                    intent.putExtra("image",toyList.get(position).getImage());
-//                    intent.putExtra("price",toyList.get(position).getPrice());
-//                    intent.putExtra("condition",toyList.get(position).getCondition());
-//
-//                    authAttribute();
-//
-//                    intent.putExtra("username", username);
-//                    intent.putExtra("userId", userId);
-//                    startActivity(intent);
-//                }
-//            });
-//            recyclerView.setAdapter(customAdapter);
-//
-//            recyclerView.setHasFixedSize(true);
-//
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//            return  true;
-//        });
-//
-//
-//        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
-//
-//            for(Toy toy: success.getData()){
-//                Log.i("get toy ", toy.toString());
-//               toyList.add(toy);
-//            }
-//
-//                    Bundle bundle =new Bundle();
-//                    bundle.putString("data", "done");
-//
-//                    Message message = new Message();
-//                    message.setData(bundle);
-//                    handler.sendMessage(message);
-//        },error -> Log.e("error: ","-> ",error)
-//        );
-
-//
-//        toyList =new ArrayList<>();
-//
-//        handler = new Handler(Looper.getMainLooper(),msg ->{
-//            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-//
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-//
-//            CustomAdapter customAdapter = new CustomAdapter(toyList, new CustomAdapter.CustomClickListener() {
-//                @Override
-//                public void onTaskClickListener(int position) {
-//                    Intent intent = new Intent(getApplicationContext(),EventActivity.class);
-//                    intent.putExtra("toyName",toyList.get(position).getToyname());
-//                    intent.putExtra("description",toyList.get(position).getToydescription());
-//                    intent.putExtra("image",toyList.get(position).getImage());
-//                    intent.putExtra("price",toyList.get(position).getPrice());
-//                    intent.putExtra("condition",toyList.get(position).getCondition());
-//                    startActivity(intent);
-//                }
-//            });
-//            recyclerView.setAdapter(customAdapter);
-//
-//            recyclerView.setHasFixedSize(true);
-//
-//            recyclerView.setLayoutManager(gridLayoutManager);
-//            return  true;
-//        });
-//
-//
-//        Amplify.API.query(ModelQuery.list(Toy.class),success ->{
-//
-//            for(Toy toy: success.getData()){
-//                Log.i("get toy ", toy.toString());
-//               toyList.add(toy);
-//            }
-//
-//                    Bundle bundle =new Bundle();
-//                    bundle.putString("data", "done");
-//
-//                    Message message = new Message();
-//                    message.setData(bundle);
-//                    handler.sendMessage(message);
-//        },error -> Log.e("error: ","-> ",error)
-//        );
-
-
-
         super.onResume();
     }
 
@@ -273,9 +175,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },error -> Log.e(TAG, error.toString()));
     }
-
-
-
 
     private void authAttribute(){
         Amplify.Auth.fetchUserAttributes(

@@ -15,10 +15,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
@@ -37,16 +33,15 @@ public class eventListActivity extends AppCompatActivity {
     List<Event> eventList = new ArrayList<>();
     private Handler handler;
 
-    Event event;
-    Account user;
-    String cognitoId;
-    Account loginUser;
 
     public String acc_id;
     Account acc;
     List<Account> acclist = new ArrayList<>();
     public String userId;
 
+    String cognitoId;
+    private String loginUserId;
+    private String loginUserName;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -61,11 +56,18 @@ public class eventListActivity extends AppCompatActivity {
             getEventByUser();
         return true;
         });
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        cognitoId = logedInUser.getUserId();
+        getLoginUserId();
         getEvents();
+
     }
 
     @Override
     protected void onResume() {
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        cognitoId = logedInUser.getUserId();
+        getLoginUserId();
         super.onResume();
 
     }
@@ -132,7 +134,13 @@ public class eventListActivity extends AppCompatActivity {
         CustomEventAdapter customEventAdapter = new CustomEventAdapter(
                  eventList, position -> {
             Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
-            intent.putExtra("id", eventList.get(position).getId());
+            intent.putExtra("eventTitle",eventList.get(position).getTitle());
+            intent.putExtra("description",eventList.get(position).getEventdescription());
+            intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
+            intent.putExtra("eventID",eventList.get(position).getId());
+            intent.putExtra("cognitoID",cognitoId);
+            intent.putExtra("loginUserID",loginUserId);
+            intent.putExtra("loginUserName",loginUserName);
             startActivity(intent);
             });
             // set adapter on recycler view
@@ -144,24 +152,22 @@ public class eventListActivity extends AppCompatActivity {
 
 
 
-    private void authAttribute() {
-        Amplify.Auth.fetchUserAttributes(
-                attribute -> {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", attribute.get(2).getValue());
-                    bundle.putString("id", attribute.get(0).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(0).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(2).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(1).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(3).getValue());
+    private void getLoginUserId() {
+        Amplify.API.query(
+                ModelQuery.list(Account.class),
+                allUsers -> {
+                    for (Account userAc:
+                            allUsers.getData()) {
+                        if(userAc.getIdcognito().equals(cognitoId)){
+                            loginUserId = userAc.getId();
+                            loginUserName = userAc.getUsername();
+                        }
+                    }
 
-                    Message message = new Message();
-                    message.setData(bundle);
-
-                    handler.sendMessage(message);
                 },
-                error -> Log.e(TAG, "authAttribute: ", error)
+                error -> Log.e(TAG, error.toString(), error)
         );
+
     }
 
 }

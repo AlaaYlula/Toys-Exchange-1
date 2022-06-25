@@ -143,7 +143,7 @@ public class ToyFragment extends Fragment {
             recyclerView.setHasFixedSize(true);
 
 //            recyclerView.setLayoutManager(gridLayoutManager);
-          recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
 
             // recyclerView.setLayoutManager(gridLayoutManager);

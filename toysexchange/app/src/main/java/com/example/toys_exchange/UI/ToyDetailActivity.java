@@ -253,15 +253,37 @@ public class ToyDetailActivity extends AppCompatActivity {
                         );
 
 
-
-
-
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
 
     }
+
+    public void identify(){
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
+                    if(wishList.hasData()){
+                        for (UserWishList wishToy :
+                                wishList.getData()) {
+                            if(wishToy.getAccount().getId().equals(loggedAccountId) && wishToy.getToy().getId().equals(toyId)){
+                                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                                    count=1;
+                                    Log.i(TAG, "identify: in fav "+count);
+
+                            }
+
+                        }
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
+
+    }
+
 
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
@@ -313,12 +335,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
         );
     }
-
-
-
-
-
-
 
 
 }

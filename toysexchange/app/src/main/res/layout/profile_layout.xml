@@ -39,7 +39,7 @@
                 app:civ_border_width="@dimen/_4sdp" />
 
             <TextView
-                android:id="@+id/txtDisplayName"
+                android:id="@+id/txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -136,12 +136,12 @@
             <!--                android:text="@string/sh_lbl_address_manager" />-->
 
             <TextView
-                android:id="@+id/tvOrders"
+                android:id="@+id/toysList"
                 style="@style/ShopHopAccountLabel"
                 android:text="@string/sh_lbl_my_orders" />
 
             <TextView
-                android:id="@+id/tvOffer"
+                android:id="@+id/eventList"
                 style="@style/ShopHopAccountLabel"
                 android:text="@string/sh_lbl_my_offers" />
 
@@ -161,7 +161,7 @@
             <!--                android:text="@string/sh_lbl_help_center" />-->
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSignOut"
+                android:id="@+id/logout"
                 style="@style/ShopHopMaterialButtonStyle.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -122,10 +122,7 @@ public class eventListActivity extends AppCompatActivity {
 
     }
 
-
-
-    private void getEventByUser()
-    {
+    private void getEventByUser() {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
             // create an Adapter // Custom Adapter
@@ -141,8 +138,6 @@ public class eventListActivity extends AppCompatActivity {
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(

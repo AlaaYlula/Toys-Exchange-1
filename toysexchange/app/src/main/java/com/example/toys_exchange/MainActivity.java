@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 //        button.setOnClickListener(view -> {
 
         btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity2.class));
+            startActivity(new Intent(this, WishListActivity.class));
         });
 
         Button btnDetailToy = findViewById(R.id.detailToy);

@@ -132,6 +132,7 @@ public class eventListActivity extends AppCompatActivity {
         CustomEventAdapter customEventAdapter = new CustomEventAdapter(
                  eventList, position -> {
             Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+            intent.putExtra("id", eventList.get(position).getId());
             startActivity(intent);
             });
             // set adapter on recycler view

@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable-v24/shophop_ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_black_dot.xml" value="0.132" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_bottom_shadow.xml" value="0.132" />
@@ -23,7 +22,7 @@
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.3663949275362319" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.33" />
-        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.34148550724637683" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.15588235294117647" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_list.xml" value="0.2391304347826087" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/event_items.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.1" />
@@ -52,22 +51,9 @@
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_sign_up.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_verification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/signup.xml" value="0.20416666666666666" />
-=======
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.1" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.2" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_profile.xml" value="0.22604166666666667" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_sign_up.xml" value="0.17604166666666668" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.1984375" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/comment_layout.xml" value="0.264" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/event_layout.xml" value="0.15081521739130435" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.12907608695652173" />
-        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.18229166666666666" />
->>>>>>> f6db8d881911efbc71584b843bc254caafe2bba1
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

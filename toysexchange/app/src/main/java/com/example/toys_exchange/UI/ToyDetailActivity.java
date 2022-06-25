@@ -67,21 +67,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
 
-<<<<<<< HEAD
-
-        handler=new Handler(Looper.getMainLooper(), msg->{
-            toyName.setText(msg.getData().get("name").toString());
-            userId=msg.getData().get("id").toString();
-            toyDescription.setText(msg.getData().get("desc").toString());
-            toyCondition.setText(msg.getData().get("cond").toString());
-            Log.i(TAG, "onCreate: -------------------------->" + msg.getData().get("url"));
-
-
-//            imageKey=msg.getData().get("image").toString();
-//            Log.i(TAG, "onCreate: ------------------------------->"+ imageKey);
-            return true;
-        });
-=======
         Intent toyIntent=getIntent();
         String name=toyIntent.getStringExtra("toyName");
         String description=toyIntent.getStringExtra("description");
@@ -109,7 +94,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                 },
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
->>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
+
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
          //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
@@ -268,42 +253,15 @@ public class ToyDetailActivity extends AppCompatActivity {
                         );
 
 
-<<<<<<< HEAD
-                            handler1.sendMessage(message);
-=======
+
+
+
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
 
     }
-
-    public void identify(){
-        Amplify.API.query(
-                ModelQuery.list(UserWishList.class),
-                wishList -> {
-                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
-                    if(wishList.hasData()){
-                        for (UserWishList wishToy :
-                                wishList.getData()) {
-                            if(wishToy.getAccount().getId().equals(loggedAccountId) && wishToy.getToy().getId().equals(toyId)){
-                                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
-                                    count=1;
-                                    Log.i(TAG, "identify: in fav "+count);
-
-                            }
-
->>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
-                        }
-                    }
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-
-
-    }
-<<<<<<< HEAD
-=======
 
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
@@ -362,5 +320,5 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
 
->>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
+
 }

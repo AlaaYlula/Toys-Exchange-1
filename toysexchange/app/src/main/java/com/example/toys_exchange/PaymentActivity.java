@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
-import com.example.toys_exchange.adapter.ToyRecyclerViewAdapter;
+
 import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class PaymentActivity extends AppCompatActivity {
     private TextView toyName;
     private TextView toyCost;
     private Button btn;
-    private static ToyRecyclerViewAdapter adapter;
+
     Toy toy;
 
 

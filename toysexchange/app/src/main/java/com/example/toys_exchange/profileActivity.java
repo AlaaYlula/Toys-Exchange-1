@@ -1,7 +1,5 @@
 package com.example.toys_exchange;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,13 +11,27 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
+
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Event;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
+import com.example.toys_exchange.UI.toyListActivity;
+
+import java.util.ArrayList;
 
 public class profileActivity extends AppCompatActivity {
 
     private Handler handler;
+    Event event;
+    Account acc;
 
 
     private static final String TAG = profileActivity.class.getSimpleName();
@@ -31,6 +43,7 @@ public class profileActivity extends AppCompatActivity {
 //            mEventsList.setAllCaps(true);
 
             Intent startAllTasksIntent = new Intent(getApplicationContext(), eventListActivity.class);
+            startAllTasksIntent.putExtra("userId", userId);
             startActivity(startAllTasksIntent);
 
         }
@@ -60,8 +73,8 @@ public class profileActivity extends AppCompatActivity {
 
     private TextView mEventsList;
     private TextView mToysList;
-    private String userId = "id";
-
+    public String userId ;
+    ArrayList<Account> acclist = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,18 +104,91 @@ public class profileActivity extends AppCompatActivity {
              TextView name = findViewById(R.id.txt_username);
              name.setText(user);
              userId = msg.getData().getString("id");
+             Intent intent = getIntent();
+             userId = intent.getStringExtra("userId");
+             Log.i(TAG, "aya: " + name);
+             Log.i(TAG, "aya: " + userId);
+
              return true;
          });
 
+//        Intent intent = getIntent();
+//        userId = intent.getStringExtra("userId");
+        Log.i(TAG, "userIdaya: "  + userId);
          authAttribute();
 
+//        AuthUserAttribute userAcc = Amplify.Auth.fetchUserAttributes(a -> {a.get(0)});
+//                attribute -> {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("name", attribute.get(2).getValue());
+//                },
+//                error -> Log.e(TAG, "authAttribute: ", error)
 
-         ////////////////*********             Logout Button                **********//////////////////
+
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String dima =  logedInUser.getUserId();
+        Log.i(TAG, "Dima " + dima);
+        Log.i(TAG, "yousssi: " + logedInUser.getUserId());
+//        String accId = "userId";
+        final String[] acId = new String[1];
+        runOnUiThread(() -> {
+                    Amplify.API.query(
+        ModelQuery.list(Account.class, Account.IDCOGNITO.eq(logedInUser.getUserId())),
+            accs -> {
+                if(accs.hasData()) {
+                    for (Account acc :
+                            accs.getData()) {
+
+                        Log.i(TAG, "dimaaa: ");
+                        Log.i(TAG, "codId: " + acc.getIdcognito().toString());
+                        Log.i(TAG, "coogId: " + logedInUser);
+                        if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
+                            acclist.add(acc);
+                            String acc_id = acc.getId().toString();
+                            Log.i(TAG, "InGetEventsList: " + acc.getId());
+                        }
+                    }
+                }
+//                    acc = accs.getData();
+//                Log.i(TAG, "onte: " + acc);
+//                    Log.i(TAG, "Data: " + acc.getId().toString());
+                    // Use To do Sync
+//                    acId[0] =  acc.getId().toString();
+                    Log.i(TAG, "Account Id" + acId[0]);
+
+        },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    });
+//                    runOnUiThread(() -> {
+//                        Amplify.API.query(
+//                                ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
+//                                users -> {
+//                                    // User who add the Event
+//                                    user = users.getData();
+//                                    // Use To do Sync
+//                                    runOnUiThread(() -> {
+//                                        Amplify.API.query(
+//                                                ModelQuery.list(Account.class),
+//                                                allUsers -> {
+//                                                    for (Account userAc :
+//                                                            allUsers.getData()) {
+//                                                        if (userAc.getIdcognito().equals(cognitoId)) {
+//                                                            loginUser = userAc;
+//                                                        }
+//                                                    },
+//                                                    error -> Log.e(TAG, error.toString(), error)
+//                                        );
+//
+//                                                });
+
+                                                    ////////////////*********             Logout Button                **********//////////////////
 
         Button btnLogout = findViewById(R.id.logout);
         btnLogout.setOnClickListener(mClickLogout);
 
 }
+
 
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(
@@ -110,6 +196,10 @@ public class profileActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("name", attribute.get(2).getValue());
                     bundle.putString("id", attribute.get(0).getValue());
+                    Log.i(TAG, "userIdFun: " + attribute.get(0).getValue());
+                    Log.i(TAG, "userIdFun: " + attribute.get(2).getValue());
+                    Log.i(TAG, "userIdFun: " + attribute.get(1).getValue());
+                    Log.i(TAG, "userIdFun: " + attribute.get(3).getValue());
 
                     Message message = new Message();
                     message.setData(bundle);
@@ -141,6 +231,7 @@ public class profileActivity extends AppCompatActivity {
                     if(result.isSignedIn())
                     {
                         Bundle bundle = new Bundle();
+                        bundle.putString("userId", "userId");
                         bundle.putString("username", "username");
 
                         Message message = new Message();

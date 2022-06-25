@@ -1,14 +1,9 @@
 package com.example.toys_exchange.adapter;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import com.example.toys_exchange.fragmenrs.EventFragment;
 
 import java.util.ArrayList;
 import java.util.List;

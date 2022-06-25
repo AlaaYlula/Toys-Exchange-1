@@ -1,15 +1,12 @@
 package com.example.toys_exchange.UI;
 
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +27,8 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.UserAttendEvent;
-import com.example.toys_exchange.adapter.adaptorComment;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.adapter.adaptorComment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,12 +38,11 @@ import java.util.List;
 public class EventDetailsActivity extends AppCompatActivity {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
     public static final String SHARED_PREFS = "sharedPrefs";
-//    public static final String LOGINID = "loginUserId";
-//    public static final String SHARED_PREFS = "sharedPrefs";
-//      private SharedPreferences sharedPref;
+
 
     adaptorComment commentRecyclerViewAdapter;
     List<Comment> commentsListDatabase = new ArrayList<>();
+
 
 
     TextView username;
@@ -265,6 +261,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void setEventValues() {
         Amplify.API.query(
                 ModelQuery.get(Event.class, eventId),
+
                 events -> {
                     event = events.getData();
                     // Use To do Sync

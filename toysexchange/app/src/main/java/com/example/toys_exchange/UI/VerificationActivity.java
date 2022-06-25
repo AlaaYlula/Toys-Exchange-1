@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
-import com.amplifyframework.core.Amplify;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;

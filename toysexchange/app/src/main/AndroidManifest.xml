@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
-            android:name=".toyListActivity"
+            android:name=".UI.toyListActivity"
             android:exported="false" />
         <activity
             android:name=".UI.eventListActivity"
@@ -29,6 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".UI.ToyDetailActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".UI.EventDetailsActivity"

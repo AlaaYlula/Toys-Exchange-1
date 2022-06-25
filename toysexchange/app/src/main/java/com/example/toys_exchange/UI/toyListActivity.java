@@ -1,6 +1,5 @@
 package com.example.toys_exchange.UI;
 
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,36 +7,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
-import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
-import com.example.toys_exchange.adapter.CustomEventAdapter;
+import com.example.toys_exchange.adapter.CustomToyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class eventListActivity extends AppCompatActivity {
+public class toyListActivity extends AppCompatActivity {
 
-
-    private static final String TAG = eventListActivity.class.getSimpleName();
-    List<Event> eventList = new ArrayList<>();
+    private static final String TAG = toyListActivity.class.getSimpleName();
+    List<Toy> toyList = new ArrayList<>();
     private Handler handler;
 
-    Event event;
+    Toy toy;
     Account user;
     String cognitoId;
     Account loginUser;
@@ -53,15 +46,15 @@ public class eventListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_list);
+        setContentView(R.layout.activity_toy_list);
 
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             userId = msg.getData().getString("id");
-            getEventByUser();
-        return true;
+            getToyByUser();
+            return true;
         });
-        getEvents();
+        getToys();
     }
 
     @Override
@@ -70,7 +63,7 @@ public class eventListActivity extends AppCompatActivity {
 
     }
 
-    private void getEvents()
+    private void getToys()
     {
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
@@ -79,6 +72,7 @@ public class eventListActivity extends AppCompatActivity {
         Log.i(TAG, "yousssi: " + logedInUser.getUserId());
 //        String accId = "userId";
         final String[] acId = new String[1];
+
         runOnUiThread(() -> {
             Amplify.API.query(
                     ModelQuery.list(Account.class, Account.IDCOGNITO.eq(logedInUser.getUserId())),
@@ -95,16 +89,17 @@ public class eventListActivity extends AppCompatActivity {
                             }
                         }
                         Amplify.API.query(
-                                ModelQuery.list(Event.class, Event.ACCOUNT_EVENTSADDED_ID.eq(acc_id)),
+                                ModelQuery.list(Toy.class, Toy.ACCOUNT_TOYS_ID.eq(acc_id)),
                                 success -> {
+                                    Log.i(TAG, "getToys: " + acc_id);
                                     Log.i(TAG, "Saved item API: " + success.getData());
                                     runOnUiThread(() -> {
-                                        for (Event events :
+                                        for (Toy toys :
                                                 success.getData()) {
-                                            eventList.add(events);
+                                            toyList.add(toys);
 //                                                acc_id = acc.getId().toString();
 //                                                Log.i(TAG, "InEvent: " + acc.getId());
-                                            Log.i(TAG, "InEvent: " + eventList);
+//                                            Log.i(TAG, "InEvent: " + toyList);
                                         }
                                         runOnUiThread(() -> {
                                             handler.sendMessage(new Message());
@@ -113,7 +108,7 @@ public class eventListActivity extends AppCompatActivity {
                                 },
                                 error -> Log.e(TAG, "Could not save item to API", error)
                         );
-                        Log.i(TAG, "Account Id" + acId[0]);
+//                        Log.i(TAG, "Account Id" + acId[0]);
 
                     },
                     error -> Log.e(TAG, error.toString(), error)
@@ -124,43 +119,23 @@ public class eventListActivity extends AppCompatActivity {
 
 
 
-    private void getEventByUser()
+    private void getToyByUser()
     {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            // create an Adapter // Custom Adapter
-        CustomEventAdapter customEventAdapter = new CustomEventAdapter(
-                 eventList, position -> {
-            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+        // create an Adapter // Custom Adapter
+        CustomToyAdapter customToyAdapter = new CustomToyAdapter(
+                toyList, position -> {
+            Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
             startActivity(intent);
-            });
-            // set adapter on recycler view
-            recyclerView.setAdapter(customEventAdapter);
-            // set other important properties
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        });
+        // set adapter on recycler view
+        recyclerView.setAdapter(customToyAdapter);
+        // set other important properties
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-
-    private void authAttribute() {
-        Amplify.Auth.fetchUserAttributes(
-                attribute -> {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", attribute.get(2).getValue());
-                    bundle.putString("id", attribute.get(0).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(0).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(2).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(1).getValue());
-                    Log.i(TAG, "userIdFun: " + attribute.get(3).getValue());
-
-                    Message message = new Message();
-                    message.setData(bundle);
-
-                    handler.sendMessage(message);
-                },
-                error -> Log.e(TAG, "authAttribute: ", error)
-        );
-    }
 
 }

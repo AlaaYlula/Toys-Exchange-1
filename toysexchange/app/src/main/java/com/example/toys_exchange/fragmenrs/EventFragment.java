@@ -3,12 +3,6 @@ package com.example.toys_exchange.fragmenrs;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -18,19 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
-import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventDetailsActivity;
-import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
-import com.example.toys_exchange.adapter.CustomToyAdapter;
-
 
 import java.util.ArrayList;
 import java.util.List;

@@ -55,6 +55,11 @@ public class WishListActivity extends AppCompatActivity {
                     intent.putExtra("condition", toyList.get(position).getCondition());
                     startActivity(intent);
                 }
+
+                @Override
+                public void ontItemClickListener(int position) {
+
+                }
             });
             recyclerView.setAdapter(customAdapter);
 

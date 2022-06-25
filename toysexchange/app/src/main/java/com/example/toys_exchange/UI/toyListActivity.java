@@ -123,15 +123,24 @@ public class toyListActivity extends AppCompatActivity {
     {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        // create an Adapter // Custom Adapter
-        CustomToyAdapter customToyAdapter = new CustomToyAdapter(
-                toyList, position -> {
-            Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
-            startActivity(intent);
 
+        // create an Adapter // Custom Adapter
+        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+            @Override
+            public void onTaskClickListener(int position) {
+                Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
+                intent.putExtra("id", toyList.get(position).getId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void ontItemClickListener(int position) {
+
+            }
         });
+
         // set adapter on recycler view
-        recyclerView.setAdapter(customToyAdapter);
+        recyclerView.setAdapter(customAdapter);
         // set other important properties
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

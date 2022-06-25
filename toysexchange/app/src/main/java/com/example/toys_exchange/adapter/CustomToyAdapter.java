@@ -49,6 +49,10 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
         return toysData.size();
     }
 
+    public void onTaskClickListener(int position) {
+
+    }
+
     static class CustomViewHolder extends RecyclerView.ViewHolder{
 
         ImageView toyImage;

@@ -54,13 +54,14 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         >
+
         <TextView
             android:id="@+id/txt_view_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ext"
             android:layout_margin="16dp"
-            />
+            android:text="ext" />
+
         <TextView
             android:id="@+id/txt_view_condition"
             android:layout_width="wrap_content"

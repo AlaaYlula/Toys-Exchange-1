@@ -125,7 +125,10 @@ public class ToyFragment extends Fragment {
                     intent.putExtra("description",toyList.get(position).getToydescription());
                     intent.putExtra("image",toyList.get(position).getImage());
                     intent.putExtra("price",toyList.get(position).getPrice());
-                    intent.putExtra("condition",toyList.get(position).getCondition());
+                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("id",toyList.get(position).getAccountToysId());
+                    intent.putExtra("toyId",toyList.get(position).getId());
                     startActivity(intent);
                 }
             });

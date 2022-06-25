@@ -21,6 +21,8 @@ import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class ToyDetailActivity extends AppCompatActivity {
 
     private static final String TAG = ToyDetailActivity.class.getSimpleName();
@@ -43,6 +45,9 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     private String userId;
     private String toyId;
+
+    private String loggedAccountId;
+    private String idCognito;
 
     private int count=0;
 
@@ -91,27 +96,45 @@ public class ToyDetailActivity extends AppCompatActivity {
         );
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
-            Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
+         //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
             toyUser.setText(msg.getData().get("username").toString());
+            return true;
+        });
+
+        handler=new Handler(Looper.getMainLooper(), msg->{
+              //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
+             // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
+              loggedAccountId=msg.getData().get("loggedUser").toString();
+              idCognito=msg.getData().get("idCognito").toString();
             return true;
         });
 
 
         getUserName();
+        getLoggedInAccount();
+//        identify();
 
 
         addToWishList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
               //  addToWishList.setBackgroundColor(Color.RED);
-                Log.i(TAG, "onClick: before"+count);
-                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+
+
                 if(count==0){
                     addToWish();
+                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                    count++;
+                    Log.i(TAG, "onClick: in addd "+count);
+                }else if(count==1){
+                    removeFromWishList();
+                    addToWishList.setColorFilter(getResources().getColor(R.color.black));
+                    count--;
+                    Log.i(TAG, "onClick: in removed "+count);
                 }
-                count++;
 
-                Log.i(TAG, "onClick: after"+count);
+                Log.i(TAG, "onClick: in out "+count);
+
             }
         });
 
@@ -121,7 +144,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Account.class),
                 accounts -> {
-                    Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
+                  //  Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
                     for (Account user :
                             accounts.getData()) {
                         if (user.getId().equals(userId)) {
@@ -143,7 +166,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Toy.class,Toy.ID.eq(toyId)),
                 toys -> {
-                    Log.i(TAG, "getToys addToWish: ************************"+toys.getData());
+                 //   Log.i(TAG, "getToys addToWish: ************************"+toys.getData());
                     for (Toy toy :
                             toys.getData()) {
                               Amplify.Auth.fetchUserAttributes(
@@ -156,21 +179,24 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                               for (Account user :
                                                                   accounts.getData()) {
                                                           if (user.getIdcognito().equals(id)) {
-                                                         UserWishList wishList=UserWishList.builder().toy(toy)
-                                                                .account(user).build();
+                                                              runOnUiThread(()->{
+                                                                  UserWishList wishList=UserWishList.builder().toy(toy)
+                                                                          .account(user).build();
+//
+//                                                                  Amplify.DataStore.save(wishList,
+//                                                                          success -> Log.i(TAG, "Saved item DataStore addToWish: " + success),
+//                                                                          error -> Log.e(TAG, "Could not save item to DataStore addToWish", error)
+//                                                                  );
+                                                                  // API save to backend
+                                                                  Amplify.API.mutate(
+                                                                          ModelMutation.create(wishList),
+                                                                          success -> {
+                                                                              Log.i(TAG, "Saved item API: addToWish " + success.getData());
+                                                                          },
+                                                                          error -> Log.e(TAG, "Could not save item to API addToWish", error)
+                                                                  );
+                                                              });
 
-                                      Amplify.DataStore.save(wishList,
-                                    success -> Log.i(TAG, "Saved item DataStore addToWish: " + success),
-                                    error -> Log.e(TAG, "Could not save item to DataStore addToWish", error)
-                            );
-                            // API save to backend
-                            Amplify.API.mutate(
-                                    ModelMutation.create(wishList),
-                                    success -> {
-                                        Log.i(TAG, "Saved item API: addToWish " + success.getData());
-                                    },
-                                    error -> Log.e(TAG, "Could not save item to API addToWish", error)
-                            );
 
                         }
 
@@ -189,48 +215,34 @@ public class ToyDetailActivity extends AppCompatActivity {
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
-
-
-
     }
 
     public void removeFromWishList(){
         Amplify.API.query(
-                ModelQuery.list(Toy.class,Toy.ID.eq("4cb5dd30-ce3f-493c-8c16-721bfaf94af8")),
-                toys -> {
-                    Log.i(TAG, "getToys addToWish: ************************"+toys.getData());
-                    for (Toy toy :
-                            toys.getData()) {
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+//                    Log.i(TAG, "getToys addToWish: ************************"+wishList.getData());
+                    for (UserWishList wishToy :
+                            wishList.getData()) {
                         Amplify.Auth.fetchUserAttributes(
                                 attributes -> {
                                     Log.i(TAG, "User attributes = addToWish " + attributes.get(0).getValue());
                                     String id=attributes.get(0).getValue();
+
                                     Amplify.API.query(
                                             ModelQuery.list(Account.class),
                                             accounts -> {
-                                                for (Account user :
-                                                        accounts.getData()) {
-                                                    if (user.getIdcognito().equals(id)) {
-                                                        UserWishList wishList=UserWishList.builder().toy(toy)
-                                                                .account(user).build();
+                                                if(Objects.equals(toyId, wishToy.getToy().getId())){
+                                                    Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
+//                                                    Amplify.DataStore.delete(wishToy,
+//                                                            deleted -> Log.i(TAG, "UserAttendEvent deleted from Datastore " ),
+//                                                            error -> Log.e(TAG, "delete failed", error));
 
-                                                        Amplify.DataStore.save(wishList,
-                                                                success -> Log.i(TAG, "Saved item DataStore addToWish: " + success),
-                                                                error -> Log.e(TAG, "Could not save item to DataStore addToWish", error)
-                                                        );
-                                                        // API save to backend
-                                                        Amplify.API.mutate(
-                                                                ModelMutation.create(wishList),
-                                                                success -> {
-                                                                    Log.i(TAG, "Saved item API: addToWish " + success.getData());
-                                                                },
-                                                                error -> Log.e(TAG, "Could not save item to API addToWish", error)
-                                                        );
-
-                                                    }
-
+                                                    Amplify.API.mutate(ModelMutation.delete(wishToy),
+                                                            response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
+                                                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                                    );
                                                 }
-
                                             },
                                             error -> Log.e(TAG, error.toString(), error)
                                     );
@@ -246,6 +258,84 @@ public class ToyDetailActivity extends AppCompatActivity {
         );
 
     }
+
+    public void identify(){
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
+                    if(wishList.hasData()){
+                        for (UserWishList wishToy :
+                                wishList.getData()) {
+                            if(wishToy.getAccount().getId().equals(loggedAccountId) && wishToy.getToy().getId().equals(toyId)){
+                                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                                    count=1;
+                                    Log.i(TAG, "identify: in fav "+count);
+
+                            }
+
+                        }
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
+
+    }
+
+    public void getLoggedInAccount(){
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    Log.i(TAG, "User attributes = " + attributes.get(0).getValue());
+
+                    Amplify.API.query(
+                            ModelQuery.list(Account.class),
+                            accounts -> {
+                                //  Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
+                                for (Account user :
+                                        accounts.getData()) {
+                                    if (user.getIdcognito().equals(attributes.get(0).getValue())) {
+
+                                        Amplify.API.query(
+                                                ModelQuery.list(UserWishList.class),
+                                                wishList -> {
+                                                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
+                                                    if(wishList.hasData()){
+                                                        for (UserWishList wishToy :
+                                                                wishList.getData()) {
+                                                            if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
+                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                                                                count=1;
+                                                                Log.i(TAG, "identify: in fav "+count);
+
+                                                            }
+
+                                                        }
+                                                    }
+                                                },
+                                                error -> Log.e(TAG, error.toString(), error)
+                                        );
+                                        Bundle bundle=new Bundle();
+
+                                        bundle.putString("loggedUser",user.getId());
+                                        bundle.putString("idCognito",  attributes.get(0).getValue());
+
+                                        Message message = new Message();
+                                        message.setData(bundle);
+
+                                        handler.sendMessage(message);
+                                    }
+                                }
+                            },
+                            error -> Log.e(TAG, error.toString(), error)
+                    );
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+
+
 
 
 

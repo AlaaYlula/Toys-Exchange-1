@@ -30,6 +30,12 @@
             android:text="No title"
             android:padding="10dp"
             />
+        <Button
+            android:id="@+id/btn_deleteComment"
+            android:text="delete"
+            android:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 

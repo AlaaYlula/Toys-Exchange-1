@@ -95,6 +95,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
 
+
         handler1=new Handler(Looper.getMainLooper(), msg->{
          //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
             toyUser.setText(msg.getData().get("username").toString());
@@ -283,6 +284,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     }
 
+
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
@@ -333,11 +335,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
         );
     }
-
-
-
-
-
 
 
 }

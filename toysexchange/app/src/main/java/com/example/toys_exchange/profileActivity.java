@@ -117,14 +117,6 @@ public class profileActivity extends AppCompatActivity {
         Log.i(TAG, "userIdaya: "  + userId);
          authAttribute();
 
-//        AuthUserAttribute userAcc = Amplify.Auth.fetchUserAttributes(a -> {a.get(0)});
-//                attribute -> {
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("name", attribute.get(2).getValue());
-//                },
-//                error -> Log.e(TAG, "authAttribute: ", error)
-
-
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String dima =  logedInUser.getUserId();
         Log.i(TAG, "Dima " + dima);
@@ -160,27 +152,6 @@ public class profileActivity extends AppCompatActivity {
                 error -> Log.e(TAG, error.toString(), error)
         );
     });
-//                    runOnUiThread(() -> {
-//                        Amplify.API.query(
-//                                ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
-//                                users -> {
-//                                    // User who add the Event
-//                                    user = users.getData();
-//                                    // Use To do Sync
-//                                    runOnUiThread(() -> {
-//                                        Amplify.API.query(
-//                                                ModelQuery.list(Account.class),
-//                                                allUsers -> {
-//                                                    for (Account userAc :
-//                                                            allUsers.getData()) {
-//                                                        if (userAc.getIdcognito().equals(cognitoId)) {
-//                                                            loginUser = userAc;
-//                                                        }
-//                                                    },
-//                                                    error -> Log.e(TAG, error.toString(), error)
-//                                        );
-//
-//                                                });
 
                                                     ////////////////*********             Logout Button                **********//////////////////
 

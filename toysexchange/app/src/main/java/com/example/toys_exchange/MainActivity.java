@@ -3,6 +3,7 @@ package com.example.toys_exchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.viewpager.widget.ViewPager;
+
 
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
@@ -22,6 +25,7 @@ import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
+
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
@@ -35,7 +39,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TOY_ID = "toyId";
     private FloatingActionButton mAdd;
     private TextView mProfile;
     private FloatingActionButton mAddEvent;
@@ -103,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
 //        button.setOnClickListener(view -> {
 
         btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, EventDetailsActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
 
         Button btnDetailToy = findViewById(R.id.detailToy);
 
         btnDetailToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, ToyDetailActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
         });
 
         mAdd = findViewById(R.id.add_fab);
@@ -141,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
     }
 
@@ -208,21 +213,18 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
+    /*
+    handler = new Handler(Looper.getMainLooper(), msg -> {
+             String user = msg.getData().getString("name");
+             TextView name = findViewById(R.id.txt_username);
+             name.setText(user);
+             userId = msg.getData().getString("id");
+             return true;
+         });
+     */
 
 
 
-    private void authAttribute(){
-        Amplify.Auth.fetchUserAttributes(
-                attributes -> {
-                    Log.i(TAG, "Attributes => "+ attributes);
-                    //  Send message to the handler to get the user Id >>
-                    username =attributes.get(2).getValue();
-                    userId = attributes.get(0).getValue();
-
-                },
-                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
-        );
-    }
 
 }
 

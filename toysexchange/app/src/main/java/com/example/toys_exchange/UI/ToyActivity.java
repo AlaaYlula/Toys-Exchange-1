@@ -28,6 +28,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -58,6 +59,8 @@ public class ToyActivity extends AppCompatActivity {
 
     String[] conditions=new String[]{"NEW","USED","FREE"};
 
+    boolean flag=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,10 @@ public class ToyActivity extends AppCompatActivity {
         setSpinner();
         authAttribute();
 
+        sharedImg();
+        if(flag){
+            uploadImage.setEnabled(false);
+        }
 
         addToy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +107,6 @@ public class ToyActivity extends AppCompatActivity {
             pictureUpload();
 
         });
-
-
     }
 
     public void setSpinner(){
@@ -209,7 +214,7 @@ public class ToyActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = getBitmapFromUri(currentUri);
 
-                    File file = new File(getApplicationContext().getFilesDir(), name+".jpg");
+                    File file = new File(getApplicationContext().getFilesDir(), name+userId+".jpg");
                     OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
                     os.close();
@@ -217,7 +222,7 @@ public class ToyActivity extends AppCompatActivity {
                     // upload to s3
                     // uploads the file
                     Amplify.Storage.uploadFile(
-                            name+".jpg",
+                            name+userId+".jpg",
                             file,
                             result -> {
                                 Log.i(TAG, "Successfully uploaded: " + result.getKey());
@@ -257,9 +262,62 @@ public class ToyActivity extends AppCompatActivity {
 
                     handler.sendMessage(message);
                 },
-                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+                error -> {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    Log.e(TAG, "Failed to fetch user attributes.", error);
+                }
         );
     }
+
+
+    public void sharedImg(){
+        Intent intent=getIntent();
+
+        Uri imgUri=intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if(imgUri!=null){
+            flag=true;;
+        }
+
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> {
+                    if(imgUri!=null) {
+                        try {
+                            Bitmap bitmap = getBitmapFromUri(imgUri);
+
+                            Log.i(TAG, "sharedImg: id"+userId);
+
+                            File file = new File(getApplicationContext().getFilesDir(), "imgUri"+attributes.get(0).getValue()+".jpg");
+                            OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                            os.close();
+
+                            // upload to s3
+                            // uploads the file
+                            Amplify.Storage.uploadFile(
+                                    "imgUri1"+attributes.get(0).getValue()+".jpg",
+                                    file,
+                                    result -> {
+                                        Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                        URL=result.getKey();
+                                    },
+                                    storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
+                            );
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+
+        );
+
+        Log.i(TAG, "sharedImg: id"+userId);
+
+    }
+
+
+
 
 
 

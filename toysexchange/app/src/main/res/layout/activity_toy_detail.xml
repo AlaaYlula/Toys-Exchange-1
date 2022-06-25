@@ -51,15 +51,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+<<<<<<< HEAD
         android:gravity="center_horizontal">
+=======
+        android:gravity="center_horizontal"
+        >
+
+>>>>>>> 1e4455dc4c0d9076271b1a40202506134af7f4bc
         <TextView
             android:id="@+id/txt_view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="ext" />
+
+        <TextView
+            android:id="@+id/txt_view_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ext"
             android:layout_margin="16dp" />
         <TextView
-            android:id="@+id/txt_view_condition"
+            android:id="@+id/txt_view_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ext"
@@ -72,6 +85,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"/>
+
+
+    <TextView
+        android:id="@+id/txt_view_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"/>
+
+
+
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PUY"
+            android:layout_margin="16dp"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"/>
+
+
 
 
 </LinearLayout>

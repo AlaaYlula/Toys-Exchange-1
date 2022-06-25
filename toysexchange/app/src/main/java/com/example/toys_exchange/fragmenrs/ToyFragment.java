@@ -2,12 +2,6 @@ package com.example.toys_exchange.fragmenrs;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -16,14 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
-import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,7 +125,10 @@ public class ToyFragment extends Fragment {
                     intent.putExtra("description",toyList.get(position).getToydescription());
                     intent.putExtra("image",toyList.get(position).getImage());
                     intent.putExtra("price",toyList.get(position).getPrice());
-                    intent.putExtra("condition",toyList.get(position).getCondition());
+                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("id",toyList.get(position).getAccountToysId());
+                    intent.putExtra("toyId",toyList.get(position).getId());
                     startActivity(intent);
                 }
             });

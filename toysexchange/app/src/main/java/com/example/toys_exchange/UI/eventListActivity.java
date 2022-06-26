@@ -63,7 +63,6 @@ public class eventListActivity extends AppCompatActivity {
         });
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
-        getLoginUserId();
         getEvents();
 
     }
@@ -72,7 +71,7 @@ public class eventListActivity extends AppCompatActivity {
     protected void onResume() {
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
-        getLoginUserId();
+
         super.onResume();
 
     }
@@ -129,10 +128,7 @@ public class eventListActivity extends AppCompatActivity {
 
     }
 
-
-
-    private void getEventByUser()
-    {
+    private void getEventByUser() {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
             // create an Adapter // Custom Adapter
@@ -209,8 +205,6 @@ public class eventListActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-
-
     private void getLoginUserId() {
         Amplify.API.query(
                 ModelQuery.list(Account.class),
@@ -228,5 +222,5 @@ public class eventListActivity extends AppCompatActivity {
         );
 
     }
-
 }
+

@@ -3,8 +3,145 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable-v24/shophop_ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic__01.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic__01_cheer.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic__01_cubes_adobe_express.xml" value="0.237" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_baseline_event_24.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_baseline_toys_24.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_cubes.xml" value="0.237" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_black_dot.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_bottom_shadow.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_category.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_color.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_primary.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_primary_alpha.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_primary_light.xml" value="0.132" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_circle_white.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_delete.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_logo.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_productcolor.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangal.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangal_stroked.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_multiline.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_active.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_inactive.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_stroke.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_add.xml" value="0.336" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_arrow_down.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_avatar.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_bag.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_bank_card_line.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_baseline_person_outline.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_camera.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_candle.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_cart_empty.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_check.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_checkbox_circle_fill.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_circle_success.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_close_black.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_delete.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_delete_bin_line.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_dress.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_dress_kids.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_dresses_women.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_drop_down.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_earth_line.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_edit.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_eye_line.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_eye_off_line.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_filter.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_footwear.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_glasses.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_grid.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_heart.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_hearts.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_home.xml" value="0.292" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_keyboard_arrow_right_black.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_keyboard_backspace.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_list.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_men.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_more_vert_black_24dp.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_my_location.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_no_result.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_profile_tab.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_round_cancel_24px.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_search.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_settings.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_shopping_cart.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_sports.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_star_black.xml" value="0.305" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_star_black_24dp.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_thumb_down_fill.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_thumb_up_fill.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_trends.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_walk_1.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_walk_3.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_wallet_line.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_watches.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_wish_list.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_placeholder.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_rotate.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_roundrect.xml" value="0.1205" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.33242753623188404" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.3875" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_recycle_view.xml" value="0.3875" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.3663949275362319" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.15588235294117647" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_list.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/event_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/item_wishlist.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/main_event_items.xml" value="0.15648148148148147" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/main_toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/profile_layout.xml" value="0.4148148148148148" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/profile_test.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_dashboard_shop.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.25" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_app_bar_dash_board.xml" value="0.22" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_bottom_bar.xml" value="0.24365942028985507" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_content_dash_board.xml" value="0.25" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_fragment_wishlist.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_slider.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_wishlist.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_ads.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_nodata.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_sidebar.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_menu_cart.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/test.xml" value="0.2962962962962963" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toy_details_layout.xml" value="0.25" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toy_layout.xml" value="0.1984375" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toys_items.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/menu/shophop_menu_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/mipmap-anydpi-v26/shophop_ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_sign_up.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_verification.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/signup.xml" value="0.20416666666666666" />
+=======
+=======
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.23487179487179488" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.16770833333333332" />
+>>>>>>> aae9ddcf15f9eb7a58b9028074ae8fe203eafbb4
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.1" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_attend_list.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.2" />
@@ -20,6 +157,7 @@
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/event_layout.xml" value="0.15081521739130435" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.18229166666666666" />
+>>>>>>> 8723faf5bb0de0b7c0606312b5e1d9ecfc1a065c
       </map>
     </option>
   </component>

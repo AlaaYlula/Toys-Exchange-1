@@ -116,6 +116,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                         .accountCommentsId(loginUserIdFromMain) // User loginUser From function setEventValues
                         .eventCommentsId(event.getId())
                         .build();
+
                 // API save to backend
                 Amplify.API.mutate(
                         ModelMutation.create(commentAPI),
@@ -296,6 +297,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
+
     // Class to sort the comments by date
     // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/ 
     static class SortByDate implements Comparator<Comment> {
@@ -309,7 +311,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_Comment);
 
         // create an Adapter // Custom Adapter
-        commentRecyclerViewAdapter = new adaptorComment(commentsListDatabase );
+        commentRecyclerViewAdapter = new adaptorComment(commentsListDatabase, loginUserIdFromMain );
 
         // https://gist.github.com/codinginflow/7b9dd1c12ba015f2955bdd15b09b1cb1
         commentRecyclerViewAdapter.setOnItemClickListener(new adaptorComment.OnItemClickListener() {

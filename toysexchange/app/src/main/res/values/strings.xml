@@ -223,6 +223,9 @@
 
     <string name="sh_menu_my_cart">My Cart</string>
 
+    <string name="add_toy">Add Toy</string>
+    <string name="add_Event">Add Event</string>
+
     <string name="sh_home">Home</string>
     <string name="sh_profile">Profile</string>
     <string name="sh_cart">My Cart</string>

@@ -1,20 +1,21 @@
 package com.amplifyframework.datastore.generated.model;
 
+import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.temporal.Temporal;
 
-import static com.amplifyframework.core.model.query.predicate.QueryField.field;
+import java.util.List;
+import java.util.UUID;
+import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
-import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
-import com.amplifyframework.core.model.temporal.Temporal;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Toy type in your schema. */
 @SuppressWarnings("all")
@@ -24,6 +25,7 @@ public final class Toy implements Model {
   public static final QueryField TOYNAME = field("Toy", "toyname");
   public static final QueryField TOYDESCRIPTION = field("Toy", "toydescription");
   public static final QueryField IMAGE = field("Toy", "image");
+  public static final QueryField TYPETOY = field("Toy", "typetoy");
   public static final QueryField PRICE = field("Toy", "price");
   public static final QueryField CONDITION = field("Toy", "condition");
   public static final QueryField CONTACTINFO = field("Toy", "contactinfo");
@@ -32,6 +34,7 @@ public final class Toy implements Model {
   private final @ModelField(targetType="String", isRequired = true) String toyname;
   private final @ModelField(targetType="String", isRequired = true) String toydescription;
   private final @ModelField(targetType="String", isRequired = true) String image;
+  private final @ModelField(targetType="Typetoy") Typetoy typetoy;
   private final @ModelField(targetType="Float") Double price;
   private final @ModelField(targetType="Condition") Condition condition;
   private final @ModelField(targetType="UserWishList") @HasMany(associatedWith = "toy", type = UserWishList.class) List<UserWishList> wishuser = null;
@@ -53,6 +56,10 @@ public final class Toy implements Model {
   
   public String getImage() {
       return image;
+  }
+  
+  public Typetoy getTypetoy() {
+      return typetoy;
   }
   
   public Double getPrice() {
@@ -83,11 +90,12 @@ public final class Toy implements Model {
       return accountToysId;
   }
   
-  private Toy(String id, String toyname, String toydescription, String image, Double price, Condition condition, String contactinfo, String accountToysId) {
+  private Toy(String id, String toyname, String toydescription, String image, Typetoy typetoy, Double price, Condition condition, String contactinfo, String accountToysId) {
     this.id = id;
     this.toyname = toyname;
     this.toydescription = toydescription;
     this.image = image;
+    this.typetoy = typetoy;
     this.price = price;
     this.condition = condition;
     this.contactinfo = contactinfo;
@@ -106,6 +114,7 @@ public final class Toy implements Model {
               ObjectsCompat.equals(getToyname(), toy.getToyname()) &&
               ObjectsCompat.equals(getToydescription(), toy.getToydescription()) &&
               ObjectsCompat.equals(getImage(), toy.getImage()) &&
+              ObjectsCompat.equals(getTypetoy(), toy.getTypetoy()) &&
               ObjectsCompat.equals(getPrice(), toy.getPrice()) &&
               ObjectsCompat.equals(getCondition(), toy.getCondition()) &&
               ObjectsCompat.equals(getContactinfo(), toy.getContactinfo()) &&
@@ -122,6 +131,7 @@ public final class Toy implements Model {
       .append(getToyname())
       .append(getToydescription())
       .append(getImage())
+      .append(getTypetoy())
       .append(getPrice())
       .append(getCondition())
       .append(getContactinfo())
@@ -140,6 +150,7 @@ public final class Toy implements Model {
       .append("toyname=" + String.valueOf(getToyname()) + ", ")
       .append("toydescription=" + String.valueOf(getToydescription()) + ", ")
       .append("image=" + String.valueOf(getImage()) + ", ")
+      .append("typetoy=" + String.valueOf(getTypetoy()) + ", ")
       .append("price=" + String.valueOf(getPrice()) + ", ")
       .append("condition=" + String.valueOf(getCondition()) + ", ")
       .append("contactinfo=" + String.valueOf(getContactinfo()) + ", ")
@@ -171,20 +182,21 @@ public final class Toy implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-
-            toyname,
-            toydescription,
-            image,
-            price,
-            condition,
-            contactinfo,
-            accountToysId);
+      toyname,
+      toydescription,
+      image,
+      typetoy,
+      price,
+      condition,
+      contactinfo,
+      accountToysId);
   }
   public interface ToynameStep {
     ToydescriptionStep toyname(String toyname);
@@ -204,6 +216,7 @@ public final class Toy implements Model {
   public interface BuildStep {
     Toy build();
     BuildStep id(String id);
+    BuildStep typetoy(Typetoy typetoy);
     BuildStep price(Double price);
     BuildStep condition(Condition condition);
     BuildStep contactinfo(String contactinfo);
@@ -216,6 +229,7 @@ public final class Toy implements Model {
     private String toyname;
     private String toydescription;
     private String image;
+    private Typetoy typetoy;
     private Double price;
     private Condition condition;
     private String contactinfo;
@@ -229,6 +243,7 @@ public final class Toy implements Model {
           toyname,
           toydescription,
           image,
+          typetoy,
           price,
           condition,
           contactinfo,
@@ -253,6 +268,12 @@ public final class Toy implements Model {
      public BuildStep image(String image) {
         Objects.requireNonNull(image);
         this.image = image;
+        return this;
+    }
+    
+    @Override
+     public BuildStep typetoy(Typetoy typetoy) {
+        this.typetoy = typetoy;
         return this;
     }
     
@@ -292,11 +313,12 @@ public final class Toy implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String toyname, String toydescription, String image, Double price, Condition condition, String contactinfo, String accountToysId) {
+    private CopyOfBuilder(String id, String toyname, String toydescription, String image, Typetoy typetoy, Double price, Condition condition, String contactinfo, String accountToysId) {
       super.id(id);
       super.toyname(toyname)
         .toydescription(toydescription)
         .image(image)
+        .typetoy(typetoy)
         .price(price)
         .condition(condition)
         .contactinfo(contactinfo)
@@ -316,6 +338,11 @@ public final class Toy implements Model {
     @Override
      public CopyOfBuilder image(String image) {
       return (CopyOfBuilder) super.image(image);
+    }
+    
+    @Override
+     public CopyOfBuilder typetoy(Typetoy typetoy) {
+      return (CopyOfBuilder) super.typetoy(typetoy);
     }
     
     @Override

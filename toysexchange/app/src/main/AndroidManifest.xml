@@ -18,10 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
-
+            android:name=".UI.EventAttendList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.toyListActivity"
             android:exported="false" />
@@ -33,8 +35,8 @@
             android:exported="false" />
         <activity
             android:name=".UI.ToyDetailActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".UI.EventDetailsActivity"
             android:exported="false" />

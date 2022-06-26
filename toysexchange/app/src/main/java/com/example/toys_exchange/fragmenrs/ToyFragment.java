@@ -47,10 +47,10 @@ public class ToyFragment extends Fragment {
     private View mView;
 
     String[] toyRadioButton =new String[]{"ALL","SELL","REQUEST","DONATION"};
+    String[] toyRadioButton2 =new String[]{"NEW","USED"};
     Spinner mSpinnerCondition;
+    Spinner mConditionSpinner;
 
-    RadioGroup radioButtonGroup;
-    RadioGroup radioButtonGroupCondition;
     RadioGroup radioButtonGroupCondition2;
     public ToyFragment() {
         // Required empty public constructor
@@ -69,10 +69,8 @@ public class ToyFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_toy, container, false);
         mSpinnerCondition= mView.findViewById(R.id.spinner_condition_toy);
-
-
-        radioButtonGroupCondition2 = mView.findViewById(R.id.radioButtonGroupCondition2);
-
+        mConditionSpinner = mView.findViewById(R.id.spinner_condition_toy2);
+        setRecyclerView();
         setSpinnerWithRadioButton();
         setToyRadioButtonConditionListener();
         return mView;
@@ -81,6 +79,7 @@ public class ToyFragment extends Fragment {
     @Override
     public void onResume() {
         mSpinnerCondition= mView.findViewById(R.id.spinner_condition_toy);
+        setRecyclerView();
         setToyRadioButtonConditionListener();
         setSpinnerWithRadioButton();
         super.onResume();
@@ -91,55 +90,22 @@ public class ToyFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, toyRadioButton);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
 
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, toyRadioButton2);
+        adapter1.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+
         mSpinnerCondition.setAdapter(adapter);
+        mConditionSpinner.setAdapter(adapter1);
         mSpinnerCondition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String condition = parent.getItemAtPosition(position).toString();
 
                 if(condition.equals("SELL")){
-                    radioButtonGroupCondition2.setVisibility(View.VISIBLE);
+//                    radioButtonGroupCondition2.setVisibility(View.VISIBLE);
+                    mConditionSpinner.setVisibility(View.VISIBLE);
                     toyList = new ArrayList<>();
 
-                    handler = new Handler(Looper.getMainLooper(), msg -> {
 
-                        //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-                        recyclerView = mView.findViewById(R.id.recycler_view);
-
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
-
-                        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-                            @Override
-                            public void onTaskClickListener(int position) {
-                                Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                                intent.putExtra("toyName", toyList.get(position).getToyname());
-                                intent.putExtra("description", toyList.get(position).getToydescription());
-                                intent.putExtra("image", toyList.get(position).getImage());
-                                intent.putExtra("price", toyList.get(position).getPrice());
-                                intent.putExtra("condition", toyList.get(position).getCondition().toString());
-                                intent.putExtra("contactInfo", toyList.get(position).getContactinfo());
-                                intent.putExtra("id", toyList.get(position).getAccountToysId());
-                                intent.putExtra("toyId", toyList.get(position).getId());
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void ontItemClickListener(int position) {
-
-                            }
-                        });
-
-                        recyclerView.setAdapter(customAdapter);
-
-                        recyclerView.setHasFixedSize(true);
-
-//            recyclerView.setLayoutManager(gridLayoutManager);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-                        recyclerView.setHasFixedSize(true);
-
-                        // recyclerView.setLayoutManager(gridLayoutManager);
-                        return true;
-                    });
 
                     Amplify.API.query(ModelQuery.list(Toy.class), success -> {
                                 if (success.hasData()) {
@@ -159,49 +125,8 @@ public class ToyFragment extends Fragment {
                             }, error -> Log.e("error: ", "-> ", error)
                     );
                 }else {
-                    radioButtonGroupCondition2.setVisibility(View.INVISIBLE);
+                    mConditionSpinner.setVisibility(View.INVISIBLE);
                     toyList = new ArrayList<>();
-
-                    handler = new Handler(Looper.getMainLooper(), msg -> {
-
-                        //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-                        recyclerView = mView.findViewById(R.id.recycler_view);
-
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
-
-                        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-                            @Override
-                            public void onTaskClickListener(int position) {
-                                Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                                intent.putExtra("toyName", toyList.get(position).getToyname());
-                                intent.putExtra("description", toyList.get(position).getToydescription());
-                                intent.putExtra("image", toyList.get(position).getImage());
-                                intent.putExtra("price", toyList.get(position).getPrice());
-                                intent.putExtra("condition", toyList.get(position).getCondition().toString());
-                                intent.putExtra("contactInfo", toyList.get(position).getContactinfo());
-                                intent.putExtra("id", toyList.get(position).getAccountToysId());
-                                intent.putExtra("toyId", toyList.get(position).getId());
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void ontItemClickListener(int position) {
-
-                            }
-                        });
-
-                        recyclerView.setAdapter(customAdapter);
-
-                        recyclerView.setHasFixedSize(true);
-
-//            recyclerView.setLayoutManager(gridLayoutManager);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-                        recyclerView.setHasFixedSize(true);
-
-                        // recyclerView.setLayoutManager(gridLayoutManager);
-                        return true;
-                    });
-
 
                     Amplify.API.query(ModelQuery.list(Toy.class), success -> {
                                 if (success.hasData()) {
@@ -245,47 +170,6 @@ public class ToyFragment extends Fragment {
                 // TODO Auto-generated method stub
                 toyList =new ArrayList<>();
 
-                handler = new Handler(Looper.getMainLooper(), msg ->{
-
-                    //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
-                    recyclerView = mView.findViewById(R.id.recycler_view);
-
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
-
-                    CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-                        @Override
-                        public void onTaskClickListener(int position) {
-                            Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                            intent.putExtra("toyName",toyList.get(position).getToyname());
-                            intent.putExtra("description",toyList.get(position).getToydescription());
-                            intent.putExtra("image",toyList.get(position).getImage());
-                            intent.putExtra("price",toyList.get(position).getPrice());
-                            intent.putExtra("condition",toyList.get(position).getCondition().toString());
-                            intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
-                            intent.putExtra("id",toyList.get(position).getAccountToysId());
-                            intent.putExtra("toyId",toyList.get(position).getId());
-                            startActivity(intent);
-                        }
-
-                        @Override
-                        public void ontItemClickListener(int position) {
-
-                        }
-                    });
-
-                    recyclerView.setAdapter(customAdapter);
-
-                    recyclerView.setHasFixedSize(true);
-
-//            recyclerView.setLayoutManager(gridLayoutManager);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-                    recyclerView.setHasFixedSize(true);
-
-                    // recyclerView.setLayoutManager(gridLayoutManager);
-                    return  true;
-                });
-
-
                 Amplify.API.query(ModelQuery.list(Toy.class), success ->{
 
                             for(Toy toy: success.getData()){
@@ -305,46 +189,19 @@ public class ToyFragment extends Fragment {
             }
         });
     }
+
     private void setToyRadioButtonConditionListener(){
-        radioButtonGroupCondition2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+        mConditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.radio_new2){
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String condition = adapterView.getItemAtPosition(i).toString();
+
+                if(condition.equals("NEW")){
+
                     toyList =new ArrayList<>();
 
-                    handler = new Handler(Looper.getMainLooper(), msg ->{
-
-                        recyclerView = mView.findViewById(R.id.recycler_view);
-
-
-                        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-                            @Override
-                            public void onTaskClickListener(int position) {
-                                Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                                intent.putExtra("toyName",toyList.get(position).getToyname());
-                                intent.putExtra("description",toyList.get(position).getToydescription());
-                                intent.putExtra("image",toyList.get(position).getImage());
-                                intent.putExtra("price",toyList.get(position).getPrice());
-                                intent.putExtra("condition",toyList.get(position).getCondition().toString());
-                                intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
-                                intent.putExtra("id",toyList.get(position).getAccountToysId());
-                                intent.putExtra("toyId",toyList.get(position).getId());
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void ontItemClickListener(int position) {
-
-                            }
-                        });
-
-                        recyclerView.setAdapter(customAdapter);
-                        recyclerView.setHasFixedSize(true);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-                        recyclerView.setHasFixedSize(true);
-
-                        return  true;
-                    });
 
                     Amplify.API.query(ModelQuery.list(Toy.class), success ->{
                                 if(success.hasData()) {
@@ -364,42 +221,8 @@ public class ToyFragment extends Fragment {
                             },error -> Log.e("error: ","-> ",error)
                     );
 
-                }else if(checkedId == R.id.radio_used2){
+                }else if(condition.equals("USED")){
                     toyList =new ArrayList<>();
-
-                    handler = new Handler(Looper.getMainLooper(), msg ->{
-
-                        recyclerView = mView.findViewById(R.id.recycler_view);
-
-
-                        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-                            @Override
-                            public void onTaskClickListener(int position) {
-                                Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                                intent.putExtra("toyName",toyList.get(position).getToyname());
-                                intent.putExtra("description",toyList.get(position).getToydescription());
-                                intent.putExtra("image",toyList.get(position).getImage());
-                                intent.putExtra("price",toyList.get(position).getPrice());
-                                intent.putExtra("condition",toyList.get(position).getCondition().toString());
-                                intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
-                                intent.putExtra("id",toyList.get(position).getAccountToysId());
-                                intent.putExtra("toyId",toyList.get(position).getId());
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void ontItemClickListener(int position) {
-
-                            }
-                        });
-
-                        recyclerView.setAdapter(customAdapter);
-                        recyclerView.setHasFixedSize(true);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-                        recyclerView.setHasFixedSize(true);
-
-                        return  true;
-                    });
 
                     Amplify.API.query(ModelQuery.list(Toy.class), success ->{
                                 if(success.hasData()) {
@@ -421,7 +244,62 @@ public class ToyFragment extends Fragment {
 
                 }
             }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
         });
+    }
+
+    private void  setRecyclerView(){
+
+        handler = new Handler(Looper.getMainLooper(), msg -> {
+
+            //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
+            recyclerView = mView.findViewById(R.id.recycler_view);
+
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+
+
+            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+                @Override
+                public void onTaskClickListener(int position) {
+                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
+                    intent.putExtra("toyName",toyList.get(position).getToyname());
+                    intent.putExtra("description",toyList.get(position).getToydescription());
+                    intent.putExtra("image",toyList.get(position).getImage());
+                    intent.putExtra("price",toyList.get(position).getPrice());
+                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("id",toyList.get(position).getAccountToysId());
+                    intent.putExtra("toyId",toyList.get(position).getId());
+                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
+                    startActivity(intent);
+                }
+
+
+                @Override
+                public void ontItemClickListener(int position) {
+
+                }
+            });
+
+
+
+            recyclerView.setAdapter(customAdapter);
+
+            recyclerView.setHasFixedSize(true);
+
+//            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+            recyclerView.setHasFixedSize(true);
+
+            // recyclerView.setLayoutManager(gridLayoutManager);
+            return true;
+        });
+
     }
 
 

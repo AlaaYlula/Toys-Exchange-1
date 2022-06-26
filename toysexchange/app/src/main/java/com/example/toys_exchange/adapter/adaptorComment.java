@@ -49,34 +49,21 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
-    public static void getLoginUserId() {
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId = logedInUser.getUserId();
-        Amplify.API.query(
-                ModelQuery.list(Account.class),
-                allUsers -> {
-                    for (Account userAc:
-                            allUsers.getData()) {
-                        if(userAc.getIdcognito().equals(cognitoId)){
-                            loginUserId = userAc.getId();
-                        }
-                    }
 
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
 
-    }
-
-    public adaptorComment(List<Comment> commentList ) {
+    public adaptorComment(List<Comment> commentList ,String loginUserId) {
         this.commentsList = commentList;
+        this.loginUserId  = loginUserId;
     }
+
+
+
+
     @NonNull
     @Override
     public CustomViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItemView = layoutInflater.inflate(R.layout.comment_layout, parent, false);
-        getLoginUserId();
        // return new CustomViewHolder(listItemView).linkAdapter(this);
         return new CustomViewHolder(listItemView , mListener);
     }
@@ -138,44 +125,24 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             text = itemView.findViewById(R.id.text_comment);
             deletebtn = itemView.findViewById(R.id.btn_deleteComment);
 
-            getLoginUserId();
             Log.i(TAG, "login User Id CustomViewHolder "+loginUserIdSaved );
-//            // delete button
-//            Amplify.API.query(
-//                    ModelQuery.list(Comment.class),
-//                    comments -> {
-//                        if(comments.hasData()) {
-//                            for (Comment comment :
-//                                    comments.getData()) {
-//                                if(comment.getAccountCommentsId().equals(loginUserIdSaved)) // Add For comments check
-//                                {
-//                                    Log.i(TAG, "login User Id commentId "+comment.getAccountCommentsId() );
-//
-//                                    flag = "me";
-//                                }else{
-//
-//                                    flag = "not_me";
-//                                }
-//
-//                            }
-//
-//                        }
-//
-//                    },
-//                    error -> Log.e(TAG, error.toString(), error)
-//            );
-//
+
 
             deletebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener!=null){
+                    if (listener != null) {
                         int position = getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
                         }
+
+
                     }
                 }
+
+
+
             });
         }
     }

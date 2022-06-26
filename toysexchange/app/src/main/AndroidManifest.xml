@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.toys_exchange">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,6 +20,7 @@
             android:name=".UI.EventAttendList"
             android:exported="false" />
         <activity
+
             android:name=".MainActivity2"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme" />
@@ -32,6 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".profileActivity"
+            android:theme="@style/ShopHopAppTheme"
             android:exported="false" />
         <activity
             android:name=".UI.ToyDetailActivity"
@@ -53,7 +54,6 @@
             android:label="@string/title_activity_login">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
@@ -63,11 +63,23 @@
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UI.ToyActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".WishListActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity" >
+        </activity>
+
     </application>
 
 </manifest>

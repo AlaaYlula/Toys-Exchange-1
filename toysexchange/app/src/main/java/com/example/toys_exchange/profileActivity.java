@@ -25,6 +25,7 @@ import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
 import com.example.toys_exchange.UI.toyListActivity;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -82,22 +83,35 @@ public class profileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+
+        setContentView(R.layout.profile_layout);
+
+        ////////////////*********             Wish List Button                **********//////////////////
+
+        TextView wishList = findViewById(R.id.tvWishlist);
+        wishList.setOnClickListener(view -> {
+            startActivity(new Intent(this, WishListActivity.class));
+        });
+
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId =  logedInUser.getUserId();
-        ////////////////*********             Event Attend Button                **********//////////////////
-        btn_myEventAttend = findViewById(R.id.btn_eventsAttend);
-        btn_myEventAttend.setOnClickListener(view -> {
-            Intent intent = new Intent(this, EventAttendList.class);
-            intent.putExtra("loginUserId",acc_id);
-            intent.putExtra("cognitoId",cognitoId);
-            startActivity(intent);
-        });
+
+
+        ////////////////*********             Event Attend Button     NEW           **********//////////////////
+//        btn_myEventAttend = findViewById(R.id.btn_eventsAttend);
+//        btn_myEventAttend.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, EventAttendList.class);
+//            intent.putExtra("loginUserId",acc_id);
+//            intent.putExtra("cognitoId",cognitoId);
+//            startActivity(intent);
+//        });
+
+
 
         ////////////////*********             Event List Button                **********//////////////////
 
 
-        Button btnEvents = findViewById(R.id.eventList);
+        TextView btnEvents = findViewById(R.id.eventList);
         btnEvents.setOnClickListener(mClickEventsList);
 
 
@@ -105,7 +119,7 @@ public class profileActivity extends AppCompatActivity {
 
 
 
-         Button btnToys = findViewById(R.id.toysList);
+         TextView btnToys = findViewById(R.id.toysList);
          btnToys.setOnClickListener(mClickToysList);
 
 
@@ -132,8 +146,12 @@ public class profileActivity extends AppCompatActivity {
 
         Log.i(TAG, "Dima " + cognitoId);
         Log.i(TAG, "yousssi: " + logedInUser.getUserId());
+
+
 //        String accId = "userId";
         final String[] acId = new String[1];
+
+
         runOnUiThread(() -> {
                     Amplify.API.query(
         ModelQuery.list(Account.class, Account.IDCOGNITO.eq(logedInUser.getUserId())),
@@ -152,11 +170,6 @@ public class profileActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                    acc = accs.getData();
-//                Log.i(TAG, "onte: " + acc);
-//                    Log.i(TAG, "Data: " + acc.getId().toString());
-                    // Use To do Sync
-//                    acId[0] =  acc.getId().toString();
                     Log.i(TAG, "Account Id" + acId[0]);
 
         },
@@ -166,7 +179,7 @@ public class profileActivity extends AppCompatActivity {
 
                                                     ////////////////*********             Logout Button                **********//////////////////
 
-        Button btnLogout = findViewById(R.id.logout);
+        MaterialButton btnLogout = findViewById(R.id.logout);
         btnLogout.setOnClickListener(mClickLogout);
 
 }

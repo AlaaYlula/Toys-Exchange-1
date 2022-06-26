@@ -40,9 +40,9 @@ public class WishListActivity extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper(), msg -> {
             RecyclerView recyclerView = findViewById(R.id.grid_recycler);
 
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,
-                    2, LinearLayoutManager.VERTICAL,
-                    false);
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,
+//                    2, LinearLayoutManager.VERTICAL,
+//                    false);
 
             CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
@@ -65,7 +65,7 @@ public class WishListActivity extends AppCompatActivity {
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
             return true;
         });
 

@@ -19,6 +19,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -32,6 +33,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     private TextView toyCondition;
     private TextView contactMe;
     private TextView toyPrice;
+    private TextView toyType;
 
     private ImageView addToWishList;
     private ImageView toyImage;
@@ -54,15 +56,26 @@ public class ToyDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toy_detail);
+        setContentView(R.layout.shophop_activity_product_detail);
 
 
+        CollapsingToolbarLayout toolbar = findViewById(R.id.toolbar_layout);
         toyUser=findViewById(R.id.txt_view_user_name);
-        toyName=findViewById(R.id.txt_view_name);
-        toyDescription=findViewById(R.id.txt_view_description);
-        toyCondition=findViewById(R.id.txt_view_condition);
-        contactMe=findViewById(R.id.txt_view_contact);
-        toyPrice=findViewById(R.id.txt_view_price);
+
+
+
+//        toyName=findViewById(R.id.txt_view_name);
+//        toyDescription=findViewById(R.id.txt_view_description);
+//        toyCondition=findViewById(R.id.txt_view_condition);
+//        contactMe=findViewById(R.id.txt_view_contact);
+        toyPrice=findViewById(R.id.tvPrice);
+//        toyName=findViewById(R.id.txt_view_name);
+//        toyDescription=findViewById(R.id.txt_view_description);
+//        toyCondition=findViewById(R.id.txt_view_condition);
+//        contactMe=findViewById(R.id.txt_view_contact);
+//        toyPrice=findViewById(R.id.txt_view_price);
+//        toyType=findViewById(R.id.txt_view_type);
+
 
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
@@ -72,73 +85,27 @@ public class ToyDetailActivity extends AppCompatActivity {
         String description=toyIntent.getStringExtra("description");
         Double price=toyIntent.getDoubleExtra("price",0.0);
         String condition=toyIntent.getStringExtra("condition");
+        String type=toyIntent.getStringExtra("toyType");
         String image=toyIntent.getStringExtra("image");
         String contactInfo=toyIntent.getStringExtra("contactInfo");
         userId =toyIntent.getStringExtra("id");
         toyId =toyIntent.getStringExtra("toyId");
 
-        toyName.setText(name);
-        toyDescription.setText(description);
-        toyCondition.setText(condition);
-        contactMe.setText(contactInfo);
-        toyPrice.setText(String.valueOf(price));
 
+        toolbar.setTitle(toyIntent.getStringExtra("toyName"));
 
-        Amplify.Storage.getUrl(
-                image,
-                result -> {
-                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
-                    runOnUiThread(()->{
-                        Picasso.get().load(result.getUrl().toString()).into(toyImage);
-                    });
-                },
-                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
-        );
+//        toyName.setText(name);
+//        toyDescription.setText(description);
+//        toyCondition.setText(condition);
+//        contactMe.setText(contactInfo);
+//        toyPrice.setText(String.valueOf(price) + "JD");
 
-
-        handler1=new Handler(Looper.getMainLooper(), msg->{
-         //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
-            toyUser.setText(msg.getData().get("username").toString());
-            return true;
-        });
-
-        handler=new Handler(Looper.getMainLooper(), msg->{
-              //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
-             // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
-              loggedAccountId=msg.getData().get("loggedUser").toString();
-              idCognito=msg.getData().get("idCognito").toString();
-            return true;
-        });
-
-
-        getUserName();
-        getLoggedInAccount();
-//        identify();
-
-
-        addToWishList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  addToWishList.setBackgroundColor(Color.RED);
-
-
-                if(count==0){
-                    addToWish();
-                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
-                    count++;
-                    Log.i(TAG, "onClick: in addd "+count);
-                }else if(count==1){
-                    removeFromWishList();
-                    addToWishList.setColorFilter(getResources().getColor(R.color.black));
-                    count--;
-                    Log.i(TAG, "onClick: in removed "+count);
-                }
-
-                Log.i(TAG, "onClick: in out "+count);
-
-            }
-        });
-
+//        toyName.setText(name);
+//        toyDescription.setText(description);
+//        toyCondition.setText(condition);
+//        contactMe.setText(contactInfo);
+////        toyPrice.setText(String.valueOf(price));
+//        toyType.setText(type);
     }
 
     public void getUserName(){
@@ -235,9 +202,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                             accounts -> {
                                                 if(Objects.equals(toyId, wishToy.getToy().getId())){
                                                     Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
-//                                                    Amplify.DataStore.delete(wishToy,
-//                                                            deleted -> Log.i(TAG, "UserAttendEvent deleted from Datastore " ),
-//                                                            error -> Log.e(TAG, "delete failed", error));
 
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                             response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),

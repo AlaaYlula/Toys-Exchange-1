@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.23487179487179488" />
+        <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy_detail.xml" value="0.16770833333333332" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.1" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.2" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -14,7 +16,6 @@
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/event_layout.xml" value="0.15081521739130435" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.18229166666666666" />
-
       </map>
     </option>
   </component>

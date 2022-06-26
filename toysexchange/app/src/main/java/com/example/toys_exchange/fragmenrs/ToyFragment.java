@@ -129,6 +129,7 @@ public class ToyFragment extends Fragment {
                     intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
                     intent.putExtra("id",toyList.get(position).getAccountToysId());
                     intent.putExtra("toyId",toyList.get(position).getId());
+                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
                     startActivity(intent);
                 }
 

@@ -7,13 +7,24 @@
     android:orientation="vertical"
     android:layout_margin="16dp">
 
+    <Spinner
+        android:id="@+id/spinner_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+      />
+
     <EditText
         android:id="@+id/edit_txt_toy_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Toy Name "
         android:inputType="text"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         />
     <EditText
         android:id="@+id/edit_txt_toy_description"
@@ -21,7 +32,9 @@
         android:layout_height="wrap_content"
         android:hint="Enter Toy Description "
         android:inputType="text"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         />
     <EditText
         android:id="@+id/edit_txt_toy_price"
@@ -29,7 +42,9 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:text="0.0"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         />
 
     <EditText
@@ -38,14 +53,18 @@
         android:layout_height="wrap_content"
         android:hint="Enter Your Contact Info "
         android:inputType="text"
-        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         />
 
     <Spinner
         android:id="@+id/spinner_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <Button
         android:id="@+id/btn_upload"

@@ -13,10 +13,12 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.Typetoy;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
@@ -45,6 +48,7 @@ public class ToyActivity extends AppCompatActivity {
     private String URL;
 
     private Spinner mSpinnerCondition;
+    private Spinner mSpinnerType;
     private EditText toyPrice;
     private EditText toyDescription;
     private EditText toyName;
@@ -57,7 +61,8 @@ public class ToyActivity extends AppCompatActivity {
 
     String userId;
 
-    String[] conditions=new String[]{"NEW","USED","FREE"};
+    String[] conditions=new String[]{"NEW","USED"};
+    String[] types=new String[]{ "SELL","REQUEST", "DONATION" };
 
     boolean flag=false;
 
@@ -81,32 +86,70 @@ public class ToyActivity extends AppCompatActivity {
          uploadImage=findViewById(R.id.btn_upload);
          addToy=findViewById(R.id.btn_add_toy);
 
+        mSpinnerType=findViewById(R.id.spinner_type);
+
+        String price=toyPrice.getText().toString();
+
         setSpinner();
         authAttribute();
+
+        mSpinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               String type=mSpinnerType.getSelectedItem().toString();
+               if(type.equals("REQUEST")){
+                 //  uploadImage.setEnabled(false);
+                   toyPrice.setEnabled(false);
+               }
+                if(type.equals("DONATION")){
+                    toyPrice.setEnabled(false);
+                   // uploadImage.setEnabled(true);
+                }
+                if(type.equals("SELL")){
+                    toyPrice.setEnabled(true);
+                    //uploadImage.setEnabled(true);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         sharedImg();
         if(flag){
             uploadImage.setEnabled(false);
         }
 
+
+
         addToy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name=toyName.getText().toString();
                 String description=toyDescription.getText().toString();
-                String price=toyPrice.getText().toString();
                 String toyCondition=mSpinnerCondition.getSelectedItem().toString();
+                String toyType=mSpinnerType.getSelectedItem().toString();
                 String contact=contactInfo.getText().toString();
 
-                saveToCloud(name,description,price,toyCondition,contact);
+//                if(toyType.equals("REQUEST")){
+//                    toyPrice.setEnabled(false);
+//                    uploadImage.setEnabled(false);
+//                }
+
+                saveToCloud(name,description,price,toyCondition,contact,toyType);
+
 
             }
         });
 
         uploadImage.setOnClickListener(view -> {
             pictureUpload();
-
         });
+
     }
 
     public void setSpinner(){
@@ -116,10 +159,21 @@ public class ToyActivity extends AppCompatActivity {
                 conditions);
         mSpinnerCondition=findViewById(R.id.spinner_condition);
         mSpinnerCondition.setAdapter(conditionAdapter);
+
+
+        ArrayAdapter<String> typeAdapter=new ArrayAdapter<>(
+                this,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                types);
+
+        mSpinnerType.setAdapter(typeAdapter);
     }
 
-    public void saveToCloud(String name,String description ,String price ,String condition, String contact){
+    public void saveToCloud(String name,String description ,String price ,String condition, String contact, String type){
 
+        if(URL==null){
+            URL="default 9afe5c16-d479-4598-b6d7-b9aed9737f32.jpg";
+        }
         Amplify.API.query(
                 ModelQuery.list(Account.class),
                 users -> {
@@ -129,7 +183,7 @@ public class ToyActivity extends AppCompatActivity {
                                 users.getData()) {
                             Log.i(TAG, "User add this Event" + user);
                             if (user.getIdcognito().equals(userId)) {
-                                if(Objects.equals(price, "")){
+//                                if(Objects.equals(type, "SELL")){
                                     Toy oneToy=Toy.builder()
                                             .toyname(name)
                                             .toydescription(description)
@@ -137,35 +191,15 @@ public class ToyActivity extends AppCompatActivity {
                                             .condition(Enum.valueOf(Condition.class, condition))
                                             .accountToysId(user.getId())
                                             .contactinfo(contact)
-                                            .build();
-
-//                                    Amplify.DataStore.save(oneToy,
-//                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-//                                    );
-                                    // API save to backend
-                                    Amplify.API.mutate(
-                                            ModelMutation.create(oneToy),
-                                            success -> {
-                                                Log.i(TAG, "Saved item API: " + success.getData());
-                                            },
-                                            error -> Log.e(TAG, "Could not save item to API", error)
-                                    );
-                                }else {
-                                    Toy oneToy=Toy.builder()
-                                            .toyname(name)
-                                            .toydescription(description)
-                                            .image(URL)
-                                            .condition(Enum.valueOf(Condition.class, condition))
                                             .price(Double.parseDouble(price))
-                                            .accountToysId(user.getId())
-                                            .contactinfo(contact)
+                                            .typetoy(Enum.valueOf(Typetoy.class, type))
                                             .build();
 
-//                                    Amplify.DataStore.save(oneToy,
-//                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-//                                    );
+                                    //to data store
+                                    Amplify.DataStore.save(oneToy,
+                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+                                    );
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),
@@ -174,7 +208,56 @@ public class ToyActivity extends AppCompatActivity {
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
                                     );
-                                }
+                                //}
+//                                else if(Objects.equals(type, "DONATION")) {
+//                                    Toy oneToy=Toy.builder()
+//                                            .toyname(name)
+//                                            .toydescription(description)
+//                                            .image(URL)
+//                                            .condition(Enum.valueOf(Condition.class, condition))
+//                                            .accountToysId(user.getId())
+//                                            .contactinfo(contact)
+//                                            .price(Double.parseDouble(price))
+//                                            .typetoy(Enum.valueOf(Typetoy.class, type))
+//                                            .build();
+//
+////                                    Amplify.DataStore.save(oneToy,
+////                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+////                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+////                                    );
+//                                    // API save to backend
+//                                    Amplify.API.mutate(
+//                                            ModelMutation.create(oneToy),
+//                                            success -> {
+//                                                Log.i(TAG, "Saved item API: " + success.getData());
+//                                            },
+//                                            error -> Log.e(TAG, "Could not save item to API", error)
+//                                    );
+//                                }else if(Objects.equals(type, "REQUEST")){
+//                                    Toy oneToy=Toy.builder()
+//                                            .toyname(name)
+//                                            .toydescription(description)
+//                                            .image(URL)
+//                                            .condition(Enum.valueOf(Condition.class, condition))
+//                                            .accountToysId(user.getId())
+//                                            .contactinfo(contact)
+//                                            .price(Double.parseDouble(price))
+//                                            .typetoy(Enum.valueOf(Typetoy.class, type))
+//                                            .build();
+//
+////                                    Amplify.DataStore.save(oneToy,
+////                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+////                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+////                                    );
+//                                    // API save to backend
+//                                    Amplify.API.mutate(
+//                                            ModelMutation.create(oneToy),
+//                                            success -> {
+//                                                Log.i(TAG, "Saved item API: " + success.getData());
+//                                            },
+//                                            error -> Log.e(TAG, "Could not save item to API", error)
+//                                    );
+//                                }
 
                             }
                         }

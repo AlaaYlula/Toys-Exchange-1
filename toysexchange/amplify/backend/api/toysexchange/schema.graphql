@@ -6,7 +6,13 @@ enum Condition
 {
   NEW
   USED
-  FREE
+}
+
+enum Typetoy
+{
+  REQUEST
+  SELL
+  DONATION
 }
 
 type Toy @model {
@@ -14,6 +20,7 @@ type Toy @model {
   toyname: String!
   toydescription: String!
   image: String!
+  typetoy : Typetoy
   price: Float
   condition: Condition
   wishuser:[Account] @manyToMany(relationName: "UserWishList")
@@ -37,6 +44,8 @@ type Account @model {
   id: ID!
   idcognito: String
   username: String!
+  image : String
+  bio : String
   toys : [Toy] @hasMany
   comments : [Comment] @hasMany
   stores : [Store] @hasMany

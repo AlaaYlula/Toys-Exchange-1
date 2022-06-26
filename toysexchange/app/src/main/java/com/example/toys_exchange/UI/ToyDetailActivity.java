@@ -32,6 +32,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     private TextView toyCondition;
     private TextView contactMe;
     private TextView toyPrice;
+    private TextView toyType;
 
     private ImageView addToWishList;
     private ImageView toyImage;
@@ -63,6 +64,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         toyCondition=findViewById(R.id.txt_view_condition);
         contactMe=findViewById(R.id.txt_view_contact);
         toyPrice=findViewById(R.id.txt_view_price);
+        toyType=findViewById(R.id.txt_view_type);
 
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
@@ -72,6 +74,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         String description=toyIntent.getStringExtra("description");
         Double price=toyIntent.getDoubleExtra("price",0.0);
         String condition=toyIntent.getStringExtra("condition");
+        String type=toyIntent.getStringExtra("toyType");
         String image=toyIntent.getStringExtra("image");
         String contactInfo=toyIntent.getStringExtra("contactInfo");
         userId =toyIntent.getStringExtra("id");
@@ -82,6 +85,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         toyCondition.setText(condition);
         contactMe.setText(contactInfo);
         toyPrice.setText(String.valueOf(price));
+        toyType.setText(type);
 
 
         Amplify.Storage.getUrl(
@@ -235,9 +239,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                             accounts -> {
                                                 if(Objects.equals(toyId, wishToy.getToy().getId())){
                                                     Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
-//                                                    Amplify.DataStore.delete(wishToy,
-//                                                            deleted -> Log.i(TAG, "UserAttendEvent deleted from Datastore " ),
-//                                                            error -> Log.e(TAG, "delete failed", error));
 
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                             response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),

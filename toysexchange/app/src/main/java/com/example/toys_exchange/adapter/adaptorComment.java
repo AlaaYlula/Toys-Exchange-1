@@ -177,13 +177,6 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                     }
                 }
             });
-
-
         }
-
-
     }
-
-
-
 }

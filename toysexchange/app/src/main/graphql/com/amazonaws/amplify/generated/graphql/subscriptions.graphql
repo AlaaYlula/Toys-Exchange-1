@@ -5,29 +5,16 @@ subscription OnCreateToy {
     toyname
     toydescription
     image
+    typetoy
     price
     condition
     wishuser {
       nextToken
-<<<<<<< HEAD
-=======
-      startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
-<<<<<<< HEAD
-    usersToysId
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnUpdateToy {
@@ -36,29 +23,16 @@ subscription OnUpdateToy {
     toyname
     toydescription
     image
+    typetoy
     price
     condition
     wishuser {
       nextToken
-<<<<<<< HEAD
-=======
-      startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
-<<<<<<< HEAD
-    usersToysId
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnDeleteToy {
@@ -67,29 +41,16 @@ subscription OnDeleteToy {
     toyname
     toydescription
     image
+    typetoy
     price
     condition
     wishuser {
       nextToken
-<<<<<<< HEAD
-=======
-      startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
-<<<<<<< HEAD
-    usersToysId
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 subscription OnCreateStore {
@@ -163,6 +124,8 @@ subscription OnCreateAccount {
     id
     idcognito
     username
+    image
+    bio
     toys {
       nextToken
     }
@@ -170,8 +133,6 @@ subscription OnCreateAccount {
       nextToken
     }
     stores {
-<<<<<<< HEAD
-=======
       nextToken
     }
     eventsadded {
@@ -182,11 +143,6 @@ subscription OnCreateAccount {
     }
     wishtoys {
       nextToken
-    }
-    wishtoys {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
-      nextToken
-      startedAt
     }
     createdAt
     updatedAt
@@ -197,6 +153,8 @@ subscription OnUpdateAccount {
     id
     idcognito
     username
+    image
+    bio
     toys {
       nextToken
     }
@@ -204,8 +162,6 @@ subscription OnUpdateAccount {
       nextToken
     }
     stores {
-<<<<<<< HEAD
-=======
       nextToken
     }
     eventsadded {
@@ -216,11 +172,6 @@ subscription OnUpdateAccount {
     }
     wishtoys {
       nextToken
-    }
-    wishtoys {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
-      nextToken
-      startedAt
     }
     createdAt
     updatedAt
@@ -231,6 +182,8 @@ subscription OnDeleteAccount {
     id
     idcognito
     username
+    image
+    bio
     toys {
       nextToken
     }
@@ -238,8 +191,6 @@ subscription OnDeleteAccount {
       nextToken
     }
     stores {
-<<<<<<< HEAD
-=======
       nextToken
     }
     eventsadded {
@@ -250,11 +201,6 @@ subscription OnDeleteAccount {
     }
     wishtoys {
       nextToken
-    }
-    wishtoys {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
-      nextToken
-      startedAt
     }
     createdAt
     updatedAt
@@ -268,11 +214,7 @@ subscription OnCreateEvent {
     comments {
       nextToken
     }
-<<<<<<< HEAD
-    users {
-=======
     usersattend {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
@@ -290,11 +232,7 @@ subscription OnUpdateEvent {
     comments {
       nextToken
     }
-<<<<<<< HEAD
-    users {
-=======
     usersattend {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
@@ -312,25 +250,13 @@ subscription OnDeleteEvent {
     comments {
       nextToken
     }
-<<<<<<< HEAD
-    users {
-=======
     usersattend {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
     longitude
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
-<<<<<<< HEAD
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountEventsaddedId
   }
 }
@@ -344,40 +270,25 @@ subscription OnCreateUserWishList {
       toyname
       toydescription
       image
+      typetoy
       price
       condition
       contactinfo
       createdAt
       updatedAt
-<<<<<<< HEAD
-=======
-      _version
-      _deleted
-      _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
-<<<<<<< HEAD
     }
     createdAt
     updatedAt
-=======
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnUpdateUserWishList {
@@ -390,40 +301,25 @@ subscription OnUpdateUserWishList {
       toyname
       toydescription
       image
+      typetoy
       price
       condition
       contactinfo
       createdAt
       updatedAt
-<<<<<<< HEAD
-=======
-      _version
-      _deleted
-      _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
-<<<<<<< HEAD
     }
     createdAt
     updatedAt
-=======
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnDeleteUserWishList {
@@ -436,40 +332,25 @@ subscription OnDeleteUserWishList {
       toyname
       toydescription
       image
+      typetoy
       price
       condition
       contactinfo
       createdAt
       updatedAt
-<<<<<<< HEAD
-=======
-      _version
-      _deleted
-      _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountToysId
     }
     account {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
-<<<<<<< HEAD
     }
     createdAt
     updatedAt
-=======
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 subscription OnCreateUserAttendEvent {
@@ -481,6 +362,8 @@ subscription OnCreateUserAttendEvent {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -507,6 +390,8 @@ subscription OnUpdateUserAttendEvent {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -533,6 +418,8 @@ subscription OnDeleteUserAttendEvent {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -548,12 +435,5 @@ subscription OnDeleteUserAttendEvent {
     }
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }

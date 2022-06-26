@@ -1,6 +1,7 @@
 package com.example.toys_exchange.UI;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,13 +38,9 @@ import java.util.List;
 
 public class EventDetailsActivity extends AppCompatActivity {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
-    public static final String SHARED_PREFS = "sharedPrefs";
-
 
     adaptorComment commentRecyclerViewAdapter;
     List<Comment> commentsListDatabase = new ArrayList<>();
-
-
 
     TextView username;
     TextView title ;
@@ -60,37 +57,45 @@ public class EventDetailsActivity extends AppCompatActivity {
     Button deleteComment;
     Handler handler;
 
-    String eventId;
+    String eventIdFromMain;
     String cognitoIdFromMain;
     String loginUserIdFromMain;
-    private String loginUserNameFromMain;
+    String userIdAddedEventFromMain;
 
-
+    Intent passedIntent;
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
 
-        Intent passedIntent = getIntent();
-        eventId = passedIntent.getStringExtra("eventID");
+
+        passedIntent = getIntent();
+        eventIdFromMain = passedIntent.getStringExtra("eventID");
         cognitoIdFromMain = passedIntent.getStringExtra("cognitoID");
         loginUserIdFromMain = passedIntent.getStringExtra("loginUserID");
-        loginUserNameFromMain = passedIntent.getStringExtra("loginUserName");
+        userIdAddedEventFromMain = passedIntent.getStringExtra("userID");
+
 
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
-            if(commentsListDatabase.size()!=0)
+            if(commentsListDatabase.size()!=0) {
                 recyclerViewWork();
+
+            }
             return true;
         });
 
         username = findViewById(R.id.username_event);
         title = findViewById(R.id.title_eventDetail);
+        title.setText(passedIntent.getStringExtra("eventTitle"));
         description = findViewById(R.id.description_eventDetail);
-        // To set the Event Values
-      //  setEventValues();
+        description.setText(passedIntent.getStringExtra("description"));
 
+        getUserAttend();
+       // getCommentsList();
+        setEventValues();
 
         // The Add Comment Button
         addComment = findViewById(R.id.btn_addCommentEvent);
@@ -100,6 +105,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void addBtnListner() {
         addComment.setOnClickListener(view->{
@@ -111,7 +117,6 @@ public class EventDetailsActivity extends AppCompatActivity {
                         .eventCommentsId(event.getId())
                         .build();
 
-
                 // API save to backend
                 Amplify.API.mutate(
                         ModelMutation.create(commentAPI),
@@ -120,10 +125,16 @@ public class EventDetailsActivity extends AppCompatActivity {
                             runOnUiThread(() -> {
                                 comment.setText("");
                                 Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_SHORT).show();
-                                commentsListDatabase = new ArrayList<>();
-                                getCommentsList();
-                                commentRecyclerViewAdapter.notifyDataSetChanged();
-//                                setEventValues();
+                                commentsListDatabase.add(commentAPI);
+                                //commentRecyclerViewAdapter.notifyDataSetChanged();
+
+                                Bundle bundle = new Bundle();
+                                bundle.putString("commentsListUpdate", "commentsListUpdate");
+
+                                Message message = new Message();
+                                message.setData(bundle);
+
+                                handler.sendMessage(message);
 
                             });
                         },
@@ -150,23 +161,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                             }
 
                                             runOnUiThread(() -> {
-                                                // Use To do Sync
-                                                Amplify.DataStore.save(event,
-                                                        savedEvent -> {
-                                                            Log.i(TAG, "Event saved.");
-                                                            Amplify.DataStore.save(userWhoAttend,
-                                                                    savedUserAttend -> {
-                                                                        Log.i(TAG, "User saved.");
-                                                                        Amplify.DataStore.save(userAttendEvent,
-                                                                                saved -> Log.i(TAG, "userAttendEvent saved."),
-                                                                                failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
-                                                                        );
-                                                                    },
-                                                                    failure -> Log.e(TAG, "userAttendEvent not saved.", failure)
-                                                            );
-                                                        },
-                                                        failure -> Log.e(TAG, "Post not saved.", failure)
-                                                );
+
                                                 Amplify.API.mutate(
                                                         ModelMutation.create(userAttendEvent),
                                                         success -> {
@@ -193,20 +188,8 @@ public class EventDetailsActivity extends AppCompatActivity {
                             for (UserAttendEvent user:
                                     usersAttend.getData()) {
                                 if(user.getAccount().getId().equals(loginUserIdFromMain)
-                                        && user.getEvent().getId().equals(eventId)){
+                                        && user.getEvent().getId().equals(eventIdFromMain)){
                                     runOnUiThread(() -> {
-                                        Amplify.DataStore.query(UserAttendEvent.class ,
-                                                Where.id(user.getId()), matches -> {
-                                            if(matches.hasNext()){
-                                                UserAttendEvent userAttend = matches.next();
-                                                Amplify.DataStore.delete(userAttend,
-                                                        deleted -> Log.i(TAG, "UserAttendEvent deleted from Datastore " ),
-                                                        error -> Log.e(TAG, "delete failed", error));
-                                            }
-                                        },
-                                                error -> Log.e(TAG, "delete failed", error)
-                                        );
-
                                         Amplify.API.mutate(ModelMutation.delete(user),
                                                 response ->{
                                                     Log.i(TAG, "UserAttendEvent deleted " + response.getData().getId());
@@ -234,13 +217,12 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
 
     private void getUserAttend(){
-        // This Not Work for Attend
         Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
            usersAttend -> {
             for (UserAttendEvent user:
                usersAttend.getData()) {
                    if(user.getAccount().getId().equals(loginUserIdFromMain)
-                     && user.getEvent().getId().equals(eventId)){
+                     && user.getEvent().getId().equals(eventIdFromMain)){
                        runOnUiThread(() -> {
                            btnAttend.setText("Un Attend");
                        });
@@ -257,7 +239,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setEventValues() {
         Amplify.API.query(
-                ModelQuery.get(Event.class, eventId),
+                ModelQuery.get(Event.class, eventIdFromMain),
 
                 events -> {
                     event = events.getData();
@@ -270,12 +252,6 @@ public class EventDetailsActivity extends AppCompatActivity {
                                        btnAttend.setVisibility(View.INVISIBLE);
                                    }
                                    username.setText(useradd.getData().getUsername());
-                                   title.setText(event.getTitle());
-                                   description.setText(event.getEventdescription());
-                                   commentsListDatabase = new ArrayList<>();
-                                   getCommentsList();
-                                   getUserAttend();
-
                                });
 
                                 },
@@ -291,23 +267,24 @@ public class EventDetailsActivity extends AppCompatActivity {
     }
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void getCommentsList() {
+        commentsListDatabase = new ArrayList<>();
         Amplify.API.query(
                 ModelQuery.list(Comment.class),
                 comments -> {
                     if(comments.hasData()) {
                         for (Comment comment :
                                 comments.getData()) {
-                            if(comment.getEventCommentsId().equals(eventId)) // Add For comments check
+                            if(comment.getEventCommentsId().equals(eventIdFromMain)) // Add For comments check
                                   commentsListDatabase.add(comment);
-
                         }
                         // Sort the Created At
                         Collections.sort(commentsListDatabase, new SortByDate());
                     }
 
 //                    // Use To do Sync
-//                    runOnUiThread(() -> {
-                       // commentRecyclerViewAdapter.notifyDataSetChanged();
+                  //  runOnUiThread(() -> {
+//                        commentsListDatabase.addAll(commentsListDatabase);
+//                        commentRecyclerViewAdapter.notifyDataSetChanged();
                         Bundle bundle = new Bundle();
                         bundle.putString("commentsListUpdate", "commentsListUpdate");
 
@@ -315,11 +292,12 @@ public class EventDetailsActivity extends AppCompatActivity {
                         message.setData(bundle);
 
                         handler.sendMessage(message);
-                 //   });
+                  //  });
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
+
     // Class to sort the comments by date
     // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/ 
     static class SortByDate implements Comparator<Comment> {
@@ -333,8 +311,24 @@ public class EventDetailsActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_Comment);
 
         // create an Adapter // Custom Adapter
-        commentRecyclerViewAdapter = new adaptorComment(commentsListDatabase );
+        commentRecyclerViewAdapter = new adaptorComment(commentsListDatabase, loginUserIdFromMain );
 
+        // https://gist.github.com/codinginflow/7b9dd1c12ba015f2955bdd15b09b1cb1
+        commentRecyclerViewAdapter.setOnItemClickListener(new adaptorComment.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+
+                Amplify.API.mutate(ModelMutation.delete(commentsListDatabase.get(position)),
+                        response ->{
+                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                            Log.i(TAG, "comment deleted " + response);
+                            commentsListDatabase.remove(position);
+                            commentRecyclerViewAdapter.notifyItemRemoved(position);
+                        },
+                        error -> Log.e(TAG, "delete failed", error)
+                );
+            }
+        });
         // set adapter on recycler view
         recyclerView.setAdapter(commentRecyclerViewAdapter);
         // set other important properties
@@ -347,8 +341,13 @@ public class EventDetailsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         Log.i(TAG, "onResume: called - The App is VISIBLE");
-       // commentsListDatabase = new ArrayList<>();
-        setEventValues();
+
+//        title.setText(passedIntent.getStringExtra("eventTitle"));
+//        description.setText(passedIntent.getStringExtra("description"));
+
+        //getUserAttend();
+        getCommentsList();
+       // setEventValues();
         super.onResume();
     }
 

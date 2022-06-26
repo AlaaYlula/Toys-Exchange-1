@@ -168,11 +168,6 @@ public class EventActivity extends AppCompatActivity {
                                             .eventdescription(eventDescriptionText)
                                             .accountEventsaddedId(user.getId())
                                             .build();
-
-                                    Amplify.DataStore.save(event,
-                                            success -> Log.i(TAG, "Saved item DataStore: " + success.item().getTitle()),
-                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                                    );
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(event),

@@ -15,15 +15,20 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
+import com.example.toys_exchange.adapter.CustomToyAdapter;
+import com.example.toys_exchange.adapter.EventDeleteAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class eventListActivity extends AppCompatActivity {
@@ -43,7 +48,7 @@ public class eventListActivity extends AppCompatActivity {
     private String loginUserId;
     private String loginUserName;
 
-
+    EventDeleteAdapter customEventAdapter;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,19 +132,73 @@ public class eventListActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
             // create an Adapter // Custom Adapter
-        CustomEventAdapter customEventAdapter = new CustomEventAdapter(
-                 eventList, position -> {
-            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
-            intent.putExtra("eventTitle",eventList.get(position).getTitle());
-            intent.putExtra("description",eventList.get(position).getEventdescription());
-            intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
-            intent.putExtra("eventID",eventList.get(position).getId());
-            intent.putExtra("cognitoID",cognitoId);
-            intent.putExtra("loginUserID",loginUserId);
-            intent.putExtra("loginUserName",loginUserName);
-            startActivity(intent);
-            });
-            // set adapter on recycler view
+//        CustomEventAdapter customEventAdapter = new CustomEventAdapter(
+//                 eventList, position -> {
+//            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+//            intent.putExtra("eventTitle",eventList.get(position).getTitle());
+//            intent.putExtra("description",eventList.get(position).getEventdescription());
+//            intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
+//            intent.putExtra("eventID",eventList.get(position).getId());
+//            intent.putExtra("cognitoID",cognitoId);
+//            intent.putExtra("loginUserID",loginUserId);
+//            intent.putExtra("loginUserName",loginUserName);
+//            startActivity(intent);
+//            });
+
+        customEventAdapter = new EventDeleteAdapter(eventList, new EventDeleteAdapter.CustomClickListener() {
+            @Override
+            public void onDeleteClickListener(int position) {
+                Amplify.API.query(
+                        ModelQuery.list(Comment.class),
+                        comments -> {
+                            if(comments.hasData()) {
+                                for (Comment comment :
+                                        comments.getData()) {
+                                    if(comment.getEventCommentsId().equals(eventList.get(position).getId())) // Add For comments check
+                                    {
+                                        Amplify.API.mutate(ModelMutation.delete(comment),
+                                                response ->{
+                                                    Log.i(TAG, "Comment deleted " + response);
+                                                },
+                                                error -> Log.e(TAG, "delete failed", error)
+                                        );
+                                    }
+                                }
+                            }
+                            runOnUiThread(()->{
+                                Amplify.API.mutate(ModelMutation.delete(eventList.get(position)),
+                                        response ->{
+                                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                            Log.i(TAG, "Event deleted " + response);
+                                            eventList.remove(position);
+                                            customEventAdapter.notifyItemRemoved(position);
+                                        },
+                                        error -> Log.e(TAG, "delete failed", error)
+                                );
+                            });
+
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
+
+            }
+
+            @Override
+            public void ontItemClickListener(int position) {
+                Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+                intent.putExtra("eventTitle",eventList.get(position).getTitle());
+                intent.putExtra("description",eventList.get(position).getEventdescription());
+                intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
+                intent.putExtra("eventID",eventList.get(position).getId());
+                intent.putExtra("cognitoID",cognitoId);
+                intent.putExtra("loginUserID",loginUserId);
+                intent.putExtra("loginUserName",loginUserName);
+                startActivity(intent);
+            }
+        });
+
+
+        // set adapter on recycler view
             recyclerView.setAdapter(customEventAdapter);
             // set other important properties
             recyclerView.setHasFixedSize(true);

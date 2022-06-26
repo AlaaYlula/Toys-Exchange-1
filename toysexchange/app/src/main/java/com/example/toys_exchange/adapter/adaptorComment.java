@@ -40,40 +40,37 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
 
     public static String loginUserId;
 
-    public static void getLoginUserId() {
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId = logedInUser.getUserId();
-        Amplify.API.query(
-                ModelQuery.list(Account.class),
-                allUsers -> {
-                    for (Account userAc:
-                            allUsers.getData()) {
-                        if(userAc.getIdcognito().equals(cognitoId)){
-                            loginUserId = userAc.getId();
-                        }
-                    }
+    private OnItemClickListener mListener;
 
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-
+    public interface OnItemClickListener {
+        void onDeleteClick(int position);
     }
 
-    public adaptorComment(List<Comment> commentList) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+
+    public adaptorComment(List<Comment> commentList ,String loginUserId) {
         this.commentsList = commentList;
-
+        this.loginUserId  = loginUserId;
     }
+
+
+
+
     @NonNull
     @Override
     public CustomViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItemView = layoutInflater.inflate(R.layout.comment_layout, parent, false);
-        return new CustomViewHolder(listItemView).linkAdapter(this);
+       // return new CustomViewHolder(listItemView).linkAdapter(this);
+        return new CustomViewHolder(listItemView , mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.loginUserIdSaved = loginUserId;
+        CustomViewHolder.loginUserIdSaved = loginUserId;
          userId = commentsList.get(position).getAccountCommentsId();
         Log.i(TAG, "login User Id onBindViewHolder "+loginUserId );
 
@@ -87,14 +84,19 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         holder.text.setText(commentsList.get(position).getText());
         holder.position = position;
         holder.comment = commentsList.get(position);
-        if(holder.flag.equals("me")){
-            holder.deletebtn.setVisibility(View.VISIBLE);
-        }else{
-            holder.deletebtn.setVisibility(View.GONE);
-        }
+
+
+       // holder.deletebtn.setVisibility(View.VISIBLE);
+         if(commentsList.get(position).getAccountCommentsId().equals(loginUserId)) // Add For comments check
+                {
+                    holder.deletebtn.setVisibility(View.VISIBLE);
+
+               }else{
+                      holder.deletebtn.setVisibility(View.GONE);
+                          }
+
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -114,9 +116,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         int position;
         Comment comment;
 
-        String flag = "me";
-
-        public CustomViewHolder(@NonNull View itemView) {
+        public CustomViewHolder(@NonNull View itemView , OnItemClickListener listener ) {
             super(itemView);
 
             rootView = itemView;
@@ -125,58 +125,29 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             text = itemView.findViewById(R.id.text_comment);
             deletebtn = itemView.findViewById(R.id.btn_deleteComment);
 
-            getLoginUserId();
             Log.i(TAG, "login User Id CustomViewHolder "+loginUserIdSaved );
-            // delete button
-            Amplify.API.query(
-                    ModelQuery.list(Comment.class),
-                    comments -> {
-                        if(comments.hasData()) {
-                            for (Comment comment :
-                                    comments.getData()) {
-                                if(comment.getAccountCommentsId().equals(loginUserIdSaved)) // Add For comments check
-                                {
-                                    Log.i(TAG, "login User Id commentId "+comment.getAccountCommentsId() );
 
-                                    flag = "me";
-                                }else{
 
-                                    flag = "not_me";
-                                }
-
-                            }
-
+            deletebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(position);
                         }
 
-                    },
-                    error -> Log.e(TAG, error.toString(), error)
-            );
 
-            // Action delete
-            deletebtn.setOnClickListener( view -> {
-                Amplify.API.mutate(ModelMutation.delete(comment),
-                        response ->{
-//                            Log.i(TAG, "comment deleted " + response.getData().getId());
-                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                            adapter.commentsList.remove(getAdapterPosition());
-                            adapter.notifyItemRemoved(getAdapterPosition());
-                        },
-                        error -> Log.e(TAG, "delete failed", error)
-                );
+                    }
+                }
+
+
+
             });
 
 
-
-
-
         }
 
-
-
-        public CustomViewHolder linkAdapter(adaptorComment adapter){
-            this.adapter = adapter;
-            return this;
-        }
 
     }
 

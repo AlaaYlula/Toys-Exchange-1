@@ -5,29 +5,16 @@ query GetToy($id: ID!) {
     toyname
     toydescription
     image
+    typetoy
     price
     condition
     wishuser {
       nextToken
-<<<<<<< HEAD
-=======
-      startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     }
     contactinfo
     createdAt
     updatedAt
-<<<<<<< HEAD
-=======
-    _version
-    _deleted
-    _lastChangedAt
-<<<<<<< HEAD
-    usersToysId
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
     accountToysId
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
   }
 }
 query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
@@ -37,6 +24,7 @@ query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
       toyname
       toydescription
       image
+      typetoy
       price
       condition
       contactinfo
@@ -45,41 +33,6 @@ query ListToys($filter: ModelToyFilterInput, $limit: Int, $nextToken: String) {
       accountToysId
     }
     nextToken
-<<<<<<< HEAD
-=======
-    startedAt
-  }
-}
-query SyncToys(
-  $filter: ModelToyFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncToys(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      toyname
-      toydescription
-      image
-      price
-      condition
-      contactinfo
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountToysId
-    }
-    nextToken
-    startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }
 query GetStore($id: ID!) {
@@ -108,17 +61,7 @@ query ListStores(
       longitude
       createdAt
       updatedAt
-<<<<<<< HEAD
-=======
-      _version
-      _deleted
-      _lastChangedAt
-<<<<<<< HEAD
-      usersStoresId
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       accountStoresId
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
     }
     nextToken
   }
@@ -155,6 +98,8 @@ query GetAccount($id: ID!) {
     id
     idcognito
     username
+    image
+    bio
     toys {
       nextToken
     }
@@ -162,8 +107,6 @@ query GetAccount($id: ID!) {
       nextToken
     }
     stores {
-<<<<<<< HEAD
-=======
       nextToken
     }
     eventsadded {
@@ -174,11 +117,6 @@ query GetAccount($id: ID!) {
     }
     wishtoys {
       nextToken
-    }
-    wishtoys {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
-      nextToken
-      startedAt
     }
     createdAt
     updatedAt
@@ -194,6 +132,8 @@ query ListAccounts(
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -208,11 +148,7 @@ query GetEvent($id: ID!) {
     comments {
       nextToken
     }
-<<<<<<< HEAD
-    users {
-=======
     usersattend {
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
       nextToken
     }
     latitude
@@ -248,10 +184,10 @@ query GetUserWishList($id: ID!) {
     accountID
     toy {
       id
-<<<<<<< HEAD
       toyname
       toydescription
       image
+      typetoy
       price
       condition
       contactinfo
@@ -263,6 +199,8 @@ query GetUserWishList($id: ID!) {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -280,101 +218,10 @@ query ListUserWishLists(
       id
       toyID
       accountID
-=======
-      title
-      eventdescription
-      latitude
-      longitude
-<<<<<<< HEAD
-=======
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
       createdAt
       updatedAt
     }
     nextToken
-  }
-}
-query GetUserWishList($id: ID!) {
-  getUserWishList(id: $id) {
-    id
-    toyID
-    accountID
-    toy {
-      id
-      toyname
-      toydescription
-      image
-      price
-      condition
-      contactinfo
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      accountToysId
-    }
-    account {
-      id
-      idcognito
-      username
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListUserWishLists(
-  $filter: ModelUserWishListFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listUserWishLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      toyID
-      accountID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncUserWishLists(
-  $filter: ModelUserWishListFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncUserWishLists(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      toyID
-      accountID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetUserAttendEvent($id: ID!) {
@@ -386,6 +233,8 @@ query GetUserAttendEvent($id: ID!) {
       id
       idcognito
       username
+      image
+      bio
       createdAt
       updatedAt
     }
@@ -417,36 +266,5 @@ query ListUserAttendEvents(
       updatedAt
     }
     nextToken
-<<<<<<< HEAD
-=======
-    startedAt
-  }
-}
-query SyncUserAttendEvents(
-  $filter: ModelUserAttendEventFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncUserAttendEvents(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      accountID
-      eventID
->>>>>>> 730f96100f2d16fb43d3a01143a353a5b81ee0f4
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
->>>>>>> 44e0057c760846725fd8036a98967798c8c63bb1
   }
 }

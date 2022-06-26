@@ -111,10 +111,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                         .eventCommentsId(event.getId())
                         .build();
 
-                Amplify.DataStore.save(commentAPI,
-                        success -> Log.i(TAG, "Saved item DataStore: " + success.item()),
-                        error -> Log.e(TAG, "Could not save item to DataStore", error)
-                );
+
                 // API save to backend
                 Amplify.API.mutate(
                         ModelMutation.create(commentAPI),

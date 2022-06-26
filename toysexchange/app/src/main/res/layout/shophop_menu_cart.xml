@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingStart="0dp"
+    android:paddingEnd="@dimen/sh_spacing_control_half">
+
+    <ImageView
+        android:id="@+id/ivCart"
+        style="@style/ShopHopTabNotSelected"
+        android:contentDescription="@string/sh_text_todo"
+        app:srcCompat="@drawable/shophop_ic_shopping_cart" />
+
+    <TextView
+        android:id="@+id/tvNotificationCount"
+        android:layout_width="@dimen/_14sdp"
+        android:layout_height="@dimen/_14sdp"
+        android:layout_alignEnd="@id/ivCart"
+        tools:text="@string/sh_lbl_10"
+        android:visibility="gone"
+        android:textColor="@color/ShopHop_white"
+        android:gravity="center"
+        android:textSize="@dimen/sh_font_size_nano"
+        android:backgroundTint="@color/ShopHop_colorPrimary"
+        android:background="@drawable/shophop_bg_circle" />
+</RelativeLayout>

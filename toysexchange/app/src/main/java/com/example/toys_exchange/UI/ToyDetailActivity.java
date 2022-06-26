@@ -19,6 +19,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -54,15 +55,18 @@ public class ToyDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toy_detail);
+        setContentView(R.layout.shophop_activity_product_detail);
 
 
+        CollapsingToolbarLayout toolbar = findViewById(R.id.toolbar_layout);
         toyUser=findViewById(R.id.txt_view_user_name);
-        toyName=findViewById(R.id.txt_view_name);
-        toyDescription=findViewById(R.id.txt_view_description);
-        toyCondition=findViewById(R.id.txt_view_condition);
-        contactMe=findViewById(R.id.txt_view_contact);
-        toyPrice=findViewById(R.id.txt_view_price);
+
+
+//        toyName=findViewById(R.id.txt_view_name);
+//        toyDescription=findViewById(R.id.txt_view_description);
+//        toyCondition=findViewById(R.id.txt_view_condition);
+//        contactMe=findViewById(R.id.txt_view_contact);
+        toyPrice=findViewById(R.id.tvPrice);
 
         addToWishList=findViewById(R.id.image_view_fav);
         toyImage=findViewById(R.id.image_view_toy);
@@ -77,67 +81,69 @@ public class ToyDetailActivity extends AppCompatActivity {
         userId =toyIntent.getStringExtra("id");
         toyId =toyIntent.getStringExtra("toyId");
 
-        toyName.setText(name);
-        toyDescription.setText(description);
-        toyCondition.setText(condition);
-        contactMe.setText(contactInfo);
-        toyPrice.setText(String.valueOf(price));
+        toolbar.setTitle(toyIntent.getStringExtra("toyName"));
+
+//        toyName.setText(name);
+//        toyDescription.setText(description);
+//        toyCondition.setText(condition);
+//        contactMe.setText(contactInfo);
+        toyPrice.setText(String.valueOf(price) + "JD");
 
 
-        Amplify.Storage.getUrl(
-                image,
-                result -> {
-                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
-                    runOnUiThread(()->{
-                        Picasso.get().load(result.getUrl().toString()).into(toyImage);
-                    });
-                },
-                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
-        );
+//        Amplify.Storage.getUrl(
+//                image,
+//                result -> {
+//                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
+//                    runOnUiThread(()->{
+//                        Picasso.get().load(result.getUrl().toString()).into(toyImage);
+//                    });
+//                },
+//                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+//        );
 
 
-        handler1=new Handler(Looper.getMainLooper(), msg->{
-         //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
-            toyUser.setText(msg.getData().get("username").toString());
-            return true;
-        });
+//        handler1=new Handler(Looper.getMainLooper(), msg->{
+//         //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
+//            toyUser.setText(msg.getData().get("username").toString());
+//            return true;
+//        });
+//
+//        handler=new Handler(Looper.getMainLooper(), msg->{
+//              //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
+//             // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
+//              loggedAccountId=msg.getData().get("loggedUser").toString();
+//              idCognito=msg.getData().get("idCognito").toString();
+//            return true;
+//        });
 
-        handler=new Handler(Looper.getMainLooper(), msg->{
-              //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
-             // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
-              loggedAccountId=msg.getData().get("loggedUser").toString();
-              idCognito=msg.getData().get("idCognito").toString();
-            return true;
-        });
 
-
-        getUserName();
-        getLoggedInAccount();
+//        getUserName();
+//        getLoggedInAccount();
 //        identify();
 
 
-        addToWishList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              //  addToWishList.setBackgroundColor(Color.RED);
-
-
-                if(count==0){
-                    addToWish();
-                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
-                    count++;
-                    Log.i(TAG, "onClick: in addd "+count);
-                }else if(count==1){
-                    removeFromWishList();
-                    addToWishList.setColorFilter(getResources().getColor(R.color.black));
-                    count--;
-                    Log.i(TAG, "onClick: in removed "+count);
-                }
-
-                Log.i(TAG, "onClick: in out "+count);
-
-            }
-        });
+//        addToWishList.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//              //  addToWishList.setBackgroundColor(Color.RED);
+//
+//
+//                if(count==0){
+//                    addToWish();
+//                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                    count++;
+//                    Log.i(TAG, "onClick: in addd "+count);
+//                }else if(count==1){
+//                    removeFromWishList();
+//                    addToWishList.setColorFilter(getResources().getColor(R.color.black));
+//                    count--;
+//                    Log.i(TAG, "onClick: in removed "+count);
+//                }
+//
+//                Log.i(TAG, "onClick: in out "+count);
+//
+//            }
+//        });
 
     }
 
@@ -253,15 +259,37 @@ public class ToyDetailActivity extends AppCompatActivity {
                         );
 
 
-
-
-
                     }
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
 
     }
+
+    public void identify(){
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
+                    if(wishList.hasData()){
+                        for (UserWishList wishToy :
+                                wishList.getData()) {
+                            if(wishToy.getAccount().getId().equals(loggedAccountId) && wishToy.getToy().getId().equals(toyId)){
+                                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                                    count=1;
+                                    Log.i(TAG, "identify: in fav "+count);
+
+                            }
+
+                        }
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
+
+    }
+
 
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
@@ -313,12 +341,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
         );
     }
-
-
-
-
-
-
 
 
 }

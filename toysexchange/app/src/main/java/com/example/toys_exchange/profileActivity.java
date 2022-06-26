@@ -82,7 +82,7 @@ public class profileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
 
-        ////////////////*********             Event List Button                **********//////////////////
+        ////////////////*********             Wish List Button                **********//////////////////
 
         TextView wishList = findViewById(R.id.tvWishlist);
         wishList.setOnClickListener(view -> {

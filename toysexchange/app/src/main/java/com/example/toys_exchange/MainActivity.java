@@ -93,21 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
-
-
-
-
-
-
-//        Button btnProfile = findViewById(R.id.btn_profilei);
-//        mProfile = findViewById(R.id.btn_profilei);
-
-//        btnProfile.setOnClickListener(mClickprofile);
-
-//        Button button = findViewById(R.id.add_event);
-//
-//        button.setOnClickListener(view -> {
-
         btnDetailEvent.setOnClickListener(view -> {
             startActivity(new Intent(this, WishListActivity.class));
         });
@@ -161,11 +146,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_setting:
                 Toast.makeText(this, "Setting ", Toast.LENGTH_SHORT).show();
-//                goToSetting();
                 return true;
             case R.id.action_profile:
                 Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
-//                goToProfile();
                 startActivity(new Intent(this, profileActivity.class));
 
                 return true;
@@ -175,12 +158,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void goToSetting(){}
-
-    private void goToProfile(){
-//        Intent profileIntent = new Intent(this,)
     }
 
     private void logout(){
@@ -212,19 +189,6 @@ public class MainActivity extends AppCompatActivity {
             }
         },error -> Log.e(TAG, error.toString()));
     }
-
-    /*
-    handler = new Handler(Looper.getMainLooper(), msg -> {
-             String user = msg.getData().getString("name");
-             TextView name = findViewById(R.id.txt_username);
-             name.setText(user);
-             userId = msg.getData().getString("id");
-             return true;
-         });
-     */
-
-
-
 
 }
 

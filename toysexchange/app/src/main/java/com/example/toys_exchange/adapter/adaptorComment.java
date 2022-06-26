@@ -154,21 +154,9 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
 
             // Action delete
             deletebtn.setOnClickListener( view -> {
-                Amplify.DataStore.query(Comment.class ,
-                Where.id(comment.getId()), matches -> {
-                            if(matches.hasNext()){
-                                Comment commentDelete = matches.next();
-                                Amplify.DataStore.delete(commentDelete,
-                                        deleted -> Log.i(TAG, "Comment deleted from Datastore " ),
-                                        error -> Log.e(TAG, "delete failed", error));
-                            }
-                        },
-                        error -> Log.e(TAG, "delete failed", error)
-                );
-
                 Amplify.API.mutate(ModelMutation.delete(comment),
                         response ->{
-                            Log.i(TAG, "comment deleted " + response.getData().getId());
+//                            Log.i(TAG, "comment deleted " + response.getData().getId());
                             // https://www.youtube.com/watch?v=LQmGU3UCOPQ
                             adapter.commentsList.remove(getAdapterPosition());
                             adapter.notifyItemRemoved(getAdapterPosition());

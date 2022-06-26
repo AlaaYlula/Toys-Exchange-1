@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ShopHop_semi_white"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    tools:ignore="MissingPrefix,UnusedAttribute">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivCloseDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard"
+            android:contentDescription="@string/sh_text_todo"
+            android:padding="@dimen/sh_spacing_control"
+            android:src="@drawable/shophop_ic_close_black" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civProfile"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shophop_ic_avatar"
+            app:civ_border_color="@color/ShopHop_white"
+            app:civ_border_width="@dimen/sh_spacing_control" />
+
+        <TextView
+            android:id="@+id/txtDisplayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sh_spacing_medium"
+            android:layout_marginBottom="@dimen/sh_spacing_medium"
+            android:gravity="center_horizontal"
+            android:text="@string/sh_text_juliane_deerman"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/ShopHop_textColorPrimary"
+            android:textSize="@dimen/sh_font_size_large" />
+
+        <LinearLayout
+            android:id="@+id/llInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sh_spacing_mlarge"
+            android:background="@color/ShopHop_sidebar_background"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/llOrders"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/sh_spacing_medium"
+                android:paddingBottom="@dimen/sh_spacing_medium">
+
+                <TextView
+                    android:id="@+id/tvOrderCount"
+                    style="@style/ShopHopSidebarLabel"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_text__02"
+                    android:textColor="@color/ShopHop_colorPrimary" />
+
+                <TextView
+                    style="@style/ShopHopSidebarLabel"
+                    android:layout_marginTop="@dimen/sh_spacing_control"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_lbl_my_order" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llReward"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/sh_spacing_medium"
+                android:paddingBottom="@dimen/sh_spacing_medium">
+
+                <TextView
+                    android:id="@+id/rewardCount"
+                    style="@style/ShopHopSidebarLabel"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_text_121"
+                    android:textColor="@color/ShopHop_colorPrimary" />
+
+                <TextView
+                    style="@style/ShopHopSidebarLabel"
+                    android:layout_marginTop="@dimen/sh_spacing_control"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_lbl_reward" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llWishlistData"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/sh_spacing_medium"
+                android:paddingBottom="@dimen/sh_spacing_medium">
+
+                <TextView
+                    android:id="@+id/tvWishListCount"
+                    style="@style/ShopHopSidebarLabel"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_text__10"
+                    android:textColor="@color/ShopHop_colorPrimary" />
+
+                <TextView
+                    style="@style/ShopHopSidebarLabel"
+                    android:layout_marginTop="@dimen/sh_spacing_control"
+                    android:gravity="center_horizontal"
+                    android:text="@string/sh_lbl_wish_list" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rvCategory"-->
+<!--            style="@style/ShopHopRecycleView"-->
+<!--            android:layout_marginTop="@dimen/sh_spacing_standard"-->
+<!--            android:layout_marginBottom="@dimen/sh_spacing_standard" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/sh_spacing_xmedium"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/sh_stroke_width"-->
+<!--                android:layout_marginStart="@dimen/_16sdp"-->
+<!--                android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                android:layout_marginBottom="@dimen/sh_spacing_standard"-->
+<!--                android:background="@color/ShopHop_view_color" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/addEvent"-->
+<!--                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"-->
+<!--                android:drawableStart="@drawable/shophop_ic_add"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:text="@string/add_Event" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/addToy"-->
+<!--                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"-->
+<!--                android:drawableStart="@drawable/shophop_ic_add"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:text="@string/add_toy" />-->
+
+
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/sh_stroke_width"-->
+<!--                android:layout_marginStart="@dimen/_16sdp"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_standard_new"-->
+<!--                android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                android:layout_marginBottom="@dimen/sh_spacing_standard"-->
+<!--                android:background="@color/ShopHop_view_color" />-->
+
+
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sh_spacing_xmedium"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sh_stroke_width"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/sh_spacing_standard"
+                android:background="@color/ShopHop_view_color" />
+
+            <TextView
+                android:id="@+id/addEvent"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/shophop_ic_add"
+                android:gravity="center_vertical"
+                android:text="@string/add_Event" />
+
+            <TextView
+                android:id="@+id/addToy"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/shophop_ic_add"
+                android:gravity="center_vertical"
+                android:text="@string/add_toy" />
+
+
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/sh_stroke_width"-->
+<!--                android:layout_marginStart="@dimen/_16sdp"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_standard_new"-->
+<!--                android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                android:layout_marginBottom="@dimen/sh_spacing_standard"-->
+<!--                android:background="@color/ShopHop_view_color" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sh_stroke_width"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/sh_spacing_standard"
+                android:background="@color/ShopHop_view_color" />
+
+            <TextView
+                android:id="@+id/my_event"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/ic__01"
+                android:gravity="center_vertical"
+                android:text="My Event" />
+
+            <TextView
+                android:id="@+id/attended_event"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/ic__01"
+                android:gravity="center_vertical"
+                android:text="Attended Event" />
+
+            <TextView
+                android:id="@+id/my_toys"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/ic_cubes"
+                android:gravity="center_vertical"
+                android:text="My Toys" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sh_stroke_width"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/sh_spacing_standard"
+                android:background="@color/ShopHop_view_color" />
+
+            <TextView
+                android:id="@+id/tvAccount"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/shophop_ic_baseline_person_outline"
+                android:gravity="center_vertical"
+                android:text="@string/sh_lbl_account" />
+
+            <TextView
+                android:id="@+id/tvSetting"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/shophop_ic_settings"
+                android:gravity="center_vertical"
+                android:text="@string/sh_lbl_settings" />
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sh_stroke_width"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/sh_spacing_standard_new"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/sh_spacing_standard"
+                android:background="@color/ShopHop_view_color" />
+
+            <TextView
+                android:id="@+id/tvFaq"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:paddingStart="@dimen/_46sdp"
+                android:paddingEnd="@dimen/sh_spacing_control"
+                android:text="@string/sh_lbl_faq" />
+
+            <TextView
+                android:id="@+id/tvHelp"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:paddingStart="@dimen/_46sdp"
+                android:paddingEnd="@dimen/sh_spacing_control"
+                android:text="@string/sh_lbl_help"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvContactus"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:paddingStart="@dimen/_46sdp"
+                android:paddingEnd="@dimen/sh_spacing_control"
+                android:text="@string/sh_lbl_contact_us" />
+        </LinearLayout>
+
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="@dimen/sh_sidebar_img_height"-->
+<!--            android:layout_height="@dimen/sh_sidebar_img_height"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="@dimen/sh_spacing_standard_new"-->
+<!--            android:layout_marginBottom="@dimen/sh_spacing_standard"-->
+<!--            android:background="@drawable/shophop_bg_logo"-->
+<!--            android:gravity="center">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ivAppLogo"-->
+<!--                android:layout_width="@dimen/_35sdp"-->
+<!--                android:layout_height="@dimen/_35sdp"-->
+<!--                android:contentDescription="@string/sh_text_todo"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:src="@drawable/shophop_ic_app_icon" />-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/ivAppLogo"-->
+<!--                android:layout_centerHorizontal="true">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvAppName"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/sh_lbl_shop"-->
+<!--                    android:textAppearance="@style/FontBold"-->
+<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
+<!--                    android:textSize="@dimen/sh_font_size_medium" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tvSubname"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/sh_lbl_hop"-->
+<!--                    android:textAppearance="@style/FontBold"-->
+<!--                    android:textColor="@color/ShopHop_colorPrimary"-->
+<!--                    android:textSize="@dimen/sh_font_size_medium" />-->
+<!--            </LinearLayout>-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvVersionCode"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/llName"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:text="@string/sh_lbl_version_name"-->
+<!--                android:textColor="@color/ShopHop_textColorSecondary"-->
+<!--                android:textSize="@dimen/sh_font_size_nano" />-->
+
+<!--        </RelativeLayout>-->
+    </LinearLayout>
+</ScrollView>

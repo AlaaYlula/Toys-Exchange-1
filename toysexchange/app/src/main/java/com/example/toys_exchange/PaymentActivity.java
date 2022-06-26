@@ -17,7 +17,6 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 
-import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
 

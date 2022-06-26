@@ -30,10 +30,6 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
     public static String acc_id;
     List<Event> eventList;
     CustomClickListener listener;
-//    String acc_id;
-
-
-
 
     public static void getUserId()
     {

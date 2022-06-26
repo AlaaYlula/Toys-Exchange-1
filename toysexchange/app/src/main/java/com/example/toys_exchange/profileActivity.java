@@ -21,6 +21,7 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
 import com.example.toys_exchange.UI.toyListActivity;
@@ -33,6 +34,7 @@ public class profileActivity extends AppCompatActivity {
     Event event;
     Account acc;
 
+    Button btn_myEventAttend ;
 
     private static final String TAG = profileActivity.class.getSimpleName();
     private View.OnClickListener mClickEventsList = new View.OnClickListener() {
@@ -75,12 +77,22 @@ public class profileActivity extends AppCompatActivity {
     private TextView mToysList;
     public String userId ;
     ArrayList<Account> acclist = new ArrayList<>();
+    private String acc_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId =  logedInUser.getUserId();
+        ////////////////*********             Event Attend Button                **********//////////////////
+        btn_myEventAttend = findViewById(R.id.btn_eventsAttend);
+        btn_myEventAttend.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EventAttendList.class);
+            intent.putExtra("loginUserId",acc_id);
+            intent.putExtra("cognitoId",cognitoId);
+            startActivity(intent);
+        });
 
         ////////////////*********             Event List Button                **********//////////////////
 
@@ -117,9 +129,8 @@ public class profileActivity extends AppCompatActivity {
         Log.i(TAG, "userIdaya: "  + userId);
          authAttribute();
 
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String dima =  logedInUser.getUserId();
-        Log.i(TAG, "Dima " + dima);
+
+        Log.i(TAG, "Dima " + cognitoId);
         Log.i(TAG, "yousssi: " + logedInUser.getUserId());
 //        String accId = "userId";
         final String[] acId = new String[1];
@@ -136,7 +147,7 @@ public class profileActivity extends AppCompatActivity {
                         Log.i(TAG, "coogId: " + logedInUser);
                         if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
                             acclist.add(acc);
-                            String acc_id = acc.getId().toString();
+                             acc_id = acc.getId().toString();
                             Log.i(TAG, "InGetEventsList: " + acc.getId());
                         }
                     }

@@ -56,7 +56,6 @@ public class VerificationActivity extends AppCompatActivity {
                             .idcognito(userId)
                             .build();
 
-//                    );
                     // API save to backend
                     Amplify.API.mutate(
                             ModelMutation.create(user),

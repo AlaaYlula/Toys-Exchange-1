@@ -103,6 +103,7 @@ public class ToyFragment extends Fragment {
                 if(condition.equals("SELL")){
 //                    radioButtonGroupCondition2.setVisibility(View.VISIBLE);
                     mConditionSpinner.setVisibility(View.VISIBLE);
+
                     toyList = new ArrayList<>();
 
 

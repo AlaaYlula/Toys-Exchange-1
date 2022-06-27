@@ -196,10 +196,10 @@ public class ToyActivity extends AppCompatActivity {
                                             .build();
 
                                     //to data store
-                                    Amplify.DataStore.save(oneToy,
-                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                                    );
+//                                    Amplify.DataStore.save(oneToy,
+//                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
+//                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+//                                    );
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),

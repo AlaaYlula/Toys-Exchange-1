@@ -79,6 +79,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
 
 
+
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0) {
                 recyclerViewWork();
@@ -221,6 +222,8 @@ public class EventDetailsActivity extends AppCompatActivity {
            usersAttend -> {
             for (UserAttendEvent user:
                usersAttend.getData()) {
+                Log.i(TAG, "getUserAttend: ++++++++++++++++++++++++++>"+usersAttend.getData());
+                Log.i(TAG, "onCreate:-----------------------------------> "+loginUserIdFromMain);
                    if(user.getAccount().getId().equals(loginUserIdFromMain)
                      && user.getEvent().getId().equals(eventIdFromMain)){
                        runOnUiThread(() -> {

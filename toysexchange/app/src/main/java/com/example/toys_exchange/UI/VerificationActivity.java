@@ -54,10 +54,10 @@ public class VerificationActivity extends AppCompatActivity {
                             .idcognito(userId)
                             .build();
 
-                    Amplify.DataStore.save(user,
-                            success -> Log.i(TAG, "Saved User DataStore: " + success.item().getUsername()),
-                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                    );
+//                    Amplify.DataStore.save(user,
+//                            success -> Log.i(TAG, "Saved User DataStore: " + success.item().getUsername()),
+//                            error -> Log.e(TAG, "Could not save item to DataStore", error)
+//                    );
                     // API save to backend
                     Amplify.API.mutate(
                             ModelMutation.create(user),

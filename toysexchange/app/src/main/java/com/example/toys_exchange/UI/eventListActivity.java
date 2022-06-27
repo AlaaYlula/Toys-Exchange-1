@@ -22,6 +22,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.UserAttendEvent;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
@@ -166,15 +167,39 @@ public class eventListActivity extends AppCompatActivity {
                                 }
                             }
                             runOnUiThread(()->{
-                                Amplify.API.mutate(ModelMutation.delete(eventList.get(position)),
-                                        response ->{
-                                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                            Log.i(TAG, "Event deleted " + response);
-                                            eventList.remove(position);
-                                            customEventAdapter.notifyItemRemoved(position);
+                                Amplify.API.query(
+                                        ModelQuery.list(UserAttendEvent.class),
+                                        userAttendEvent -> {
+                                            if(userAttendEvent.hasData()) {
+                                                for (UserAttendEvent userAttendEvent1 :
+                                                        userAttendEvent.getData()) {
+                                                    if(userAttendEvent1.getEvent().getId().equals(eventList.get(position).getId())) // Add For comments check
+                                                    {
+                                                        Amplify.API.mutate(ModelMutation.delete(userAttendEvent1),
+                                                                response ->{
+                                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
+                                                                },
+                                                                error -> Log.e(TAG, "delete failed", error)
+                                                        );
+                                                    }
+                                                }
+                                            }
+                                            runOnUiThread(()->{
+                                                Amplify.API.mutate(ModelMutation.delete(eventList.get(position)),
+                                            response ->{
+                                                // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                                Log.i(TAG, "Event deleted " + response);
+                                                eventList.remove(position);
+                                                customEventAdapter.notifyItemRemoved(position);
+                                            },
+                                            error -> Log.e(TAG, "delete failed", error)
+                                    );
+                                            });
+
                                         },
-                                        error -> Log.e(TAG, "delete failed", error)
+                                        error -> Log.e(TAG, error.toString(), error)
                                 );
+//
                             });
 
                         },

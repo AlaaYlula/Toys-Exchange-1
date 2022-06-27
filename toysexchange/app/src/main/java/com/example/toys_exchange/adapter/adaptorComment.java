@@ -72,8 +72,6 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
     public void onBindViewHolder(@NonNull CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CustomViewHolder.loginUserIdSaved = loginUserId;
          userId = commentsList.get(position).getAccountCommentsId();
-        Log.i(TAG, "login User Id onBindViewHolder "+loginUserId );
-
         Amplify.API.query(
                     ModelQuery.get(Account.class,userId),
                     user -> {
@@ -124,9 +122,6 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             username = itemView.findViewById(R.id.username_comment);
             text = itemView.findViewById(R.id.text_comment);
             deletebtn = itemView.findViewById(R.id.btn_deleteComment);
-
-            Log.i(TAG, "login User Id CustomViewHolder "+loginUserIdSaved );
-
 
             deletebtn.setOnClickListener(new View.OnClickListener() {
                 @Override

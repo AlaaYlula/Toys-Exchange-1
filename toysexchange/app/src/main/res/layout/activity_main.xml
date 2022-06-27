@@ -63,25 +63,35 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/DetailEvent"
+        android:id="@+id/addStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Event"
+        android:text="Add Store"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/DetailEvent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Add Event"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
 
 
-    <Button
-        android:id="@+id/detailToy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="detail Toy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/DetailEvent" />
+<!--    <Button-->
+<!--        android:id="@+id/detailToy"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="4dp"-->
+<!--        android:text="detail Toy"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/DetailEvent" />-->
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -107,8 +117,9 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/add_fab"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/DetailEvent" />
+        app:layout_constraintHorizontal_bias="1.0"/>
+<!--        app:layout_constraintStart_toEndOf="@+id/DetailEvent" -->
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_fab"

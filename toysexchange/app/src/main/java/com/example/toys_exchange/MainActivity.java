@@ -23,12 +23,15 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventDetailsActivity;
+import com.example.toys_exchange.UI.StoreAddActivity;
+import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
+import com.example.toys_exchange.fragmenrs.StoreFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -87,21 +90,26 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TabAdapter(getSupportFragmentManager());
         adapter.addFragment(new EventFragment(), "Event");
         adapter.addFragment(new ToyFragment(), "Toy");
-//        adapter.addFragment(new Tab3Fragment(), "Tab 3");
+        adapter.addFragment(new StoreFragment(), "store");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        Button btnDetailEvent = findViewById(R.id.DetailEvent);
-
-        btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, WishListActivity.class));
+        Button addStore = findViewById(R.id.addStore);
+        addStore.setOnClickListener(view ->{
+            startActivity(new Intent(this, StoreListActivity.class));
         });
 
-        Button btnDetailToy = findViewById(R.id.detailToy);
+       // Button btnDetailEvent = findViewById(R.id.DetailEvent);
 
-        btnDetailToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity2.class));
-        });
+//        btnDetailEvent.setOnClickListener(view -> {
+//            startActivity(new Intent(this, WishListActivity.class));
+//        });
+
+       // Button btnDetailToy = findViewById(R.id.detailToy);
+
+//        btnDetailToy.setOnClickListener(view -> {
+//            startActivity(new Intent(this, MainActivity2.class));
+//        });
 
         mAdd = findViewById(R.id.add_fab);
         mAddEvent = findViewById(R.id.add_event);

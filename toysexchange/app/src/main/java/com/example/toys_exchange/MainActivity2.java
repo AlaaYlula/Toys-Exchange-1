@@ -1,8 +1,6 @@
 package com.example.toys_exchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -63,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
-        TextView addEvent = findViewById(R.id.addEvent);
+        TextView addEvent = findViewById(R.id.addStore);
         addEvent.setOnClickListener(view -> {
            Intent intent =  new Intent(getApplicationContext(), EventActivity.class);
            startActivity(intent);

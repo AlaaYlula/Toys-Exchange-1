@@ -219,15 +219,17 @@ public class EventDetailsActivity extends AppCompatActivity {
     private void getUserAttend(){
         Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
            usersAttend -> {
-            for (UserAttendEvent user:
-               usersAttend.getData()) {
-                   if(user.getAccount().getId().equals(loginUserIdFromMain)
-                     && user.getEvent().getId().equals(eventIdFromMain)){
-                       runOnUiThread(() -> {
-                           btnAttend.setText("Un Attend");
-                       });
-                          break;
+            if(usersAttend.hasData()) {
+                for (UserAttendEvent user :
+                        usersAttend.getData()) {
+                    if (user.getAccount().getId().equals(loginUserIdFromMain)
+                            && user.getEvent().getId().equals(eventIdFromMain)) {
+                        runOnUiThread(() -> {
+                            btnAttend.setText("Un Attend");
+                        });
+                        break;
                     }
+                }
             }
 
           },

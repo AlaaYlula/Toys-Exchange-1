@@ -15,6 +15,8 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
+import java.util.Arrays;
+
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -54,10 +56,7 @@ public class VerificationActivity extends AppCompatActivity {
                             .idcognito(userId)
                             .build();
 
-                    Amplify.DataStore.save(user,
-                            success -> Log.i(TAG, "Saved User DataStore: " + success.item().getUsername()),
-                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-                    );
+//                    );
                     // API save to backend
                     Amplify.API.mutate(
                             ModelMutation.create(user),

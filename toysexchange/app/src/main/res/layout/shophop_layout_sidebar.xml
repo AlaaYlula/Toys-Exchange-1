@@ -196,7 +196,7 @@
                 android:background="@color/ShopHop_view_color" />
 
             <TextView
-                android:id="@+id/addStore"
+                android:id="@+id/addEvent"
                 style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
                 android:drawableStart="@drawable/shophop_ic_add"
                 android:gravity="center_vertical"

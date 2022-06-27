@@ -13,13 +13,17 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
+import com.example.toys_exchange.adapter.EventDeleteAdapter;
+import com.example.toys_exchange.adapter.ToyDeleteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +44,7 @@ public class toyListActivity extends AppCompatActivity {
     List<Account> acclist = new ArrayList<>();
     public String userId;
 
+    ToyDeleteAdapter toyDeleteAdapter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -51,10 +56,14 @@ public class toyListActivity extends AppCompatActivity {
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             userId = msg.getData().getString("id");
-            getToyByUser();
+            deleteToyByUser();
             return true;
         });
         getToys();
+
+
+//        Log.i(TAG, "toyList: " + toyList);
+
     }
 
     @Override
@@ -119,28 +128,69 @@ public class toyListActivity extends AppCompatActivity {
 
 
 
-    private void getToyByUser()
-    {
+    private void deleteToyByUser() {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
-        // create an Adapter // Custom Adapter
-        CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+        toyDeleteAdapter = new ToyDeleteAdapter(toyList, new ToyDeleteAdapter.CustomClickListener() {
             @Override
-            public void onTaskClickListener(int position) {
-                Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
-                intent.putExtra("id", toyList.get(position).getId());
-                startActivity(intent);
+            public void onDeleteClickListener(int position) {
+                Amplify.API.query(
+                        ModelQuery.list(Toy.class),
+                        toys -> {
+                            if(toys.hasData()) {
+                                for (Toy toy :
+                                        toys.getData()) {
+                                    if(toy.getAccountToysId().equals(toyList.get(position).getId())) // Add For comments check
+                                    {
+                                        Amplify.API.mutate(ModelMutation.delete(toy),
+                                                response ->{
+                                                    Log.i(TAG, "Toy deleted " + response);
+                                                },
+                                                error -> Log.e(TAG, "toy failed", error)
+                                        );
+                                    }
+                                }
+                            }
+
+
+                            runOnUiThread(()->{
+                                Amplify.API.mutate(ModelMutation.delete(toyList.get(position)),
+                                        response ->{
+                                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                            Log.i(TAG, "Toy deleted " + response);
+                                            toyList.remove(position);
+                                            toyDeleteAdapter.notifyItemRemoved(position);
+                                        },
+                                        error -> Log.e(TAG, "delete failed", error)
+                                );
+                            });
+
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
+
             }
 
             @Override
             public void ontItemClickListener(int position) {
-
+                Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
+                intent.putExtra("toyName",toyList.get(position).getToyname());
+                intent.putExtra("description",toyList.get(position).getToydescription());
+                intent.putExtra("image",toyList.get(position).getImage());
+                intent.putExtra("price",toyList.get(position).getPrice());
+                intent.putExtra("condition",toyList.get(position).getCondition().toString());
+                intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                intent.putExtra("id",toyList.get(position).getAccountToysId());
+                intent.putExtra("toyId",toyList.get(position).getId());
+                intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
+                startActivity(intent);
             }
         });
 
+
         // set adapter on recycler view
-        recyclerView.setAdapter(customAdapter);
+        recyclerView.setAdapter(toyDeleteAdapter);
         // set other important properties
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llWishList"
+        android:id="@+id/llEvent"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -37,14 +37,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivWishList"
+            android:id="@+id/ivEventList"
             style="@style/ShopHopTabNotSelected"
             android:contentDescription="@string/sh_text_todo"
-            app:srcCompat="@drawable/shophop_ic_wish_list" />
+            app:srcCompat="@drawable/ic__01" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llCart"
+        android:id="@+id/llWish"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -55,7 +55,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llProfile"
+        android:id="@+id/llRecommendation"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -63,7 +63,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivProfile"
+            android:id="@+id/ivRecommendation"
             style="@style/ShopHopTabNotSelected"
             android:contentDescription="@string/sh_text_todo"
             app:srcCompat="@drawable/shophop_ic_profile_tab" />

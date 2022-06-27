@@ -61,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
-        TextView addEvent = findViewById(R.id.addStore);
+        TextView addEvent = findViewById(R.id.addEvent);
         addEvent.setOnClickListener(view -> {
            Intent intent =  new Intent(getApplicationContext(), EventActivity.class);
            startActivity(intent);

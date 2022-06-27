@@ -10,15 +10,16 @@
     tools:ignore="MissingPrefix"
     >
 
-<!--    <include-->
-<!--        android:id="@+id/toolbar_lay"-->
-<!--        layout="@layout/toolbar" />-->
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:overScrollMode="never"
+        android:layout_below="@id/toolbar_lay"
         android:paddingBottom="@dimen/sh_spacing_standard_new">
 
         <LinearLayout

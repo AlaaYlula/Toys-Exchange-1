@@ -1,6 +1,9 @@
 package com.example.toys_exchange;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -9,14 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -36,6 +42,7 @@ import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
+import com.example.toys_exchange.fragmenrs.WishListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -81,8 +88,21 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     LinearLayout llHome;
+    LinearLayout llEvent;
+    LinearLayout llWish;
+    LinearLayout llRecommendation;
+
+    ImageView ivHome;
+    ImageView ivEventList;
+    ImageView ivWishList;
+    ImageView ivRecommendation;
+
     private String acc_id;
     private ToyFragment toyFragment;
+    private EventFragment eventFragment;
+    private WishListFragment wishListFragment;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,25 +110,47 @@ public class MainActivity extends AppCompatActivity {
 
         getLoginUserId();
 
+        ivHome = findViewById(R.id.ivHome);
+        ivEventList = findViewById(R.id.ivEventList);
+        ivWishList = findViewById(R.id.ivWishList);
+        ivRecommendation = findViewById(R.id.ivRecommendation);
+
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId =  logedInUser.getUserId();
 
-        llHome = findViewById(R.id.llHome);
+
+        enable(ivHome);
         toyFragment = new ToyFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.container,toyFragment).commit();
+
+        llHome = findViewById(R.id.llHome);
+        llHome.setOnClickListener(view -> {
+            enable(ivHome);
+            toyFragment = new ToyFragment();
+            changeFragment(toyFragment);
+        });
+
+        llEvent = findViewById(R.id.llEvent);
+        llEvent.setOnClickListener(view -> {
+            enable(ivEventList);
+            eventFragment = new EventFragment();
+            changeFragment(eventFragment);
+        });
+
+        llWish = findViewById(R.id.llWish);
+        llWish.setOnClickListener(view -> {
+            enable(ivWishList);
+            wishListFragment = new WishListFragment();
+            changeFragment(wishListFragment);
+        });
+
+
 
         TextView tvAccount = findViewById(R.id.tvAccount);
         tvAccount.setOnClickListener(view -> {
             Intent intent = new Intent(this, profileActivity.class);
             startActivity(intent);
         });
-
-        llHome.setOnClickListener(view -> {
-            toyFragment = new ToyFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, toyFragment).commit();
-
-        });
-
 
         TextView eventAttended = findViewById(R.id.attended_event);
         eventAttended.setOnClickListener(view -> {
@@ -217,5 +259,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void enable(ImageView imageView){
+        disableAll();
+        imageView.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
+        imageView.setColorFilter(getColor(R.color.ShopHop_colorPrimary));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void disableAll(){
+        disable(ivHome);
+        disable(ivEventList);
+        disable(ivWishList);
+        disable(ivRecommendation);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void disable(ImageView imageView){
+        imageView.setColorFilter(getColor(R.color.ShopHop_textColorSecondary));
+        imageView.setBackground(null);
+    }
+
+
+    private void changeFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
 }
 

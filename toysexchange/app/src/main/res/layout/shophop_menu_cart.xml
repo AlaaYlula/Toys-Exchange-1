@@ -8,16 +8,16 @@
     android:paddingEnd="@dimen/sh_spacing_control_half">
 
     <ImageView
-        android:id="@+id/ivCart"
+        android:id="@+id/ivWishList"
         style="@style/ShopHopTabNotSelected"
         android:contentDescription="@string/sh_text_todo"
-        app:srcCompat="@drawable/shophop_ic_shopping_cart" />
+        app:srcCompat="@drawable/shophop_ic_wish_list" />
 
     <TextView
         android:id="@+id/tvNotificationCount"
         android:layout_width="@dimen/_14sdp"
         android:layout_height="@dimen/_14sdp"
-        android:layout_alignEnd="@id/ivCart"
+        android:layout_alignEnd="@id/ivWishList"
         tools:text="@string/sh_lbl_10"
         android:visibility="gone"
         android:textColor="@color/ShopHop_white"

@@ -73,7 +73,6 @@ public class eventListActivity extends AppCompatActivity {
         cognitoId = logedInUser.getUserId();
 
         super.onResume();
-
     }
 
     private void getEvents()

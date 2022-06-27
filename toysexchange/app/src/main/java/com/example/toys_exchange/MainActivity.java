@@ -9,19 +9,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
+import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
@@ -74,58 +80,60 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
-
+    LinearLayout llHome;
+    private String acc_id;
+    private ToyFragment toyFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.shophop_activity_dashboard_shop);
 
-        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
-        viewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tabLayout);
-        adapter = new TabAdapter(getSupportFragmentManager());
-        adapter.addFragment(new EventFragment(), "Event");
-        adapter.addFragment(new ToyFragment(), "Toy");
-//        adapter.addFragment(new Tab3Fragment(), "Tab 3");
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+        getLoginUserId();
 
-        Button btnDetailEvent = findViewById(R.id.DetailEvent);
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId =  logedInUser.getUserId();
 
-        btnDetailEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, WishListActivity.class));
+        llHome = findViewById(R.id.llHome);
+        toyFragment = new ToyFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,toyFragment).commit();
+
+        TextView tvAccount = findViewById(R.id.tvAccount);
+        tvAccount.setOnClickListener(view -> {
+            Intent intent = new Intent(this, profileActivity.class);
+            startActivity(intent);
         });
 
-        Button btnDetailToy = findViewById(R.id.detailToy);
+        llHome.setOnClickListener(view -> {
+            toyFragment = new ToyFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, toyFragment).commit();
 
-        btnDetailToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity2.class));
-        });
-
-        mAdd = findViewById(R.id.add_fab);
-        mAddEvent = findViewById(R.id.add_event);
-        mAddToy = findViewById(R.id.add_toy);
-
-
-
-        mAdd.setOnClickListener(view -> {
-            if(mAddToy.getVisibility() != View.VISIBLE){
-                mAddToy.setVisibility(View.VISIBLE);
-                mAddEvent.setVisibility(View.VISIBLE);
-            }else {
-                mAddToy.setVisibility(View.GONE);
-                mAddEvent.setVisibility(View.GONE);
-            }
         });
 
 
-        mAddEvent.setOnClickListener(view -> {
-            startActivity(new Intent(this, EventActivity.class));
+        TextView eventAttended = findViewById(R.id.attended_event);
+        eventAttended.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EventAttendList.class);
+            intent.putExtra("loginUserId",acc_id);
+            intent.putExtra("cognitoId",cognitoId);
+            startActivity(intent);
         });
-        mAddToy.setOnClickListener(view -> {
-            startActivity(new Intent(this, ToyActivity.class));
+
+
+        TextView addEvent = findViewById(R.id.addEvent);
+        addEvent.setOnClickListener(view -> {
+            Intent intent =  new Intent(getApplicationContext(), EventActivity.class);
+            startActivity(intent);
         });
+
+        TextView addToy = findViewById(R.id.addToy);
+        addToy.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ToyActivity.class);
+            startActivity(intent);
+        });
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
     }
 
@@ -188,6 +196,25 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("AuthQuickStart", "IdentityId not present because: " + cognitoAuthSession.getIdentityId().getError().toString());
             }
         },error -> Log.e(TAG, error.toString()));
+    }
+
+    public  void getLoginUserId() {
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId = logedInUser.getUserId();
+        Amplify.API.query(
+                ModelQuery.list(Account.class),
+                allUsers -> {
+                    for (Account userAc:
+                            allUsers.getData()) {
+                        if(userAc.getIdcognito().equals(cognitoId)){
+                            acc_id = userAc.getId();
+                        }
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+
     }
 
 }

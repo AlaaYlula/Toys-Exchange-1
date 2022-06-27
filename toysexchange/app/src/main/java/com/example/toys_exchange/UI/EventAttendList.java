@@ -74,6 +74,7 @@ public class EventAttendList extends AppCompatActivity {
 
                     if(success.hasData()) {
                         for (UserAttendEvent userAttendEvent : success.getData()) {
+
                             if(userAttendEvent.getAccount().getId().equals(loginUserIdFromProfile)){
                                 eventList.add(userAttendEvent.getEvent());
                             }

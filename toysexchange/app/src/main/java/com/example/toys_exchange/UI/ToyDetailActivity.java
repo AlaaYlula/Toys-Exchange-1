@@ -18,10 +18,12 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
+import com.bumptech.glide.Glide;
 import com.example.toys_exchange.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.Objects;
 
 public class ToyDetailActivity extends AppCompatActivity {
@@ -47,9 +49,10 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     private String userId;
     private String toyId;
-
     private String loggedAccountId;
     private String idCognito;
+
+    URL url;
 
     private int count=0;
 
@@ -77,8 +80,8 @@ public class ToyDetailActivity extends AppCompatActivity {
 //        toyType=findViewById(R.id.txt_view_type);
 
 
-        addToWishList=findViewById(R.id.image_view_fav);
-        toyImage=findViewById(R.id.image_view_toy);
+        addToWishList=findViewById(R.id.ivFavourite);
+        toyImage=findViewById(R.id.productViewPager);
 
         Intent toyIntent=getIntent();
         String name=toyIntent.getStringExtra("toyName");
@@ -94,6 +97,12 @@ public class ToyDetailActivity extends AppCompatActivity {
 
         toolbar.setTitle(toyIntent.getStringExtra("toyName"));
 
+        getUrl(image);
+        Glide.with(this).load(url).into(toyImage);
+
+        addToWishList.setOnClickListener(view -> {
+            addToWish();
+        });
 //        toyName.setText(name);
 //        toyDescription.setText(description);
 //        toyCondition.setText(condition);
@@ -248,7 +257,6 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     }
 
-
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
@@ -297,6 +305,19 @@ public class ToyDetailActivity extends AppCompatActivity {
                     );
                 },
                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+    private void getUrl(String imagekey){
+        Amplify.Storage.getUrl(
+                imagekey,
+                result -> {
+                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
+                    url = result.getUrl();
+                },
+
+
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
     }
 

@@ -1,6 +1,7 @@
 package com.example.toys_exchange.fragmenrs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +20,11 @@ import android.view.ViewGroup;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventActivity;
+import com.example.toys_exchange.UI.ToyDetailActivity;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
 
 import java.util.ArrayList;
@@ -27,9 +32,12 @@ import java.util.List;
 
 public class WishListFragment extends Fragment {
 
+    private static final String TAG = WishListFragment.class.getSimpleName();
     private View mView;
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
+    private List<String> toyIds = new ArrayList<>();
+
 
 
     public WishListFragment() {
@@ -48,26 +56,30 @@ public class WishListFragment extends Fragment {
         // Inflate the layout for this fragment
 
         mView = inflater.inflate(R.layout.activity_wish_list, container, false);
+            RecyclerView recyclerView = mView.findViewById(R.id.recycler_wish_list);
 
 
         toyList = new ArrayList<>();
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mView.getContext());
+        String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
+        Log.i(TAG, "getUserId: -----------------------------------<> " + userId);
+        getToys(userId);
         handler = new Handler(Looper.getMainLooper(), msg -> {
-            RecyclerView recyclerView = mView.findViewById(R.id.recycler_wish_list);
 
-//            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,
-//                    2, LinearLayoutManager.VERTICAL,
-//                    false);
 
             CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
                 public void onTaskClickListener(int position) {
-                    Intent intent = new Intent(getContext(), EventActivity.class);
+                    Intent intent = new Intent(mView.getContext(), ToyDetailActivity.class);
                     intent.putExtra("toyName", toyList.get(position).getToyname());
                     intent.putExtra("description", toyList.get(position).getToydescription());
                     intent.putExtra("image", toyList.get(position).getImage());
                     intent.putExtra("price", toyList.get(position).getPrice());
-                    intent.putExtra("condition", toyList.get(position).getCondition());
+                    intent.putExtra("condition", toyList.get(position).getCondition().toString());
+                    intent.putExtra("contactInfo", toyList.get(position).getContactinfo());
+                    intent.putExtra("id", toyList.get(position).getAccountToysId());
+                    intent.putExtra("toyId", toyList.get(position).getId());
                     startActivity(intent);
                 }
 
@@ -76,21 +88,51 @@ public class WishListFragment extends Fragment {
 
                 }
             });
-            recyclerView.setAdapter(customAdapter);
 
+            recyclerView.setAdapter(customAdapter);
+            recyclerView.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
+                    mView.getContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false);
+            recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+
             return true;
-        });
 
-        Amplify.API.query(ModelQuery.list(Toy.class), success -> {
+    });
+        return mView;
 
-                    for (Toy toy : success.getData()) {
-                        Log.i("get toy ", toy.toString());
-                        toyList.add(toy);
+}
+
+    public void getToys(String userId) {
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    if (wishList.hasData()) {
+                        for (UserWishList wishToy : wishList.getData()) {
+                            Log.i(TAG , "WishToy object =>>>>>>>>>>>>>>" + wishToy);
+                            if (wishToy!= null && wishToy.getAccount().getId().equals(userId)) {
+                                toyIds.add(wishToy.getToy().getId());
+                            }
+                        }
+                        getWishList();
                     }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
 
+    public void getWishList() {
+        Amplify.API.query(ModelQuery.list(Toy.class), success -> {
+                    for (Toy toy : success.getData()) {
+                        for (String toyId : toyIds) {
+                            if (toy.getId().equals(toyId)) {
+                                toyList.add(toy);
+                            }
+                        }
+                    }
                     Bundle bundle = new Bundle();
                     bundle.putString("data", "done");
 
@@ -99,7 +141,5 @@ public class WishListFragment extends Fragment {
                     handler.sendMessage(message);
                 }, error -> Log.e("error: ", "-> ", error)
         );
-
-        return mView;
     }
 }

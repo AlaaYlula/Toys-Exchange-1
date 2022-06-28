@@ -16,11 +16,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
+import com.example.toys_exchange.adapter.ToyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +32,15 @@ import java.util.List;
 
 public class ToyFragment extends Fragment {
 
+    private static final String TAG = ToyFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
     private View mView;
+
+    private String loginUserId;
+    String cognitoId;
+
 
     String[] toyRadioButton =new String[]{"ALL","SELL","REQUEST","DONATION"};
     String[] toyRadioButton2 =new String[]{"Condition","NEW","USED"};
@@ -63,6 +72,10 @@ public class ToyFragment extends Fragment {
         setSpinnerWithRadioButton();
         setToyRadioButtonConditionListener();
 
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        cognitoId = logedInUser.getUserId();
+        getLoginUserId();
+
         return mView;
     }
 
@@ -72,6 +85,11 @@ public class ToyFragment extends Fragment {
         setRecyclerView();
         setToyRadioButtonConditionListener();
         setSpinnerWithRadioButton();
+
+
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        cognitoId = logedInUser.getUserId();
+        getLoginUserId();
 
         super.onResume();
     }
@@ -233,35 +251,73 @@ public class ToyFragment extends Fragment {
 
             recyclerView = mView.findViewById(R.id.recycler_view);
 
-            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+//            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+//                @Override
+//                public void onTaskClickListener(int position) {
+//                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
+//                    intent.putExtra("toyName",toyList.get(position).getToyname());
+//                    intent.putExtra("description",toyList.get(position).getToydescription());
+//                    intent.putExtra("image",toyList.get(position).getImage());
+//                    intent.putExtra("price",toyList.get(position).getPrice());
+//                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
+//                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+//                    intent.putExtra("id",toyList.get(position).getAccountToysId());
+//                    intent.putExtra("toyId",toyList.get(position).getId());
+//                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
+//                    startActivity(intent);
+//                }
+//
+//
+//                @Override
+//                public void ontItemClickListener(int position) {
+//
+//                }
+//            });
+            ToyAdapter toyAdapter = new ToyAdapter(toyList,new ToyAdapter.CustomClickListener() {
                 @Override
-                public void onTaskClickListener(int position) {
-                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-                    intent.putExtra("toyName",toyList.get(position).getToyname());
-                    intent.putExtra("description",toyList.get(position).getToydescription());
-                    intent.putExtra("image",toyList.get(position).getImage());
-                    intent.putExtra("price",toyList.get(position).getPrice());
-                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
-                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
-                    intent.putExtra("id",toyList.get(position).getAccountToysId());
-                    intent.putExtra("toyId",toyList.get(position).getId());
-                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
-                    startActivity(intent);
-                }
+                public void onFavClickListener(int position) {
 
+
+                }
 
                 @Override
                 public void ontItemClickListener(int position) {
-
+                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
+                    intent.putExtra("toyName", toyList.get(position).getToyname());
+                    intent.putExtra("description", toyList.get(position).getToydescription());
+                    intent.putExtra("image", toyList.get(position).getImage());
+                    intent.putExtra("price", toyList.get(position).getPrice());
+                    intent.putExtra("condition", toyList.get(position).getCondition());
+                    intent.putExtra("toyId",toyList.get(position).getId());
+                    startActivity(intent);
                 }
             });
 
-            recyclerView.setAdapter(customAdapter);
+            recyclerView.setAdapter(toyAdapter);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
             return true;
         });
+
+    }
+
+
+    private void getLoginUserId() {
+        Amplify.API.query(
+                ModelQuery.list(Account.class),
+                allUsers -> {
+                    for (Account userAc:
+                            allUsers.getData()) {
+                        if(userAc.getIdcognito().equals(cognitoId)){
+                            loginUserId = userAc.getId();
+
+                        }
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
 
     }
 

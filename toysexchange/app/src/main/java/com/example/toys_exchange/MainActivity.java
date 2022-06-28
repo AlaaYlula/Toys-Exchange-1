@@ -1,17 +1,18 @@
 package com.example.toys_exchange;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,12 +36,16 @@ import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.EventDetailsActivity;
+import com.example.toys_exchange.UI.StoreAddActivity;
+import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.ToyActivity;
-import com.example.toys_exchange.UI.ToyDetailActivity;
 
 import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.eventListActivity;
+import com.example.toys_exchange.UI.toyListActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
+import com.example.toys_exchange.fragmenrs.StoreFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
 import com.example.toys_exchange.fragmenrs.WishListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             mProfile.setText("profile");
             mProfile.setAllCaps(true);
 
-            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), WishListActivity.class);
             startActivity(startAllTasksIntent);
 
         }
@@ -101,13 +106,40 @@ public class MainActivity extends AppCompatActivity {
     private ToyFragment toyFragment;
     private EventFragment eventFragment;
     private WishListFragment wishListFragment;
+    private StoreFragment storeFragment;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shophop_activity_dashboard_shop);
-
+//
+//        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
+//        viewPager = findViewById(R.id.viewPager);
+//        tabLayout = findViewById(R.id.tabLayout);
+//        adapter = new TabAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new EventFragment(), "Event");
+//        adapter.addFragment(new ToyFragment(), "Toy");
+//        adapter.addFragment(new StoreFragment(), "store");
+//        viewPager.setAdapter(adapter);
+//        tabLayout.setupWithViewPager(viewPager);
+//
+//        Button addStore = findViewById(R.id.addStore);
+//        addStore.setOnClickListener(view ->{
+//            startActivity(new Intent(this, StoreListActivity.class));
+//        });
+//
+//       // Button btnDetailEvent = findViewById(R.id.DetailEvent);
+//
+////        btnDetailEvent.setOnClickListener(view -> {
+////            startActivity(new Intent(this, WishListActivity.class));
+////        });
+//
+//       // Button btnDetailToy = findViewById(R.id.detailToy);
+//
+////        btnDetailToy.setOnClickListener(view -> {
+////            startActivity(new Intent(this, MainActivity2.class));
+////        });
         getLoginUserId();
 
         ivHome = findViewById(R.id.ivHome);
@@ -144,6 +176,13 @@ public class MainActivity extends AppCompatActivity {
             changeFragment(wishListFragment);
         });
 
+        // add for store
+        llRecommendation = findViewById(R.id.llRecommendation);
+        llRecommendation.setOnClickListener(view -> {
+            enable(ivRecommendation);
+            storeFragment = new StoreFragment();
+            changeFragment(storeFragment);
+        });
 
 
         TextView tvAccount = findViewById(R.id.tvAccount);
@@ -160,6 +199,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        TextView myEvent = findViewById(R.id.my_event);
+        myEvent.setOnClickListener(view -> {
+            Intent intent = new Intent(this, eventListActivity.class);
+            intent.putExtra("userId", acc_id);
+            intent.putExtra("cognitoId",cognitoId);
+            startActivity(intent);
+        });
+        TextView myToys = findViewById(R.id.my_toys);
+        myToys.setOnClickListener(view -> {
+            Intent intent = new Intent(this, toyListActivity.class);
+            startActivity(intent);
+        });
+
 
         TextView addEvent = findViewById(R.id.addEvent);
         addEvent.setOnClickListener(view -> {
@@ -173,8 +225,18 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        TextView addStore = findViewById(R.id.addStore);
+        addStore.setOnClickListener(view -> {
+            Intent intent = new Intent(this, StoreAddActivity.class);
+            startActivity(intent);
+        });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userId =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
+        Log.i(TAG, "SharedPreferences => " + userId);
 
 
     }
@@ -182,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
     }
 
@@ -215,6 +278,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "Signed out successfully");
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             authSession("logout");
+            Context context = getApplicationContext();
+            SharedPreferences sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
+            sharedPref.edit().remove("userId");
             finish();
         },error -> Log.e(TAG, error.toString())
         );

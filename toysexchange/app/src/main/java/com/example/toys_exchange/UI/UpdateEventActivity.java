@@ -1,8 +1,6 @@
 package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -21,11 +17,8 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
-import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.UserAttendEvent;
 import com.example.toys_exchange.R;
-import com.example.toys_exchange.adapter.EventDeleteAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,28 +26,22 @@ import java.util.List;
 public class UpdateEventActivity extends AppCompatActivity {
 
     private static final String TAG = UpdateEventActivity.class.getSimpleName();
-    List<Event> eventList = new ArrayList<>();
-    private Handler handler;
-    boolean click = true;
 
+    private Handler handler;
 
     public String acc_id;
-    Account acc;
     List<Account> acclist = new ArrayList<>();
     public String userId;
 
-    String cognitoId;
-    private String loginUserId;
-    private String loginUserName;
     public EditText eventTitle;
     public EditText eventBody;
+
     public String title;
     public String body;
     public String eventId;
+
     Button updateForm;
     Button cnacelBtn;
-
-    EventDeleteAdapter customEventAdapter;
 
 
     @Override
@@ -64,7 +51,7 @@ public class UpdateEventActivity extends AppCompatActivity {
 
         eventTitle = findViewById(R.id.title_event_update);
         eventBody = findViewById(R.id.description_event_update);
-        updateForm = findViewById(R.id.btn_update_Event);
+        updateForm = findViewById(R.id.btn_update_Toy);
 
         getEventByUser();
 
@@ -73,7 +60,7 @@ public class UpdateEventActivity extends AppCompatActivity {
             return true;
         });
 
-        cnacelBtn = findViewById(R.id.btn_cancelUpdateEvent);
+        cnacelBtn = findViewById(R.id.btn_cancelUpdateToy);
         cnacelBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), eventListActivity.class);
             startActivity(intent);
@@ -129,7 +116,11 @@ public class UpdateEventActivity extends AppCompatActivity {
                                                                 if(events.hasData()){
                                                                     for(Event event : events.getData()){
                                                                         if(event.getId().equals(eventId)){
-                                                                            Event eventOne = Event.builder().title(eventTitle.getText().toString()).eventdescription(eventBody.getText().toString()).id(eventId).accountEventsaddedId(acc_id).longitude(1.0).latitude(2.0).build();
+                                                                            Event eventOne = Event.builder().title(eventTitle.getText().toString())
+                                                                                    .eventdescription(eventBody.getText().toString())
+                                                                                    .id(eventId)
+                                                                                    .accountEventsaddedId(acc_id)
+                                                                                    .longitude(1.0).latitude(2.0).build();
                                                                             Amplify.API.mutate(ModelMutation.update(eventOne),
                                                                                     response -> {
                                                                                         runOnUiThread(()->{

@@ -79,7 +79,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
             eventName = itemView.findViewById(R.id.event_name);
             eventImage = itemView.findViewById(R.id.event_img);
             deleteBtn = itemView.findViewById(R.id.delete_event);
-//            updateBtn = itemView.findViewById(R.id.update_event);
+            updateBtn = itemView.findViewById(R.id.update_event);
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,18 +93,18 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
                 }
             });
 
-//            updateBtn.setOnClickListener(new View.OnClickListener(){
-//                        @Override
-//                        public void onClick(View v) {
-//                            if(listener!=null){
-//                                int position = getAdapterPosition();
-//                                if(position!=RecyclerView.NO_POSITION){
-//                                    listener.onUpdateClickListener(position);
-//                                }
-//                            }
-//                }
+            updateBtn.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            if(listener!=null){
+                                int position = getAdapterPosition();
+                                if(position!=RecyclerView.NO_POSITION){
+                                    listener.onUpdateClickListener(position);
+                                }
+                            }
+                }
 
-//            });
+            });
 
             itemView.setOnClickListener(view -> {
                 listener.ontItemClickListener(getAdapterPosition());
@@ -118,7 +118,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
     public interface CustomClickListener{
         void onDeleteClickListener(int position);
         void ontItemClickListener(int position);
-//        void onUpdateClickListener(int position);
+        void onUpdateClickListener(int position);
 
 
     }

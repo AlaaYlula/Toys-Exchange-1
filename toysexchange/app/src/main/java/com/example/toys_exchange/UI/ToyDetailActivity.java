@@ -1,11 +1,13 @@
 package com.example.toys_exchange.UI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
@@ -54,11 +57,10 @@ public class ToyDetailActivity extends AppCompatActivity {
     private String loggedAccountId;
     private String idCognito;
 
-    URL url;
+    private URL url;
+    private String test;
 
     private int count=0;
-    private Intent toyIntent;
-    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +68,26 @@ public class ToyDetailActivity extends AppCompatActivity {
         setContentView(R.layout.shophop_activity_product_detail);
 
 
+
+        handler=new Handler(Looper.getMainLooper(), msg->{
+            //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
+            // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
+            loggedAccountId=msg.getData().get("loggedUser").toString();
+            idCognito=msg.getData().get("idCognito").toString();
+            return true;
+        });
+
+        handler1=new Handler(Looper.getMainLooper(), msg->{
+            //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
+            toyUser.setText(msg.getData().get("username").toString());
+            return true;
+        });
+
+
+        getLoggedInAccount();
+
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
-        toyUser=findViewById(R.id.txt_view_user_name);
+//        toyUser=findViewById(R.id.txt_view_user_name);
 
         Toolbar toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
@@ -88,48 +108,37 @@ public class ToyDetailActivity extends AppCompatActivity {
         addToWishList=findViewById(R.id.ivFavourite);
         toyImage=findViewById(R.id.productViewPager);
 
-        toyIntent = getIntent();
+        Intent toyIntent = getIntent();
         String name= toyIntent.getStringExtra("toyName");
         String description= toyIntent.getStringExtra("description");
         Double price= toyIntent.getDoubleExtra("price",0.0);
         String condition= toyIntent.getStringExtra("condition");
         String type= toyIntent.getStringExtra("toyType");
-//        image= toyIntent.getStringExtra("image");
+        String image = toyIntent.getStringExtra("image");
         String contactInfo= toyIntent.getStringExtra("contactInfo");
-        userId = toyIntent.getStringExtra("id");
+//        userId = toyIntent.getStringExtra("id");
         toyId = toyIntent.getStringExtra("toyId");
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
-//        getUrl(image);
-//        Glide.with(this).load(url).into(toyImage);
-
-        addToWishList.setOnClickListener(view -> {
-            addToWish();
-        });
-//        toyName.setText(name);
-//        toyDescription.setText(description);
-//        toyCondition.setText(condition);
-//        contactMe.setText(contactInfo);
-//        toyPrice.setText(String.valueOf(price) + "JD");
-
-//        toyName.setText(name);
-//        toyDescription.setText(description);
-//        toyCondition.setText(condition);
-//        contactMe.setText(contactInfo);
-////        toyPrice.setText(String.valueOf(price));
-//        toyType.setText(type);
         getUrl(image);
-        Picasso.get().load(url.toString()).into(toyImage);
+        addToWishList.setOnClickListener(view -> {
+            if(count == 0){
+                addToWish();
+                count++;
+            }else if(count == 1) {
+                removeFromWishList();
+                count--;
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
-        toyIntent = getIntent();
-        image = toyIntent.getStringExtra("image");
-
-
         super.onResume();
     }
 
@@ -156,6 +165,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     }
 
     public void addToWish(){
+        Log.i(TAG, "TEST => ");
         Amplify.API.query(
                 ModelQuery.list(Toy.class,Toy.ID.eq(toyId)),
                 toys -> {
@@ -294,7 +304,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
-                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);
 
@@ -324,18 +334,16 @@ public class ToyDetailActivity extends AppCompatActivity {
         );
     }
 
-    private void getUrl(String imagekey){
+    private void getUrl(String image){
         Amplify.Storage.getUrl(
-                imagekey,
+                image,
                 result -> {
                     Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
-                    url = result.getUrl();
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(toyImage);
+                    });
                 },
-
-
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
     }
-
-
 }

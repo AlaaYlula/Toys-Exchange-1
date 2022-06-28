@@ -17,7 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+            android:name=".UI.UpdateToyActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.UpdateEventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.StoreAddActivity"
             android:exported="false" />
         <activity
             android:name=".UI.EventAttendList"
@@ -29,7 +35,7 @@
         <activity
             android:name=".UI.toyListActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.eventListActivity"
             android:exported="false" />
@@ -40,8 +46,8 @@
         <activity
             android:name=".UI.ToyDetailActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.EventDetailsActivity"
             android:exported="false" />
@@ -55,7 +61,8 @@
         <activity
             android:name=".UI.data.model.LoginActivity"
             android:exported="true"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"
+            android:theme="@style/ShopHopAppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
@@ -65,11 +72,12 @@
         <activity
             android:name=".UI.SignUpActivity"
             android:exported="false"
-            android:label="@string/title_activity_signup" />
+            android:label="@string/title_activity_signup"
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.ToyActivity"
             android:exported="true"

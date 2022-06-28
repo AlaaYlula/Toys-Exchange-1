@@ -4,83 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.EventActivity">
+    tools:context=".UI.StoreAddActivity">
+
 
     <TextView
         android:id="@+id/addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update Event"
-        app:layout_constraintBottom_toTopOf="@+id/title_update"
+        android:text="Add Store"
+        app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title_update"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Title"
-        app:layout_constraintBottom_toTopOf="@+id/title_event_update"
+        app:layout_constraintBottom_toTopOf="@+id/title_store"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/title_event_update"
+        android:id="@+id/title_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
         android:text="Title"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/description_update"
+        app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/description_update"
+        android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/description_event_update"
+        app:layout_constraintBottom_toTopOf="@+id/description_store"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/description_event_update"
+        android:id="@+id/description_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="336dp"
         android:inputType="text"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/btn_update_Toy"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_update_Toy"
+        android:id="@+id/btn_addStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="Update"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="52dp"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancelUpdateToy"
-        app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_cancelUpdateToy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_event_update"
-        app:layout_constraintVertical_bias="0.923" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

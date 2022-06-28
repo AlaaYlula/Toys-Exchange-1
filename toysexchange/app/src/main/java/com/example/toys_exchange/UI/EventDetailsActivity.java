@@ -98,19 +98,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.description_eventDetail);
         description.setText(passedIntent.getStringExtra("description"));
 
-        updateBtn = findViewById(R.id.btn_update_EventDetails);
-
-        updateBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
-            intent.putExtra("eventTitle",passedIntent.getStringExtra("eventTitle"));
-            intent.putExtra("description",passedIntent.getStringExtra("description"));
-            intent.putExtra("userID",passedIntent.getStringExtra("userID"));
-            intent.putExtra("eventID",passedIntent.getStringExtra("eventID"));
-            intent.putExtra("cognitoID",passedIntent.getStringExtra("cognitoID"));
-            intent.putExtra("loginUserID",passedIntent.getStringExtra("loginUserID"));
-            intent.putExtra("loginUserName",passedIntent.getStringExtra("loginUserName"));
-            startActivity(intent);
-        });
+//        updateBtn = findViewById(R.id.btn_update_EventDetails);
+//
+//        updateBtn.setOnClickListener(view -> {
+//            Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
+//            intent.putExtra("eventTitle",passedIntent.getStringExtra("eventTitle"));
+//            intent.putExtra("description",passedIntent.getStringExtra("description"));
+//            intent.putExtra("userID",passedIntent.getStringExtra("userID"));
+//            intent.putExtra("eventID",passedIntent.getStringExtra("eventID"));
+//            intent.putExtra("cognitoID",passedIntent.getStringExtra("cognitoID"));
+//            intent.putExtra("loginUserID",passedIntent.getStringExtra("loginUserID"));
+//            intent.putExtra("loginUserName",passedIntent.getStringExtra("loginUserName"));
+//            startActivity(intent);
+//        });
 
 
         setEventValues();

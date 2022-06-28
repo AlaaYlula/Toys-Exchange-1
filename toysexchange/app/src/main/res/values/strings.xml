@@ -129,8 +129,8 @@
     <string name="sh_lbl_popular">Popular</string>
     <string name="sh_lbl_help_center">Help Center</string>
     <string name="sh_lbl_quick_pay_cards">Quick Pay Cards</string>
-    <string name="sh_lbl_my_offers">My Offers</string>
-    <string name="sh_lbl_my_orders">My Orders</string>
+    <string name="sh_lbl_my_offers">My Events</string>
+    <string name="sh_lbl_my_orders">My Toys</string>
     <string name="sh_lbl_address_manager">Address Manager</string>
     <string name="sh_lbl_verify_now">Verify now</string>
     <string name="sh_lbl_get_newest_offers">Get newest offers</string>
@@ -239,7 +239,7 @@
     <string name="sh_lbl_save_profile">Save Profile</string>
     <string name="sh_lbl_change_pswd">Change Password</string>
     <string name="sh_lbl_edit_profile">Edit Profile</string>
-    <string name="sh_hint_first_name">First Name</string>
+    <string name="sh_hint_first_name">User Name</string>
     <string name="sh_hint_last_name">Last name</string>
     <string name="sh_hint_new_password">New Password</string>
     <string name="sh_lbl_change_now">Change Now</string>
@@ -352,6 +352,8 @@
     </array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_store">"Add Store "</string>
+    <string name="store_list">My Stores</string>
 
 
 </resources>

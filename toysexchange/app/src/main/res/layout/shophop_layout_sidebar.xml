@@ -209,6 +209,12 @@
                 android:gravity="center_vertical"
                 android:text="@string/add_toy" />
 
+            <TextView
+                android:id="@+id/addStore"
+                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
+                android:drawableStart="@drawable/shophop_ic_add"
+                android:gravity="center_vertical"
+                android:text="@string/add_store" />
 
 
 <!--            <View-->

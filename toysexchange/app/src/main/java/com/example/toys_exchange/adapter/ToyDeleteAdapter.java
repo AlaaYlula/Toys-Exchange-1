@@ -1,6 +1,5 @@
 package com.example.toys_exchange.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +53,7 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
         ImageView toyImage;
         TextView toyName;
         Button deleteBtn;
+        Button updateBtn;
         CustomClickListener listener;
 
         public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
@@ -61,9 +61,10 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.toy_name);
+            toyName = itemView.findViewById(R.id.tvName);
             toyImage = itemView.findViewById(R.id.toy_img);
             deleteBtn = itemView.findViewById(R.id.delete_toy);
+            updateBtn = itemView.findViewById(R.id.update_toy);
 
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,21 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
                 }
             });
 
+            updateBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int position = getAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION){
+                            listener.onUpdateClickListener(position);
+                        }
+                    }
+                }
+
+            });
+
+
+
             itemView.setOnClickListener(view -> {
                 listener.ontItemClickListener(getAdapterPosition());
             });
@@ -90,6 +106,8 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
     public interface CustomClickListener{
         void onDeleteClickListener(int position);
         void ontItemClickListener(int position);
+        void onUpdateClickListener(int position);
+
     }
 
 }

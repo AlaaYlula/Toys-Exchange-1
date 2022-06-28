@@ -41,6 +41,8 @@ import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.ToyActivity;
 
 import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.eventListActivity;
+import com.example.toys_exchange.UI.toyListActivity;
 import com.example.toys_exchange.adapter.TabAdapter;
 import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.StoreFragment;
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private ToyFragment toyFragment;
     private EventFragment eventFragment;
     private WishListFragment wishListFragment;
+    private StoreFragment storeFragment;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -173,6 +176,13 @@ public class MainActivity extends AppCompatActivity {
             changeFragment(wishListFragment);
         });
 
+        // add for store
+        llRecommendation = findViewById(R.id.llRecommendation);
+        llRecommendation.setOnClickListener(view -> {
+            enable(ivRecommendation);
+            storeFragment = new StoreFragment();
+            changeFragment(storeFragment);
+        });
 
 
         TextView tvAccount = findViewById(R.id.tvAccount);
@@ -189,6 +199,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        TextView myEvent = findViewById(R.id.my_event);
+        myEvent.setOnClickListener(view -> {
+            Intent intent = new Intent(this, eventListActivity.class);
+            intent.putExtra("userId", acc_id);
+            intent.putExtra("cognitoId",cognitoId);
+            startActivity(intent);
+        });
+        TextView myToys = findViewById(R.id.my_toys);
+        myToys.setOnClickListener(view -> {
+            Intent intent = new Intent(this, toyListActivity.class);
+            startActivity(intent);
+        });
+
 
         TextView addEvent = findViewById(R.id.addEvent);
         addEvent.setOnClickListener(view -> {
@@ -202,12 +225,15 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        TextView addStore = findViewById(R.id.addStore);
+        addStore.setOnClickListener(view -> {
+            Intent intent = new Intent(this, StoreAddActivity.class);
+            startActivity(intent);
+        });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        Context context = getApplicationContext();
-//        SharedPreferences sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
-//        String userId = sharedPref.getString("userId", "");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         userId =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
         Log.i(TAG, "SharedPreferences => " + userId);

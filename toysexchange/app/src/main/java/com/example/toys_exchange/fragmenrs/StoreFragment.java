@@ -94,7 +94,6 @@ public class StoreFragment extends Fragment {
 
         handler = new Handler(Looper.getMainLooper(), msg ->{
 
-            //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
             recyclerView = mView.findViewById(R.id.recycler_view);
 
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);

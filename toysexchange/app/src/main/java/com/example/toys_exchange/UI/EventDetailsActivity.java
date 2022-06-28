@@ -56,11 +56,14 @@ public class EventDetailsActivity extends AppCompatActivity {
     Button btnAttend;
     Button deleteComment;
     Handler handler;
+    Button updateBtn;
 
     String eventIdFromMain;
     String cognitoIdFromMain;
     String loginUserIdFromMain;
     String userIdAddedEventFromMain;
+    String titEvent;
+
 
     Intent passedIntent;
     @SuppressLint("NotifyDataSetChanged")
@@ -69,13 +72,15 @@ public class EventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
-
+        getUserAttend();
 
         passedIntent = getIntent();
         eventIdFromMain = passedIntent.getStringExtra("eventID");
         cognitoIdFromMain = passedIntent.getStringExtra("cognitoID");
         loginUserIdFromMain = passedIntent.getStringExtra("loginUserID");
         userIdAddedEventFromMain = passedIntent.getStringExtra("userID");
+
+//        titEvent = passedIntent.getStringExtra("title");
 
 
 
@@ -93,8 +98,21 @@ public class EventDetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.description_eventDetail);
         description.setText(passedIntent.getStringExtra("description"));
 
-        getUserAttend();
-       // getCommentsList();
+        updateBtn = findViewById(R.id.btn_update_EventDetails);
+
+        updateBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
+            intent.putExtra("eventTitle",passedIntent.getStringExtra("eventTitle"));
+            intent.putExtra("description",passedIntent.getStringExtra("description"));
+            intent.putExtra("userID",passedIntent.getStringExtra("userID"));
+            intent.putExtra("eventID",passedIntent.getStringExtra("eventID"));
+            intent.putExtra("cognitoID",passedIntent.getStringExtra("cognitoID"));
+            intent.putExtra("loginUserID",passedIntent.getStringExtra("loginUserID"));
+            intent.putExtra("loginUserName",passedIntent.getStringExtra("loginUserName"));
+            startActivity(intent);
+        });
+
+
         setEventValues();
 
         // The Add Comment Button
@@ -192,7 +210,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                     runOnUiThread(() -> {
                                         Amplify.API.mutate(ModelMutation.delete(user),
                                                 response ->{
-                                                    Log.i(TAG, "UserAttendEvent deleted " + response.getData().getId());
+                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
 
                                                     runOnUiThread(() -> {
                                                         btnAttend.setText("Attend");

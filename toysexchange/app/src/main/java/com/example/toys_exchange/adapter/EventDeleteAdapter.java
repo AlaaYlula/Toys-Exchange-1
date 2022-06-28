@@ -79,7 +79,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
             eventName = itemView.findViewById(R.id.event_name);
             eventImage = itemView.findViewById(R.id.event_img);
             deleteBtn = itemView.findViewById(R.id.delete_event);
-            updateBtn = itemView.findViewById(R.id.update_event);
+//            updateBtn = itemView.findViewById(R.id.update_event);
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,19 +93,52 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
                 }
             });
 
-            updateBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    if(listener!=null){
-                        int position = getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
-                            listener.onUpdateClickListener(position);
-                        }
-                    }
+//            updateBtn.setOnClickListener(new View.OnClickListener(){
+//                        @Override
+//                        public void onClick(View v) {
+//                            if(listener!=null){
+//                                int position = getAdapterPosition();
+//                                if(position!=RecyclerView.NO_POSITION){
+//                                    listener.onUpdateClickListener(position);
+//                                }
+//                            }
+//                }
 
-//                    inflater = (LayoutInflater) updateBtn.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            });
+
+            itemView.setOnClickListener(view -> {
+                listener.ontItemClickListener(getAdapterPosition());
+            });
+
+        }
+    }
+
+
+
+    public interface CustomClickListener{
+        void onDeleteClickListener(int position);
+        void ontItemClickListener(int position);
+//        void onUpdateClickListener(int position);
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//                            inflater = (LayoutInflater) updateBtn.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //
-//                    pw = new PopupWindow(inflater.inflate(R.layout.activity_event, null, false),800,1400, true);
+//                            pw = new PopupWindow(inflater.inflate(R.layout.activity_event, null, false),800,1400, true);
 //                    pw.showAtLocation(updateBtn.findViewById(R.id.update_event), Gravity.CENTER, 0, 0);
 
 
@@ -121,7 +154,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 //                            click = true;
 //                        }
 
-                    // Initializing the popup menu and giving the reference as current context
+// Initializing the popup menu and giving the reference as current context
 //                    PopupMenu popupMenu = new PopupMenu(updateBtn.getContext(), updateBtn);
 //
 //                    // Inflating popup menu from popup_menu.xml file
@@ -136,26 +169,3 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 //                    });
 //                    // Showing the popup menu
 //                    popupMenu.show();
-                }
-
-            });
-
-            itemView.setOnClickListener(view -> {
-                listener.ontItemClickListener(getAdapterPosition());
-            });
-
-        }
-    }
-
-
-
-    public interface CustomClickListener{
-        void onDeleteClickListener(int position);
-        void ontItemClickListener(int position);
-        void onUpdateClickListener(int position);
-
-
-    }
-
-}
-

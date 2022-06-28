@@ -69,16 +69,17 @@
                 android:id="@+id/eventList"
                 style="@style/ShopHopAccountLabel"
                 android:text="@string/sh_lbl_my_offers" />
+            <TextView
+                android:id="@+id/tvStoreList"
+                style="@style/ShopHopAccountLabel"
+                android:text="@string/store_list" />
 
             <TextView
                 android:id="@+id/tvWishlist"
                 style="@style/ShopHopAccountLabel"
                 android:text="@string/sh_lbl_wish_list" />
 
-            <TextView
-                android:id="@+id/tvQuickPay"
-                style="@style/ShopHopAccountLabel"
-                android:text="@string/sh_lbl_quick_pay_cards" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/logout"

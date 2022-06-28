@@ -17,10 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+            android:name=".UI.StoreListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.StoreAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.EventAttendList"
             android:exported="false" />
         <activity
-
             android:name=".MainActivity2"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme" />
@@ -55,15 +60,18 @@
         <activity
             android:name=".UI.data.model.LoginActivity"
             android:exported="true"
+            android:theme="@style/ShopHopAppTheme"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
             android:name=".UI.SignUpActivity"
             android:exported="false"
+            android:theme="@style/ShopHopAppTheme"
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"
@@ -72,19 +80,19 @@
         <activity
             android:name=".UI.ToyActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="image/*"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".WishListActivity"
+        <activity
+            android:name=".WishListActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" >
-        </activity>
-
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

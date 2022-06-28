@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Message;
+
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,36 +24,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.SignUpActivity;
+import com.google.android.material.button.MaterialButton;
 
 
 public class LoginActivity extends AppCompatActivity {
 
 
     private static final String TAG = LoginActivity.class.getSimpleName();
+
     public static final String USERNAME = "username";
+
     private ProgressBar loadingProgressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_login);
-
-        final TextView signUpPrompt = findViewById(R.id.sign_up_prompt);
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText =findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        loadingProgressBar = findViewById(R.id.loading);
+        setContentView(R.layout.shophop_fragment_sign_in);
 
 
-        signUpPrompt.setOnClickListener(view -> {
-            Intent navigateToSignUpIntent = new Intent(this, SignUpActivity.class);
+//        final TextView signUpPrompt = findViewById(R.id.sign_up_prompt);
+        final EditText usernameEditText = findViewById(R.id.edtEmail);
+        final EditText passwordEditText =findViewById(R.id.edtPassword);
+        final MaterialButton loginButton = findViewById(R.id.btnSignIn);
+//        loadingProgressBar = findViewById(R.id.loading);
+
+        final MaterialButton signUp = findViewById(R.id.btnSignUp);
+
+        signUp.setOnClickListener(view -> {
+                       Intent navigateToSignUpIntent = new Intent(this, SignUpActivity.class);
             startActivity(navigateToSignUpIntent);
         });
+
+//        signUpPrompt.setOnClickListener(view -> {
+//            Intent navigateToSignUpIntent = new Intent(this, SignUpActivity.class);
+//            startActivity(navigateToSignUpIntent);
+//        });
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
@@ -87,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
+//                loadingProgressBar.setVisibility(View.VISIBLE);
 
                 login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
@@ -114,7 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                 password,
                 result -> {
                     Log.i(TAG, result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete");
-                    loadingProgressBar.setVisibility(View.INVISIBLE);
+
+//                    loadingProgressBar.setVisibility(View.INVISIBLE);
+
                     getLoggedInAccountData();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 },
@@ -129,11 +142,12 @@ public class LoginActivity extends AppCompatActivity {
                     Amplify.API.query(
                             ModelQuery.list(Account.class),
                             accounts -> {
-                                 Log.i(TAG, "getUserName: -----------------------------------<> " + accounts.getData());
+                                Log.i(TAG, "getUserName: -----------------------------------<> " + accounts.getData());
                                 for (Account user : accounts.getData()) {
                                     if (user.getIdcognito().equals(attributes.get(0).getValue())) {
                                         runOnUiThread(()->{
                                             Log.i(TAG, "getUserId: -----------------------------------<> " + user.getId());
+
                                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                                             SharedPreferences.Editor preferenceEditor = sharedPreferences.edit();
 
@@ -141,7 +155,9 @@ public class LoginActivity extends AppCompatActivity {
                                             preferenceEditor.putString(USERNAME, user.getId());
                                             preferenceEditor.apply();
                                         });
+
                                         // create shared preference object and set up an editor
+
 
                                     }
                                 }

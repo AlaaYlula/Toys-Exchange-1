@@ -4,66 +4,62 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.Store;
 import com.example.toys_exchange.R;
 
 import java.util.List;
 
-public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.CustomViewHolder>{
-    private static final String TAG = CustomToyAdapter.class.getSimpleName();
-    List<Toy> toysList;
+public class StoreDeleteAdapter extends RecyclerView.Adapter<StoreDeleteAdapter.CustomViewHolder> {
+    private static final String TAG = StoreAdapter.class.getSimpleName();
 
-    CustomClickListener listener;
+    List<Store> storeList;
 
-    public ToyDeleteAdapter(List<Toy> toysList, CustomClickListener listener) {
-        this.toysList = toysList;
+   CustomClickListener listener;
+
+    public StoreDeleteAdapter(List<Store> eventList,CustomClickListener listener) {
+        this.storeList = eventList;
         this.listener = listener;
     }
-
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItemView = layoutInflater.inflate(R.layout.toy_delete_layout,parent,false);
-
-        return new CustomViewHolder(listItemView , listener);
+        View listItemView = layoutInflater.inflate(R.layout.store_list_delete,parent,false);
+        return new CustomViewHolder(listItemView, listener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.toyName.setText(toysList.get(position).getToyname());
-
+        holder.storeName.setText(storeList.get(position).getStorename());
+        holder.description.setText(storeList.get(position).getStoredescription());
     }
-    
+
     @Override
     public int getItemCount() {
-        return toysList.size();
+        return storeList.size();
     }
-
-
 
     static class CustomViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView toyImage;
-        TextView toyName;
+        TextView storeName;
+        TextView description;
         Button deleteBtn;
+
         CustomClickListener listener;
 
-        public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
+        public CustomViewHolder(@NonNull View itemView , CustomClickListener listener) {
             super(itemView);
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.tvName);
-            toyImage = itemView.findViewById(R.id.toy_img);
-            deleteBtn = itemView.findViewById(R.id.delete_toy);
-
+            storeName = itemView.findViewById(R.id.store_title);
+            description = itemView.findViewById(R.id.store_description);
+            deleteBtn = itemView.findViewById(R.id.delete_store);
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,20 +72,10 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
                     }
                 }
             });
-
-            itemView.setOnClickListener(view -> {
-                listener.ontItemClickListener(getAdapterPosition());
-            });
-
         }
     }
-
-
-
     public interface CustomClickListener{
         void onDeleteClickListener(int position);
-        void ontItemClickListener(int position);
     }
 
 }
-

@@ -1,11 +1,13 @@
 package com.example.toys_exchange.UI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.bumptech.glide.Glide;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
@@ -66,6 +69,24 @@ public class ToyDetailActivity extends AppCompatActivity {
         setContentView(R.layout.shophop_activity_product_detail);
 
 
+
+        handler=new Handler(Looper.getMainLooper(), msg->{
+            //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
+            // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
+            loggedAccountId=msg.getData().get("loggedUser").toString();
+            idCognito=msg.getData().get("idCognito").toString();
+            return true;
+        });
+
+        handler1=new Handler(Looper.getMainLooper(), msg->{
+            //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
+            toyUser.setText(msg.getData().get("username").toString());
+            return true;
+        });
+
+
+        getLoggedInAccount();
+
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
 //        toyUser=findViewById(R.id.txt_view_user_name);
 
@@ -96,26 +117,29 @@ public class ToyDetailActivity extends AppCompatActivity {
         String type= toyIntent.getStringExtra("toyType");
         String image = toyIntent.getStringExtra("image");
         String contactInfo= toyIntent.getStringExtra("contactInfo");
-        userId = toyIntent.getStringExtra("id");
+//        userId = toyIntent.getStringExtra("id");
         toyId = toyIntent.getStringExtra("toyId");
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
         getUrl(image);
-
         addToWishList.setOnClickListener(view -> {
-            addToWish();
+            if(count == 0){
+                addToWish();
+                count++;
+            }else if(count == 1) {
+                removeFromWishList();
+                count--;
+            }
         });
 
     }
 
     @Override
     protected void onResume() {
-//        toyIntent = getIntent();
-//        image = toyIntent.getStringExtra("image");
-
-
         super.onResume();
     }
 
@@ -142,6 +166,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     }
 
     public void addToWish(){
+        Log.i(TAG, "TEST => ");
         Amplify.API.query(
                 ModelQuery.list(Toy.class,Toy.ID.eq(toyId)),
                 toys -> {
@@ -280,7 +305,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
-                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);
 

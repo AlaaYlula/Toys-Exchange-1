@@ -282,12 +282,13 @@ public class ToyFragment extends Fragment {
 
                 @Override
                 public void ontItemClickListener(int position) {
-                    Intent intent = new Intent(getContext(), EventActivity.class);
+                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
                     intent.putExtra("toyName", toyList.get(position).getToyname());
                     intent.putExtra("description", toyList.get(position).getToydescription());
                     intent.putExtra("image", toyList.get(position).getImage());
                     intent.putExtra("price", toyList.get(position).getPrice());
                     intent.putExtra("condition", toyList.get(position).getCondition());
+                    intent.putExtra("toyId",toyList.get(position).getId());
                     startActivity(intent);
                 }
             });

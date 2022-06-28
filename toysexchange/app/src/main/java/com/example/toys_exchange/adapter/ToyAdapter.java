@@ -55,7 +55,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
     public void onBindViewHolder(@NonNull ToyAdapter.CustomViewHolder holder, int position) {
 
         holder.tvName.setText(toyList.get(position).getToyname());
-        holder.tvCondition.setText(toyList.get(position).getContactinfo());
+        holder.tvCondition.setText(toyList.get(position).getCondition().toString());
         holder.tvPrice.setText(toyList.get(position).getPrice().toString());
 
         String image = toyList.get(position).getImage();

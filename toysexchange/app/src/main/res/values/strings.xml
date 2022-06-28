@@ -129,8 +129,8 @@
     <string name="sh_lbl_popular">Popular</string>
     <string name="sh_lbl_help_center">Help Center</string>
     <string name="sh_lbl_quick_pay_cards">Quick Pay Cards</string>
-    <string name="sh_lbl_my_offers">My Offers</string>
-    <string name="sh_lbl_my_orders">My Orders</string>
+    <string name="sh_lbl_my_offers">My Events</string>
+    <string name="sh_lbl_my_orders">My Toys</string>
     <string name="sh_lbl_address_manager">Address Manager</string>
     <string name="sh_lbl_verify_now">Verify now</string>
     <string name="sh_lbl_get_newest_offers">Get newest offers</string>

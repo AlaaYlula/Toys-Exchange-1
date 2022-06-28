@@ -26,14 +26,17 @@
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.toyListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.eventListActivity"
             android:exported="false" />
         <activity
             android:name=".profileActivity"
             android:theme="@style/ShopHopAppTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+             />
         <activity
             android:name=".UI.ToyDetailActivity"
             android:exported="false"
@@ -64,7 +67,8 @@
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.ToyActivity"
             android:exported="true"

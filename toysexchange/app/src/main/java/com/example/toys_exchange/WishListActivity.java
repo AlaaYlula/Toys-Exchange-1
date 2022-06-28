@@ -46,7 +46,6 @@ public class WishListActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
         Log.i(TAG, "getUserId: -----------------------------------<> " + userId);
-
         getToys(userId);
         handler = new Handler(Looper.getMainLooper(), msg -> {
 

@@ -54,7 +54,7 @@
                         android:layout_height="@dimen/_270sdp"
                         android:background="@color/ShopHop_item_background">
 
-                        <androidx.viewpager.widget.ViewPager
+                        <ImageView
                             android:id="@+id/productViewPager"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

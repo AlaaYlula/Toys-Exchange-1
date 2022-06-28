@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -60,6 +61,8 @@ public class profileActivity extends AppCompatActivity {
 //            mToysList.setText("My toys");
 //            mToysList.setAllCaps(true);
 
+
+
             Intent startAllTasksIntent = new Intent(getApplicationContext(), toyListActivity.class);
             startActivity(startAllTasksIntent);
 
@@ -83,9 +86,13 @@ public class profileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.profile_layout);
 
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ////////////////*********             Wish List Button                **********//////////////////
 
         TextView wishList = findViewById(R.id.tvWishlist);

@@ -54,18 +54,25 @@ public class ToyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_toy, container, false);
+
+        setRecyclerView();
+
         mSpinnerCondition= mView.findViewById(R.id.spinner_condition_toy);
         mConditionSpinner = mView.findViewById(R.id.spinner_condition_toy2);
-//        setSpinnerWithRadioButton();
-//        setToyRadioButtonConditionListener();
+
+        setSpinnerWithRadioButton();
+        setToyRadioButtonConditionListener();
+
         return mView;
     }
 
     @Override
     public void onResume() {
+
         setRecyclerView();
         setToyRadioButtonConditionListener();
         setSpinnerWithRadioButton();
+
         super.onResume();
     }
 

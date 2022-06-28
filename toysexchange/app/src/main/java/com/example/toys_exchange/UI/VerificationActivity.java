@@ -15,6 +15,8 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
+import java.util.Arrays;
+
 
 public class VerificationActivity extends AppCompatActivity {
 

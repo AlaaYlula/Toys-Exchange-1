@@ -69,7 +69,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
-
+        getUserAttend();
 
         passedIntent = getIntent();
         eventIdFromMain = passedIntent.getStringExtra("eventID");
@@ -94,8 +94,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.description_eventDetail);
         description.setText(passedIntent.getStringExtra("description"));
 
-        getUserAttend();
-       // getCommentsList();
+
+
         setEventValues();
 
         // The Add Comment Button
@@ -193,7 +193,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                     runOnUiThread(() -> {
                                         Amplify.API.mutate(ModelMutation.delete(user),
                                                 response ->{
-                                                    Log.i(TAG, "UserAttendEvent deleted " + response.getData().getId());
+                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
 
                                                     runOnUiThread(() -> {
                                                         btnAttend.setText("Attend");

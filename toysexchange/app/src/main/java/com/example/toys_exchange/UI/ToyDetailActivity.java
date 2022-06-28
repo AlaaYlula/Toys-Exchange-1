@@ -1,6 +1,7 @@
 package com.example.toys_exchange.UI;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -18,10 +21,12 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
+import com.bumptech.glide.Glide;
 import com.example.toys_exchange.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.Objects;
 
 public class ToyDetailActivity extends AppCompatActivity {
@@ -48,11 +53,14 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     private String userId;
     private String toyId;
-
     private String loggedAccountId;
     private String idCognito;
 
+    URL url;
+
     private int count=0;
+    private Intent toyIntent;
+    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +68,12 @@ public class ToyDetailActivity extends AppCompatActivity {
         setContentView(R.layout.shophop_activity_product_detail);
 
 
-        CollapsingToolbarLayout toolbar = findViewById(R.id.toolbar_layout);
+        CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
         toyUser=findViewById(R.id.txt_view_user_name);
 
-
-
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toyName=findViewById(R.id.txt_view_name);
 //        toyDescription=findViewById(R.id.txt_view_description);
 //        toyCondition=findViewById(R.id.txt_view_condition);
@@ -78,23 +87,29 @@ public class ToyDetailActivity extends AppCompatActivity {
 //        toyType=findViewById(R.id.txt_view_type);
 
 
-        addToWishList=findViewById(R.id.image_view_fav);
-        toyImage=findViewById(R.id.image_view_toy);
+        addToWishList=findViewById(R.id.ivFavourite);
+        toyImage=findViewById(R.id.productViewPager);
 
-        Intent toyIntent=getIntent();
-        String name=toyIntent.getStringExtra("toyName");
-        String description=toyIntent.getStringExtra("description");
-        Double price=toyIntent.getDoubleExtra("price",0.0);
-        String condition=toyIntent.getStringExtra("condition");
-        String type=toyIntent.getStringExtra("toyType");
-        String image=toyIntent.getStringExtra("image");
-        String contactInfo=toyIntent.getStringExtra("contactInfo");
-        userId =toyIntent.getStringExtra("id");
-        toyId =toyIntent.getStringExtra("toyId");
+        toyIntent = getIntent();
+        String name= toyIntent.getStringExtra("toyName");
+        String description= toyIntent.getStringExtra("description");
+        Double price= toyIntent.getDoubleExtra("price",0.0);
+        String condition= toyIntent.getStringExtra("condition");
+        String type= toyIntent.getStringExtra("toyType");
+//        image= toyIntent.getStringExtra("image");
+        String contactInfo= toyIntent.getStringExtra("contactInfo");
+        userId = toyIntent.getStringExtra("id");
+        toyId = toyIntent.getStringExtra("toyId");
 
 
-        toolbar.setTitle(toyIntent.getStringExtra("toyName"));
+        collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
+//        getUrl(image);
+//        Glide.with(this).load(url).into(toyImage);
+
+        addToWishList.setOnClickListener(view -> {
+            addToWish();
+        });
 //        toyName.setText(name);
 //        toyDescription.setText(description);
 //        toyCondition.setText(condition);
@@ -107,6 +122,17 @@ public class ToyDetailActivity extends AppCompatActivity {
 //        contactMe.setText(contactInfo);
 ////        toyPrice.setText(String.valueOf(price));
 //        toyType.setText(type);
+        getUrl(image);
+        Picasso.get().load(url.toString()).into(toyImage);
+    }
+
+    @Override
+    protected void onResume() {
+        toyIntent = getIntent();
+        image = toyIntent.getStringExtra("image");
+
+
+        super.onResume();
     }
 
     public void getUserName(){
@@ -249,7 +275,6 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     }
 
-
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
@@ -298,6 +323,19 @@ public class ToyDetailActivity extends AppCompatActivity {
                     );
                 },
                 error -> Log.e(TAG, "Failed to fetch user attributes.", error)
+        );
+    }
+
+    private void getUrl(String imagekey){
+        Amplify.Storage.getUrl(
+                imagekey,
+                result -> {
+                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
+                    url = result.getUrl();
+                },
+
+
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
     }
 

@@ -60,7 +60,7 @@ public class eventListActivity extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper(), msg -> {
             userId = msg.getData().getString("id");
             getEventByUser();
-        return true;
+            return true;
         });
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
@@ -172,14 +172,14 @@ public class eventListActivity extends AppCompatActivity {
                                             }
                                             runOnUiThread(()->{
                                                 Amplify.API.mutate(ModelMutation.delete(eventList.get(position)),
-                                            response ->{
-                                                // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                                Log.i(TAG, "Event deleted " + response);
-                                                eventList.remove(position);
-                                                customEventAdapter.notifyItemRemoved(position);
-                                            },
-                                            error -> Log.e(TAG, "delete failed", error)
-                                    );
+                                                        response ->{
+                                                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                                            Log.i(TAG, "Event deleted " + response);
+                                                            eventList.remove(position);
+                                                            customEventAdapter.notifyItemRemoved(position);
+                                                        },
+                                                        error -> Log.e(TAG, "delete failed", error)
+                                                );
                                             });
 
                                         },
@@ -206,14 +206,28 @@ public class eventListActivity extends AppCompatActivity {
                 intent.putExtra("loginUserName",loginUserName);
                 startActivity(intent);
             }
+
+            @Override
+            public void onUpdateClickListener(int position) {
+                Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
+                intent.putExtra("eventTitle",eventList.get(position).getTitle());
+                intent.putExtra("description",eventList.get(position).getEventdescription());
+                intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
+                intent.putExtra("eventID",eventList.get(position).getId());
+                intent.putExtra("cognitoID",cognitoId);
+                intent.putExtra("loginUserID",acc_id);
+                intent.putExtra("loginUserName",loginUserName);
+                startActivity(intent);
+            }
+
         });
 
 
         // set adapter on recycler view
-            recyclerView.setAdapter(customEventAdapter);
-            // set other important properties
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(customEventAdapter);
+        // set other important properties
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void getLoginUserId() {
@@ -234,4 +248,6 @@ public class eventListActivity extends AppCompatActivity {
 
     }
 }
+
+
 

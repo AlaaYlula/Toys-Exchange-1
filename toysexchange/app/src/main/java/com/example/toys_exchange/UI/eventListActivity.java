@@ -202,7 +202,7 @@ public class eventListActivity extends AppCompatActivity {
                 intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
                 intent.putExtra("eventID",eventList.get(position).getId());
                 intent.putExtra("cognitoID",cognitoId);
-                intent.putExtra("loginUserID",loginUserId);
+                intent.putExtra("loginUserID",acc_id);
                 intent.putExtra("loginUserName",loginUserName);
                 startActivity(intent);
             }

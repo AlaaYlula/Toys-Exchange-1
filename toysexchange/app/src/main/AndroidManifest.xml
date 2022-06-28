@@ -40,8 +40,8 @@
         <activity
             android:name=".UI.ToyDetailActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.EventDetailsActivity"
             android:exported="false" />

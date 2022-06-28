@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+
+import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.SignUpActivity;
@@ -33,7 +36,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private static final String TAG = LoginActivity.class.getSimpleName();
-    public static final String USERNAME = "USERNAME";
+
+    public static final String USERNAME = "username";
+
     private ProgressBar loadingProgressBar;
 
     @Override
@@ -120,7 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                 password,
                 result -> {
                     Log.i(TAG, result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete");
+
 //                    loadingProgressBar.setVisibility(View.INVISIBLE);
+
                     getLoggedInAccountData();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 },
@@ -139,8 +146,8 @@ public class LoginActivity extends AppCompatActivity {
                                 for (Account user : accounts.getData()) {
                                     if (user.getIdcognito().equals(attributes.get(0).getValue())) {
                                         runOnUiThread(()->{
-                                            Log.i(TAG, "USER ID => "+ user.getId());
-                                            // create shared preference object and set up an editor
+                                            Log.i(TAG, "getUserId: -----------------------------------<> " + user.getId());
+
                                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                                             SharedPreferences.Editor preferenceEditor = sharedPreferences.edit();
 
@@ -148,6 +155,8 @@ public class LoginActivity extends AppCompatActivity {
                                             preferenceEditor.putString(USERNAME, user.getId());
                                             preferenceEditor.apply();
                                         });
+
+                                        // create shared preference object and set up an editor
 
 
                                     }

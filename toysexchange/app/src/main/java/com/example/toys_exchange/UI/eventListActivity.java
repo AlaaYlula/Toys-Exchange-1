@@ -131,19 +131,6 @@ public class eventListActivity extends AppCompatActivity {
     private void getEventByUser() {
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            // create an Adapter // Custom Adapter
-//        CustomEventAdapter customEventAdapter = new CustomEventAdapter(
-//                 eventList, position -> {
-//            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
-//            intent.putExtra("eventTitle",eventList.get(position).getTitle());
-//            intent.putExtra("description",eventList.get(position).getEventdescription());
-//            intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
-//            intent.putExtra("eventID",eventList.get(position).getId());
-//            intent.putExtra("cognitoID",cognitoId);
-//            intent.putExtra("loginUserID",loginUserId);
-//            intent.putExtra("loginUserName",loginUserName);
-//            startActivity(intent);
-//            });
 
         customEventAdapter = new EventDeleteAdapter(eventList, new EventDeleteAdapter.CustomClickListener() {
             @Override
@@ -215,7 +202,7 @@ public class eventListActivity extends AppCompatActivity {
                 intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
                 intent.putExtra("eventID",eventList.get(position).getId());
                 intent.putExtra("cognitoID",cognitoId);
-                intent.putExtra("loginUserID",loginUserId);
+                intent.putExtra("loginUserID",acc_id);
                 intent.putExtra("loginUserName",loginUserName);
                 startActivity(intent);
             }

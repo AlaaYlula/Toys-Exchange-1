@@ -23,6 +23,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.example.toys_exchange.UI.EventAttendList;
+import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
 import com.example.toys_exchange.UI.toyListActivity;
@@ -128,6 +129,13 @@ public class profileActivity extends AppCompatActivity {
 
          TextView btnToys = findViewById(R.id.toysList);
          btnToys.setOnClickListener(mClickToysList);
+
+         ///////////////***********    Store List
+        TextView btnStore = findViewById(R.id.tvStoreList);
+        btnStore.setOnClickListener(view -> {
+            startActivity(new Intent(this, StoreListActivity.class));
+
+        });
 
 
         ////////////////*********             get UserName                **********//////////////////

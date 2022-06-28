@@ -23,7 +23,6 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
-import com.bumptech.glide.Glide;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;

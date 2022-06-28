@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.EventActivity">
+    tools:context=".UI.StoreAddActivity">
+
 
     <TextView
         android:id="@+id/addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Event"
+        android:text="Add Store"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,21 +67,11 @@
         android:id="@+id/btn_addStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginBottom="52dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancelAddEvent"
-        app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_cancelAddEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_store"
-        app:layout_constraintVertical_bias="0.923" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

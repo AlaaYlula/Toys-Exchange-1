@@ -352,6 +352,8 @@
     </array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_store">"Add Store "</string>
+    <string name="store_list">My Stores</string>
 
 
 </resources>

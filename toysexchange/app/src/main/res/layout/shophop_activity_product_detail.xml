@@ -58,19 +58,23 @@
                             android:id="@+id/productViewPager"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginBottom="0dp"
                             android:fitsSystemWindows="true"
                             android:overScrollMode="never" />
 
-<!--                        <com.iqonic.shophop.utils.dotsindicator.DotsIndicator-->
-<!--                            android:id="@+id/dots"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="@dimen/_30sdp"-->
-<!--                            android:layout_alignParentBottom="true"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:layout_margin="@dimen/sh_spacing_standard"-->
-<!--                            android:gravity="center_horizontal"-->
-<!--                            app:dot_height="@dimen/sh_spacing_control"-->
-<!--                            app:dot_width="@dimen/sh_spacing_control" />-->
+                        <!--                        <com.iqonic.shophop.utils.dotsindicator.DotsIndicator-->
+                        <!--                            android:id="@+id/dots"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="@dimen/_30sdp"-->
+                        <!--                            android:layout_alignParentBottom="true"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:layout_margin="@dimen/sh_spacing_standard"-->
+                        <!--                            android:gravity="center_horizontal"-->
+                        <!--                            app:dot_height="@dimen/sh_spacing_control"-->
+                        <!--                            app:dot_width="@dimen/sh_spacing_control" />-->
                     </RelativeLayout>
 
                     <TextView

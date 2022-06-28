@@ -1,6 +1,8 @@
 package com.example.toys_exchange;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             mProfile.setText("profile");
             mProfile.setAllCaps(true);
 
-            Intent startAllTasksIntent = new Intent(getApplicationContext(), profileActivity.class);
+            Intent startAllTasksIntent = new Intent(getApplicationContext(), WishListActivity.class);
             startActivity(startAllTasksIntent);
 
         }
@@ -165,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "Signed out successfully");
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             authSession("logout");
+            Context context = getApplicationContext();
+            SharedPreferences sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
+            sharedPref.edit().remove("userId");
             finish();
         },error -> Log.e(TAG, error.toString())
         );

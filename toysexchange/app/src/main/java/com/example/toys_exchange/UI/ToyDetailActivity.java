@@ -55,11 +55,10 @@ public class ToyDetailActivity extends AppCompatActivity {
     private String loggedAccountId;
     private String idCognito;
 
-    URL url;
+    private URL url;
+    private String test;
 
     private int count=0;
-    private Intent toyIntent;
-    private String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
-        toyUser=findViewById(R.id.txt_view_user_name);
+//        toyUser=findViewById(R.id.txt_view_user_name);
 
         Toolbar toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
@@ -89,13 +88,13 @@ public class ToyDetailActivity extends AppCompatActivity {
         addToWishList=findViewById(R.id.ivFavourite);
         toyImage=findViewById(R.id.productViewPager);
 
-        toyIntent = getIntent();
+        Intent toyIntent = getIntent();
         String name= toyIntent.getStringExtra("toyName");
         String description= toyIntent.getStringExtra("description");
         Double price= toyIntent.getDoubleExtra("price",0.0);
         String condition= toyIntent.getStringExtra("condition");
         String type= toyIntent.getStringExtra("toyType");
-//        image= toyIntent.getStringExtra("image");
+        String image = toyIntent.getStringExtra("image");
         String contactInfo= toyIntent.getStringExtra("contactInfo");
         userId = toyIntent.getStringExtra("id");
         toyId = toyIntent.getStringExtra("toyId");
@@ -103,32 +102,18 @@ public class ToyDetailActivity extends AppCompatActivity {
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
-//        getUrl(image);
-//        Glide.with(this).load(url).into(toyImage);
+        getUrl(image);
 
         addToWishList.setOnClickListener(view -> {
             addToWish();
         });
-//        toyName.setText(name);
-//        toyDescription.setText(description);
-//        toyCondition.setText(condition);
-//        contactMe.setText(contactInfo);
-//        toyPrice.setText(String.valueOf(price) + "JD");
 
-//        toyName.setText(name);
-//        toyDescription.setText(description);
-//        toyCondition.setText(condition);
-//        contactMe.setText(contactInfo);
-////        toyPrice.setText(String.valueOf(price));
-//        toyType.setText(type);
-        getUrl(image);
-        Picasso.get().load(url.toString()).into(toyImage);
     }
 
     @Override
     protected void onResume() {
-        toyIntent = getIntent();
-        image = toyIntent.getStringExtra("image");
+//        toyIntent = getIntent();
+//        image = toyIntent.getStringExtra("image");
 
 
         super.onResume();
@@ -325,18 +310,16 @@ public class ToyDetailActivity extends AppCompatActivity {
         );
     }
 
-    private void getUrl(String imagekey){
+    private void getUrl(String image){
         Amplify.Storage.getUrl(
-                imagekey,
+                image,
                 result -> {
                     Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
-                    url = result.getUrl();
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(toyImage);
+                    });
                 },
-
-
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
     }
-
-
 }

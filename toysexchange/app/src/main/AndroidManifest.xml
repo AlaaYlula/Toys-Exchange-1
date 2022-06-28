@@ -55,6 +55,7 @@
         <activity
             android:name=".UI.data.model.LoginActivity"
             android:exported="true"
+            android:theme="@style/ShopHopAppTheme"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -64,6 +65,7 @@
         <activity
             android:name=".UI.SignUpActivity"
             android:exported="false"
+            android:theme="@style/ShopHopAppTheme"
             android:label="@string/title_activity_signup" />
         <activity
             android:name=".MainActivity"

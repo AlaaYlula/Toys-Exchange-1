@@ -239,7 +239,7 @@
     <string name="sh_lbl_save_profile">Save Profile</string>
     <string name="sh_lbl_change_pswd">Change Password</string>
     <string name="sh_lbl_edit_profile">Edit Profile</string>
-    <string name="sh_hint_first_name">First Name</string>
+    <string name="sh_hint_first_name">User Name</string>
     <string name="sh_hint_last_name">Last name</string>
     <string name="sh_hint_new_password">New Password</string>
     <string name="sh_lbl_change_now">Change Now</string>

@@ -53,7 +53,7 @@ public class WishListFragment extends Fragment {
         toyList = new ArrayList<>();
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
-            RecyclerView recyclerView = mView.findViewById(R.id.grid_recycler);
+            RecyclerView recyclerView = mView.findViewById(R.id.recycler_wish_list);
 
 //            GridLayoutManager gridLayoutManager = new GridLayoutManager(this,
 //                    2, LinearLayoutManager.VERTICAL,

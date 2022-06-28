@@ -28,6 +28,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder> {
 
+    private static final String TAG = ToyAdapter.class.getSimpleName();
     List<Toy> toyList;
     CustomClickListener listener;
     String userID;
@@ -62,8 +63,40 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
 
         String toyID = toyList.get(position).getId();
 
-        isliked = isLiked(toyID);
+//        isliked = isLiked(toyID);
+//
+//        if(isliked.equals("like")){
+//            holder.ivDislike.setVisibility(View.GONE);
+//            holder.ivlike.setVisibility(View.VISIBLE);
+//        }else{
+//            holder.ivDislike.setVisibility(View.VISIBLE);
+//            holder.ivlike.setVisibility(View.GONE);
+//        }
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        userID =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
+
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+
+                    if(wishList.hasData()){
+                        for (UserWishList wishToy :
+                                wishList.getData()) {
+                            if(wishToy.getAccount().getId().equals(userID) && wishToy.getToy().getId().equals(toyList.get(position).getId())) {
+                                runOnUiThread(() -> {
+                                    Log.i(TAG, "liked");
+                                    holder.ivDislike.setVisibility(View.GONE);
+                                    holder.ivlike.setVisibility(View.VISIBLE);
+                                });
+
+                            }
+
+                        }
+                    }
+                },
+                error -> {}
+        );
 //        Amplify.API.query(
 //                ModelQuery.list(UserWishList.class),
 //                wishList -> {
@@ -111,8 +144,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                     if(wishList.hasData()){
                         for (UserWishList wishToy :
                                 wishList.getData()) {
-                            Log.i("TAG => ", toyId + " userID => " + userID);
-                            Log.i("MAG => " ,wishToy.getAccount().getId());
                             if(wishToy.getAccount().getId().equals(userID) && wishToy.getToy().getId().equals(toyId)){
                                 isliked = "like";
 
@@ -172,7 +203,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                 if(ivDislike.getVisibility() == View.VISIBLE){
                     ivDislike.setVisibility(View.GONE);
                     ivlike.setVisibility(View.VISIBLE);
-                    listener.onFavClickListener(getAdapterPosition());
+                    listener.onFavClickListener(getAdapterPosition(),false);
                 }
             });
 //
@@ -180,7 +211,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                 if(ivlike.getVisibility() == View.VISIBLE){
                     ivlike.setVisibility(View.GONE);
                     ivDislike.setVisibility(View.VISIBLE);
-                    listener.onFavClickListener(getAdapterPosition());
+                    listener.onFavClickListener(getAdapterPosition(), true);
                 }
             });
 
@@ -194,7 +225,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
     }
 
     public interface CustomClickListener{
-        void onFavClickListener(int position);
+        void onFavClickListener(int position, Boolean like);
         void ontItemClickListener(int position);
     }
 }

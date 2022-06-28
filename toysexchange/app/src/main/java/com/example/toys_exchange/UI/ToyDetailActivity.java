@@ -62,6 +62,10 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     private int count=0;
 
+    ImageView ivFavourite;
+    ImageView ivDislike;
+    ImageView removeFromWishList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +110,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
         addToWishList=findViewById(R.id.ivFavourite);
+        removeFromWishList=findViewById(R.id.ivDislike);
         toyImage=findViewById(R.id.productViewPager);
 
         Intent toyIntent = getIntent();
@@ -125,12 +130,24 @@ public class ToyDetailActivity extends AppCompatActivity {
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
         getUrl(image);
+        ivFavourite = findViewById(R.id.ivFavourite);
+        ivDislike = findViewById(R.id.ivDislike);
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
+
                 addToWish();
+                ivFavourite.setVisibility(View.GONE);
+                ivDislike.setVisibility(View.VISIBLE);
+                //ivFavourite.setColorFilter((getResources().getColor(R.color.purple_500)));
                 count++;
-            }else if(count == 1) {
+            }
+        });
+        removeFromWishList.setOnClickListener(view -> {
+            if(count == 1) {
                 removeFromWishList();
+                ivFavourite.setVisibility(View.VISIBLE);
+                ivDislike.setVisibility(View.GONE);
+                // ivFavourite.setColorFilter(getResources().getColor(R.color.white));
                 count--;
             }
         });
@@ -304,7 +321,12 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
-//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+                                                                //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
+                                                               runOnUiThread(()->{
+                                                                   ivFavourite.setVisibility(View.GONE);
+                                                                   ivDislike.setVisibility(View.VISIBLE);
+                                                               });
+
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);
 

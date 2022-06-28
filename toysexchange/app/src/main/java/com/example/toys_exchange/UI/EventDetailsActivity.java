@@ -96,6 +96,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
 
 
+
         setEventValues();
 
         // The Add Comment Button

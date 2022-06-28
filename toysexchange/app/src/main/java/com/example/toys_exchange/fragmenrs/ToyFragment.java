@@ -1,5 +1,7 @@
 package com.example.toys_exchange.fragmenrs;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,11 +17,14 @@ import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
@@ -28,6 +33,7 @@ import com.example.toys_exchange.adapter.ToyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ToyFragment extends Fragment {
@@ -251,32 +257,15 @@ public class ToyFragment extends Fragment {
 
             recyclerView = mView.findViewById(R.id.recycler_view);
 
-//            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
-//                @Override
-//                public void onTaskClickListener(int position) {
-//                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
-//                    intent.putExtra("toyName",toyList.get(position).getToyname());
-//                    intent.putExtra("description",toyList.get(position).getToydescription());
-//                    intent.putExtra("image",toyList.get(position).getImage());
-//                    intent.putExtra("price",toyList.get(position).getPrice());
-//                    intent.putExtra("condition",toyList.get(position).getCondition().toString());
-//                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
-//                    intent.putExtra("id",toyList.get(position).getAccountToysId());
-//                    intent.putExtra("toyId",toyList.get(position).getId());
-//                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
-//                    startActivity(intent);
-//                }
-//
-//
-//                @Override
-//                public void ontItemClickListener(int position) {
-//
-//                }
-//            });
             ToyAdapter toyAdapter = new ToyAdapter(toyList,new ToyAdapter.CustomClickListener() {
                 @Override
-                public void onFavClickListener(int position) {
+                public void onFavClickListener(int position, Boolean like) {
+                        if(like){
+                            removeFromWishList(toyList.get(position).getId());
 
+                        }else{
+                            addToWishList(toyList.get(position));
+                        }
 
                 }
 
@@ -321,5 +310,59 @@ public class ToyFragment extends Fragment {
 
     }
 
+    private void addToWishList(Toy toy){
+        Amplify.API.query(
+                ModelQuery.list(Account.class),
+                accounts -> {
+                    for (Account user :
+                            accounts.getData()) {
+                        if (user.getIdcognito().equals(cognitoId)) {
+                            runOnUiThread(()->{
+                                UserWishList wishList=UserWishList.builder().toy(toy)
+                                        .account(user).build();
+                                // API save to backend
+                                Amplify.API.mutate(
+                                        ModelMutation.create(wishList),
+                                        success -> {
+                                            Log.i(TAG, "Saved item API: addToWish " + success.getData());
+                                        },
+                                        error -> Log.e(TAG, "Could not save item to API addToWish", error)
+                                );
+                            });
+
+
+                        }
+
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
+    private void removeFromWishList(String toyId){
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    for (UserWishList wishToy :
+                            wishList.getData()) {
+                                    Amplify.API.query(
+                                            ModelQuery.list(Account.class),
+                                            accounts -> {
+                                                if(Objects.equals(toyId, wishToy.getToy().getId())){
+                                                    Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
+
+                                                    Amplify.API.mutate(ModelMutation.delete(wishToy),
+                                                            response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
+                                                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                                    );
+                                                }
+                                            },
+                                            error -> Log.e(TAG, error.toString(), error)
+                                    );
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
 
 }

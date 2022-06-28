@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -204,12 +205,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        Context context = getApplicationContext();
+//        SharedPreferences sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
+//        String userId = sharedPref.getString("userId", "");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userId =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
+        Log.i(TAG, "SharedPreferences => " + userId);
+
 
     }
 
 
     @Override
     protected void onResume() {
+
         super.onResume();
     }
 

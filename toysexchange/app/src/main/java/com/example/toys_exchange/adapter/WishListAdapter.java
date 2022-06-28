@@ -58,9 +58,9 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Custom
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.toy_name);
-            toyImage = itemView.findViewById(R.id.toy_image);
-            toyPrice = itemView.findViewById(R.id.toy_Price);
+            toyName = itemView.findViewById(R.id.tvName);
+            toyImage = itemView.findViewById(R.id.ivImage);
+            toyPrice = itemView.findViewById(R.id.tvPrice);
 
             itemView.setOnClickListener(view ->
                     listener.onItemClicked(getAdapterPosition()));

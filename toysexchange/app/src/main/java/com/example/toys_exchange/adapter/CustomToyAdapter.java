@@ -19,6 +19,7 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
 
     private static final String TAG = CustomToyAdapter.class.getSimpleName();
     List<Toy> toysData;
+    private String toyId;
 
     CustomClickListener listener;
 
@@ -66,9 +67,9 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.toy_name);
-            toyImage = itemView.findViewById(R.id.toy_image);
-            toyPrice = itemView.findViewById(R.id.toy_Price);
+            toyName = itemView.findViewById(R.id.tvName);
+            toyImage = itemView.findViewById(R.id.ivImage);
+            toyPrice = itemView.findViewById(R.id.tvPrice);
             addToCart = itemView.findViewById(R.id.AddToCart);
 
 //            itemView.setOnClickListener(view -> {

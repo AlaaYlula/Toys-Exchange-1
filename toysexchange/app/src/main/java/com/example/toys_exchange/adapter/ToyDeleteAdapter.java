@@ -1,6 +1,5 @@
 package com.example.toys_exchange.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,7 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.toy_name);
+            toyName = itemView.findViewById(R.id.tvName);
             toyImage = itemView.findViewById(R.id.toy_img);
             deleteBtn = itemView.findViewById(R.id.delete_toy);
 

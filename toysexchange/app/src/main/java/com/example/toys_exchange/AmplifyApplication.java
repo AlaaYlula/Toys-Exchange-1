@@ -1,7 +1,9 @@
 package com.example.toys_exchange;
 
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.PopupWindow;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;

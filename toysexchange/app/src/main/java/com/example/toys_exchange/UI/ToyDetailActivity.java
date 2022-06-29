@@ -85,7 +85,9 @@ public class ToyDetailActivity extends AppCompatActivity {
         });
 
 
-        getLoggedInAccount();
+
+
+
 
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
 //        toyUser=findViewById(R.id.txt_view_user_name);
@@ -125,13 +127,17 @@ public class ToyDetailActivity extends AppCompatActivity {
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
+        getLoggedInAccount();
+
         getUrl(image);
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
                 addToWish();
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
                 count++;
             }else if(count == 1) {
                 removeFromWishList();
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
                 count--;
             }
         });
@@ -306,6 +312,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
 //                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                                                                addToWishList.setBackground(getDrawable(R.drawable.shophop_ic_heart_fill));
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);
 

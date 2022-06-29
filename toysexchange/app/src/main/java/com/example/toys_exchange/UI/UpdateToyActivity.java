@@ -18,7 +18,6 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
-import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.Typetoy;
 import com.example.toys_exchange.R;
@@ -61,7 +60,7 @@ public class UpdateToyActivity extends AppCompatActivity {
         toyBody = findViewById(R.id.edit_txt_toy_description_update);
         toyPrice = findViewById(R.id.edit_txt_toy_price_update);
         toyContactInfo = findViewById(R.id.edit_txt_contact_info_update);
-        updateForm = findViewById(R.id.btn_update_Toy);
+        updateForm = findViewById(R.id.btn_update_Comment);
 
         updateToyByUser();
 
@@ -70,7 +69,7 @@ public class UpdateToyActivity extends AppCompatActivity {
             return true;
         });
 
-        cnacelBtn = findViewById(R.id.btn_cancelUpdateToy);
+        cnacelBtn = findViewById(R.id.btn_cancelUpdateComment);
         cnacelBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), toyListActivity.class);
             startActivity(intent);

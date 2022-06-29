@@ -51,7 +51,7 @@ public class UpdateEventActivity extends AppCompatActivity {
 
         eventTitle = findViewById(R.id.title_event_update);
         eventBody = findViewById(R.id.description_event_update);
-        updateForm = findViewById(R.id.btn_update_Toy);
+        updateForm = findViewById(R.id.btn_update_Comment);
 
         getEventByUser();
 
@@ -60,7 +60,7 @@ public class UpdateEventActivity extends AppCompatActivity {
             return true;
         });
 
-        cnacelBtn = findViewById(R.id.btn_cancelUpdateToy);
+        cnacelBtn = findViewById(R.id.btn_cancelUpdateComment);
         cnacelBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), eventListActivity.class);
             startActivity(intent);
@@ -84,10 +84,6 @@ public class UpdateEventActivity extends AppCompatActivity {
         eventTitle.setText(title);
         eventBody.setText(body);
 
-        Log.i(TAG, "title: " + title);
-        Log.i(TAG, "body: " + body);
-
-        Log.i(TAG, "acc : " + acc_id);
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
 
@@ -121,6 +117,7 @@ public class UpdateEventActivity extends AppCompatActivity {
                                                                                     .id(eventId)
                                                                                     .accountEventsaddedId(acc_id)
                                                                                     .longitude(1.0).latitude(2.0).build();
+
                                                                             Amplify.API.mutate(ModelMutation.update(eventOne),
                                                                                     response -> {
                                                                                         runOnUiThread(()->{

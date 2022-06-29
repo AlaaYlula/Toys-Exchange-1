@@ -60,7 +60,7 @@ public class UpdateCommentActivity extends AppCompatActivity {
 
         cnacelBtn = findViewById(R.id.btn_cancelUpdateComment);
         cnacelBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), eventListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
             startActivity(intent);
         });
 

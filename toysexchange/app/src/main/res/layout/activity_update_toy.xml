@@ -109,18 +109,18 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_txt_toy_price_update" />
 
     <Button
-        android:id="@+id/btn_update_Toy"
+        android:id="@+id/btn_update_Comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancelUpdateToy"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancelUpdateComment"
         app:layout_constraintHorizontal_bias="0.769"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_cancelUpdateToy"
+        android:id="@+id/btn_cancelUpdateComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"

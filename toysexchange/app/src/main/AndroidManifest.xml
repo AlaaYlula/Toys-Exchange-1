@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
         <activity
+            android:name=".UI.UpdateCommentActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI.UpdateToyActivity"
             android:exported="false" />
         <activity

@@ -262,4 +262,26 @@
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="top|end" />
 
+<!--    <ImageView-->
+<!--        android:id="@+id/ivDislike"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginTop="@dimen/_30sdp"-->
+<!--        android:layout_marginEnd="@dimen/_8sdp"-->
+
+<!--        android:background="@drawable/shophop_bg_circle"-->
+<!--        android:backgroundTint="@color/ShopHop_favourite_background"-->
+<!--        android:contentDescription="@string/sh_text_todo"-->
+
+<!--        android:padding="@dimen/sh_spacing_standard"-->
+<!--        app:layout_anchor="@id/app_bar"-->
+<!--        app:layout_anchorGravity="top|end"-->
+
+<!--        android:src="@drawable/shophop_ic_heart_fill"-->
+<!--        android:visibility="gone" />-->
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

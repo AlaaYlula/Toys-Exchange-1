@@ -52,7 +52,7 @@ public class WishListActivity extends AppCompatActivity {
 
             CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
-                public void onTaskClickListener(int position) {
+                public void onRemoveClickListener(int position) {
                     Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
                     intent.putExtra("toyName", toyList.get(position).getToyname());
                     intent.putExtra("description", toyList.get(position).getToydescription());

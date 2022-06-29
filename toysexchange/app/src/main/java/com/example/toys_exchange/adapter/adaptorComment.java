@@ -44,6 +44,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
 
     public interface OnItemClickListener {
         void onDeleteClick(int position);
+        void onUpdateClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -88,9 +89,11 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
          if(commentsList.get(position).getAccountCommentsId().equals(loginUserId)) // Add For comments check
                 {
                     holder.deletebtn.setVisibility(View.VISIBLE);
+                    holder.updateBtn.setVisibility(View.VISIBLE);
 
                }else{
                       holder.deletebtn.setVisibility(View.GONE);
+                      holder.updateBtn.setVisibility(View.GONE);
                           }
 
 
@@ -109,6 +112,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         TextView username;
         TextView text;
         Button deletebtn;
+        Button updateBtn;
 
         View rootView;
         int position;
@@ -122,6 +126,8 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             username = itemView.findViewById(R.id.username_comment);
             text = itemView.findViewById(R.id.text_comment);
             deletebtn = itemView.findViewById(R.id.btn_deleteComment);
+            updateBtn = itemView.findViewById(R.id.btn_updateComment);
+
 
             deletebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,6 +136,23 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
+                        }
+
+
+                    }
+                }
+
+
+
+            });
+
+            updateBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onUpdateClick(position);
                         }
 
 

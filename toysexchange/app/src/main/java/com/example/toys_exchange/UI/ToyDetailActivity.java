@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,7 +25,6 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
-import com.bumptech.glide.Glide;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -63,6 +64,11 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     private int count=0;
 
+    ImageView ivFavourite;
+    ImageView ivDislike;
+    ImageView removeFromWishList;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +115,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
         addToWishList=findViewById(R.id.ivFavourite);
+        removeFromWishList=findViewById(R.id.ivDislike);
         toyImage=findViewById(R.id.productViewPager);
 
         Intent toyIntent = getIntent();
@@ -130,17 +137,32 @@ public class ToyDetailActivity extends AppCompatActivity {
         getLoggedInAccount();
 
         getUrl(image);
+        ivFavourite = findViewById(R.id.ivFavourite);
+//        ivDislike = findViewById(R.id.ivDislike);
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
+
                 addToWish();
+
                 addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
+//                ivFavourite.setVisibility(View.GONE);
+//                ivDislike.setVisibility(View.VISIBLE);
+                //ivFavourite.setColorFilter((getResources().getColor(R.color.purple_500)));
                 count++;
-            }else if(count == 1) {
-                removeFromWishList();
-                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
-                count--;
             }
         });
+//        removeFromWishList.setOnClickListener(view -> {
+//            if(count == 1) {
+//                removeFromWishList();
+////                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+//                addToWishList.setColorFilter(getColor(R.color.ShopHop_textColorSecondary));
+////                ivFavourite.setVisibility(View.VISIBLE);
+////                ivDislike.setVisibility(View.GONE);
+//                // ivFavourite.setColorFilter(getResources().getColor(R.color.white));
+//                count--;
+//            }
+//        });
 
     }
 
@@ -311,8 +333,18 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
+
+
 //                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
 //                                                                addToWishList.setBackground(getDrawable(R.drawable.shophop_ic_heart_fill));
+
+                                                                //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
+                                                               runOnUiThread(()->{
+                                                                   addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+                                                                   addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
+                                                               });
+
+
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);
 

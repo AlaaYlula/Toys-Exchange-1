@@ -56,11 +56,15 @@ public class EventDetailsActivity extends AppCompatActivity {
     Button btnAttend;
     Button deleteComment;
     Handler handler;
+    Button updateBtn;
 
     String eventIdFromMain;
     String cognitoIdFromMain;
     String loginUserIdFromMain;
     String userIdAddedEventFromMain;
+    String titEvent;
+
+    Button updateForm;
 
     Intent passedIntent;
     @SuppressLint("NotifyDataSetChanged")
@@ -76,6 +80,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         cognitoIdFromMain = passedIntent.getStringExtra("cognitoID");
         loginUserIdFromMain = passedIntent.getStringExtra("loginUserID");
         userIdAddedEventFromMain = passedIntent.getStringExtra("userID");
+
+        updateForm = findViewById(R.id.btn_updateComment);
+
+//        titEvent = passedIntent.getStringExtra("title");
 
 
 
@@ -93,6 +101,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         description = findViewById(R.id.description_eventDetail);
         description.setText(passedIntent.getStringExtra("description"));
 
+//        updateBtn = findViewById(R.id.btn_update_EventDetails);
+//
+//        updateBtn.setOnClickListener(view -> {
+//            Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
+//            intent.putExtra("eventTitle",passedIntent.getStringExtra("eventTitle"));
+//            intent.putExtra("description",passedIntent.getStringExtra("description"));
+//            intent.putExtra("userID",passedIntent.getStringExtra("userID"));
+//            intent.putExtra("eventID",passedIntent.getStringExtra("eventID"));
+//            intent.putExtra("cognitoID",passedIntent.getStringExtra("cognitoID"));
+//            intent.putExtra("loginUserID",passedIntent.getStringExtra("loginUserID"));
+//            intent.putExtra("loginUserName",passedIntent.getStringExtra("loginUserName"));
+//            startActivity(intent);
+//        });
 
 
         setEventValues();
@@ -267,7 +288,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                         );
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
+//    @RequiresApi(api = Build.VERSION_CODES.N)
     private void getCommentsList() {
         commentsListDatabase = new ArrayList<>();
         Amplify.API.query(
@@ -321,7 +342,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             public void onDeleteClick(int position) {
 
                 Amplify.API.mutate(ModelMutation.delete(commentsListDatabase.get(position)),
-                        response ->{
+                        response -> {
                             // https://www.youtube.com/watch?v=LQmGU3UCOPQ
                             Log.i(TAG, "comment deleted " + response);
                             commentsListDatabase.remove(position);
@@ -330,17 +351,32 @@ public class EventDetailsActivity extends AppCompatActivity {
                         error -> Log.e(TAG, "delete failed", error)
                 );
             }
+
+            @Override
+            public void onUpdateClick(int position) {
+
+                Intent intent = new Intent(getApplicationContext(), UpdateCommentActivity.class);
+                intent.putExtra("commentText",commentsListDatabase.get(position).getText());
+                intent.putExtra("commentId",commentsListDatabase.get(position).getId());
+                intent.putExtra("accountsCommentId",commentsListDatabase.get(position).getAccountCommentsId());
+                intent.putExtra("eventCommentsId",commentsListDatabase.get(position).getEventCommentsId());
+                startActivity(intent);
+
+            }
         });
+
         // set adapter on recycler view
         recyclerView.setAdapter(commentRecyclerViewAdapter);
         // set other important properties
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
+
     protected void onResume() {
         Log.i(TAG, "onResume: called - The App is VISIBLE");
 

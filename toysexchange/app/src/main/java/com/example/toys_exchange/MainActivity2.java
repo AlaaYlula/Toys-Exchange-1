@@ -22,7 +22,6 @@ public class MainActivity2 extends AppCompatActivity {
     private static final String TAG = MainActivity2.class.getSimpleName();
     LinearLayout llHome;
     private String acc_id;
-
     private ToyFragment toyFragment;
 
     @Override
@@ -87,10 +86,8 @@ public class MainActivity2 extends AppCompatActivity {
                             acc_id = userAc.getId();
                         }
                     }
-
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
-
     }
 }

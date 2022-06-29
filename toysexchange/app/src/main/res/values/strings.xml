@@ -137,7 +137,7 @@
     <string name="sh_lbl_please_verify_your_email_or_number">Please verify your email or number</string>
     <string name="sh_lbl_next_time_buy">Next time buy</string>
     <string name="sh_lbl_remove">Remove</string>
-    <string name="sh_lbl_move_to_cart">Move to Cart</string>
+    <string name="sh_lbl_move_to_cart">Buy now</string>
     <string name="sh_lbl_enable">Enable</string>
     <string name="sh_lbl_invite_now">Invite Now</string>
     <string name="sh_lbl_your_rewards">Your Rewards</string>
@@ -354,6 +354,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_store">"Add Store "</string>
     <string name="store_list">My Stores</string>
+
 
 
 </resources>

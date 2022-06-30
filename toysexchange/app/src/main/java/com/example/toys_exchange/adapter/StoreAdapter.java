@@ -19,15 +19,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.CustomViewHo
 
     List<Store> storeList;
 
-    public StoreAdapter(List<Store> eventList) {
+    CustomClickListener listener;
+
+    public StoreAdapter(List<Store> eventList,CustomClickListener listener) {
         this.storeList = eventList;
+        this.listener=listener;
     }
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItemView = layoutInflater.inflate(R.layout.store_items,parent,false);
-        return new StoreAdapter.CustomViewHolder(listItemView);
+        return new StoreAdapter.CustomViewHolder(listItemView,listener);
     }
 
     @Override
@@ -45,13 +48,35 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.CustomViewHo
 
         TextView storeName;
         TextView description;
-        public CustomViewHolder(@NonNull View itemView) {
+        TextView storeLocation;
+
+        CustomClickListener listener;
+        public CustomViewHolder(@NonNull View itemView , CustomClickListener listener) {
             super(itemView);
+
+            this.listener=listener;
 
             storeName = itemView.findViewById(R.id.store_title);
             description = itemView.findViewById(R.id.store_description);
+            storeLocation=itemView.findViewById(R.id.txt_view_store_location);
+
+            storeLocation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener!=null){
+                        int position = getAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION){
+                            listener.onClickListener(position);
+                        }
+                    }
+                }
+            });
 
 
         }
+    }
+
+    public interface CustomClickListener{
+        void onClickListener(int position);
     }
 }

@@ -32,8 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Title"
         android:inputType="text"
+        android:text="Title"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -72,6 +72,17 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelAddEvent"
         app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="106dp"
+        android:text="add location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_store" />
 
     <Button
         android:id="@+id/btn_cancelAddEvent"

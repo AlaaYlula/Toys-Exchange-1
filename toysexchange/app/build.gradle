@@ -37,6 +37,10 @@ android {
 dependencies {
 
 
+
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.amplifyframework:aws-api:1.35.3'
@@ -49,6 +53,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

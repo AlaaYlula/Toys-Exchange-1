@@ -51,6 +51,16 @@
         app:layout_constraintTop_toBottomOf="@+id/title_eventDetail" />
 
     <Button
+        android:id="@+id/bt_event_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="28dp"
+        android:text="show location"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_Comment"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
         android:id="@+id/btn_attendEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

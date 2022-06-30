@@ -16,6 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity
+            android:name=".UI.StoreListActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".UI.MapActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.UpdateCommentActivity"
             android:exported="false" />
@@ -93,10 +106,17 @@
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".WishListActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
+
+
+
     </application>
 
 </manifest>

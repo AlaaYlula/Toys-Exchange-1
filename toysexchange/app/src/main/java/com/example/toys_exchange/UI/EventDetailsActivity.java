@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -58,6 +59,9 @@ public class EventDetailsActivity extends AppCompatActivity {
     Handler handler;
     Button updateBtn;
 
+    Double longitude;
+    Double latitude;
+
     String eventIdFromMain;
     String cognitoIdFromMain;
     String loginUserIdFromMain;
@@ -65,6 +69,8 @@ public class EventDetailsActivity extends AppCompatActivity {
     String titEvent;
 
     Button updateForm;
+
+    Button showLocation;
 
     Intent passedIntent;
     @SuppressLint("NotifyDataSetChanged")
@@ -80,6 +86,8 @@ public class EventDetailsActivity extends AppCompatActivity {
         cognitoIdFromMain = passedIntent.getStringExtra("cognitoID");
         loginUserIdFromMain = passedIntent.getStringExtra("loginUserID");
         userIdAddedEventFromMain = passedIntent.getStringExtra("userID");
+        longitude=passedIntent.getDoubleExtra("longitude",0.0);
+        latitude=passedIntent.getDoubleExtra("latitude",0.0);
 
         updateForm = findViewById(R.id.btn_updateComment);
 
@@ -125,6 +133,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         btnAttend = findViewById(R.id.btn_attendEvent);
         deleteComment = findViewById(R.id.btn_deleteComment);
         addBtnListner();
+        showLocation=findViewById(R.id.bt_event_location);
+
+        showLocation.setOnClickListener(view -> {
+
+            Log.i(TAG, "onCreate:lan "+longitude);
+            Log.i(TAG, "onCreate:lat "+latitude);
+            if(latitude!=0 && longitude!=0){
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+                startActivity(intent);
+            }else {
+                Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

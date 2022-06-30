@@ -4,20 +4,20 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
         classpath 'com.amplifyframework:amplify-tools-gradle-plugin:1.0.2'
+        classpath 'com.google.gms:google-services:4.3.12'
+
     }
 }
 
 
 
 plugins {
-    id 'com.android.application' version '7.1.1' apply false
-    id 'com.android.library' version '7.1.1' apply false
-
+    id 'com.android.application' version '7.2.1' apply false
+    id 'com.android.library' version '7.2.1' apply false
 }
 
 
@@ -27,3 +27,4 @@ task clean(type: Delete) {
 }
 
 apply plugin: 'com.amplifyframework.amplifytools'
+apply plugin: 'com.google.gms.google-services'

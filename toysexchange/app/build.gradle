@@ -37,6 +37,9 @@ android {
 dependencies {
 
 
+    // Library for payments Form
+    implementation 'com.braintreepayments:card-form:5.4.0'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.amplifyframework:aws-api:1.35.3'

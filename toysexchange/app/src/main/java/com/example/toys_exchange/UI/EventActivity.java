@@ -59,7 +59,7 @@ public class EventActivity extends AppCompatActivity {
         });
         authAttribute(); //get the username and userID
 
-        addEvent = findViewById(R.id.btn_addStore);
+        addEvent = findViewById(R.id.btn_addEvent);
         cancelAdd = findViewById(R.id.btn_cancelAddEvent);
 
         addBtnListener(); // Listeners
@@ -147,8 +147,8 @@ public class EventActivity extends AppCompatActivity {
 
         addEvent.setOnClickListener(view -> {
 
-            EditText eventDescription = findViewById(R.id.description_store);
-            EditText eventTitle = findViewById(R.id.title_store);
+            EditText eventDescription = findViewById(R.id.description_event);
+            EditText eventTitle = findViewById(R.id.title_event);
 
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();

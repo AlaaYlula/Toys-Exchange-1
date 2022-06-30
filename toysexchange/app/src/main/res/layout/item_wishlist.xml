@@ -84,7 +84,7 @@
 
                 <TextView
                     style="@style/ShopHopCartButton"
-                    android:text="@string/sh_lbl_move_to_cart"
+                    android:text="Show Details"
                     app:drawableStartCompat="@drawable/shophop_move_4" />
 
             </LinearLayout>

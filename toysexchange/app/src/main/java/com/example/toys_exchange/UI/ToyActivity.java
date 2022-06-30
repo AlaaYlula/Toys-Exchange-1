@@ -88,7 +88,6 @@ public class ToyActivity extends AppCompatActivity {
 
         mSpinnerType=findViewById(R.id.spinner_type);
 
-        String price=toyPrice.getText().toString();
 
         setSpinner();
         authAttribute();
@@ -134,6 +133,8 @@ public class ToyActivity extends AppCompatActivity {
                 String toyCondition=mSpinnerCondition.getSelectedItem().toString();
                 String toyType=mSpinnerType.getSelectedItem().toString();
                 String contact=contactInfo.getText().toString();
+
+                String price=toyPrice.getText().toString();
 
 //                if(toyType.equals("REQUEST")){
 //                    toyPrice.setEnabled(false);

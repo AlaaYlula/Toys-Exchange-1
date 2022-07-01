@@ -28,6 +28,7 @@ public class StoreAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_add);
+        getSupportActionBar().setTitle("Add Store");
 
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();

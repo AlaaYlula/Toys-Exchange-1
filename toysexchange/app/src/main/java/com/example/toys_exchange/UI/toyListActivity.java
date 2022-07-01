@@ -20,6 +20,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
 import com.example.toys_exchange.adapter.EventDeleteAdapter;
@@ -135,24 +136,56 @@ public class toyListActivity extends AppCompatActivity {
         toyDeleteAdapter = new ToyDeleteAdapter(toyList, new ToyDeleteAdapter.CustomClickListener() {
             @Override
             public void onDeleteClickListener(int position) {
+//                Amplify.API.query(
+//                        ModelQuery.list(Toy.class),
+//                        toys -> {
+//                            if(toys.hasData()) {
+//                                for (Toy toy :
+//                                        toys.getData()) {
+//                                    if(toy.getAccountToysId().equals(toyList.get(position).getId()))                                     {
+//                                        Amplify.API.mutate(ModelMutation.delete(toy),
+//                                                response ->{
+//                                                    Log.i(TAG, "Toy deleted " + response);
+//                                                },
+//                                                error -> Log.e(TAG, "toy failed", error)
+//                                        );
+//                                    }
+//                                }
+//                            }
+//
+//
+//                            runOnUiThread(()->{
+//                                Amplify.API.mutate(ModelMutation.delete(toyList.get(position)),
+//                                        response ->{
+//                                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+//                                            Log.i(TAG, "Toy deleted " + response);
+//                                            toyList.remove(position);
+//                                            toyDeleteAdapter.notifyItemRemoved(position);
+//                                        },
+//                                        error -> Log.e(TAG, "delete failed", error)
+//                                );
+//                            });
+//
+//                        },
+//                        error -> Log.e(TAG, error.toString(), error)
+//                );
+
                 Amplify.API.query(
-                        ModelQuery.list(Toy.class),
+                        ModelQuery.list(UserWishList.class),
                         toys -> {
                             if(toys.hasData()) {
-                                for (Toy toy :
+                                for (UserWishList toy :
                                         toys.getData()) {
-                                    if(toy.getAccountToysId().equals(toyList.get(position).getId())) // Add For comments check
-                                    {
+                                    if(toy.getToy().getId().equals(toyList.get(position).getId()))                                     {
                                         Amplify.API.mutate(ModelMutation.delete(toy),
                                                 response ->{
-                                                    Log.i(TAG, "Toy deleted " + response);
+                                                    Log.i(TAG, "Toy wishList deleted " + response);
                                                 },
                                                 error -> Log.e(TAG, "toy failed", error)
                                         );
                                     }
                                 }
                             }
-
 
                             runOnUiThread(()->{
                                 Amplify.API.mutate(ModelMutation.delete(toyList.get(position)),

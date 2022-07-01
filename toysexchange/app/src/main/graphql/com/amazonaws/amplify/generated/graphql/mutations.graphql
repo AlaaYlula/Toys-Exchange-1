@@ -305,6 +305,42 @@ mutation DeleteEvent(
     accountEventsaddedId
   }
 }
+mutation CreateNotification(
+  $input: CreateNotificationInput!
+  $condition: ModelNotificationConditionInput
+) {
+  createNotification(input: $input, condition: $condition) {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateNotification(
+  $input: UpdateNotificationInput!
+  $condition: ModelNotificationConditionInput
+) {
+  updateNotification(input: $input, condition: $condition) {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteNotification(
+  $input: DeleteNotificationInput!
+  $condition: ModelNotificationConditionInput
+) {
+  deleteNotification(input: $input, condition: $condition) {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateUserWishList(
   $input: CreateUserWishListInput!
   $condition: ModelUserWishListConditionInput

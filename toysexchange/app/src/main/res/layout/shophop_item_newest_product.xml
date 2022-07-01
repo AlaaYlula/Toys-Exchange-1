@@ -75,27 +75,35 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type"
+                        android:layout_marginRight="@dimen/_60sdp"
+                        android:textAppearance="@style/FontSemiBold"
+                        android:textColor="@color/ShopHop_textColorPrimary"
+                        android:textSize="@dimen/sh_font_size_small" />
+                    <TextView
                         android:id="@+id/tvCondition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/sh_spacing_control"
-                        android:textAppearance="@style/FontSemiBold"
                         android:text="new"
+                        android:textAppearance="@style/FontSemiBold"
                         android:textColor="@color/ShopHop_textColorPrimary"
                         android:textSize="@dimen/sh_font_size_small" />
 
                 </LinearLayout>
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tvProductRate"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="@dimen/sh_spacing_standard"-->
-<!--                    android:drawableEnd="@drawable/shophop_ic_star_black"-->
-<!--                    android:drawablePadding="@dimen/sh_spacing_control"-->
-<!--                    android:text="test"-->
-<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_micro" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/tvProductRate"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="@dimen/sh_spacing_standard"-->
+                <!--                    android:drawableEnd="@drawable/shophop_ic_star_black"-->
+                <!--                    android:drawablePadding="@dimen/sh_spacing_control"-->
+                <!--                    android:text="test"-->
+                <!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
+                <!--                    android:textSize="@dimen/sh_font_size_micro" />-->
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -112,19 +120,19 @@
                         android:textSize="@dimen/sh_font_size_medium"
                         tools:text="$100" />
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/toy_ActualPrice"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="@dimen/sh_spacing_control"-->
-<!--                        android:layout_marginTop="@dimen/sh_spacing_control_half"-->
-<!--                        android:layout_marginEnd="@dimen/sh_spacing_control"-->
-<!--                        android:layout_toStartOf="@id/ivDislike"-->
-<!--                        android:layout_toEndOf="@id/toy_Price"-->
-<!--                        android:textAppearance="@style/FontSemiBold"-->
-<!--                        android:textColor="@color/ShopHop_dots_color"-->
-<!--                        android:textSize="@dimen/sh_font_size_micro"-->
-<!--                        tools:text="$100" />-->
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/toy_ActualPrice"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginStart="@dimen/sh_spacing_control"-->
+                    <!--                        android:layout_marginTop="@dimen/sh_spacing_control_half"-->
+                    <!--                        android:layout_marginEnd="@dimen/sh_spacing_control"-->
+                    <!--                        android:layout_toStartOf="@id/ivDislike"-->
+                    <!--                        android:layout_toEndOf="@id/toy_Price"-->
+                    <!--                        android:textAppearance="@style/FontSemiBold"-->
+                    <!--                        android:textColor="@color/ShopHop_dots_color"-->
+                    <!--                        android:textSize="@dimen/sh_font_size_micro"-->
+                    <!--                        tools:text="$100" />-->
 
                     <ImageView
                         android:id="@+id/ivDislike"

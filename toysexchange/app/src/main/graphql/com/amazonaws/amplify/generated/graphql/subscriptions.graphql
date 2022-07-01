@@ -260,6 +260,33 @@ subscription OnDeleteEvent {
     accountEventsaddedId
   }
 }
+subscription OnCreateNotification {
+  onCreateNotification {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateNotification {
+  onUpdateNotification {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteNotification {
+  onDeleteNotification {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateUserWishList {
   onCreateUserWishList {
     id

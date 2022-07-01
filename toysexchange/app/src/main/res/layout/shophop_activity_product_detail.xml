@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="model"-->
-<!--            type="com.iqonic.shophop.models.ProductModel" />-->
-
-<!--    </data>-->
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -65,16 +56,6 @@
                             android:fitsSystemWindows="true"
                             android:overScrollMode="never" />
 
-                        <!--                        <com.iqonic.shophop.utils.dotsindicator.DotsIndicator-->
-                        <!--                            android:id="@+id/dots"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="@dimen/_30sdp"-->
-                        <!--                            android:layout_alignParentBottom="true"-->
-                        <!--                            android:layout_centerHorizontal="true"-->
-                        <!--                            android:layout_margin="@dimen/sh_spacing_standard"-->
-                        <!--                            android:gravity="center_horizontal"-->
-                        <!--                            app:dot_height="@dimen/sh_spacing_control"-->
-                        <!--                            app:dot_width="@dimen/sh_spacing_control" />-->
                     </RelativeLayout>
 
                     <TextView
@@ -91,73 +72,73 @@
                         android:textColor="@color/ShopHop_colorPrimary"
                         android:textSize="@dimen/sh_font_size_large" />
 
-                    <RelativeLayout
-                        android:id="@+id/rlInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvPrice"
-                        android:background="@color/ShopHop_white"
-                        android:layout_marginTop="@dimen/sh_spacing_control"
-                        >
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/rlInfo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/tvPrice"-->
+<!--                        android:background="@color/ShopHop_white"-->
+<!--                        android:layout_marginTop="@dimen/sh_spacing_control"-->
+<!--                        >-->
 
-                        <TextView
-                            android:id="@+id/tvItemProductRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="@dimen/sh_spacing_standard_new"
-                            android:layout_marginTop="0dp"
-                            android:background="@drawable/shophop_bg_ractangle_rounded"
-                            android:backgroundTint="@color/ShopHop_light_green"
-                            android:drawableEnd="@drawable/shophop_ic_star_black"
-                            android:drawablePadding="@dimen/sh_spacing_control"
-                            android:drawableTint="@color/ShopHop_white"
-                            android:gravity="center_vertical"
-                            android:paddingStart="@dimen/sh_spacing_middle"
-                            android:paddingTop="@dimen/sh_spacing_control_half"
-                            android:paddingEnd="@dimen/sh_spacing_xmedium"
-                            android:paddingBottom="@dimen/sh_spacing_control_half"
-                            android:textColor="@color/ShopHop_white"
-                            android:textSize="@dimen/sh_font_size_small" />
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/tvItemProductRating"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_alignParentTop="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_standard_new"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginTop="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:background="@drawable/shophop_bg_ractangle_rounded"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:backgroundTint="@color/ShopHop_light_green"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:drawableEnd="@drawable/shophop_ic_star_black"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:drawablePadding="@dimen/sh_spacing_control"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:drawableTint="@color/ShopHop_white"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:paddingStart="@dimen/sh_spacing_middle"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:paddingTop="@dimen/sh_spacing_control_half"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:paddingEnd="@dimen/sh_spacing_xmedium"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:paddingBottom="@dimen/sh_spacing_control_half"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_white"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small" />&ndash;&gt;-->
 
-                        <TextView
-                            android:id="@+id/tvItemProductReview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/sh_spacing_control"
-                            android:layout_toStartOf="@id/tvItemProductDiscount"
-                            android:layout_toEndOf="@id/tvItemProductRating"
-                            android:gravity="center_vertical"
-                            android:textColor="@color/ShopHop_textColorSecondary"
-                            android:textSize="@dimen/sh_font_size_small" />
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/tvItemProductReview"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_centerVertical="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_toStartOf="@id/tvItemProductDiscount"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_toEndOf="@id/tvItemProductRating"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_textColorSecondary"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small" />&ndash;&gt;-->
 
-                        <TextView
-                            android:id="@+id/tvItemProductOriginalPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/sh_spacing_control"
-                            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-                            android:gravity="center_vertical"
-                            android:textAppearance="@style/FontMedium"
-                            android:textColor="@color/ShopHop_textColorSecondary"
-                            android:textSize="@dimen/sh_font_size_small"
-                            android:text="200"/>
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/tvItemProductOriginalPrice"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_alignParentEnd="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_centerVertical="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginEnd="@dimen/sh_spacing_standard_new"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textAppearance="@style/FontMedium"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_textColorSecondary"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:text="200"/>&ndash;&gt;-->
 
-                        <TextView
-                            android:id="@+id/tvItemProductDiscount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="@dimen/sh_spacing_control"
-                            android:layout_marginTop="3dp"
-                            android:layout_toStartOf="@id/tvItemProductOriginalPrice"
-                            android:textColor="@color/ShopHop_light_green"
-                            android:textSize="@dimen/sh_font_size_small"
-                            tools:text="50% off" />
-                    </RelativeLayout>
+<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:id="@+id/tvItemProductDiscount"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_alignParentTop="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_marginTop="3dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:layout_toStartOf="@id/tvItemProductOriginalPrice"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_light_green"&ndash;&gt;-->
+<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small"&ndash;&gt;-->
+<!--&lt;!&ndash;                            tools:text="50% off" />&ndash;&gt;-->
+<!--                    </RelativeLayout>-->
 
                 </RelativeLayout>
 
@@ -189,13 +170,28 @@
                 android:paddingBottom="@dimen/_30sdp"
                 android:orientation="vertical">
 
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/mDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:dividerColor="@color/ShopHop_light_gray"
+                    app:dividerInsetEnd="16dp"
+                    app:dividerInsetStart="16dp"
+                    android:overScrollMode="never"
+                    android:foregroundGravity="fill"
+                    app:tabMode="fixed"
+                    />
+
 <!--                <com.google.android.material.tabs.TabLayout-->
 <!--                    android:id="@+id/productTabs"-->
 <!--                    android:layout_width="match_parent"-->
 <!--                    android:layout_height="wrap_content"-->
 <!--                    android:layout_marginStart="@dimen/sh_spacing_standard_new"-->
 <!--                    android:layout_marginEnd="@dimen/sh_spacing_standard_new"-->
-<!--                    android:background="@color/ShopHop_white"-->
+<!--                    android:background="@color/ShopHop_light_gray"-->
 <!--                    app:tabGravity="fill"-->
 <!--                    app:tabIndicator="@color/ShopHop_textColorSecondary"-->
 <!--                    app:tabIndicatorColor="@color/ShopHop_colorPrimary"-->
@@ -262,26 +258,26 @@
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="top|end" />
 
-    <ImageView
-        android:id="@+id/ivDislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
+<!--    <ImageView-->
+<!--        android:id="@+id/ivDislike"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
 
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginTop="@dimen/_30sdp"-->
+<!--        android:layout_marginEnd="@dimen/_8sdp"-->
 
-        android:background="@drawable/shophop_bg_circle"
-        android:backgroundTint="@color/ShopHop_favourite_background"
-        android:contentDescription="@string/sh_text_todo"
+<!--        android:background="@drawable/shophop_bg_circle"-->
+<!--        android:backgroundTint="@color/ShopHop_favourite_background"-->
+<!--        android:contentDescription="@string/sh_text_todo"-->
 
-        android:padding="@dimen/sh_spacing_standard"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="top|end"
+<!--        android:padding="@dimen/sh_spacing_standard"-->
+<!--        app:layout_anchor="@id/app_bar"-->
+<!--        app:layout_anchorGravity="top|end"-->
 
-        android:src="@drawable/shophop_ic_heart_fill"
-        android:visibility="gone" />
+<!--        android:src="@drawable/shophop_ic_heart_fill"-->
+<!--        android:visibility="gone" />-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

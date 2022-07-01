@@ -25,7 +25,7 @@
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:contentScrim="@color/ShopHop_white"
-                app:expandedTitleMarginBottom="@dimen/_240sdp"
+                app:expandedTitleMarginBottom="@dimen/_280sdp"
                 app:expandedTitleMarginStart="@dimen/sh_spacing_standard_new"
                 app:expandedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -68,6 +68,19 @@
 
                     </RelativeLayout>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAttend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlViewPager"
+                        android:layout_centerHorizontal="true"
+                        style="@style/ShopHopMaterialButtonStyle.Filled"
+                        android:shadowColor="@color/ShopHop_colorPrimary"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Attend"
+
+                        />
+
                 </RelativeLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -79,7 +92,7 @@
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:popupTheme="@style/ShopHopAppTheme.PopupOverlay"
-                    app:titleTextColor="@color/ShopHop_textColorPrimary" />
+                     />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -116,28 +129,31 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_16sdp"
-                android:layout_alignTop="@+id/mDivider"
                 style="@style/ShopHopEditTextStyle"
-                android:hint="test"
-                android:gravity="fill">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_alignTop="@+id/mDivider"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:gravity="fill"
+                android:hint="test">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etComment"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    />
+                    android:layout_height="@dimen/_60sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ShopHopMaterialButtonStyle.Stroked"
+                android:shadowColor="@color/ShopHop_colorPrimary"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_92sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:text="comment"
                 android:textSize="@dimen/_10sdp"
@@ -146,7 +162,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_340sdp"
+                    android:layout_height="@dimen/_330sdp"
                     android:layout_below="@+id/textField"
                     />
 

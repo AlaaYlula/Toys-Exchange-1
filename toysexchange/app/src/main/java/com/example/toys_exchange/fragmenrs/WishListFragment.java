@@ -43,6 +43,7 @@ public class WishListFragment extends Fragment {
     CustomToyAdapter customAdapter;
 
 
+
     public WishListFragment() {
         // Required empty public constructor
     }
@@ -51,12 +52,14 @@ public class WishListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
 
         mView = inflater.inflate(R.layout.activity_wish_list, container, false);
         return mView;

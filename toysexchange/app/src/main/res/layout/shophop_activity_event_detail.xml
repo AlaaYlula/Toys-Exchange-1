@@ -25,7 +25,7 @@
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:contentScrim="@color/ShopHop_white"
-                app:expandedTitleMarginBottom="@dimen/_240sdp"
+                app:expandedTitleMarginBottom="@dimen/_280sdp"
                 app:expandedTitleMarginStart="@dimen/sh_spacing_standard_new"
                 app:expandedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -68,6 +68,19 @@
 
                     </RelativeLayout>
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAttend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlViewPager"
+                        android:layout_centerHorizontal="true"
+                        style="@style/ShopHopMaterialButtonStyle.Filled"
+                        android:shadowColor="@color/ShopHop_colorPrimary"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Attend"
+
+                        />
+
                 </RelativeLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -79,7 +92,7 @@
                     app:layout_collapseMode="pin"
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:popupTheme="@style/ShopHopAppTheme.PopupOverlay"
-                    app:titleTextColor="@color/ShopHop_textColorPrimary" />
+                     />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -131,11 +144,12 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/ShopHopMaterialButtonStyle.Stroked"
+                android:shadowColor="@color/ShopHop_colorPrimary"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginEnd="@dimen/_25sdp"

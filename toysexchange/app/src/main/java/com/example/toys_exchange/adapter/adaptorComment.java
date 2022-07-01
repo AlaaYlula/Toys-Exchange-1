@@ -53,7 +53,8 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
 
     public interface OnItemClickListener {
         void onDeleteClick(int position);
-        void onUpdateClick(int position);
+        void onUpdateClick(int position,ConstraintLayout rlEditComment, ImageView ivEditComment
+              ,  EditText etEditComment);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -162,43 +163,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             });
 
             rlEditComment = itemView.findViewById(R.id.rlEditComment);
-//            deletebtn = itemView.findViewById(R.id.btn_deleteComment);
-//            updateBtn = itemView.findViewById(R.id.btn_updateComment);
 
-
-//            deletebtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (listener != null) {
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION) {
-//                            listener.onDeleteClick(position);
-//                        }
-//
-//
-//                    }
-//                }
-//
-//
-//
-//            });
-
-//            updateBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (listener != null) {
-//                        int position = getAdapterPosition();
-//                        if (position != RecyclerView.NO_POSITION) {
-//                            listener.onUpdateClick(position);
-//                        }
-//
-//
-//                    }
-//                }
-//
-//
-//
-//            });
         }
         private void showPopupMenu(View view){
             PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
@@ -226,34 +191,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
 
         private void showEditComment(int position){
 
-            rlEditComment.setVisibility(View.VISIBLE);
-
-            ivEditComment.setOnClickListener(view -> {
-                Comment newComment = Comment.builder().text(etEditComment.getText().toString())
-                    .id(commentsList.get(position).getId()).accountCommentsId(commentsList.get(position).getAccountCommentsId())
-                    .eventCommentsId(commentsList.get(position).getEventCommentsId()).build();
-
-                Log.i(TAG, "comment id: " + text);
-                Amplify.API.mutate(ModelMutation.update(newComment),
-                        response -> {
-                            runOnUiThread(() -> {
-                                Log.i(TAG, "comment id: " + response.getData().getText());
-                                Toast.makeText(itemView.getContext(), "Updated", Toast.LENGTH_SHORT).show();
-                            });
-                            // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                            Log.i(TAG, "Event updated " + response);
-                        },
-                        error -> Log.e(TAG, "update failed", error)
-                );
-
-
-                listener.onUpdateClick(position);
-
-            });
-
-
-
-
+            listener.onUpdateClick(position,rlEditComment,ivEditComment,etEditComment);
         }
 
         private void deleteComment( int position){

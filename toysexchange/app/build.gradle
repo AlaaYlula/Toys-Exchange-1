@@ -38,6 +38,9 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.6.1'
 
+    // Library for payments Form
+    implementation 'com.braintreepayments:card-form:5.4.0'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.amplifyframework:aws-api:1.35.3'

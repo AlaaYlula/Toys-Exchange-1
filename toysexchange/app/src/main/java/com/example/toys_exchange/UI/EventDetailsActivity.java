@@ -1,6 +1,8 @@
 package com.example.toys_exchange.UI;
 
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
@@ -12,11 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,6 +72,14 @@ public class EventDetailsActivity extends AppCompatActivity {
     Button updateForm;
 
     Intent passedIntent;
+    private String titleText;
+    private String descriptionText;
+
+    ConstraintLayout rlEditComment;
+    ImageView ivEditComment;
+    EditText etEditComment;
+
+
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -98,6 +110,13 @@ public class EventDetailsActivity extends AppCompatActivity {
 
 //        username = findViewById(R.id.username_event);
 //        title = findViewById(R.id.title_eventDetail);
+//        titleText = passedIntent.getStringExtra("eventTitle");
+//        title.setText(titleText);
+//        description = findViewById(R.id.description_eventDetail);
+//        descriptionText = passedIntent.getStringExtra("description");
+//        description.setText(descriptionText);
+//        username = findViewById(R.id.username_event);
+//        title = findViewById(R.id.title_eventDetail);
 //        title.setText(passedIntent.getStringExtra("eventTitle"));
 
         title = findViewById(R.id.toolbar_layout);
@@ -111,7 +130,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         // The Add Comment Button
         addComment = findViewById(R.id.btnComment);
-//        btnAttend = findViewById(R.id.btn_attendEvent);
+        btnAttend = findViewById(R.id.btnAttend);
 //        deleteComment = findViewById(R.id.btn_deleteComment);
         addBtnListner();
 
@@ -155,76 +174,76 @@ public class EventDetailsActivity extends AppCompatActivity {
 
             });
 
-//        btnAttend.setOnClickListener(view->{
-//            // If the User Not Attend the Event
-//            if(btnAttend.getText().equals("Attend")) {
-//                                Amplify.API.query(
-//                                        ModelQuery.list(Account.class),
-//                                        users -> {
-//                                            for (Account userAccount :
-//                                                    users.getData()) {
-//                                                if (userAccount.getIdcognito().equals(cognitoIdFromMain)) {
-//                                                    userWhoAttend = userAccount;
-//                                                    userAttendEvent = UserAttendEvent.builder()
-//                                                            .account(userAccount)
-//                                                            .event(event)
-//                                                            .build();
-//                                                }
-//                                            }
-//
-//                                            runOnUiThread(() -> {
-//
-//                                                Amplify.API.mutate(
-//                                                        ModelMutation.create(userAttendEvent),
-//                                                        success -> {
-//                                                            Log.i(TAG, "Saved item API: " + success.getData());
-//                                                            runOnUiThread(() -> {
-//                                                                btnAttend.setText("Un Attend");
-//                                                                Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
-//                                                            });
-//                                                        },
-//                                                        error -> Log.e(TAG, "Could not save item to API", error)
-//                                                );
-//
-//
-//                                            });
-//
-//                                        },
-//                                        error -> Log.e(TAG, error.toString(), error)
-//                                );
-//
-//            }else{ // User want Un Attend // Delete From tables
-//                // https://docs.amplify.aws/lib/graphqlapi/mutate-data/q/platform/android/#run-a-mutation
-//                Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
-//                        usersAttend -> {
-//                            for (UserAttendEvent user:
-//                                    usersAttend.getData()) {
-//                                if(user.getAccount().getId().equals(loginUserIdFromMain)
-//                                        && user.getEvent().getId().equals(eventIdFromMain)){
-//                                    runOnUiThread(() -> {
-//                                        Amplify.API.mutate(ModelMutation.delete(user),
-//                                                response ->{
-//                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
-//
-//                                                    runOnUiThread(() -> {
-//                                                        btnAttend.setText("Attend");
-//
-//                                                    });
-//
-//                                            },
-//                                                error -> Log.e(TAG, "delete failed", error)
-//                                        );
-//                                    });
-//                                    break;
-//                                }
-//                            }
-//
-//                        },
-//                        error -> Log.e(TAG, error.toString(), error)
-//                );
-//
-//            }
-//        });
+        btnAttend.setOnClickListener(view->{
+            // If the User Not Attend the Event
+            if(btnAttend.getText().equals("Attend")) {
+                                Amplify.API.query(
+                                        ModelQuery.list(Account.class),
+                                        users -> {
+                                            for (Account userAccount :
+                                                    users.getData()) {
+                                                if (userAccount.getIdcognito().equals(cognitoIdFromMain)) {
+                                                    userWhoAttend = userAccount;
+                                                    userAttendEvent = UserAttendEvent.builder()
+                                                            .account(userAccount)
+                                                            .event(event)
+                                                            .build();
+                                                }
+                                            }
+
+                                            runOnUiThread(() -> {
+
+                                                Amplify.API.mutate(
+                                                        ModelMutation.create(userAttendEvent),
+                                                        success -> {
+                                                            Log.i(TAG, "Saved item API: " + success.getData());
+                                                            runOnUiThread(() -> {
+                                                                btnAttend.setText("Un Attend");
+                                                                Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
+                                                            });
+                                                        },
+                                                        error -> Log.e(TAG, "Could not save item to API", error)
+                                                );
+
+
+                                            });
+
+                                        },
+                                        error -> Log.e(TAG, error.toString(), error)
+                                );
+
+            }else{ // User want Un Attend // Delete From tables
+                // https://docs.amplify.aws/lib/graphqlapi/mutate-data/q/platform/android/#run-a-mutation
+                Amplify.API.query(ModelQuery.list(UserAttendEvent.class),
+                        usersAttend -> {
+                            for (UserAttendEvent user:
+                                    usersAttend.getData()) {
+                                if(user.getAccount().getId().equals(loginUserIdFromMain)
+                                        && user.getEvent().getId().equals(eventIdFromMain)){
+                                    runOnUiThread(() -> {
+                                        Amplify.API.mutate(ModelMutation.delete(user),
+                                                response ->{
+                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
+
+                                                    runOnUiThread(() -> {
+                                                        btnAttend.setText("Attend");
+
+                                                    });
+
+                                            },
+                                                error -> Log.e(TAG, "delete failed", error)
+                                        );
+                                    });
+                                    break;
+                                }
+                            }
+
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
+
+            }
+        });
 
     }
 
@@ -256,6 +275,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 ModelQuery.get(Event.class, eventIdFromMain),
 
                 events -> {
+                    if(events.hasData()) {
                     event = events.getData();
                     // Use To do Sync
                     runOnUiThread(() -> {
@@ -263,7 +283,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                 useradd -> {
                                runOnUiThread(()->{
                                    if(event.getAccountEventsaddedId().equals(loginUserIdFromMain)){
-//                                       btnAttend.setVisibility(View.INVISIBLE);
+                                       btnAttend.setVisibility(View.INVISIBLE);
                                    }
 //                                   username.setText(useradd.getData().getUsername());
                                });
@@ -273,13 +293,32 @@ public class EventDetailsActivity extends AppCompatActivity {
                         );
                     });
 
+                        event = events.getData();
+                        // Use To do Sync
+                        runOnUiThread(() -> {
+                            Amplify.API.query(ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
+                                    useradd -> {
+                                        if (useradd.hasData()) {
+                                            runOnUiThread(() -> {
+                                                if (event.getAccountEventsaddedId().equals(loginUserIdFromMain)) {
+                                                    btnAttend.setVisibility(View.INVISIBLE);
+                                                }
+                                              //  username.setText(useradd.getData().getUsername());
+                                            });
+                                        }
+                                    },
+                                    error -> Log.e(TAG, error.toString(), error)
+                            );
+                        });
+                    }
 
                                                 },
            error -> Log.e(TAG, error.toString(), error)
                                         );
 
     }
-//    @RequiresApi(api = Build.VERSION_CODES.N)
+
+    //    @RequiresApi(api = Build.VERSION_CODES.N)
     private void getCommentsList() {
         commentsListDatabase = new ArrayList<>();
         Amplify.API.query(
@@ -320,6 +359,7 @@ public class EventDetailsActivity extends AppCompatActivity {
             return a.getCreatedAt().compareTo(b.getCreatedAt());
         }
     }
+
     // Recycler View
     private void recyclerViewWork() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
@@ -344,14 +384,31 @@ public class EventDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onUpdateClick(int position) {
-                commentRecyclerViewAdapter.notifyItemRemoved(position);
-//                Intent intent = new Intent(getApplicationContext(), UpdateCommentActivity.class);
-//                intent.putExtra("commentText",commentsListDatabase.get(position).getText());
-//                intent.putExtra("commentId",commentsListDatabase.get(position).getId());
-//                intent.putExtra("accountsCommentId",commentsListDatabase.get(position).getAccountCommentsId());
-//                intent.putExtra("eventCommentsId",commentsListDatabase.get(position).getEventCommentsId());
-//                startActivity(intent);
+            public void onUpdateClick(int position,ConstraintLayout rlEditComment
+                    ,    ImageView ivEditComment, EditText etEditComment) {
+                rlEditComment.setVisibility(View.VISIBLE);
+                ivEditComment.setOnClickListener(view -> {
+                    Comment newComment = Comment.builder().text(etEditComment.getText().toString())
+                            .id(commentsListDatabase.get(position).getId()).accountCommentsId(commentsListDatabase.get(position).getAccountCommentsId())
+                            .eventCommentsId(commentsListDatabase.get(position).getEventCommentsId()).build();
+
+                    Amplify.API.mutate(ModelMutation.update(newComment),
+                            response -> {
+
+                                runOnUiThread(() -> {
+                                    Log.i(TAG, "comment id: " + response.getData().getText());
+                                    rlEditComment.setVisibility(View.GONE);
+                                    commentsListDatabase.remove(position);
+                                    commentsListDatabase.add(position,newComment);
+                                    commentRecyclerViewAdapter.notifyItemChanged(position);
+                                });
+                                // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                Log.i(TAG, "Event updated " + response);
+                            },
+                            error -> Log.e(TAG, "update failed", error)
+                    );
+
+                });
 
             }
         });
@@ -364,16 +421,10 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-
     protected void onResume() {
         Log.i(TAG, "onResume: called - The App is VISIBLE");
-
-//        title.setText(passedIntent.getStringExtra("eventTitle"));
-//        description.setText(passedIntent.getStringExtra("description"));
-
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0) {

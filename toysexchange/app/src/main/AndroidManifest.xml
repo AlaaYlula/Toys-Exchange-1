@@ -20,6 +20,9 @@
             android:name=".UI.UpdateCommentActivity"
             android:exported="false" />
         <activity
+            android:name=".UI.StoreListActivity"
+            />
+        <activity
             android:name=".UI.UpdateToyActivity"
             android:exported="false" />
         <activity
@@ -59,6 +62,12 @@
             android:name=".UI.EventActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:parentActivityName=".UI.ToyDetailActivity" />
+
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />

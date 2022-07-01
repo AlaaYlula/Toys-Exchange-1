@@ -221,6 +221,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        TextView tvSetting = findViewById(R.id.tvSetting);
+        tvSetting.setOnClickListener(view -> {
+            startActivity(new Intent(this,MainActivity2.class));
+        });
+
+
     }
 
 
@@ -318,7 +324,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void enable(ImageView imageView){
         disableAll();
@@ -340,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
         imageView.setColorFilter(getColor(R.color.ShopHop_textColorSecondary));
         imageView.setBackground(null);
     }
-
 
     private void changeFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();

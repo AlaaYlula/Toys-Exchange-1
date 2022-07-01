@@ -56,7 +56,8 @@
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.EventDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"

@@ -20,10 +20,18 @@ plugins {
 
 }
 
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
 apply plugin: 'com.amplifyframework.amplifytools'

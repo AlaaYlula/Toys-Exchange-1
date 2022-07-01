@@ -180,7 +180,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                                             .build();
                                                 }
                                             }
-
+//
                                             runOnUiThread(() -> {
 
                                                 Amplify.API.mutate(

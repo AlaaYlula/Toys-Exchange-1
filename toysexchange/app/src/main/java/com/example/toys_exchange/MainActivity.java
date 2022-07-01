@@ -27,11 +27,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Notification;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.Firebase.FcnNotificationSender;
 import com.example.toys_exchange.UI.EventActivity;
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private EventFragment eventFragment;
     private WishListFragment wishListFragment;
     private StoreFragment storeFragment;
+    private Notification notification;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -129,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shophop_activity_dashboard_shop);
 
+//        getLoginUserId();
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId = logedInUser.getUserId();
 
 
         FirebaseApp.initializeApp(this);
@@ -146,8 +152,35 @@ public class MainActivity extends AppCompatActivity {
                         // Get new FCM registration token
                         String token = task.getResult();
                         // send it to API
+                        Amplify.API.query(
+                                ModelQuery.list(Account.class),
+                                allUsers -> {
+                                    for (Account userAc:
+                                            allUsers.getData()) {
+                                        if(userAc.getIdcognito().equals(cognitoId)){
+                                            acc_id = userAc.getId();
+                                            Log.i(TAG, "ayahh: " + acc_id);
 
-                        //
+                                            Notification notification = Notification.builder()
+                                                    .tokenid(token)
+                                                    .accountid(acc_id)
+                                                    .build();
+                                            if(!notification.getAccountid().contains(acc_id))
+                                            Amplify.API.mutate(
+                                                    ModelMutation.create(notification),
+                                                    success -> {
+                                                        Log.i(TAG, "Saved item API: " + success.getData());
+                                                    },
+                                                    error -> Log.e(TAG, "Could not save item to API", error)
+                                            );
+
+                                        }
+                                    }
+
+                                },
+                                error -> Log.e(TAG, error.toString(), error)
+                        );
+//                        id: ID!tokenid: Stringaccountid:
 
 
                         // Log and toast
@@ -198,8 +231,8 @@ public class MainActivity extends AppCompatActivity {
         ivWishList = findViewById(R.id.ivWishList);
         ivRecommendation = findViewById(R.id.ivRecommendation);
 
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId =  logedInUser.getUserId();
+//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+//        String cognitoId =  logedInUser.getUserId();
 
 
         enable(ivHome);
@@ -358,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
-    public  void getLoginUserId() {
+    public void getLoginUserId() {
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();
         Amplify.API.query(

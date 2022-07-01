@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     public static final String USERNAME = "username";
+    public static final String NAMEUSERNAME = "name";
 
     private ProgressBar loadingProgressBar;
 
@@ -178,6 +179,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             // save the text to shared preferences
                                             preferenceEditor.putString(USERNAME, user.getId());
+                                            preferenceEditor.putString(NAMEUSERNAME, user.getUsername());
                                             preferenceEditor.apply();
                                         });
 

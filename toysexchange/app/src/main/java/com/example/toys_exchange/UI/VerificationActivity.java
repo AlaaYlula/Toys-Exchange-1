@@ -54,6 +54,8 @@ public class VerificationActivity extends AppCompatActivity {
                     Account user = Account.builder()
                             .username(username)
                             .idcognito(userId)
+//                            .bio(" ")
+//                            .image(" ")
                             .build();
 
                     // API save to backend

@@ -67,6 +67,9 @@ public class EventDetailsActivity extends AppCompatActivity {
     Button updateForm;
 
     Intent passedIntent;
+    private String titleText;
+    private String descriptionText;
+
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -97,9 +100,11 @@ public class EventDetailsActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username_event);
         title = findViewById(R.id.title_eventDetail);
-        title.setText(passedIntent.getStringExtra("eventTitle"));
+        titleText = passedIntent.getStringExtra("eventTitle");
+        title.setText(titleText);
         description = findViewById(R.id.description_eventDetail);
-        description.setText(passedIntent.getStringExtra("description"));
+        descriptionText = passedIntent.getStringExtra("description");
+        description.setText(descriptionText);
 
 //        updateBtn = findViewById(R.id.btn_update_EventDetails);
 //
@@ -265,23 +270,26 @@ public class EventDetailsActivity extends AppCompatActivity {
                 ModelQuery.get(Event.class, eventIdFromMain),
 
                 events -> {
-                    event = events.getData();
-                    // Use To do Sync
-                    runOnUiThread(() -> {
-                        Amplify.API.query(ModelQuery.get(Account.class,event.getAccountEventsaddedId()),
-                                useradd -> {
-                               runOnUiThread(()->{
-                                   if(event.getAccountEventsaddedId().equals(loginUserIdFromMain)){
-                                       btnAttend.setVisibility(View.INVISIBLE);
-                                   }
-                                   username.setText(useradd.getData().getUsername());
-                               });
+                    if(events.hasData()) {
 
-                                },
-                                error -> Log.e(TAG, error.toString(), error)
-                        );
-                    });
-
+                        event = events.getData();
+                        // Use To do Sync
+                        runOnUiThread(() -> {
+                            Amplify.API.query(ModelQuery.get(Account.class, event.getAccountEventsaddedId()),
+                                    useradd -> {
+                                        if (useradd.hasData()) {
+                                            runOnUiThread(() -> {
+                                                if (event.getAccountEventsaddedId().equals(loginUserIdFromMain)) {
+                                                    btnAttend.setVisibility(View.INVISIBLE);
+                                                }
+                                                username.setText(useradd.getData().getUsername());
+                                            });
+                                        }
+                                    },
+                                    error -> Log.e(TAG, error.toString(), error)
+                            );
+                        });
+                    }
 
                                                 },
            error -> Log.e(TAG, error.toString(), error)
@@ -360,6 +368,13 @@ public class EventDetailsActivity extends AppCompatActivity {
                 intent.putExtra("commentId",commentsListDatabase.get(position).getId());
                 intent.putExtra("accountsCommentId",commentsListDatabase.get(position).getAccountCommentsId());
                 intent.putExtra("eventCommentsId",commentsListDatabase.get(position).getEventCommentsId());
+
+                intent.putExtra("eventTitle",titleText);
+                intent.putExtra("description",descriptionText);
+                intent.putExtra("userID",userIdAddedEventFromMain);
+                intent.putExtra("eventID",eventIdFromMain);
+                intent.putExtra("cognitoID",cognitoIdFromMain);
+                intent.putExtra("loginUserID",loginUserIdFromMain);
                 startActivity(intent);
 
             }

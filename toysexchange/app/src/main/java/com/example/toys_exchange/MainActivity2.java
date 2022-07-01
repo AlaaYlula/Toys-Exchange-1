@@ -22,56 +22,13 @@ public class MainActivity2 extends AppCompatActivity {
     private static final String TAG = MainActivity2.class.getSimpleName();
     LinearLayout llHome;
     private String acc_id;
-
     private ToyFragment toyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shophop_activity_dashboard_shop);
-        llHome = findViewById(R.id.llHome);
+        setContentView(R.layout.shophop_activity_event_detail);
 
-        getLoginUserId();
-
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId =  logedInUser.getUserId();
-
-        toyFragment = new ToyFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,toyFragment).commit();
-
-        TextView tvAccount = findViewById(R.id.tvAccount);
-        tvAccount.setOnClickListener(view -> {
-            Intent intent = new Intent(this, profileActivity.class);
-            startActivity(intent);
-        });
-
-        llHome.setOnClickListener(view -> {
-            toyFragment = new ToyFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, toyFragment).commit();
-
-        });
-
-
-        TextView eventAttended = findViewById(R.id.attended_event);
-        eventAttended.setOnClickListener(view -> {
-            Intent intent = new Intent(this, EventAttendList.class);
-            intent.putExtra("loginUserId",acc_id);
-            intent.putExtra("cognitoId",cognitoId);
-            startActivity(intent);
-        });
-
-
-        TextView addEvent = findViewById(R.id.addEvent);
-        addEvent.setOnClickListener(view -> {
-           Intent intent =  new Intent(getApplicationContext(), EventActivity.class);
-           startActivity(intent);
-        });
-
-        TextView addToy = findViewById(R.id.addToy);
-        addToy.setOnClickListener(view -> {
-           Intent intent = new Intent(this, ToyActivity.class);
-           startActivity(intent);
-        });
     }
 
 
@@ -87,10 +44,8 @@ public class MainActivity2 extends AppCompatActivity {
                             acc_id = userAc.getId();
                         }
                     }
-
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
-
     }
 }

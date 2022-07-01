@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-      />
+        android:layout_marginRight="16dp"/>
 
     <EditText
         android:id="@+id/edit_txt_toy_name"
@@ -25,7 +24,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        />
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:padding="@dimen/_5sdp"/>
     <EditText
         android:id="@+id/edit_txt_toy_description"
         android:layout_width="match_parent"
@@ -35,17 +35,19 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        />
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:padding="@dimen/_5sdp"/>
     <EditText
         android:id="@+id/edit_txt_toy_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:text="0.0"
+        android:hint="Enter Toy Cost"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        />
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:padding="@dimen/_5sdp"/>
 
     <EditText
         android:id="@+id/edit_txt_contact_nfo"
@@ -56,7 +58,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        />
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:padding="@dimen/_5sdp"/>
 
     <Spinner
         android:id="@+id/spinner_condition"
@@ -64,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginRight="16dp"/>
 
     <Button
         android:id="@+id/btn_upload"
@@ -73,8 +76,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
         android:padding="10dp"
-        android:text="Upload Image "
-        />
+        android:text="Upload Image"
+        android:shadowColor="@color/ShopHop_colorPrimary"
+        style="@style/ShopHopMaterialButtonStyle.Filled"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
 
     <Button
         android:id="@+id/btn_add_toy"
@@ -84,6 +89,8 @@
         android:layout_margin="16dp"
         android:padding="10dp"
         android:text="Add toy "
-        />
+        android:shadowColor="@color/ShopHop_colorPrimary"
+        style="@style/ShopHopMaterialButtonStyle.Filled"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
 
 </LinearLayout>

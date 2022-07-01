@@ -1,37 +1,57 @@
 package com.example.toys_exchange;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
 import com.example.toys_exchange.UI.toyListActivity;
 import com.google.android.material.button.MaterialButton;
+import com.squareup.picasso.Picasso;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class profileActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE = 123;
 
     private Handler handler;
     Event event;
@@ -84,10 +104,19 @@ public class profileActivity extends AppCompatActivity {
     ArrayList<Account> acclist = new ArrayList<>();
     private String acc_id;
 
+    String cognitoId;
+    private String username;
+    private String URL;
+    private String userIdShared;
+    CircleImageView imageView;
+    private ImageView userImageDownload;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_layout);
+
 
 
 
@@ -102,7 +131,7 @@ public class profileActivity extends AppCompatActivity {
         });
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId =  logedInUser.getUserId();
+        cognitoId =  logedInUser.getUserId();
 
 
         ////////////////*********             Event Attend Button     NEW           **********//////////////////
@@ -197,9 +226,164 @@ public class profileActivity extends AppCompatActivity {
         MaterialButton btnLogout = findViewById(R.id.logout);
         btnLogout.setOnClickListener(mClickLogout);
 
+        /////////////////////////////////////////// add Image /////////////////////
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No username");
+        userIdShared =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
+        Log.i(TAG, "SharedPreferences => " + username);
+
+
+
+         imageView = findViewById(R.id.ivProfileImage);
+         getUser();
+        imageView.setOnClickListener(view->{
+            pictureUpload();
+        });
 }
 
+    @Override
+    protected void onResume() {
+       // getUser();
+        super.onResume();
+    }
 
+    private void getUser() {
+        Amplify.API.query(ModelQuery.get(Account.class,userIdShared),
+                user -> {
+                    if(user.hasData()) {
+                        Log.i(TAG, "check for Image ..... "+ user.getData().getImage());
+
+                        if(user.getData().getImage() != null)
+                            Log.i(TAG, "check for Image ..... Not null ");
+                        runOnUiThread(()->{
+                           getUrl(user.getData().getImage());
+                        });
+
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
+
+
+    private void getUpdateUserInfo() {
+        Amplify.API.query(ModelQuery.get(Account.class,userIdShared),
+                user -> {
+                    if(user.hasData()) {
+                        runOnUiThread(()->{
+
+                            Account userImage = Account.builder()
+                                    .username(user.getData().getUsername())
+                                    .idcognito(user.getData().getIdcognito())
+                                    .image(URL)
+                                    .bio(user.getData().getBio())
+                                    .id(user.getData().getId())
+                                    .build();
+                            Log.i(TAG, "URL  ..... "+ URL);
+
+                            Amplify.API.mutate(ModelMutation.update(userImage),
+                                    response -> {
+                                        runOnUiThread(() -> {
+                                            Toast.makeText(profileActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                            getUrl(URL);
+                                        });
+                                        // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                        Log.i(TAG, "Event updated " + response);
+                                    },
+                                    error -> Log.e(TAG, "update failed", error)
+                            );
+                        });
+
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
+
+    private void getUrl(String image){
+        Amplify.Storage.getUrl(
+                image,
+                result -> {
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(imageView);
+                    });
+                },
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+        );
+    }
+
+
+    /////////////////////////////////////////////////////// Image ..............................
+    private void pictureUpload() {
+        // Launches photo picker in single-select mode.
+        // This means that the user can select one photo or video.
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != Activity.RESULT_OK) {
+            // Handle error
+            Log.e(TAG, "onActivityResult: Error getting image from device");
+            return;
+        }
+        switch(requestCode) {
+            case REQUEST_CODE:
+                // Get photo picker response for single select.
+                Uri currentUri = data.getData();
+
+                // Do stuff with the photo/video URI.
+                Log.i(TAG, "onActivityResult: the uri is => " + currentUri);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String userIdForImageName =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
+
+                try {
+                    Bitmap bitmap = getBitmapFromUri(currentUri);
+
+                    File file = new File(getApplicationContext().getFilesDir(), username+userIdForImageName+".jpg");
+                    OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    os.close();
+
+                    // upload to s3
+                    // uploads the file
+                    Amplify.Storage.uploadFile(
+                            username+userIdForImageName+".jpg",
+                            file,
+                            result -> {
+                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                URL=result.getKey();
+                                runOnUiThread(()->{
+                                    getUpdateUserInfo();
+                                });
+                            },
+                            storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
+                    );
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+        }
+
+    }
+
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+
+        return image;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(
                 attribute -> {
@@ -217,19 +401,6 @@ public class profileActivity extends AppCompatActivity {
                     handler.sendMessage(message);
                 },
                 error -> Log.e(TAG, "authAttribute: ", error)
-        );
-    }
-
-
-
-    private void authSessionUserName(String method) {
-//        https://github.com/aws-amplify/amplify-android/issues/851
-        Amplify.Auth.fetchAuthSession(
-                result -> {
-                    Log.i(TAG, result.toString());
-                    Toast.makeText(this, "${Amplify.Auth.currentUser.userId} is logged in", Toast.LENGTH_LONG).show();
-                },
-                error -> Log.e(TAG, error.toString())
         );
     }
 
@@ -267,5 +438,6 @@ public class profileActivity extends AppCompatActivity {
                 error -> Log.e(TAG, error.toString())
         );
     }
+
 
 }

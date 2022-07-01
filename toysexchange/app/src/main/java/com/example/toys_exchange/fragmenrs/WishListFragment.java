@@ -43,6 +43,7 @@ public class WishListFragment extends Fragment {
     CustomToyAdapter customAdapter;
 
 
+
     public WishListFragment() {
         // Required empty public constructor
     }
@@ -51,12 +52,14 @@ public class WishListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
 
         mView = inflater.inflate(R.layout.activity_wish_list, container, false);
         return mView;
@@ -72,10 +75,18 @@ public class WishListFragment extends Fragment {
                             Log.i(TAG , "WishToy object =>>>>>>>>>>>>>>" + wishToy);
                             if (wishToy!= null && wishToy.getAccount().getId().equals(userId)) {
                                 toyIds.add(wishToy.getToy().getId());
+                                toyList.add(wishToy.getToy());
                             }
                         }
-                        getWishList();
+                      //  getWishList();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("data", "done");
+
+                        Message message = new Message();
+                        message.setData(bundle);
+                        handler.sendMessage(message);
                     }
+
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );

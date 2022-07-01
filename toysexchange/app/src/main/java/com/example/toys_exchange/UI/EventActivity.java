@@ -55,6 +55,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        getSupportActionBar().setTitle("Add Event");
         enableLocation();
 
         location=findViewById(R.id.btn_location);
@@ -70,8 +71,7 @@ public class EventActivity extends AppCompatActivity {
         });
         authAttribute(); //get the username and userID
 
-        addEvent = findViewById(R.id.btn_addStore);
-        cancelAdd = findViewById(R.id.btn_cancelAddEvent);
+        addEvent = findViewById(R.id.btn_addEvent);
 
         addBtnListener(); // Listeners
 
@@ -167,8 +167,8 @@ public class EventActivity extends AppCompatActivity {
 
         addEvent.setOnClickListener(view -> {
 
-            EditText eventDescription = findViewById(R.id.description_store);
-            EditText eventTitle = findViewById(R.id.title_store);
+            EditText eventDescription = findViewById(R.id.description_event);
+            EditText eventTitle = findViewById(R.id.title_event);
 
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();
@@ -223,9 +223,9 @@ public class EventActivity extends AppCompatActivity {
             addEvent.setBackgroundColor(Color.RED);
         });
 
-        cancelAdd.setOnClickListener(view -> {
-           startActivity(new Intent(this, MainActivity.class));
-        });
+//        cancelAdd.setOnClickListener(view -> {
+//           startActivity(new Intent(this, MainActivity.class));
+//        });
     }
 
 

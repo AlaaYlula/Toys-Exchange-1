@@ -41,6 +41,12 @@ public class UpdateCommentActivity extends AppCompatActivity {
     public String commentId;
     public String eventCommentId;
     public String accCommentId;
+    private String eventIdFromMain;
+    private String titleText;
+    private String descriptionText;
+    private String cognitoIdFromMain;
+    private String loginUserIdFromMain;
+    private String userIdAddedEventFromMain;
 
 
     @Override
@@ -61,6 +67,13 @@ public class UpdateCommentActivity extends AppCompatActivity {
         cnacelBtn = findViewById(R.id.btn_cancelUpdateComment);
         cnacelBtn.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), EventDetailsActivity.class);
+            intent.putExtra("eventTitle",titleText);
+            intent.putExtra("description",descriptionText);
+            intent.putExtra("userID",userIdAddedEventFromMain);
+            intent.putExtra("eventID",eventIdFromMain);
+            intent.putExtra("cognitoID",cognitoIdFromMain);
+            intent.putExtra("loginUserID",loginUserIdFromMain);
+
             startActivity(intent);
         });
 
@@ -76,6 +89,12 @@ public class UpdateCommentActivity extends AppCompatActivity {
         accCommentId = intent.getStringExtra("accountsCommentId");
         eventCommentId = intent.getStringExtra("eventCommentsId");
 
+        titleText  = intent.getStringExtra("eventTitle");
+        descriptionText  = intent.getStringExtra("description");
+        eventIdFromMain = intent.getStringExtra("eventID");
+        cognitoIdFromMain = intent.getStringExtra("cognitoID");
+        loginUserIdFromMain = intent.getStringExtra("loginUserID");
+        userIdAddedEventFromMain = intent.getStringExtra("userID");
 
         commentText.setText(text);
 

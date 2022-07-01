@@ -18,9 +18,18 @@ buildscript {
 
 
 plugins {
+
     id 'com.android.application' version '7.2.0' apply false
     id 'com.android.library' version '7.2.0' apply false
 
+
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
 
@@ -28,5 +37,6 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
 apply plugin: 'com.amplifyframework.amplifytools'

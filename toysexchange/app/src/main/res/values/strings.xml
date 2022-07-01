@@ -28,10 +28,10 @@
     <string name="Logout" />
 
 
-    <string name="sh_font_bold">fonts/Montserrat-Bold.ttf</string>
-    <string name="sh_font_medium">fonts/Montserrat-Medium.ttf</string>
-    <string name="sh_font_regular">fonts/Montserrat-Regular.ttf</string>
-    <string name="sh_font_semi_bold">fonts/Montserrat-SemiBold.ttf</string>
+    <string name="sh_font_bold"></string>
+    <string name="sh_font_medium">font/montserrat_medium.ttf</string>
+    <string name="sh_font_regular">font/montserrat_regular.ttf</string>
+    <string name="sh_font_semi_bold">font/montserrat_semibold.ttf</string>
 
     <string name="sh_lbl_sign_in">Sign In</string>
     <string name="sh_lbl_sign_up">Sign Up</string>
@@ -62,6 +62,7 @@
     <string name="sh_lbl_1">1</string>
     <string name="sh_lbl_add_to_cart">Add to Cart</string>
     <string name="sh_lbl_buy_now">Buy Now</string>
+    <string name="sh_lbl_attend">Attend</string>
     <string name="sh_lbl_check_availability">Check Availability</string>
     <string name="sh_lbl_delivery_by">Delivery By</string>
     <string name="sh_lbl_brand">Brand</string>

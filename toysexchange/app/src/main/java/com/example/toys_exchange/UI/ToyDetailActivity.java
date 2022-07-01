@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -66,6 +68,7 @@ public class ToyDetailActivity extends AppCompatActivity {
     ImageView ivDislike;
     ImageView removeFromWishList;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +91,9 @@ public class ToyDetailActivity extends AppCompatActivity {
         });
 
 
-        getLoggedInAccount();
+
+
+
 
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
 //        toyUser=findViewById(R.id.txt_view_user_name);
@@ -129,28 +134,28 @@ public class ToyDetailActivity extends AppCompatActivity {
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
+        getLoggedInAccount();
+
         getUrl(image);
         ivFavourite = findViewById(R.id.ivFavourite);
-        ivDislike = findViewById(R.id.ivDislike);
+//        ivDislike = findViewById(R.id.ivDislike);
+
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
-
                 addToWish();
-                ivFavourite.setVisibility(View.GONE);
-                ivDislike.setVisibility(View.VISIBLE);
-                //ivFavourite.setColorFilter((getResources().getColor(R.color.purple_500)));
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                 count++;
-            }
-        });
-        removeFromWishList.setOnClickListener(view -> {
-            if(count == 1) {
+            }else {
                 removeFromWishList();
-                ivFavourite.setVisibility(View.VISIBLE);
-                ivDislike.setVisibility(View.GONE);
-                // ivFavourite.setColorFilter(getResources().getColor(R.color.white));
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle));
                 count--;
+
             }
         });
+
+
 
     }
 
@@ -321,11 +326,17 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
+
+
+//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                                                                addToWishList.setBackground(getDrawable(R.drawable.shophop_ic_heart_fill));
+
                                                                 //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                runOnUiThread(()->{
-                                                                   ivFavourite.setVisibility(View.GONE);
-                                                                   ivDislike.setVisibility(View.VISIBLE);
+                                                                   addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
+                                                                   addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                                                                });
+
 
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);

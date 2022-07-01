@@ -352,8 +352,12 @@ public class ToyFragment extends Fragment {
                                                     Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
 
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
-                                                            response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
-                                                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                                            response -> {
+
+                                                            },
+                                                            error -> {
+
+                                                            }
                                                     );
                                                 }
                                             },

@@ -238,7 +238,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                         response -> {
                             runOnUiThread(() -> {
                                 Log.i(TAG, "comment id: " + response.getData().getText());
-//                                Toast.makeText(UpdateCommentActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(itemView.getContext(), "Updated", Toast.LENGTH_SHORT).show();
                             });
                             // https://www.youtube.com/watch?v=LQmGU3UCOPQ
                             Log.i(TAG, "Event updated " + response);
@@ -246,7 +246,11 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                         error -> Log.e(TAG, "update failed", error)
                 );
 
+
+                listener.onUpdateClick(position);
+
             });
+
 
 
 

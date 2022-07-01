@@ -263,7 +263,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                                 useradd -> {
                                runOnUiThread(()->{
                                    if(event.getAccountEventsaddedId().equals(loginUserIdFromMain)){
-                                       btnAttend.setVisibility(View.INVISIBLE);
+//                                       btnAttend.setVisibility(View.INVISIBLE);
                                    }
 //                                   username.setText(useradd.getData().getUsername());
                                });

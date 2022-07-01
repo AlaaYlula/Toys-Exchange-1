@@ -41,6 +41,10 @@ dependencies {
     // Library for payments Form
     implementation 'com.braintreepayments:card-form:5.4.0'
 
+
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
     implementation 'com.amplifyframework:aws-api:1.35.3'

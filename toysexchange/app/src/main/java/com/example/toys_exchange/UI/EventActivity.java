@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,8 +27,11 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.Store;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
+
+import java.util.DuplicateFormatFlagsException;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -36,7 +40,12 @@ public class EventActivity extends AppCompatActivity {
     Button addEvent;
     Button cancelAdd;
 
+    Button location;
+
     String userId;
+
+    Double longitude;
+    Double latitude;
 
     private Handler handler;
 
@@ -48,6 +57,8 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         getSupportActionBar().setTitle("Add Event");
         enableLocation();
+
+        location=findViewById(R.id.btn_location);
 
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
@@ -63,6 +74,15 @@ public class EventActivity extends AppCompatActivity {
         addEvent = findViewById(R.id.btn_addEvent);
 
         addBtnListener(); // Listeners
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(),MapActivity.class);
+                intent.putExtra("type","event");
+                startActivity(intent);
+            }
+        });
         
     }
     ///////////////////////////////////////////////////// Location //////////////////////////////////////////////
@@ -163,12 +183,25 @@ public class EventActivity extends AppCompatActivity {
                                     users.getData()) {
                                 Log.i(TAG, "User add this Event" + user);
                                 if (user.getIdcognito().equals(userId)) {
-                                    Event event = Event.builder()
-                                            .title(eventTitleText)
-                                            .eventdescription(eventDescriptionText)
-                                            .accountEventsaddedId(user.getId())
-                                            .build();
-                                    // API save to backend
+                                    Event event;
+                                    if(longitude!=null && latitude!=null){
+                                         event = Event.builder()
+                                                .title(eventTitleText)
+                                                .eventdescription(eventDescriptionText)
+                                                 .latitude(latitude)
+                                                 .longitude(longitude)
+                                                 .accountEventsaddedId(user.getId())
+                                                 .build();
+                                    }else {
+                                         event = Event.builder()
+                                                .title(eventTitleText)
+                                                .eventdescription(eventDescriptionText)
+                                                .accountEventsaddedId(user.getId())
+                                                .build();
+                                        // API save to backend
+
+                                    }
+
                                     Amplify.API.mutate(
                                             ModelMutation.create(event),
                                             success -> {
@@ -176,6 +209,9 @@ public class EventActivity extends AppCompatActivity {
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
                                     );
+
+
+
                                 }
                             }
                         }
@@ -199,5 +235,12 @@ public class EventActivity extends AppCompatActivity {
         if (checkPermissions()) {
             enableLocation();
         }
+
+        Intent locationIntent=getIntent();
+        longitude= locationIntent.getDoubleExtra("longitude",0.0);
+        latitude= locationIntent.getDoubleExtra("latitude",0.0);
+
+        Log.i(TAG, "onCreate: long   "+longitude);
+        Log.i(TAG, "onCreate: lat   "+latitude);
     }
 }

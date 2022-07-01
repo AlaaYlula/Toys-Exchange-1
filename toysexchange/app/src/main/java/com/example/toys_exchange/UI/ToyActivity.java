@@ -197,7 +197,6 @@ public class ToyActivity extends AppCompatActivity {
                                             .typetoy(Enum.valueOf(Typetoy.class, type))
                                             .build();
 
-
                                     // API save to backend
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),

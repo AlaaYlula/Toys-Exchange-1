@@ -110,6 +110,8 @@ public class EventFragment extends Fragment {
                     intent.putExtra("cognitoID",cognitoId);
                     intent.putExtra("loginUserID",loginUserId);
                     intent.putExtra("loginUserName",loginUserName);
+                    intent.putExtra("longitude",eventList.get(position).getLongitude());
+                    intent.putExtra("latitude",eventList.get(position).getLatitude());
                     startActivity(intent);
                 }
             });

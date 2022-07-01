@@ -1,4 +1,6 @@
+
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="map_key" translatable="false">AIzaSyC7botDxlUaADl2ORy4qQcBk7XbcTISw84</string>
     <string name="app_name">toys-exchange</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>

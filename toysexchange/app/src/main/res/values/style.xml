@@ -50,6 +50,22 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+
+    <style name="comment">
+        <item name="android:paddingStart">@dimen/_18sdp</item>
+        <item name="android:paddingEnd">@dimen/_4sdp</item>
+        <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
+        <item name="android:textColor">@color/ShopHop_textColorPrimary</item>
+        <item name="android:textSize">@dimen/sh_font_size_medium</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/shophop_bg_ractangle_rounded_active</item>
+
+    </style>
+
+    <style name="font">
+    </style>
+
     <style name="ShopHopMaterialButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/sh_font_size_normal</item>
@@ -211,6 +227,8 @@
         <item name="android:background">@drawable/shophop_bg_ractangle_rounded</item>
     </style>
 
+
+
     <style name="ShopHopOrderTextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -308,6 +326,7 @@
     </style>
 
     <style name="FontBold">
+
     </style>
 
     <style name="ShopHopCollapsedAppBar" parent="@android:style/TextAppearance.Medium">

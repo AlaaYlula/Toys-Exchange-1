@@ -64,3 +64,10 @@ type Event @model{
   latitude : Float
   longitude : Float
 }
+
+
+type Notification @model{
+  id: ID!
+  tokenid: String!
+  accountid: String!
+}

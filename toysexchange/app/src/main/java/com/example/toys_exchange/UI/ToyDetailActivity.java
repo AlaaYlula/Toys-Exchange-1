@@ -139,30 +139,23 @@ public class ToyDetailActivity extends AppCompatActivity {
         getUrl(image);
         ivFavourite = findViewById(R.id.ivFavourite);
 //        ivDislike = findViewById(R.id.ivDislike);
+
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
-
                 addToWish();
-
                 addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
                 addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
-//                ivFavourite.setVisibility(View.GONE);
-//                ivDislike.setVisibility(View.VISIBLE);
-                //ivFavourite.setColorFilter((getResources().getColor(R.color.purple_500)));
                 count++;
+            }else {
+                removeFromWishList();
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle));
+                count--;
+
             }
         });
-//        removeFromWishList.setOnClickListener(view -> {
-//            if(count == 1) {
-//                removeFromWishList();
-////                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
-//                addToWishList.setColorFilter(getColor(R.color.ShopHop_textColorSecondary));
-////                ivFavourite.setVisibility(View.VISIBLE);
-////                ivDislike.setVisibility(View.GONE);
-//                // ivFavourite.setColorFilter(getResources().getColor(R.color.white));
-//                count--;
-//            }
-//        });
+
+
 
     }
 
@@ -340,7 +333,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
                                                                 //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                runOnUiThread(()->{
-                                                                   addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+                                                                   addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
                                                                    addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                                                                });
 

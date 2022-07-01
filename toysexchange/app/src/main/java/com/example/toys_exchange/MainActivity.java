@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     private StoreFragment storeFragment;
     private String image;
     private String usernameDisplay;
+    private String userBio;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -169,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tvAccount = findViewById(R.id.tvAccount);
         tvAccount.setOnClickListener(view -> {
             Intent intent = new Intent(this, profileActivity.class);
+            intent.putExtra("username",usernameDisplay);
+            intent.putExtra("bio",userBio);
             startActivity(intent);
         });
 
@@ -307,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
                             acc_id = userAc.getId();
                             image = userAc.getImage();
                             usernameDisplay = userAc.getUsername();
+                            userBio = userAc.getBio();
                         }
                     }
                     runOnUiThread(()->{

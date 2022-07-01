@@ -1,6 +1,7 @@
 package com.example.toys_exchange.fragmenrs;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
@@ -98,7 +100,20 @@ public class StoreFragment extends Fragment {
 
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
-            StoreAdapter customAdapter = new StoreAdapter(storeList);
+            StoreAdapter customAdapter = new StoreAdapter(storeList, new StoreAdapter.CustomClickListener() {
+                @Override
+                public void onClickListener(int position) {
+                    Double longitude=storeList.get(position).getLongitude();
+                    Double latitude=storeList.get(position).getLatitude();
+                    if(longitude!=null && latitude!=null){
+                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getContext(), "no location provider", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
 
             recyclerView.setAdapter(customAdapter);
 

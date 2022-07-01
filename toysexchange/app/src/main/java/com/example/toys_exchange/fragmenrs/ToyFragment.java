@@ -137,6 +137,7 @@ public class ToyFragment extends Fragment {
 
                 }else if (condition.equals("SELL")){
                     mConditionSpinner.setVisibility(View.VISIBLE);
+
                     toyList = new ArrayList<>();
                     Amplify.API.query(ModelQuery.list(Toy.class), success -> {
                                 if (success.hasData()) {

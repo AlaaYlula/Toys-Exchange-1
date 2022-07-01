@@ -22,13 +22,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Title"
-        app:layout_constraintBottom_toTopOf="@+id/title_store"
+        app:layout_constraintBottom_toTopOf="@+id/title_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/title_store"
+        android:id="@+id/title_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
@@ -45,25 +45,25 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/description_store"
+        app:layout_constraintBottom_toTopOf="@+id/description_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/description_store"
+        android:id="@+id/description_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="336dp"
         android:inputType="text"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_addStore"
+        android:id="@+id/btn_addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
@@ -81,6 +81,6 @@
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_store"
+        app:layout_constraintTop_toBottomOf="@+id/description_event"
         app:layout_constraintVertical_bias="0.923" />
 </androidx.constraintlayout.widget.ConstraintLayout>

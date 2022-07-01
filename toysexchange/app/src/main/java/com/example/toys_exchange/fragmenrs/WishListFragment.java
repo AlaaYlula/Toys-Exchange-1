@@ -72,10 +72,18 @@ public class WishListFragment extends Fragment {
                             Log.i(TAG , "WishToy object =>>>>>>>>>>>>>>" + wishToy);
                             if (wishToy!= null && wishToy.getAccount().getId().equals(userId)) {
                                 toyIds.add(wishToy.getToy().getId());
+                                toyList.add(wishToy.getToy());
                             }
                         }
-                        getWishList();
+                      //  getWishList();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("data", "done");
+
+                        Message message = new Message();
+                        message.setData(bundle);
+                        handler.sendMessage(message);
                     }
+
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );

@@ -75,7 +75,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     Button updateForm;
 
-    Button showLocation;
+    TextView showLocation;
 
     Intent passedIntent;
     private String titleText;
@@ -160,15 +160,19 @@ public class EventDetailsActivity extends AppCompatActivity {
         btnAttend = findViewById(R.id.btnAttend);
 //        deleteComment = findViewById(R.id.btn_deleteComment);
         addBtnListner();
-        showLocation=findViewById(R.id.bt_event_location);
+        showLocation=findViewById(R.id.tvDescription);
 
         showLocation.setOnClickListener(view -> {
 
             Log.i(TAG, "onCreate:lan "+longitude);
             Log.i(TAG, "onCreate:lat "+latitude);
             if(latitude!=0 && longitude!=0){
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+" your target "));
                 startActivity(intent);
+
+
+              //  Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<lat>,<long>?q=<lat>,<long>(Label+Name)"));
+
             }else {
                 Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
             }

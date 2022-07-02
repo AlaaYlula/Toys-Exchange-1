@@ -66,6 +66,8 @@
                             android:text="Lorem Ipsum is simply text of the printing and typesetting industry."
                             android:textColor="@color/ShopHop_textColorPrimary" />
 
+
+
                     </RelativeLayout>
 
                     <com.google.android.material.button.MaterialButton

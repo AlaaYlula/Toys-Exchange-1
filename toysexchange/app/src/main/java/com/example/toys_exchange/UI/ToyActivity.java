@@ -71,7 +71,7 @@ public class ToyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy);
-        getSupportActionBar().setTitle("Add Toy");
+//        getSupportActionBar().setTitle("Add Toy");
 
 
         handler=new Handler(Looper.getMainLooper(),msg->{

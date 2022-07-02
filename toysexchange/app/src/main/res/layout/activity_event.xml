@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".UI.EventActivity">
 
+
+
+
     <TextView
         android:id="@+id/addEvent"
         android:layout_width="wrap_content"

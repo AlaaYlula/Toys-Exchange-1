@@ -272,6 +272,7 @@
 
             <TextView
                 android:id="@+id/tvSetting"
+                android:onClick="ShowPopup"
                 style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
                 android:drawableStart="@drawable/shophop_ic_settings"
                 android:gravity="center_vertical"

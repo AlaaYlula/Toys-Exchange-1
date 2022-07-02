@@ -162,17 +162,17 @@ public class EventDetailsActivity extends AppCompatActivity {
         addBtnListner();
         showLocation=findViewById(R.id.bt_event_location);
 
-        showLocation.setOnClickListener(view -> {
-
-            Log.i(TAG, "onCreate:lan "+longitude);
-            Log.i(TAG, "onCreate:lat "+latitude);
-            if(latitude!=0 && longitude!=0){
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
-                startActivity(intent);
-            }else {
-                Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        showLocation.setOnClickListener(view -> {
+//
+//            Log.i(TAG, "onCreate:lan "+longitude);
+//            Log.i(TAG, "onCreate:lat "+latitude);
+//            if(latitude!=0 && longitude!=0){
+//                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+//                startActivity(intent);
+//            }else {
+//                Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 

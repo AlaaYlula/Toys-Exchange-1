@@ -116,7 +116,9 @@ public class profileActivity extends AppCompatActivity {
          bioDisplay = passedIntent.getStringExtra("bio");
         /////////////////////////////////////////////////////////////////////
         bioView = findViewById(R.id.txt_Bio);
-       usernameView = findViewById(R.id.txt_username);
+        usernameView = findViewById(R.id.txt_username);
+        usernameView.setText(usernameDisplay);
+        bioView.setText(bioDisplay);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -156,18 +158,14 @@ public class profileActivity extends AppCompatActivity {
         ////////////////*********             get UserName                **********//////////////////
 
          handler = new Handler(Looper.getMainLooper(), msg -> {
-             String user = msg.getData().getString("name");
-             //TextView name = findViewById(R.id.txt_username);
-             usernameView.setText(user);
              userId = msg.getData().getString("id");
              Intent intent = getIntent();
              userId = intent.getStringExtra("userId");
              return true;
          });
 
-
-         authAttribute();
-         getUserIdAndBio();
+        authAttribute();
+         getUserId();
 
 
            ////////////////*********             Logout Button                **********//////////////////
@@ -184,92 +182,16 @@ public class profileActivity extends AppCompatActivity {
 
          imageView = findViewById(R.id.ivProfileImage);
          getUser();
-        imageView.setOnClickListener(view->{
-            pictureUpload();
-        });
-        ///////////////////////////////////////// Update Info //////////////////////////
-        myDialog = new Dialog(this);
 
 }
 
-
-    public void ShowPopup(View v) {
-        TextView txtclose;
-        MaterialButton btn_update;
-        myDialog.setContentView(R.layout.popup_update_window);
-        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("X");
-        btn_update =  myDialog.findViewById(R.id.btn_update);
-        EditText textUsername;
-        EditText textBio;
-        textUsername = myDialog.findViewById(R.id.tvNameText);
-        textBio = myDialog.findViewById(R.id.tvBioText);
-
-        textUsername.setText(usernameDisplay);
-        textBio.setText(bioDisplay);
-        txtclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-                getUserIdAndBio();
-            }
-        });
-        btn_update.setOnClickListener(view->{
-
-//            textUsername = myDialog.findViewById(R.id.tvNameText);
-//            textBio = myDialog.findViewById(R.id.tvBioText);
-
-            String username = textUsername.getText().toString();
-            String bio = textBio.getText().toString();
-
-            updateUserBio(username,bio);
-
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-    }
-
-    private void updateUserBio(String username , String bio) {
-        Amplify.API.query(ModelQuery.get(Account.class,userIdShared),
-                user -> {
-                    if(user.hasData()) {
-                        runOnUiThread(()->{
-                            Account userInfo = Account.builder()
-                                    .username(username)
-                                    .idcognito(user.getData().getIdcognito())
-                                    .image(user.getData().getImage())
-                                    .bio(bio)
-                                    .id(user.getData().getId())
-                                    .build();
-
-                            Amplify.API.mutate(ModelMutation.update(userInfo),
-                                    response -> {
-                                        runOnUiThread(() -> {
-                                            Toast.makeText(profileActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                                        });
-                                        // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                        Log.i(TAG, "Bio updated " + response);
-                                    },
-                                    error -> Log.e(TAG, "update failed", error)
-                            );
-                        });
-
-                    }
-
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-    }
-
-
     @Override
     protected void onResume() {
-       // getUser();
         Log.i(TAG, "OnResume ...........");
 
         logedInUser = Amplify.Auth.getCurrentUser();
         authAttribute();
-        getUserIdAndBio();
+        getUserId();
         super.onResume();
     }
 
@@ -292,42 +214,6 @@ public class profileActivity extends AppCompatActivity {
         );
     }
 
-
-    private void getUpdateUserInfo() {
-        Amplify.API.query(ModelQuery.get(Account.class,userIdShared),
-                user -> {
-                    if(user.hasData()) {
-                        runOnUiThread(()->{
-
-                            Account userImage = Account.builder()
-                                    .username(user.getData().getUsername())
-                                    .idcognito(user.getData().getIdcognito())
-                                    .image(URL)
-                                    .bio(user.getData().getBio())
-                                    .id(user.getData().getId())
-                                    .build();
-                            Log.i(TAG, "URL  ..... "+ URL);
-
-                            Amplify.API.mutate(ModelMutation.update(userImage),
-                                    response -> {
-                                        runOnUiThread(() -> {
-                                            Toast.makeText(profileActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-                                            getUrl(URL);
-                                        });
-                                        // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                        Log.i(TAG, "Event updated " + response);
-                                    },
-                                    error -> Log.e(TAG, "update failed", error)
-                            );
-                        });
-
-                    }
-
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-    }
-
     private void getUrl(String image){
         Amplify.Storage.getUrl(
                 image,
@@ -340,75 +226,6 @@ public class profileActivity extends AppCompatActivity {
         );
     }
 
-
-    /////////////////////////////////////////////////////// Image ..............................
-    private void pictureUpload() {
-        // Launches photo picker in single-select mode.
-        // This means that the user can select one photo or video.
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != Activity.RESULT_OK) {
-            // Handle error
-            Log.e(TAG, "onActivityResult: Error getting image from device");
-            return;
-        }
-        switch(requestCode) {
-            case REQUEST_CODE:
-                // Get photo picker response for single select.
-                Uri currentUri = data.getData();
-
-                // Do stuff with the photo/video URI.
-                Log.i(TAG, "onActivityResult: the uri is => " + currentUri);
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-                String userIdForImageName =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
-
-                try {
-                    Bitmap bitmap = getBitmapFromUri(currentUri);
-
-                    File file = new File(getApplicationContext().getFilesDir(), username+userIdForImageName+".jpg");
-                    OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.close();
-
-                    // upload to s3
-                    // uploads the file
-                    Amplify.Storage.uploadFile(
-                            username+userIdForImageName+".jpg",
-                            file,
-                            result -> {
-                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
-                                URL=result.getKey();
-                                runOnUiThread(()->{
-                                    getUpdateUserInfo();
-                                });
-                            },
-                            storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
-                    );
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-        }
-
-    }
-
-    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor =
-                getContentResolver().openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
-
-        return image;
-    }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(
                 attribute -> {
@@ -424,7 +241,7 @@ public class profileActivity extends AppCompatActivity {
         );
     }
 
-    private void getUserIdAndBio() {
+    private void getUserId() {
         runOnUiThread(() -> {
             Amplify.API.query(
                     ModelQuery.list(Account.class, Account.IDCOGNITO.eq(logedInUser.getUserId())),
@@ -435,13 +252,6 @@ public class profileActivity extends AppCompatActivity {
                                 if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
                                     acclist.add(acc);
                                     acc_id = acc.getId().toString();
-                                    if(acc.getBio()!= null){
-                                        runOnUiThread(()->{
-                                            bioView.setText(acc.getBio());
-                                            usernameView.setText(acc.getUsername());
-
-                                        });
-                                    }
                                 }
                             }
                         }

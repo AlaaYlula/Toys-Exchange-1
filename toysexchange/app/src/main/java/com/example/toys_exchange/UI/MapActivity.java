@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -59,8 +60,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Double searchedLongitude;
     Double searchedLatitude;
 
-    Button add;
-    Button close;
+    TextView add;
+    TextView close;
 
     private final int PERMISSION_ID = 44;
 

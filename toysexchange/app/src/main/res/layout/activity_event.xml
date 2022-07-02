@@ -25,16 +25,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Title"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         app:flow_horizontalAlign="center"
-        app:layout_constraintBottom_toTopOf="@+id/title_store"
+        app:layout_constraintBottom_toTopOf="@+id/title_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/title_store"
+        android:id="@+id/title_event"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
@@ -54,15 +54,15 @@
         android:layout_marginBottom="20dp"
         android:textColor="@color/black"
         android:text="Description"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:flow_horizontalAlign="center"
-        app:layout_constraintBottom_toTopOf="@+id/description_store"
+        app:layout_constraintBottom_toTopOf="@+id/description_event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/description_store"
+        android:id="@+id/description_event"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="288dp"
@@ -71,13 +71,13 @@
         android:inputType="text"
         android:padding="@dimen/_5sdp"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_addStore"
+        android:id="@+id/btn_addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

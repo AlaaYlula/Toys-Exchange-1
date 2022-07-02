@@ -2,6 +2,7 @@ package com.example.toys_exchange.adapter;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -52,26 +53,19 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         return new CustomViewHolder(view, isliked ,listener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ToyAdapter.CustomViewHolder holder, int position) {
 
         holder.tvName.setText(toyList.get(position).getToyname());
         holder.tvCondition.setText(toyList.get(position).getCondition().toString());
+        holder.tvType.setText(toyList.get(position).getTypetoy().toString());
         holder.tvPrice.setText(toyList.get(position).getPrice().toString());
 
         String image = toyList.get(position).getImage();
 
         String toyID = toyList.get(position).getId();
 
-//        isliked = isLiked(toyID);
-//
-//        if(isliked.equals("like")){
-//            holder.ivDislike.setVisibility(View.GONE);
-//            holder.ivlike.setVisibility(View.VISIBLE);
-//        }else{
-//            holder.ivDislike.setVisibility(View.VISIBLE);
-//            holder.ivlike.setVisibility(View.GONE);
-//        }
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         userID =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
@@ -97,27 +91,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                 },
                 error -> {}
         );
-//        Amplify.API.query(
-//                ModelQuery.list(UserWishList.class),
-//                wishList -> {
-//
-//                    if(wishList.hasData()){
-//                        for (UserWishList wishToy :
-//                                wishList.getData()) {
-//                            Log.i("TAG => ", wishToy.getAccount().getId() + " userID => " + userID);
-//                            if(wishToy.getAccount().getId().equals(userID) && wishToy.getToy().getId().equals(toyID)){
-//                                holder.ivDislike.setVisibility(View.GONE);
-//                                holder.ivlike.setVisibility(View.VISIBLE);
-//                            }else {
-//                                holder.ivlike.setVisibility(View.GONE);
-//                                holder.ivDislike.setVisibility(View.VISIBLE);
-//                            }
-//                        }
-//                    }
-//                },
-//                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
-//        );
-
 
         Amplify.Storage.getUrl(
                 image,
@@ -170,6 +143,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
 
         TextView tvName;
         TextView tvCondition;
+        TextView tvType;
         TextView tvPrice;
 
         CustomClickListener listener;
@@ -187,16 +161,8 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
 
             tvName = itemView.findViewById(R.id.tvName);
             tvCondition = itemView.findViewById(R.id.tvCondition);
+            tvType = itemView.findViewById(R.id.tvType);
             tvPrice = itemView.findViewById(R.id.tvPrice);
-
-
-//            if(isLiked.equals("like")){
-//                ivDislike.setVisibility(View.GONE);
-//                ivlike.setVisibility(View.VISIBLE);
-//            }else {
-//                ivlike.setVisibility(View.GONE);
-//                ivDislike.setVisibility(View.VISIBLE);
-//            }
 
 
             ivDislike.setOnClickListener(view -> {

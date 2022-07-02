@@ -1,6 +1,7 @@
 package com.example.toys_exchange.UI.data.model;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     public static final String USERNAME = "username";
+    public static final String NAMEUSERNAME = "name";
 
     private ProgressBar loadingProgressBar;
 
@@ -131,7 +134,30 @@ public class LoginActivity extends AppCompatActivity {
                     getLoggedInAccountData();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 },
-                error -> Log.e(TAG, error.toString())
+                error -> {
+                    Log.e(TAG, error.toString());
+                    // show a dialog of the error below
+                    // error.getMessage()
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (!isFinishing()){
+                                new AlertDialog.Builder(LoginActivity.this)
+                                        .setTitle("Error")
+                                        .setMessage(error.getMessage())
+                                        .setCancelable(false)
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Whatever...
+                                                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                            }
+                                        }).show();
+                            }
+                        }
+                    });
+                }
         );
     }
 
@@ -153,6 +179,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             // save the text to shared preferences
                                             preferenceEditor.putString(USERNAME, user.getId());
+                                            preferenceEditor.putString(NAMEUSERNAME, user.getUsername());
                                             preferenceEditor.apply();
                                         });
 

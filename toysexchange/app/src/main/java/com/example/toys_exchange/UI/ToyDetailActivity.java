@@ -1,8 +1,10 @@
 package com.example.toys_exchange.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,9 +12,11 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -23,6 +27,7 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
+import com.example.toys_exchange.PaymentActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -66,6 +71,11 @@ public class ToyDetailActivity extends AppCompatActivity {
     ImageView ivDislike;
     ImageView removeFromWishList;
 
+    TextView btnBuyNow;
+
+    Double price;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +98,9 @@ public class ToyDetailActivity extends AppCompatActivity {
         });
 
 
-        getLoggedInAccount();
+
+
+
 
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
 //        toyUser=findViewById(R.id.txt_view_user_name);
@@ -96,6 +108,17 @@ public class ToyDetailActivity extends AppCompatActivity {
         Toolbar toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent toyIntent = getIntent();
+        String name= toyIntent.getStringExtra("toyName");
+        String description= toyIntent.getStringExtra("description");
+         price= toyIntent.getDoubleExtra("price",0.0);
+        String condition= toyIntent.getStringExtra("condition");
+        String type= toyIntent.getStringExtra("toyType");
+        String image = toyIntent.getStringExtra("image");
+        String contactInfo= toyIntent.getStringExtra("contactInfo");
+        toyId = toyIntent.getStringExtra("toyId");
+
 //        toyName=findViewById(R.id.txt_view_name);
 //        toyDescription=findViewById(R.id.txt_view_description);
 //        toyCondition=findViewById(R.id.txt_view_condition);
@@ -108,55 +131,54 @@ public class ToyDetailActivity extends AppCompatActivity {
 //        toyPrice=findViewById(R.id.txt_view_price);
 //        toyType=findViewById(R.id.txt_view_type);
 
+        toyPrice.setText(price +" Jd");
 
         addToWishList=findViewById(R.id.ivFavourite);
         removeFromWishList=findViewById(R.id.ivDislike);
         toyImage=findViewById(R.id.productViewPager);
 
-        Intent toyIntent = getIntent();
-        String name= toyIntent.getStringExtra("toyName");
-        String description= toyIntent.getStringExtra("description");
-        Double price= toyIntent.getDoubleExtra("price",0.0);
-        String condition= toyIntent.getStringExtra("condition");
-        String type= toyIntent.getStringExtra("toyType");
-        String image = toyIntent.getStringExtra("image");
-        String contactInfo= toyIntent.getStringExtra("contactInfo");
-//        userId = toyIntent.getStringExtra("id");
-        toyId = toyIntent.getStringExtra("toyId");
+
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
+        getLoggedInAccount();
+
         getUrl(image);
         ivFavourite = findViewById(R.id.ivFavourite);
-        ivDislike = findViewById(R.id.ivDislike);
+//        ivDislike = findViewById(R.id.ivDislike);
+
         addToWishList.setOnClickListener(view -> {
             if(count == 0){
-
                 addToWish();
-                ivFavourite.setVisibility(View.GONE);
-                ivDislike.setVisibility(View.VISIBLE);
-                //ivFavourite.setColorFilter((getResources().getColor(R.color.purple_500)));
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                 count++;
-            }
-        });
-        removeFromWishList.setOnClickListener(view -> {
-            if(count == 1) {
+            }else {
                 removeFromWishList();
-                ivFavourite.setVisibility(View.VISIBLE);
-                ivDislike.setVisibility(View.GONE);
-                // ivFavourite.setColorFilter(getResources().getColor(R.color.white));
+                addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart));
+                addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle));
                 count--;
+
             }
         });
+
+        btnBuyNow = findViewById(R.id.btnBuyNow);
+        btnBuyNow.setOnClickListener(view->{
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra("toyId",toyId);
+            startActivity(intent);
+        });
+
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
     }
 
     public void getUserName(){
@@ -202,11 +224,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                               runOnUiThread(()->{
                                                                   UserWishList wishList=UserWishList.builder().toy(toy)
                                                                           .account(user).build();
-//
-//                                                                  Amplify.DataStore.save(wishList,
-//                                                                          success -> Log.i(TAG, "Saved item DataStore addToWish: " + success),
-//                                                                          error -> Log.e(TAG, "Could not save item to DataStore addToWish", error)
-//                                                                  );
                                                                   // API save to backend
                                                                   Amplify.API.mutate(
                                                                           ModelMutation.create(wishList),
@@ -216,8 +233,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                                           error -> Log.e(TAG, "Could not save item to API addToWish", error)
                                                                   );
                                                               });
-
-
                         }
 
                     }
@@ -241,7 +256,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(UserWishList.class),
                 wishList -> {
-//                    Log.i(TAG, "getToys addToWish: ************************"+wishList.getData());
                     for (UserWishList wishToy :
                             wishList.getData()) {
                         Amplify.Auth.fetchUserAttributes(
@@ -321,11 +335,17 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
+
+
+//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
+//                                                                addToWishList.setBackground(getDrawable(R.drawable.shophop_ic_heart_fill));
+
                                                                 //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                runOnUiThread(()->{
-                                                                   ivFavourite.setVisibility(View.GONE);
-                                                                   ivDislike.setVisibility(View.VISIBLE);
+                                                                   addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
+                                                                   addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                                                                });
+
 
                                                                 count=1;
                                                                 Log.i(TAG, "identify: in fav "+count);

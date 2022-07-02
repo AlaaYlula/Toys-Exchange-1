@@ -50,9 +50,12 @@ import com.example.toys_exchange.fragmenrs.ToyFragment;
 import com.example.toys_exchange.fragmenrs.WishListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -107,39 +110,17 @@ public class MainActivity extends AppCompatActivity {
     private EventFragment eventFragment;
     private WishListFragment wishListFragment;
     private StoreFragment storeFragment;
+    private String image;
+    private String usernameDisplay;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shophop_activity_dashboard_shop);
-//
+
 //        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
-//        viewPager = findViewById(R.id.viewPager);
-//        tabLayout = findViewById(R.id.tabLayout);
-//        adapter = new TabAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new EventFragment(), "Event");
-//        adapter.addFragment(new ToyFragment(), "Toy");
-//        adapter.addFragment(new StoreFragment(), "store");
-//        viewPager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(viewPager);
-//
-//        Button addStore = findViewById(R.id.addStore);
-//        addStore.setOnClickListener(view ->{
-//            startActivity(new Intent(this, StoreListActivity.class));
-//        });
-//
-//       // Button btnDetailEvent = findViewById(R.id.DetailEvent);
-//
-////        btnDetailEvent.setOnClickListener(view -> {
-////            startActivity(new Intent(this, WishListActivity.class));
-////        });
-//
-//       // Button btnDetailToy = findViewById(R.id.detailToy);
-//
-////        btnDetailToy.setOnClickListener(view -> {
-////            startActivity(new Intent(this, MainActivity2.class));
-////        });
+
         getLoginUserId();
 
         ivHome = findViewById(R.id.ivHome);
@@ -239,7 +220,15 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "SharedPreferences => " + userId);
 
 
+
+        TextView tvSetting = findViewById(R.id.tvSetting);
+        tvSetting.setOnClickListener(view -> {
+            startActivity(new Intent(this,MainActivity2.class));
+        });
+
+
     }
+
 
 
     @Override
@@ -316,15 +305,24 @@ public class MainActivity extends AppCompatActivity {
                             allUsers.getData()) {
                         if(userAc.getIdcognito().equals(cognitoId)){
                             acc_id = userAc.getId();
+                            image = userAc.getImage();
+                            usernameDisplay = userAc.getUsername();
                         }
                     }
+                    runOnUiThread(()->{
+                        // For Set the Image
+                        CircleImageView imageView = findViewById(R.id.civProfile);
+                        getUrl(image,imageView);
+
+                        TextView txtDisplayName = findViewById(R.id.txtDisplayName);
+                        txtDisplayName.setText(usernameDisplay);
+                    });
 
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
 
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void enable(ImageView imageView){
@@ -348,9 +346,20 @@ public class MainActivity extends AppCompatActivity {
         imageView.setBackground(null);
     }
 
-
     private void changeFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    private void getUrl(String image , CircleImageView imageView){
+        Amplify.Storage.getUrl(
+                image,
+                result -> {
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(imageView);
+                    });
+                },
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+        );
     }
 }
 

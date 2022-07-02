@@ -36,6 +36,10 @@ android {
 
 dependencies {
 
+    implementation 'com.google.android.material:material:1.6.1'
+
+    // Library for payments Form
+    implementation 'com.braintreepayments:card-form:5.4.0'
 
     implementation 'com.squareup.picasso:picasso:2.8'
 
@@ -44,11 +48,11 @@ dependencies {
     implementation 'com.amplifyframework:aws-storage-s3:1.35.4'
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.annotation:annotation:1.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

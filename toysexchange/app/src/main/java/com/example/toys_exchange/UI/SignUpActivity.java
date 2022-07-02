@@ -1,5 +1,6 @@
 package com.example.toys_exchange.UI;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.auth.AuthUserAttributeKey;
@@ -94,6 +96,25 @@ public class SignUpActivity extends AppCompatActivity {
                     Log.e(TAG, "Sign up failed", error);
                     // show a dialog of the error below
                     // error.getMessage()
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (!isFinishing()){
+                                new AlertDialog.Builder(SignUpActivity.this)
+                                        .setTitle("Error")
+                                        .setMessage(error.getMessage())
+                                        .setCancelable(false)
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Whatever...
+                                                startActivity(new Intent(SignUpActivity.this,SignUpActivity.class));
+                                            }
+                                        }).show();
+                            }
+                        }
+                    });
                 }
         );
 

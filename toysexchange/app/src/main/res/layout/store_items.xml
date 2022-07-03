@@ -1,93 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="@dimen/_8sdp"
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:elevation="@dimen/_8sdp"
     >
 
-    <androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    style="@style/CardViewStyle"
+    android:background="@color/teal_200"
+    android:layout_margin="@dimen/_10sdp"
+    app:cardElevation="@dimen/_5sdp"
+    >
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/CardViewStyle"
-        android:background="@color/teal_200"
         android:layout_margin="@dimen/_10sdp"
         app:cardElevation="@dimen/_8sdp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-
         >
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+        <ImageView
+            android:id="@+id/txt_view_store_location"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/shophop_ic_my_location"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_16sdp"
+            tools:ignore="MissingConstraints" />
+
+
+
+        <TextView
+            android:id="@+id/username_store"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardElevation="@dimen/_8sdp"
-
-            >
-            <!--           <ImageView-->
-            <!--               android:id="@+id/event_img"-->
-            <!--               android:layout_width="200dp"-->
-            <!--               android:layout_height="150dp"-->
-            <!--               app:layout_constraintStart_toStartOf="parent"-->
-            <!--               app:layout_constraintEnd_toEndOf="parent"-->
-            <!--               app:layout_constraintTop_toTopOf="parent"-->
-            <!--               android:src="@color/cardview_dark_background"-->
-            <!--               />-->
-
-            <ImageView
-                android:id="@+id/txt_view_store_location"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_500sdp"
-                android:src="@drawable/shophop_ic_my_location"
-                app:layout_constraintEnd_toEndOf="@+id/store_title"
-                app:layout_constraintLeft_toLeftOf="@+id/store_title"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/username_store"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:layout_constraintBaseline_toTopOf="@id/store_title"
-                android:text="store Name"/>
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="ssssssssssssssssss"
+            android:textAllCaps="true"
+            android:fontFamily="@font/montserrat_bold"
+            />
 
 
-            <TextView
-                android:id="@+id/store_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-
-                android:layout_marginBottom="7dp"
-                android:text="title"
-                app:layout_constraintBaseline_toTopOf="@id/store_description"
-
-                app:layout_constraintBottom_toTopOf="@+id/store_description"
-                tools:layout_editor_absoluteX="5dp" />
+        <TextView
+            android:id="@+id/store_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_below="@+id/username_store"
+            android:text="ssssssssssssssssss"
+            />
 
 
-            <TextView
-                android:id="@+id/store_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Description"
 
-                tools:layout_editor_absoluteX="5dp"
-                tools:layout_editor_absoluteY="30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/store_title"
-                />
+        <TextView
+            android:id="@+id/store_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_below="@+id/store_title"
+            android:text="ssssssssssssssssss"
+            />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

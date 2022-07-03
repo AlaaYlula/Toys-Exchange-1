@@ -322,12 +322,17 @@
     </style>
 
     <style name="FontBold">
-
     </style>
 
     <style name="ShopHopCollapsedAppBar" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/sh_font_size_normal</item>
         <item name="android:textColor">@color/ShopHop_textColorPrimary</item>
+    </style>
+    
+    <style name="roundiImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/_20sdp</item>
+        <item name="color">@color/white</item>
     </style>
 
     <style name="ShopHopAppTheme.SearchView" parent="Widget.AppCompat.SearchView">

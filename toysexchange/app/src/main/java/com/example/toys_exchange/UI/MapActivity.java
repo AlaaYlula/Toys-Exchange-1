@@ -172,9 +172,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Log.i(TAG, "onClick: lat------------------------------->"+ searchedLatitude);
                 }
 
-
-
-
             }
         });
 

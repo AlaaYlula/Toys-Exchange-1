@@ -172,6 +172,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
             if(latitude!=0 && longitude!=0){
                 Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
                 startActivity(intent);
+
             }else {
                 Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
             }

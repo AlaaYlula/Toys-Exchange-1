@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/_8sdp"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -12,31 +15,58 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/CardViewStyle"
         android:background="@color/teal_200"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardElevation="@dimen/_8sdp"
+
         >
        <androidx.constraintlayout.widget.ConstraintLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_margin="10dp">
+           android:layout_margin="@dimen/_10sdp"
+           app:cardElevation="@dimen/_8sdp"
+
+           >
+<!--           <ImageView-->
+<!--               android:id="@+id/event_img"-->
+<!--               android:layout_width="200dp"-->
+<!--               android:layout_height="150dp"-->
+<!--               app:layout_constraintStart_toStartOf="parent"-->
+<!--               app:layout_constraintEnd_toEndOf="parent"-->
+<!--               app:layout_constraintTop_toTopOf="parent"-->
+<!--               android:src="@color/cardview_dark_background"-->
+<!--               />-->
+
            <ImageView
-               android:id="@+id/event_img"
-               android:layout_width="200dp"
-               android:layout_height="150dp"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               android:src="@color/cardview_dark_background"
-               />
+               android:layout_width="@dimen/_20sdp"
+               android:layout_height="@dimen/_20sdp"
+               android:src="@drawable/ic_event"
+               app:layout_constraintEnd_toEndOf="@+id/event_name"
+               app:layout_constraintLeft_toLeftOf="@+id/event_name"
+               tools:ignore="MissingConstraints" />
 
            <TextView
                android:id="@+id/event_name"
                android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_margin="5dp"
-               app:layout_constraintTop_toBottomOf="@+id/event_img"
-               app:layout_constraintBottom_toBottomOf="parent"/>
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               android:text="ssssssssssssssssss"
+               android:textAllCaps="true"
+               app:layout_constraintBaseline_toTopOf="@id/event_description"
+               />
+
+           <TextView
+               android:id="@+id/event_description"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="10dp"
+               app:layout_constraintBottom_toBottomOf="@+id/event_name"
+               android:text="ssssssssssssssssss"
+               />
 
        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

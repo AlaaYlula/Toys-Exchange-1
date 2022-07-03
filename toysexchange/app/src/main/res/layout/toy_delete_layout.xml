@@ -61,6 +61,20 @@
                 app:layout_constraintEnd_toStartOf="@+id/toy_img"
                 app:layout_constraintTop_toBottomOf="@+id/delete_toy" />
 
+            <ImageView
+                android:id="@+id/ivToyOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="70dp"
+                android:src="@drawable/shophop_ic_more_vert_black_24dp"
+                app:layout_constraintEnd_toStartOf="@+id/toy_img"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_toy" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

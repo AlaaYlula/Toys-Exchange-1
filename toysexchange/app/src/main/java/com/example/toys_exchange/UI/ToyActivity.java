@@ -201,6 +201,11 @@ public class ToyActivity extends AppCompatActivity {
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),
                                             success -> {
+                                                runOnUiThread(()->{
+                                                    Toast.makeText(ToyActivity.this, "Toy Added", Toast.LENGTH_SHORT).show();
+
+                                                });
+
                                                 Log.i(TAG, "Saved item API: " + success.getData());
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
@@ -306,6 +311,8 @@ public class ToyActivity extends AppCompatActivity {
                             file,
                             result -> {
                                 Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                Toast.makeText(ToyActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
+
                                 URL=result.getKey();
                             },
                             storageFailure -> Log.e(TAG, "Upload failed", storageFailure)

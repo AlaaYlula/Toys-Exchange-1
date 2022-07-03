@@ -1,20 +1,23 @@
 package com.example.toys_exchange.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +35,12 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
     PopupWindow popUp;
     CustomClickListener listener;
 
+    public interface CustomClickListener{
+        void onDeleteClickListener(int position);
+        void ontItemClickListener(int position);
+        void onUpdateClickListener(int position);
+
+    }
     public EventDeleteAdapter(List<Event> eventlist, CustomClickListener listener) {
         this.eventsList = eventlist;
         this.listener = listener;
@@ -48,7 +57,6 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        popUp = new PopupWindow();
         holder.eventName.setText(eventsList.get(position).getTitle());
 
     }
@@ -60,7 +68,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 
 
 
-    static class CustomViewHolder extends RecyclerView.ViewHolder{
+    class CustomViewHolder extends RecyclerView.ViewHolder  implements PopupMenu.OnMenuItemClickListener {
 
         ImageView eventImage;
         TextView eventName;
@@ -71,6 +79,9 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
         CustomClickListener listener;
         LayoutInflater inflater;
 
+        ImageView ivEventOption;
+
+
         public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
             super(itemView);
 
@@ -80,6 +91,10 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
             eventImage = itemView.findViewById(R.id.event_img);
             deleteBtn = itemView.findViewById(R.id.delete_event);
             updateBtn = itemView.findViewById(R.id.update_event);
+
+            ivEventOption = itemView.findViewById(R.id.ivEventOption);
+
+
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,79 +108,63 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
                 }
             });
 
-            updateBtn.setOnClickListener(new View.OnClickListener(){
-                        @Override
-                        public void onClick(View v) {
-                            if(listener!=null){
-                                int position = getAdapterPosition();
-                                if(position!=RecyclerView.NO_POSITION){
-                                    listener.onUpdateClickListener(position);
-                                }
-                            }
-                }
-
+            ivEventOption.setOnClickListener(view->{
+                showPopupMenu(view);
             });
+//            updateBtn.setOnClickListener(new View.OnClickListener(){
+//                        @Override
+//                        public void onClick(View v) {
+//                            if(listener!=null){
+//                                int position = getAdapterPosition();
+//                                if(position!=RecyclerView.NO_POSITION){
+//                                    listener.onUpdateClickListener(position);
+//                                }
+//                            }
+//                }
+//
+//            });
+
+
 
             itemView.setOnClickListener(view -> {
                 listener.ontItemClickListener(getAdapterPosition());
             });
 
         }
+
+
+       @Override
+       public boolean onMenuItemClick(MenuItem item) {
+           switch(item.getItemId()){
+               case R.id.delete:
+                   deleteEvent(getAdapterPosition());
+                   return true;
+               case R.id.edit:
+                   showEditEvent(getAdapterPosition());
+                   return true;
+               default:
+                   return false;
+           }
+        }
+        private void showPopupMenu(View view){
+            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+            popupMenu.inflate(R.menu.event_option);
+            popupMenu.setOnMenuItemClickListener( this);
+            popupMenu.show();
+        }
+   }
+
+
+
+
+    private void showEditEvent(int position){
+
+    //    listener.onUpdateClickListener(position,rlEditComment,ivEditComment,etEditComment);
+        listener.onUpdateClickListener(position);
     }
 
-
-
-    public interface CustomClickListener{
-        void onDeleteClickListener(int position);
-        void ontItemClickListener(int position);
-        void onUpdateClickListener(int position);
-
-
+    private void deleteEvent( int position){
+        listener.onDeleteClickListener(position);
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-//                            inflater = (LayoutInflater) updateBtn.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//
-//                            pw = new PopupWindow(inflater.inflate(R.layout.activity_event, null, false),800,1400, true);
-//                    pw.showAtLocation(updateBtn.findViewById(R.id.update_event), Gravity.CENTER, 0, 0);
-
-
-
-
-
-//                    if (click) {
-//
-//                            click = false;
-//
-//                        } if(!click){
-//                            pw.dismiss();
-//                            click = true;
-//                        }
-
-// Initializing the popup menu and giving the reference as current context
-//                    PopupMenu popupMenu = new PopupMenu(updateBtn.getContext(), updateBtn);
-//
-//                    // Inflating popup menu from popup_menu.xml file
-//                    popupMenu.getMenuInflater().inflate(R.menu.event_menu, popupMenu.getMenu());
-//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                        @Override
-//                        public boolean onMenuItemClick(MenuItem menuItem) {
-//                            // Toast message on menu item clicked
-//                            Toast.makeText(updateBtn.getContext(), "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
-//                            return true;
-//                        }
-//                    });
-//                    // Showing the popup menu
-//                    popupMenu.show();

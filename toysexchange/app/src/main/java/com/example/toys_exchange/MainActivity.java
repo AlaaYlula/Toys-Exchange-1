@@ -165,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();
 
+        firebaseAction();
+
 //        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
 
         getLoginUserId();
@@ -583,5 +585,84 @@ public class MainActivity extends AppCompatActivity {
             );
         });
     }
+
+
+    public void firebaseAction()
+    {
+
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId = logedInUser.getUserId();
+
+        FirebaseApp.initializeApp(this);
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        // send it to API
+                        Amplify.API.query(
+                                ModelQuery.list(Account.class),
+                                allUsers -> {
+                                    for (Account userAc:
+                                            allUsers.getData()) {
+                                        if(userAc.getIdcognito().equals(cognitoId)){
+                                            acc_id = userAc.getId();
+                                            Log.i(TAG, "ayahh: " + acc_id);
+
+                                            Notification notification = Notification.builder()
+                                                    .tokenid(token)
+                                                    .accountid(acc_id)
+                                                    .build();
+
+                                            Amplify.API.query(
+                                                    ModelQuery.list(Notification.class),
+                                                    notify -> {
+                                                        for (Notification noti:
+                                                                notify.getData()) {
+
+                                                            Log.i(TAG, "ayaaa99:  " + acc_id);
+                                                            Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
+
+                                                            if(!noti.getAccountid().equals(acc_id)) {
+                                                                Amplify.API.mutate(
+                                                                        ModelMutation.create(notification),
+                                                                        success -> {
+                                                                            Log.i(TAG, "Saved item API: " + success.getData());
+                                                                        },
+                                                                        error -> Log.e(TAG, "Could not save item to API", error)
+                                                                );
+                                                            }
+
+                                                        }
+
+                                                    },
+                                                    error -> Log.e(TAG, error.toString(), error)
+                                            );
+                                        }
+                                    }
+                                },
+                                error -> Log.e(TAG, error.toString(), error)
+                        );
+
+//                        id: ID!tokenid: Stringaccountid:
+
+
+                        // Log and toast
+//                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d("TOKEN", token);
+                        Log.i(TAG, "TOKEN: " + token);
+//                        Toast.makeText(PaymentActivity.this, token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }
 

@@ -44,13 +44,13 @@
             android:background="@drawable/shophop_bg_top_shadow">
 
             <TextView
-                android:id="@+id/btn_add"
+                android:id="@+id/btn_close"
                 style="@style/ShopHopBottomButton.White"
                 android:text="Cancel"
                 android:textSize="@dimen/_16sdp"/>
 
             <TextView
-                android:id="@+id/btn_close"
+                android:id="@+id/btn_add"
                 style="@style/ShopHopBottomButton.Primary"
                 android:text="Submit"
                 android:textSize="@dimen/_16sdp"/>

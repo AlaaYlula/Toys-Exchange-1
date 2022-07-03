@@ -267,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         userId =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
+        username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No Team setting");
         Log.i(TAG, "SharedPreferences => " + userId);
 
 

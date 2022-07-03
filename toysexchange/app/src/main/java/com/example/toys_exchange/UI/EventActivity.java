@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,20 +28,17 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
-import com.amplifyframework.datastore.generated.model.Store;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
-
-import java.util.DuplicateFormatFlagsException;
 
 public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = EventActivity.class.getSimpleName() ;
 
-    Button addEvent;
+    Button btnSubmit;
     Button cancelAdd;
 
-    Button location;
+    TextView location;
 
     String userId;
 
@@ -54,12 +52,13 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
-        getSupportActionBar().setTitle("Add Event");
+        setContentView(R.layout.toyexchange_activity_add_event);
+//        getSupportActionBar().setTitle("Add Event");
         enableLocation();
 
-        location=findViewById(R.id.btn_location);
+        location=findViewById(R.id.tvLocation);
 
+        cancelAdd = findViewById(R.id.btnCancel);
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             // get the username
@@ -71,7 +70,7 @@ public class EventActivity extends AppCompatActivity {
         });
         authAttribute(); //get the username and userID
 
-        addEvent = findViewById(R.id.btn_addEvent);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
         addBtnListener(); // Listeners
 
@@ -165,10 +164,10 @@ public class EventActivity extends AppCompatActivity {
 
     private void addBtnListener() {
 
-        addEvent.setOnClickListener(view -> {
+        btnSubmit.setOnClickListener(view -> {
 
-            EditText eventDescription = findViewById(R.id.description_event);
-            EditText eventTitle = findViewById(R.id.title_event);
+            EditText eventDescription = findViewById(R.id.etDescription);
+            EditText eventTitle = findViewById(R.id.etTitle);
 
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();
@@ -220,12 +219,12 @@ public class EventActivity extends AppCompatActivity {
             );
 
             Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
-            addEvent.setBackgroundColor(Color.RED);
+            btnSubmit.setBackgroundColor(Color.RED);
         });
 
-//        cancelAdd.setOnClickListener(view -> {
-//           startActivity(new Intent(this, MainActivity.class));
-//        });
+        cancelAdd.setOnClickListener(view -> {
+           startActivity(new Intent(this, MainActivity.class));
+        });
     }
 
 

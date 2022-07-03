@@ -1,8 +1,6 @@
 package com.example.toys_exchange.UI;
 
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,8 +51,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
     adaptorComment commentRecyclerViewAdapter;
     List<Comment> commentsListDatabase = new ArrayList<>();
 
-//    TextView username;
-//    TextView title ;
     TextView description ;
     CollapsingToolbarLayout title;
 
@@ -436,6 +433,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                 );
             }
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onUpdateClick(int position,ConstraintLayout rlEditComment
                     ,    ImageView ivEditComment, EditText etEditComment) {

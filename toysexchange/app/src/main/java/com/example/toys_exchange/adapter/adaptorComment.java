@@ -35,10 +35,13 @@ import com.amplifyframework.datastore.generated.model.Comment;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.UI.UpdateCommentActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomViewHolder> {
     private static final String TAG = adaptorComment.class.getSimpleName();
@@ -91,6 +94,15 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                     user -> {
                        runOnUiThread(()->{
                            holder.username.setText(user.getData().getUsername());
+                           Amplify.Storage.getUrl(
+                                   user.getData().getImage(),
+                                   result -> {
+                                       runOnUiThread(()->{
+                                           Picasso.get().load(result.getUrl().toString()).into(holder.image);
+                                       });
+                                   },
+                                   error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+                           );
                        });
                     },
                     error -> Log.e("Adaptor", error.toString(), error)
@@ -104,8 +116,6 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                 {
                     holder.ivCommentOption.setVisibility(View.VISIBLE);
                     holder.etEditComment.setText(holder.text.getText());
-
-
                }else{
                       holder.ivCommentOption.setVisibility(View.GONE);
                           }
@@ -125,6 +135,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         private adaptorComment adapter;
         TextView username;
         TextView text;
+        CircleImageView image;
 
         ImageView ivCommentOption;
         ImageView ivEditComment;
@@ -151,6 +162,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             rootView = itemView;
             username = itemView.findViewById(R.id.tvName);
             text = itemView.findViewById(R.id.tvComment);
+            image = itemView.findViewById(R.id.ivProfileImage);
             etEditComment = itemView.findViewById(R.id.etEditComment);
             ivEditComment = itemView.findViewById(R.id.ivEditComment);
 

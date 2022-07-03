@@ -67,6 +67,7 @@
         <activity
             android:name=".profileActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.ToyDetailActivity"
@@ -76,10 +77,12 @@
         <activity
             android:name=".UI.EventDetailsActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity"
             android:theme="@style/ShopHopAppTheme"/>
 

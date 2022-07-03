@@ -20,6 +20,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/editImage"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shophop_ic_avatar"
+            app:civ_border_color="@color/ShopHop_white"
+            app:civ_border_width="@dimen/sh_spacing_control" />
+
         <RelativeLayout
             android:id="@+id/rlUsername"
             android:layout_width="match_parent"

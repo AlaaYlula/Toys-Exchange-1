@@ -185,8 +185,8 @@ public class ToyFragment extends Fragment {
                             }, error -> Log.e("error: ", "-> ", error)
                     );
                 }
-                // Sort the Created At
-                Collections.sort(toyList,new SortByDate());
+//                // Sort the Created At
+//                Collections.sort(toyList,new SortByDate());
             }
 
             @Override

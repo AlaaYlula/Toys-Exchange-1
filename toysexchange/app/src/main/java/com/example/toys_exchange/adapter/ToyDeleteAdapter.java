@@ -1,5 +1,10 @@
 package com.example.toys_exchange.adapter;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,6 +29,8 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
     List<Toy> toysList;
 
     CustomClickListener listener;
+    int colorNew = Color.parseColor("#59ba9d");
+    int colorUsed = Color.parseColor("#fad170");
 
     public ToyDeleteAdapter(List<Toy> toysList, CustomClickListener listener) {
         this.toysList = toysList;
@@ -32,14 +41,39 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItemView = layoutInflater.inflate(R.layout.toy_delete_layout,parent,false);
+        View listItemView = layoutInflater.inflate(R.layout.activity_user_list,parent,false);
 
         return new CustomViewHolder(listItemView , listener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.toyName.setText(toysList.get(position).getToyname());
+        holder.tvName.setText(toysList.get(position).getToyname());
+        holder.tvType.setText(toysList.get(position).getTypetoy().toString());
+        holder.tvPrice.setText(toysList.get(position).getPrice().toString());
+
+
+        if(toysList.get(position).getCondition().toString().equals("NEW")){
+            holder.ivLabelNew.setVisibility(View.VISIBLE);
+            holder.ivLabelNew.setColorFilter(colorNew);
+        }else {
+            holder.ivLabelUsed.setVisibility(View.VISIBLE);
+            holder.ivLabelUsed.setColorFilter(colorUsed);
+        }
+
+        String image = toysList.get(position).getImage();
+        Amplify.Storage.getUrl(
+                image,
+                result -> {
+                    Log.i(TAG, "Successfully generated: " + result.getUrl());
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(holder.ivImage);
+                    });
+                },
+                error -> Log.e(TAG, "URL generation failure", error)
+        );
+
 
     }
     
@@ -52,56 +86,40 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
 
     class CustomViewHolder extends RecyclerView.ViewHolder  implements PopupMenu.OnMenuItemClickListener {
 
-        ImageView toyImage;
-        TextView toyName;
-        Button deleteBtn;
-        Button updateBtn;
         CustomClickListener listener;
 
         ImageView ivToyOption;
+
+        ImageView ivLabelNew;
+        ImageView ivLabelUsed;
+
+        TextView tvName;
+        TextView tvType;
+        TextView tvPrice;
+        ImageView ivImage;
+
+
+
 
         public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
             super(itemView);
 
             this.listener = listener;
 
-            toyName = itemView.findViewById(R.id.tvName);
-            toyImage = itemView.findViewById(R.id.toy_img);
-            deleteBtn = itemView.findViewById(R.id.delete_toy);
-            updateBtn = itemView.findViewById(R.id.update_toy);
+
+            ivImage = itemView.findViewById(R.id.ivImage);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvType = itemView.findViewById(R.id.tvType);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+
+            ivLabelNew = itemView.findViewById(R.id.ivLabelNew);
+            ivLabelUsed = itemView.findViewById(R.id.ivLabelOld);
+
             ivToyOption = itemView.findViewById(R.id.ivToyOption);
-
-
-            deleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener!=null){
-                        int position = getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
-                            listener.onDeleteClickListener(position);
-                        }
-                    }
-                }
-            });
 
             ivToyOption.setOnClickListener(view->{
                 showPopupMenu(view);
             });
-
-//            updateBtn.setOnClickListener(new View.OnClickListener(){
-//                @Override
-//                public void onClick(View v) {
-//                    if(listener!=null){
-//                        int position = getAdapterPosition();
-//                        if(position!=RecyclerView.NO_POSITION){
-//                            listener.onUpdateClickListener(position);
-//                        }
-//                    }
-//                }
-//
-//            });
-
-
 
             itemView.setOnClickListener(view -> {
                 listener.ontItemClickListener(getAdapterPosition());

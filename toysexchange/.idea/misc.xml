@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_event.xml" value="0.1455" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_active.xml" value="0.1585" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_inactive.xml" value="0.1585" />
@@ -173,6 +174,13 @@
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_sign_up.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_verification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/signup.xml" value="0.20416666666666666" />
+=======
+        <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_list.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_store_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/event_items.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/store_items.xml" value="0.33" />
+>>>>>>> 5165f90ce79736dae7fd8a174bc07d5c84b7b0b7
       </map>
     </option>
   </component>

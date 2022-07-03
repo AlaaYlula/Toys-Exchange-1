@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Toysexchange">
+        >
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -27,27 +27,34 @@
         <activity
             android:name=".UI.StoreListActivity"
             android:exported="false"
+            android:theme="@style/ShopHopAppTheme"
             />
 
         <activity
             android:name=".UI.MapActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.UpdateCommentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
 
         <activity
             android:name=".UI.UpdateToyActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.UpdateEventActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.StoreAddActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.EventAttendList"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".MainActivity2"
             android:exported="false"
@@ -58,10 +65,13 @@
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.eventListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"
+            />
         <activity
             android:name=".profileActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.ToyDetailActivity"
@@ -71,20 +81,25 @@
         <activity
             android:name=".UI.EventDetailsActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ShopHopAppTheme"/>
 
         <activity
             android:name=".PaymentActivity"
             android:exported="false"
-            android:parentActivityName=".UI.ToyDetailActivity" />
+            android:parentActivityName=".UI.ToyDetailActivity"
+            android:theme="@style/ShopHopAppTheme"/>
 
         <activity
             android:name=".UI.VerificationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.data.model.LoginActivity"
             android:exported="true"
@@ -92,7 +107,6 @@
             android:theme="@style/ShopHopAppTheme">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
@@ -108,22 +122,18 @@
         <activity
             android:name=".UI.ToyActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/ShopHopAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
 
-
         <activity
             android:name=".WishListActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
+            android:exported="false"/>
 
 <!--        <service-->
 <!--            android:name=".java.MyFirebaseMessagingService"-->

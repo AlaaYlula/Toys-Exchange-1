@@ -181,8 +181,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         btnBuyNow.setOnClickListener(view->{
             Intent intent = new Intent(this, PaymentActivity.class);
 
-            firebaseAction();
-
             intent.putExtra("toyId",toyId);
             startActivity(intent);
         });

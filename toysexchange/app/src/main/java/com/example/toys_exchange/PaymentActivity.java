@@ -29,6 +29,7 @@ import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.braintreepayments.cardform.view.CardForm;
 import com.example.toys_exchange.Firebase.FcnNotificationSender;
 import com.example.toys_exchange.UI.EventActivity;
+import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -92,7 +93,7 @@ public class PaymentActivity extends AppCompatActivity {
                          // Delete From the Toys
                          deleteToyFromAPI();
                          Toast.makeText(PaymentActivity.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
-//                         firebaseAction();
+                         firebaseAction();
                      }
                  });
                  alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -207,81 +208,87 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
-//    public void firebaseAction()
-//    {
-//
-//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-//        String cognitoId = logedInUser.getUserId();
-//
-//        FirebaseApp.initializeApp(this);
-//        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-//        FirebaseMessaging.getInstance().subscribeToTopic("all");
-//        FirebaseMessaging.getInstance().getToken()
-//                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<String> task) {
-//                        if (!task.isSuccessful()) {
-//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-//                            return;
-//                        }
-//
-//                        // Get new FCM registration token
-//                        String token = task.getResult();
-//                        // send it to API
-//                        Amplify.API.query(
-//                                ModelQuery.list(Account.class),
-//                                allUsers -> {
-//                                    for (Account userAc:
-//                                            allUsers.getData()) {
-//                                        if(userAc.getIdcognito().equals(cognitoId)){
-//                                            acc_id = userAc.getId();
-//                                            Log.i(TAG, "ayahh: " + acc_id);
-//
-//                                            Notification notification = Notification.builder()
-//                                                    .tokenid(token)
-//                                                    .accountid(acc_id)
-//                                                    .build();
-//                                            Amplify.API.query(
-//                                                    ModelQuery.list(Notification.class),
-//                                                    notify -> {
-//                                                        for (Notification noti:
-//                                                                notify.getData()) {
-//                                                            if(!noti.getAccountid().equals(acc_id)){
-//                                                                Amplify.API.mutate(
-//                                                                        ModelMutation.create(notification),
-//                                                                        success -> {
-//                                                                            Log.i(TAG, "Saved item API: " + success.getData());
-//                                                                        },
-//                                                                        error -> Log.e(TAG, "Could not save item to API", error)
-//                                                                );
-//
-//                                                            }
-//
-//                                                        }
-//
-//                                                    },
-//                                                    error -> Log.e(TAG, error.toString(), error)
-//                                            );
-//                                        }
-//                                    }
-//                                },
-//                                error -> Log.e(TAG, error.toString(), error)
-//                        );
-//
-////                        id: ID!tokenid: Stringaccountid:
-//
-//
-//                        // Log and toast
-////                        String msg = getString(R.string.msg_token_fmt, token);
-//                        Log.d("TOKEN", token);
-//                        Log.i(TAG, "TOKEN: " + token);
+
+    public void firebaseAction()
+    {
+
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId = logedInUser.getUserId();
+
+        FirebaseApp.initializeApp(this);
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                        // send it to API
+                        Amplify.API.query(
+                                ModelQuery.list(Account.class),
+                                allUsers -> {
+                                    for (Account userAc:
+                                            allUsers.getData()) {
+                                        if(userAc.getIdcognito().equals(cognitoId)){
+                                            acc_id = userAc.getId();
+                                            Log.i(TAG, "ayahh: " + acc_id);
+
+                                            Notification notification = Notification.builder()
+                                                    .tokenid(token)
+                                                    .accountid(acc_id)
+                                                    .build();
+
+                                            Amplify.API.query(
+                                                    ModelQuery.list(Notification.class),
+                                                    notify -> {
+                                                        for (Notification noti:
+                                                                notify.getData()) {
+
+                                                            Log.i(TAG, "ayaaa99:  " + acc_id);
+                                                            Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
+
+                                                            if(!noti.getAccountid().equals(acc_id)) {
+                                                                Amplify.API.mutate(
+                                                                        ModelMutation.create(notification),
+                                                                        success -> {
+                                                                            Log.i(TAG, "Saved item API: " + success.getData());
+                                                                        },
+                                                                        error -> Log.e(TAG, "Could not save item to API", error)
+                                                                );
+                                                            }
+
+                                                        }
+
+                                                    },
+                                                    error -> Log.e(TAG, error.toString(), error)
+                                            );
+                                        }
+                                    }
+                                },
+                                error -> Log.e(TAG, error.toString(), error)
+                        );
+
+//                        id: ID!tokenid: Stringaccountid:
+
+
+                        // Log and toast
+//                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d("TOKEN", token);
+                        Log.i(TAG, "TOKEN: " + token);
 //                        Toast.makeText(PaymentActivity.this, token, Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//        FirebaseMessaging.getInstance().subscribeToTopic("all");
-//
-//        FcnNotificationSender notificationSender = new FcnNotificationSender("Hello", "your Toy is sold", getApplicationContext(), PaymentActivity.this,"dz3rZETJS6evPSjWTLynSU:APA91bHg3EPti8H_CiKGlR7p9ETJcvoK8yXJKEWDj_Idimn73TxKhTcu6_O2SqPhwFv8f8qpbsGPi2xVd66hiyvz_Z7jOOAWKNa-lr1h0PV9Oi9DNlSSmXQhcKk5qMgk1iLbF9FQxZYz");
-//        notificationSender.SendNotifications();
-//    }
+                    }
+                });
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+        FcnNotificationSender notificationSender = new FcnNotificationSender("Hello", "your Toy is sold", getApplicationContext(), PaymentActivity.this,"dz3rZETJS6evPSjWTLynSU:APA91bHg3EPti8H_CiKGlR7p9ETJcvoK8yXJKEWDj_Idimn73TxKhTcu6_O2SqPhwFv8f8qpbsGPi2xVd66hiyvz_Z7jOOAWKNa-lr1h0PV9Oi9DNlSSmXQhcKk5qMgk1iLbF9FQxZYz");
+        notificationSender.SendNotifications();
+    }
+
 }

@@ -2,19 +2,14 @@ package com.example.toys_exchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
-import com.example.toys_exchange.UI.EventActivity;
-import com.example.toys_exchange.UI.EventAttendList;
-import com.example.toys_exchange.UI.ToyActivity;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -27,7 +22,7 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.shophop_activity_event_detail);
+        setContentView(R.layout.toyexchange_activity_add_event);
 
     }
 

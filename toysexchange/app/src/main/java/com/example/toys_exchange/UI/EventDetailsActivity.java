@@ -1,8 +1,6 @@
 package com.example.toys_exchange.UI;
 
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,6 +34,10 @@ import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.UserAttendEvent;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.adaptorComment;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
@@ -41,14 +45,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class EventDetailsActivity extends AppCompatActivity {
+public class EventDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
 
     adaptorComment commentRecyclerViewAdapter;
     List<Comment> commentsListDatabase = new ArrayList<>();
 
-//    TextView username;
-//    TextView title ;
     TextView description ;
     CollapsingToolbarLayout title;
 
@@ -57,6 +59,7 @@ public class EventDetailsActivity extends AppCompatActivity {
     Account userWhoAttend;
     UserAttendEvent userAttendEvent;
 
+    GoogleMap googleMap;
 
     Button addComment;
     Button btnAttend;
@@ -75,7 +78,7 @@ public class EventDetailsActivity extends AppCompatActivity {
 
     Button updateForm;
 
-    Button showLocation;
+    TextView showLocation;
 
     Intent passedIntent;
     private String titleText;
@@ -160,14 +163,14 @@ public class EventDetailsActivity extends AppCompatActivity {
         btnAttend = findViewById(R.id.btnAttend);
 //        deleteComment = findViewById(R.id.btn_deleteComment);
         addBtnListner();
-        showLocation=findViewById(R.id.bt_event_location);
 
+        showLocation=findViewById(R.id.tvLocation);
         showLocation.setOnClickListener(view -> {
 
             Log.i(TAG, "onCreate:lan "+longitude);
             Log.i(TAG, "onCreate:lat "+latitude);
             if(latitude!=0 && longitude!=0){
-                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
                 startActivity(intent);
             }else {
                 Toast.makeText(this, "no location provide", Toast.LENGTH_SHORT).show();
@@ -391,6 +394,13 @@ public class EventDetailsActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
+    }
+
     // Class to sort the comments by date
     // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/ 
     static class SortByDate implements Comparator<Comment> {
@@ -423,6 +433,7 @@ public class EventDetailsActivity extends AppCompatActivity {
                 );
             }
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onUpdateClick(int position,ConstraintLayout rlEditComment
                     ,    ImageView ivEditComment, EditText etEditComment) {

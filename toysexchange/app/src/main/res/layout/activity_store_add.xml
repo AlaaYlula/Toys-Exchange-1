@@ -72,9 +72,9 @@
 
         android:layout_marginStart="32dp"
         android:layout_marginBottom="24dp"
-        android:text="Description"
         android:textSize="@dimen/_18sdp"
         android:textColor="@color/black"
+        android:hint="description"
         app:layout_constraintBottom_toTopOf="@+id/description_store"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:inputType="text"
-        android:text="Description"
+        android:hint="description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -234,7 +234,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                                             .build();
                                                 }
                                             }
-
+//
                                             runOnUiThread(() -> {
 
                                                 Amplify.API.mutate(

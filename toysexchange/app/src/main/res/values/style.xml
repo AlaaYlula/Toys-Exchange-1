@@ -9,10 +9,6 @@
     </style>
 
 
-
-
-
-
     <style name="ShopHopAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ShopHop_colorPrimary</item>
         <item name="colorPrimaryDark">@color/ShopHop_colorPrimaryDark</item>

@@ -53,13 +53,29 @@
 
             <Button
                 android:id="@+id/update_event"
+                android:onClick="ShowPopup"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginBottom="83dp"
                 android:text="update"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/delete_event"
-                app:layout_constraintTop_toBottomOf="@+id/delete_event" />
+                app:layout_constraintTop_toBottomOf="@+id/delete_event"
+              />
+
+            <ImageView
+                android:id="@+id/ivEventOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="70dp"
+                android:src="@drawable/shophop_ic_more_vert_black_24dp"
+                app:layout_constraintEnd_toStartOf="@+id/event_img"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_event" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

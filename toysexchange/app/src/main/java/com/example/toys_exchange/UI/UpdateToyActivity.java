@@ -154,6 +154,8 @@ public class UpdateToyActivity extends AppCompatActivity {
                                                                                     .id(toyId)
                                                                                     .build();
 
+                                                                            Log.i(TAG, "new Toy   :  " + toyOne);
+
                                                                             Amplify.API.mutate(ModelMutation.update(toyOne),
                                                                                     response -> {
                                                                                         runOnUiThread(()->{

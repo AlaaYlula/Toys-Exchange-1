@@ -63,7 +63,7 @@
         <activity
             android:name=".UI.eventListActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            />
         <activity
             android:name=".profileActivity"
             android:exported="false"

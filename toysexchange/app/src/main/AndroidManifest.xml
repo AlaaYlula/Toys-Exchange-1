@@ -62,7 +62,8 @@
         <activity
             android:name=".UI.toyListActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme" />
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"/>
         <activity
             android:name=".UI.eventListActivity"
             android:exported="false"

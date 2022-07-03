@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,7 +110,10 @@ public class toyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy_list);
-
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Toys List");
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             userId = msg.getData().getString("id");
@@ -513,8 +517,7 @@ public class toyListActivity extends AppCompatActivity {
                                 Log.i(TAG, "Successfully uploaded: " + result.getKey());
                                 URL=result.getKey();
                                 runOnUiThread(()->{
-                                 //   getUrl(URL,imageUpdate);
-                                    setToyImageInpopUp(imageUpdate);
+                                    getUrl(URL,imageUpdate);
                                 });
                             },
                             storageFailure -> Log.e(TAG, "Upload failed", storageFailure)

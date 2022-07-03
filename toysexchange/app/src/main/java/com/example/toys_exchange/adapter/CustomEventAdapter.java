@@ -82,6 +82,11 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
         holder.eventName.setText(eventList.get(position).getTitle());
+        if(eventList.get(position).getEventdescription().length()>20){
+            holder.eventDescription.setText(eventList.get(position).getEventdescription().substring(0,20)+"... ");
+        }else {
+            holder.eventDescription.setText(eventList.get(position).getEventdescription());
+        }
         Log.i(TAG, "onBindViewHolder: " + acc_id);
 
     }
@@ -93,8 +98,9 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
 
     static class CustomViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView eventImage;
+       // ImageView eventImage;
         TextView eventName;
+        TextView eventDescription;
         CustomClickListener listener;
         public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
             super(itemView);
@@ -102,7 +108,8 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
             this.listener = listener;
 
             eventName = itemView.findViewById(R.id.event_name);
-            eventImage = itemView.findViewById(R.id.event_img);
+          //  eventImage = itemView.findViewById(R.id.event_img);
+            eventDescription = itemView.findViewById(R.id.event_description);
 
             getUserId();
             Log.i(TAG, "CustomViewHolder: " + acc_id);

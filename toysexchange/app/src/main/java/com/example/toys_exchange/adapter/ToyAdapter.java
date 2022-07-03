@@ -60,7 +60,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
     public void onBindViewHolder(@NonNull ToyAdapter.CustomViewHolder holder, int position) {
 
         holder.tvName.setText(toyList.get(position).getToyname());
-        holder.tvCondition.setText(toyList.get(position).getCondition().toString());
+//        holder.tvCondition.setText(toyList.get(position).getCondition().toString());
         holder.tvType.setText(toyList.get(position).getTypetoy().toString());
         holder.tvPrice.setText(toyList.get(position).getPrice().toString());
 
@@ -155,7 +155,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         ImageView ivLabelUsed;
 
         TextView tvName;
-        TextView tvCondition;
+//        TextView tvCondition;
         TextView tvType;
         TextView tvPrice;
 
@@ -173,7 +173,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
             ivlike = itemView.findViewById(R.id.ivlike);
 
             tvName = itemView.findViewById(R.id.tvName);
-            tvCondition = itemView.findViewById(R.id.tvCondition);
+//            tvCondition = itemView.findViewById(R.id.tvCondition);
             tvType = itemView.findViewById(R.id.tvType);
             tvPrice = itemView.findViewById(R.id.tvPrice);
 

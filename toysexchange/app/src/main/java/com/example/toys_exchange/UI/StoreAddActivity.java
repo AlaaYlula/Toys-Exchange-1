@@ -40,6 +40,7 @@ public class StoreAddActivity extends AppCompatActivity {
        // getSupportActionBar().setTitle("Add Store");
 
 
+
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
 

@@ -5,6 +5,7 @@ import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiTh
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder> {
 
@@ -36,6 +36,8 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
     private String isliked;
     Context context;
 
+    int colorNew = Color.parseColor("#59ba9d");
+    int colorUsed = Color.parseColor("#fad170");
 
     public ToyAdapter(List<Toy> toyList , CustomClickListener listener) {
         this.toyList = toyList;
@@ -62,9 +64,18 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         holder.tvType.setText(toyList.get(position).getTypetoy().toString());
         holder.tvPrice.setText(toyList.get(position).getPrice().toString());
 
-        String image = toyList.get(position).getImage();
 
+        if(toyList.get(position).getCondition().toString().equals("NEW")){
+            holder.ivLabelNew.setVisibility(View.VISIBLE);
+            holder.ivLabelNew.setColorFilter(colorNew);
+        }else {
+            holder.ivLabelUsed.setVisibility(View.VISIBLE);
+            holder.ivLabelUsed.setColorFilter(colorUsed);
+        }
+
+        String image = toyList.get(position).getImage();
         String toyID = toyList.get(position).getId();
+
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -140,6 +151,8 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         ImageView ivImage;
         ImageView ivDislike;
         ImageView ivlike;
+        ImageView ivLabelNew;
+        ImageView ivLabelUsed;
 
         TextView tvName;
         TextView tvCondition;
@@ -164,6 +177,8 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
             tvType = itemView.findViewById(R.id.tvType);
             tvPrice = itemView.findViewById(R.id.tvPrice);
 
+            ivLabelNew = itemView.findViewById(R.id.ivLabelNew);
+            ivLabelUsed = itemView.findViewById(R.id.ivLabelOld);
 
             ivDislike.setOnClickListener(view -> {
                 if(ivDislike.getVisibility() == View.VISIBLE){

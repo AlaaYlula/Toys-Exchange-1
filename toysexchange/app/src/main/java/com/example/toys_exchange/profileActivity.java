@@ -229,6 +229,7 @@ public class profileActivity extends AppCompatActivity {
     private void authAttribute() {
         Amplify.Auth.fetchUserAttributes(
                 attribute -> {
+
                     Bundle bundle = new Bundle();
                     bundle.putString("name", attribute.get(2).getValue());
                     bundle.putString("id", attribute.get(0).getValue());
@@ -252,6 +253,12 @@ public class profileActivity extends AppCompatActivity {
                                 if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
                                     acclist.add(acc);
                                     acc_id = acc.getId().toString();
+                                    runOnUiThread(()->{
+                                        bioView = findViewById(R.id.txt_Bio);
+                                        usernameView = findViewById(R.id.txt_username);
+                                        usernameView.setText(acc.getUsername());
+                                        bioView.setText(acc.getBio());
+                                    });
                                 }
                             }
                         }

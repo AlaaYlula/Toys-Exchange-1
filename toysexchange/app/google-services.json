@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "298040829245",
+    "project_id": "toys-exchange-f3107",
+    "storage_bucket": "toys-exchange-f3107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298040829245:android:df46bc19edabd37d081154",
+        "android_client_info": {
+          "package_name": "com.example.toys_exchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298040829245-ehb37h5ejhunsi9iuojo6r61999fnk15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYqJNWD8zUdBgL54Bd9Rh32BB4v3hmnNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298040829245-ehb37h5ejhunsi9iuojo6r61999fnk15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

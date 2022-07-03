@@ -121,7 +121,7 @@ public class StoreFragment extends Fragment {
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
             return  true;
         });

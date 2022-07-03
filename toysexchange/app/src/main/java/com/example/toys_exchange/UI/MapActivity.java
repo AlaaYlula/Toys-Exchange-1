@@ -160,16 +160,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     locationIntent.putExtra("latitude",searchedLatitude);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onClick: lang------------------------------->"+ searchedLongitude);
-                    Log.i(TAG, "onClick: lat------------------------------->"+ searchedLatitude);
-                }else {
+                    Log.i(TAG, "onClick: store lang------------------------------->"+ searchedLongitude);
+                    Log.i(TAG, "onClick: store lat------------------------------->"+ searchedLatitude);
+                }else if(typeActivity.equals("event")){
                     Intent locationIntent=new Intent(getApplicationContext(),EventActivity.class);
                     locationIntent.putExtra("longitude",searchedLongitude);
                     locationIntent.putExtra("latitude",searchedLatitude);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onClick: lang------------------------------->"+ searchedLongitude);
-                    Log.i(TAG, "onClick: lat------------------------------->"+ searchedLatitude);
+                    Log.i(TAG, "onClick: event lang------------------------------->"+ searchedLongitude);
+                    Log.i(TAG, "onClick: event lat------------------------------->"+ searchedLatitude);
                 }
 
             }

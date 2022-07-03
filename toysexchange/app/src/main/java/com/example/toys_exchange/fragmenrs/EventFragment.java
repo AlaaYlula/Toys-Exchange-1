@@ -100,7 +100,7 @@ public class EventFragment extends Fragment {
             //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
             recyclerView = mView.findViewById(R.id.recycler_view);
 
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+          //  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             CustomEventAdapter customAdapter = new CustomEventAdapter(eventList, new CustomEventAdapter.CustomClickListener() {
                 @Override
@@ -123,7 +123,7 @@ public class EventFragment extends Fragment {
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
             return  true;
         });

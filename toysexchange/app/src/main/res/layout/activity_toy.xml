@@ -5,10 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".UI.ToyActivity"
     android:orientation="vertical"
-    android:layout_margin="16dp">
+    >
+
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar" />
 
     <Spinner
         android:id="@+id/spinner_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        />
+
+
+    <Spinner
+        android:id="@+id/spinner_condition"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,17 +75,11 @@
         android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
         android:padding="@dimen/_5sdp"/>
 
-    <Spinner
-        android:id="@+id/spinner_condition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+
 
     <Button
         android:id="@+id/btn_upload"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
@@ -83,7 +91,7 @@
 
     <Button
         android:id="@+id/btn_add_toy"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"

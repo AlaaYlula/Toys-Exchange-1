@@ -16,20 +16,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivCloseDrawer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/sh_spacing_standard_new"
-            android:layout_marginTop="@dimen/sh_spacing_standard"
-            android:contentDescription="@string/sh_text_todo"
-            android:padding="@dimen/sh_spacing_control"
-            android:src="@drawable/shophop_ic_close_black" />
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civProfile"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/shophop_ic_avatar"
@@ -133,53 +124,7 @@
             </LinearLayout>
         </LinearLayout>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/rvCategory"-->
-<!--            style="@style/ShopHopRecycleView"-->
-<!--            android:layout_marginTop="@dimen/sh_spacing_standard"-->
-<!--            android:layout_marginBottom="@dimen/sh_spacing_standard" />-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="@dimen/sh_spacing_xmedium"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <View-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/sh_stroke_width"-->
-<!--                android:layout_marginStart="@dimen/_16sdp"-->
-<!--                android:layout_marginEnd="@dimen/_16sdp"-->
-<!--                android:layout_marginBottom="@dimen/sh_spacing_standard"-->
-<!--                android:background="@color/ShopHop_view_color" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/addEvent"-->
-<!--                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"-->
-<!--                android:drawableStart="@drawable/shophop_ic_add"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:text="@string/add_Event" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/addToy"-->
-<!--                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"-->
-<!--                android:drawableStart="@drawable/shophop_ic_add"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:text="@string/add_toy" />-->
-
-
-
-<!--            <View-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="@dimen/sh_stroke_width"-->
-<!--                android:layout_marginStart="@dimen/_16sdp"-->
-<!--                android:layout_marginTop="@dimen/sh_spacing_standard_new"-->
-<!--                android:layout_marginEnd="@dimen/_16sdp"-->
-<!--                android:layout_marginBottom="@dimen/sh_spacing_standard"-->
-<!--                android:background="@color/ShopHop_view_color" />-->
-
-
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -234,34 +179,6 @@
                 android:layout_marginBottom="@dimen/sh_spacing_standard"
                 android:background="@color/ShopHop_view_color" />
 
-            <TextView
-                android:id="@+id/my_event"
-                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
-                android:drawableStart="@drawable/ic__01"
-                android:gravity="center_vertical"
-                android:text="My Event" />
-
-            <TextView
-                android:id="@+id/attended_event"
-                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
-                android:drawableStart="@drawable/ic__01"
-                android:gravity="center_vertical"
-                android:text="Attended Event" />
-
-            <TextView
-                android:id="@+id/my_toys"
-                style="@style/ShopHopSidebarLabel.ShopHopSidebarOption"
-                android:drawableStart="@drawable/ic_cubes"
-                android:gravity="center_vertical"
-                android:text="My Toys" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/sh_stroke_width"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/sh_spacing_standard"
-                android:background="@color/ShopHop_view_color" />
 
             <TextView
                 android:id="@+id/tvAccount"
@@ -313,60 +230,25 @@
         </LinearLayout>
 
 
-<!--        <RelativeLayout-->
-<!--            android:layout_width="@dimen/sh_sidebar_img_height"-->
-<!--            android:layout_height="@dimen/sh_sidebar_img_height"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginTop="@dimen/sh_spacing_standard_new"-->
-<!--            android:layout_marginBottom="@dimen/sh_spacing_standard"-->
-<!--            android:background="@drawable/shophop_bg_logo"-->
-<!--            android:gravity="center">-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginBottom="@dimen/sh_spacing_standard"
+            android:gravity="center">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/ivAppLogo"-->
-<!--                android:layout_width="@dimen/_35sdp"-->
-<!--                android:layout_height="@dimen/_35sdp"-->
-<!--                android:contentDescription="@string/sh_text_todo"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:src="@drawable/shophop_ic_app_icon" />-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logout"
+                style="@style/ShopHopMaterialButtonStyle.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sh_spacing_standard_new"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+                android:layout_marginBottom="@dimen/sh_spacing_large"
+                android:text="@string/sh_btn_sign_out" />
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/llName"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/ivAppLogo"-->
-<!--                android:layout_centerHorizontal="true">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvAppName"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/sh_lbl_shop"-->
-<!--                    android:textAppearance="@style/FontBold"-->
-<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_medium" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/tvSubname"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/sh_lbl_hop"-->
-<!--                    android:textAppearance="@style/FontBold"-->
-<!--                    android:textColor="@color/ShopHop_colorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_medium" />-->
-<!--            </LinearLayout>-->
-
-
-<!--            <TextView-->
-<!--                android:id="@+id/tvVersionCode"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/llName"-->
-<!--                android:layout_centerHorizontal="true"-->
-<!--                android:text="@string/sh_lbl_version_name"-->
-<!--                android:textColor="@color/ShopHop_textColorSecondary"-->
-<!--                android:textSize="@dimen/sh_font_size_nano" />-->
-
-<!--        </RelativeLayout>-->
+        </RelativeLayout>
     </LinearLayout>
 </ScrollView>

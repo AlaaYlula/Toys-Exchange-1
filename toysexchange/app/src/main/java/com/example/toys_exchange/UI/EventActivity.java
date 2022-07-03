@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -63,7 +64,11 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.toyexchange_activity_add_event);
-//        getSupportActionBar().setTitle("Add Event");
+
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add Event");
         enableLocation();
 
         location=findViewById(R.id.tvLocation);
@@ -228,6 +233,8 @@ public class EventActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
             btnSubmit.setBackgroundColor(Color.RED);
+
+            startActivity(new Intent(this,MainActivity.class));
         });
 
         cancelAdd.setOnClickListener(view -> {

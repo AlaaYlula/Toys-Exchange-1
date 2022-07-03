@@ -28,7 +28,7 @@
     <string name="logout">logout</string>
     <string name="setting">setting</string>
     <string name="Logout" />
-
+<string name="description"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
     <string name="sh_font_bold"></string>
     <string name="sh_font_medium">font/montserrat_medium.ttf</string>

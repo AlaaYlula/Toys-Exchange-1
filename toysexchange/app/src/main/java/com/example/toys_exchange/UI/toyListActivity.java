@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,7 +110,10 @@ public class toyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy_list);
-
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Toys List");
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             userId = msg.getData().getString("id");
@@ -248,13 +252,13 @@ public class toyListActivity extends AppCompatActivity {
                 price = toyList.get(position).getPrice();
                 type = toyList.get(position).getTypetoy().toString();
                 condition = toyList.get(position).getCondition().toString();
-                URL = toyList.get(position).getImage();
+               // URL = toyList.get(position).getImage();
 
                 toyId = toyList.get(position).getId();
 
 
                 View layout = getLayoutInflater().inflate(R.layout.popup_update_toy, null);
-                ShowPopupToy(layout,position);
+                ShowPopupToy(layout,position,toyList.get(position).getImage());
             }
         });
 
@@ -267,7 +271,7 @@ public class toyListActivity extends AppCompatActivity {
     }
 
 
-    public void ShowPopupToy(View v,int position) {
+    public void ShowPopupToy(View v,int position,String urlBase) {
         TextView txtclose;
         MaterialButton btn_update;
         myDialog.setContentView(R.layout.popup_update_toy);
@@ -276,8 +280,8 @@ public class toyListActivity extends AppCompatActivity {
         btn_update =  myDialog.findViewById(R.id.btn_update);
         //Set defualt values
         imageUpdate = myDialog.findViewById(R.id.editImage);
-        getUrl(URL,imageUpdate);
-        //setToyImageInpopUp(imageUpdate);
+       // getUrl(URL,imageUpdate);
+        setToyImageInpopUp(imageUpdate);
 
         EditText toyTitle;
         EditText toyDescription;

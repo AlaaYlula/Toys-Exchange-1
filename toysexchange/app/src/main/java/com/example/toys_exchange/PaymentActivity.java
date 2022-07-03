@@ -94,6 +94,7 @@ public class PaymentActivity extends AppCompatActivity {
                          deleteToyFromAPI();
                          Toast.makeText(PaymentActivity.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
                          firebaseActionPay();
+                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
                      }
                  });
                  alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

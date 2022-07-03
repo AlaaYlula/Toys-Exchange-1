@@ -1,6 +1,7 @@
 package com.example.toys_exchange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,8 +14,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.UI.ToyDetailActivity;
@@ -23,6 +27,7 @@ import com.example.toys_exchange.adapter.CustomToyAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class WishListActivity extends AppCompatActivity {
@@ -32,11 +37,16 @@ public class WishListActivity extends AppCompatActivity {
     private List<Toy> toyList = new ArrayList<>();
     private Handler handler;
     private List<String> toyIds = new ArrayList<>();
-
+    CustomToyAdapter customAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list);
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Wish List");
+
         recyclerView = findViewById(R.id.recycler_wish_list);
 
 //        Context context = getApplicationContext();
@@ -50,9 +60,15 @@ public class WishListActivity extends AppCompatActivity {
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
 
-            CustomToyAdapter customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
+             customAdapter = new CustomToyAdapter(toyList, new CustomToyAdapter.CustomClickListener() {
                 @Override
                 public void onRemoveClickListener(int position) {
+                    removeFromWishList(toyList.get(position).getId(),toyList,position,customAdapter);
+
+                }
+
+                @Override
+                public void ontItemClickListener(int position) {
                     Intent intent = new Intent(getApplicationContext(), ToyDetailActivity.class);
                     intent.putExtra("toyName", toyList.get(position).getToyname());
                     intent.putExtra("description", toyList.get(position).getToydescription());
@@ -63,10 +79,6 @@ public class WishListActivity extends AppCompatActivity {
                     intent.putExtra("id", toyList.get(position).getAccountToysId());
                     intent.putExtra("toyId", toyList.get(position).getId());
                     startActivity(intent);
-                }
-
-                @Override
-                public void ontItemClickListener(int position) {
 
                 }
             });
@@ -121,4 +133,35 @@ public class WishListActivity extends AppCompatActivity {
                 }, error -> Log.e("error: ", "-> ", error)
         );
     }
+
+    private void removeFromWishList(String toyId, List<Toy> toyList,int position, CustomToyAdapter customToyAdapter){
+        Amplify.API.query(
+                ModelQuery.list(UserWishList.class),
+                wishList -> {
+                    for (UserWishList wishToy :
+                            wishList.getData()) {
+                        Amplify.API.query(
+                                ModelQuery.list(Account.class),
+                                accounts -> {
+                                    if(Objects.equals(toyId, wishToy.getToy().getId())){
+                                        Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
+
+                                        Amplify.API.mutate(ModelMutation.delete(wishToy),
+                                                response ->{
+                                                    Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
+                                                    toyList.remove(position);
+                                                    customToyAdapter.notifyItemRemoved(position);
+                                                } ,
+                                                error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                        );
+                                    }
+                                },
+                                error -> Log.e(TAG, error.toString(), error)
+                        );
+                    }
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
+
 }

@@ -3,66 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/_8sdp"
+    >
 
     <androidx.cardview.widget.CardView
-        style="@style/CardViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        style="@style/CardViewStyle"
         android:background="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardElevation="@dimen/_8sdp"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-        <LinearLayout
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardElevation="@dimen/_8sdp"
 
+            >
+            <!--           <ImageView-->
+            <!--               android:id="@+id/event_img"-->
+            <!--               android:layout_width="200dp"-->
+            <!--               android:layout_height="150dp"-->
+            <!--               app:layout_constraintStart_toStartOf="parent"-->
+            <!--               app:layout_constraintEnd_toEndOf="parent"-->
+            <!--               app:layout_constraintTop_toTopOf="parent"-->
+            <!--               android:src="@color/cardview_dark_background"-->
+            <!--               />-->
 
+            <ImageView
+                android:id="@+id/txt_view_store_location"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_500sdp"
+                android:src="@drawable/shophop_ic_my_location"
+                app:layout_constraintEnd_toEndOf="@+id/store_title"
+                app:layout_constraintLeft_toLeftOf="@+id/store_title"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/username_store"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_constraintBaseline_toTopOf="@id/store_title"
                 android:text="store Name"/>
+
+
             <TextView
                 android:id="@+id/store_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
 
+                android:layout_marginBottom="7dp"
                 android:text="title"
-                tools:layout_editor_absoluteX="5dp"
-                tools:layout_editor_absoluteY="4dp" />
+                app:layout_constraintBaseline_toTopOf="@id/store_description"
+
+                app:layout_constraintBottom_toTopOf="@+id/store_description"
+                tools:layout_editor_absoluteX="5dp" />
 
 
             <TextView
                 android:id="@+id/store_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Description"
 
                 tools:layout_editor_absoluteX="5dp"
-                tools:layout_editor_absoluteY="30dp" />
-
-            <TextView
-                android:id="@+id/txt_view_store_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Store location"
-                tools:layout_editor_absoluteX="5dp"
                 tools:layout_editor_absoluteY="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/store_title"
                 />
 
-
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

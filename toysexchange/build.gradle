@@ -4,13 +4,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
         classpath 'com.amplifyframework:amplify-tools-gradle-plugin:1.0.2'
+        classpath 'com.google.gms:google-services:4.3.12'
         classpath "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1"
-
 
     }
 }
@@ -18,11 +17,8 @@ buildscript {
 
 
 plugins {
-
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
-
-
 }
 
 allprojects {
@@ -38,5 +34,5 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-
 apply plugin: 'com.amplifyframework.amplifytools'
+apply plugin: 'com.google.gms.google-services'

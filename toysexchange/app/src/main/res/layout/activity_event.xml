@@ -11,10 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Event"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24sdp"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/title"
@@ -22,56 +25,79 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Title"
-        app:layout_constraintBottom_toTopOf="@+id/title_store"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toTopOf="@+id/title_event"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/title_store"
-        android:layout_width="match_parent"
+        android:id="@+id/title_event"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Title"
+        android:hint="Title"
         android:inputType="text"
+        android:text="Title"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/_5sdp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/black"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/description_store"
+        android:textSize="18sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toTopOf="@+id/description_event"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/description_store"
-        android:layout_width="match_parent"
+        android:id="@+id/description_event"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="336dp"
+        android:layout_marginBottom="288dp"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:hint="Description"
         android:inputType="text"
-        android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"
+        android:padding="@dimen/_5sdp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/btn_addEvent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_addStore"
+        android:id="@+id/btn_addEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="32dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancelAddEvent"
         app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="106dp"
+        android:text="add location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_event" />
 
     <Button
         android:id="@+id/btn_cancelAddEvent"
@@ -81,6 +107,8 @@
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_store"
-        app:layout_constraintVertical_bias="0.923" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:shadowColor="@color/ShopHop_colorPrimary"
+        style="@style/ShopHopMaterialButtonStyle.Filled"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive" />
 </androidx.constraintlayout.widget.ConstraintLayout>

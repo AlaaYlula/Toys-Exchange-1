@@ -59,6 +59,27 @@
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/ShopHop_textColorPrimary"
                 android:textSize="@dimen/sh_font_size_large" />
+            <TextView
+                android:id="@+id/txt_Bio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Hello World"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/ShopHop_textColorPrimary"
+                android:textSize="@dimen/sh_font_size_large" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_Info"
+                android:onClick="ShowPopup"
+                style="@style/ShopHopMaterialButtonStyle.Filled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/sh_spacing_standard_new"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+                android:layout_marginBottom="@dimen/sh_spacing_large"
+                android:text="update Info" />
 
             <TextView
                 android:id="@+id/toysList"

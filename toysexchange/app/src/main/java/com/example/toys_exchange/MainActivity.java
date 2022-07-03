@@ -53,6 +53,7 @@ import com.example.toys_exchange.fragmenrs.ToyFragment;
 import com.example.toys_exchange.fragmenrs.WishListFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.squareup.picasso.Picasso;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,6 +67,8 @@ import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -125,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
+    private String image;
+    private String usernameDisplay;
+    private String userBio;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -137,93 +143,82 @@ public class MainActivity extends AppCompatActivity {
         String cognitoId = logedInUser.getUserId();
 
 
-        FirebaseApp.initializeApp(this);
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-        FirebaseMessaging.getInstance().subscribeToTopic("all");
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        String token = task.getResult();
-                        // send it to API
-                        Amplify.API.query(
-                                ModelQuery.list(Account.class),
-                                allUsers -> {
-                                    for (Account userAc:
-                                            allUsers.getData()) {
-                                        if(userAc.getIdcognito().equals(cognitoId)){
-                                            acc_id = userAc.getId();
-                                            Log.i(TAG, "ayahh: " + acc_id);
-
-                                            Notification notification = Notification.builder()
-                                                    .tokenid(token)
-                                                    .accountid(acc_id)
-                                                    .build();
-                                            if(!notification.getAccountid().contains(acc_id))
-                                            Amplify.API.mutate(
-                                                    ModelMutation.create(notification),
-                                                    success -> {
-                                                        Log.i(TAG, "Saved item API: " + success.getData());
-                                                    },
-                                                    error -> Log.e(TAG, "Could not save item to API", error)
-                                            );
-
-                                        }
-                                    }
-
-                                },
-                                error -> Log.e(TAG, error.toString(), error)
-                        );
-//                        id: ID!tokenid: Stringaccountid:
-
-
-                        // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d("TOKEN", token);
-                        Log.i(TAG, "TOKEN: " + token);
-                        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        FirebaseMessaging.getInstance().subscribeToTopic("all");
-
-        FcnNotificationSender notificationSender = new FcnNotificationSender("Hello", "your Toy is sold", getApplicationContext(), MainActivity.this,"dz3rZETJS6evPSjWTLynSU:APA91bHg3EPti8H_CiKGlR7p9ETJcvoK8yXJKEWDj_Idimn73TxKhTcu6_O2SqPhwFv8f8qpbsGPi2xVd66hiyvz_Z7jOOAWKNa-lr1h0PV9Oi9DNlSSmXQhcKk5qMgk1iLbF9FQxZYz");
-        notificationSender.SendNotifications();
+//        FirebaseApp.initializeApp(this);
+//        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+//        FirebaseMessaging.getInstance().subscribeToTopic("all");
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//                        // send it to API
+//                        Amplify.API.query(
+//                                ModelQuery.list(Account.class),
+//                                allUsers -> {
+//                                    for (Account userAc:
+//                                            allUsers.getData()) {
+//                                        if(userAc.getIdcognito().equals(cognitoId)){
+//                                            acc_id = userAc.getId();
+//                                            Log.i(TAG, "ayahh: " + acc_id);
+//
+//                                            Notification notification = Notification.builder()
+//                                                    .tokenid(token)
+//                                                    .accountid(acc_id)
+//                                                    .build();
+//                                            Amplify.API.query(
+//                                                    ModelQuery.list(Notification.class),
+//                                                    notify -> {
+//                                                        for (Notification noti:
+//                                                                notify.getData()) {
+//                                                            if(!noti.getAccountid().equals(acc_id)){
+//                                                                Amplify.API.mutate(
+//                                                                        ModelMutation.create(notification),
+//                                                                        success -> {
+//                                                                            Log.i(TAG, "Saved item API: " + success.getData());
+//                                                                        },
+//                                                                        error -> Log.e(TAG, "Could not save item to API", error)
+//                                                                );
+//
+//                                                            }
+//
+//                                                        }
+//
+//                                                    },
+//                                                    error -> Log.e(TAG, error.toString(), error)
+//                                            );
+//                                                            }
+//                                                        }
+//                                },
+//                                error -> Log.e(TAG, error.toString(), error)
+//                                );
+//
+////                        id: ID!tokenid: Stringaccountid:
+//
+//
+//                        // Log and toast
+////                        String msg = getString(R.string.msg_token_fmt, token);
+//                        Log.d("TOKEN", token);
+//                        Log.i(TAG, "TOKEN: " + token);
+//                        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//        FirebaseMessaging.getInstance().subscribeToTopic("all");
+//
+//        FcnNotificationSender notificationSender = new FcnNotificationSender("Hello", "your Toy is sold", getApplicationContext(), MainActivity.this,"dz3rZETJS6evPSjWTLynSU:APA91bHg3EPti8H_CiKGlR7p9ETJcvoK8yXJKEWDj_Idimn73TxKhTcu6_O2SqPhwFv8f8qpbsGPi2xVd66hiyvz_Z7jOOAWKNa-lr1h0PV9Oi9DNlSSmXQhcKk5qMgk1iLbF9FQxZYz");
+//        notificationSender.SendNotifications();
 
 
 //
+
 //        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
-//        viewPager = findViewById(R.id.viewPager);
-//        tabLayout = findViewById(R.id.tabLayout);
-//        adapter = new TabAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new EventFragment(), "Event");
-//        adapter.addFragment(new ToyFragment(), "Toy");
-//        adapter.addFragment(new StoreFragment(), "store");
-//        viewPager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(viewPager);
-//
-//        Button addStore = findViewById(R.id.addStore);
-//        addStore.setOnClickListener(view ->{
-//            startActivity(new Intent(this, StoreListActivity.class));
-//        });
-//
-//       // Button btnDetailEvent = findViewById(R.id.DetailEvent);
-//
-////        btnDetailEvent.setOnClickListener(view -> {
-////            startActivity(new Intent(this, WishListActivity.class));
-////        });
-//
-//       // Button btnDetailToy = findViewById(R.id.detailToy);
-//
-////        btnDetailToy.setOnClickListener(view -> {
-////            startActivity(new Intent(this, MainActivity2.class));
-////        });
+
         getLoginUserId();
 
         ivHome = findViewById(R.id.ivHome);
@@ -272,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
         TextView tvAccount = findViewById(R.id.tvAccount);
         tvAccount.setOnClickListener(view -> {
             Intent intent = new Intent(this, profileActivity.class);
+            intent.putExtra("username",usernameDisplay);
+            intent.putExtra("bio",userBio);
             startActivity(intent);
         });
 
@@ -323,7 +320,15 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "SharedPreferences => " + userId);
 
 
+
+        TextView tvSetting = findViewById(R.id.tvSetting);
+        tvSetting.setOnClickListener(view -> {
+            startActivity(new Intent(this,MainActivity2.class));
+        });
+
+
     }
+
 
 
     @Override
@@ -401,15 +406,25 @@ public class MainActivity extends AppCompatActivity {
                             allUsers.getData()) {
                         if(userAc.getIdcognito().equals(cognitoId)){
                             acc_id = userAc.getId();
+                            image = userAc.getImage();
+                            usernameDisplay = userAc.getUsername();
+                            userBio = userAc.getBio();
                         }
                     }
+                    runOnUiThread(()->{
+                        // For Set the Image
+                        CircleImageView imageView = findViewById(R.id.civProfile);
+                        getUrl(image,imageView);
+
+                        TextView txtDisplayName = findViewById(R.id.txtDisplayName);
+                        txtDisplayName.setText(usernameDisplay);
+                    });
 
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
 
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void enable(ImageView imageView){
@@ -433,9 +448,20 @@ public class MainActivity extends AppCompatActivity {
         imageView.setBackground(null);
     }
 
-
     private void changeFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    private void getUrl(String image , CircleImageView imageView){
+        Amplify.Storage.getUrl(
+                image,
+                result -> {
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(imageView);
+                    });
+                },
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+        );
     }
 }
 

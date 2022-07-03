@@ -1,4 +1,6 @@
-<resources>
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="map_key" translatable="false">AIzaSyC7botDxlUaADl2ORy4qQcBk7XbcTISw84</string>
     <string name="app_name">toys-exchange</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -28,10 +30,10 @@
     <string name="Logout" />
 
 
-    <string name="sh_font_bold">fonts/Montserrat-Bold.ttf</string>
-    <string name="sh_font_medium">fonts/Montserrat-Medium.ttf</string>
-    <string name="sh_font_regular">fonts/Montserrat-Regular.ttf</string>
-    <string name="sh_font_semi_bold">fonts/Montserrat-SemiBold.ttf</string>
+    <string name="sh_font_bold"></string>
+    <string name="sh_font_medium">font/montserrat_medium.ttf</string>
+    <string name="sh_font_regular">font/montserrat_regular.ttf</string>
+    <string name="sh_font_semi_bold">font/montserrat_semibold.ttf</string>
 
     <string name="sh_lbl_sign_in">Sign In</string>
     <string name="sh_lbl_sign_up">Sign Up</string>
@@ -62,6 +64,7 @@
     <string name="sh_lbl_1">1</string>
     <string name="sh_lbl_add_to_cart">Add to Cart</string>
     <string name="sh_lbl_buy_now">Buy Now</string>
+    <string name="sh_lbl_attend">Attend</string>
     <string name="sh_lbl_check_availability">Check Availability</string>
     <string name="sh_lbl_delivery_by">Delivery By</string>
     <string name="sh_lbl_brand">Brand</string>
@@ -137,7 +140,7 @@
     <string name="sh_lbl_please_verify_your_email_or_number">Please verify your email or number</string>
     <string name="sh_lbl_next_time_buy">Next time buy</string>
     <string name="sh_lbl_remove">Remove</string>
-    <string name="sh_lbl_move_to_cart">Move to Cart</string>
+    <string name="sh_lbl_move_to_cart">Buy now</string>
     <string name="sh_lbl_enable">Enable</string>
     <string name="sh_lbl_invite_now">Invite Now</string>
     <string name="sh_lbl_your_rewards">Your Rewards</string>
@@ -355,6 +358,5 @@
     <string name="add_store">"Add Store "</string>
     <string name="store_list">My Stores</string>
     <string name="default_notification_channel_id" />
-
 
 </resources>

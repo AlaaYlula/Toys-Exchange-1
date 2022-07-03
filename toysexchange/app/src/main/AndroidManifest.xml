@@ -20,9 +20,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toysexchange">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+
+        <activity
+            android:name=".UI.StoreListActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".UI.MapActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.UpdateCommentActivity"
             android:exported="false" />
+
         <activity
             android:name=".UI.UpdateToyActivity"
             android:exported="false" />
@@ -57,11 +70,18 @@
             android:theme="@style/ShopHopAppTheme" />
         <activity
             android:name=".UI.EventDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".UI.EventActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:parentActivityName=".UI.ToyDetailActivity" />
+
         <activity
             android:name=".UI.VerificationActivity"
             android:exported="false" />
@@ -97,6 +117,8 @@
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".WishListActivity"
             android:exported="false"
@@ -111,9 +133,12 @@
 <!--            </intent-filter>-->
 <!--        </service>-->
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id" />
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+<!--            android:value="@string/default_notification_channel_id" />-->
+
+<!--        </activity>-->
+
     </application>
 
 </manifest>

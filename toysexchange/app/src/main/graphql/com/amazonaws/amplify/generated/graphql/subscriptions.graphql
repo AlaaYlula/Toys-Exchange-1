@@ -339,9 +339,12 @@ subscription OnCreateNotification {
     accountid
     createdAt
     updatedAt
+<<<<<<< HEAD
     _version
     _deleted
     _lastChangedAt
+=======
+>>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnUpdateNotification {
@@ -351,9 +354,12 @@ subscription OnUpdateNotification {
     accountid
     createdAt
     updatedAt
+<<<<<<< HEAD
     _version
     _deleted
     _lastChangedAt
+=======
+>>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnDeleteNotification {
@@ -363,9 +369,12 @@ subscription OnDeleteNotification {
     accountid
     createdAt
     updatedAt
+<<<<<<< HEAD
     _version
     _deleted
     _lastChangedAt
+=======
+>>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnCreateUserWishList {

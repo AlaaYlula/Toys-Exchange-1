@@ -8,69 +8,127 @@
 
 
     <TextView
-        android:id="@+id/addEvent"
+        android:id="@+id/addStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Add Store"
+
+
+        android:textColor="@color/black"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="51dp"
+
+        android:layout_marginBottom="24dp"
         android:text="Title"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/title_store"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/title_store" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/title_store"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="86dp"-->
+<!--        android:layout_marginBottom="87dp"-->
+<!--        android:inputType="text"-->
+<!--        android:text="Title"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/description_store"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        />-->
+
 
     <EditText
         android:id="@+id/title_store"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Title"
         android:inputType="text"
+        android:hint="Title"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/_5sdp"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="24dp"
         android:text="Description"
+        android:textSize="@dimen/_18sdp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/description_store"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/description_store"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="336dp"
+        android:layout_marginTop="250dp"
         android:inputType="text"
         android:text="Description"
-        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_add_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="226dp"
+        android:text="add location "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="268dp"-->
+<!--        android:hint="Description"-->
+<!--        android:inputType="text"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:padding="@dimen/_5sdp"-->
+<!--        android:selectAllOnFocus="true"-->
+<!--        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>-->
+
 
     <Button
         android:id="@+id/btn_addStore"
+        style="@style/ShopHopMaterialButtonStyle.Filled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
+
         android:layout_marginBottom="52dp"
+
+        android:layout_marginStart="160dp"
+
+        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
+        android:shadowColor="@color/ShopHop_colorPrimary"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

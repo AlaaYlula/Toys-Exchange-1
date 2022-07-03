@@ -116,7 +116,7 @@ public class UpdateEventActivity extends AppCompatActivity {
                                                                                     .eventdescription(eventBody.getText().toString())
                                                                                     .id(eventId)
                                                                                     .accountEventsaddedId(acc_id)
-                                                                                    .longitude(1.0).latitude(2.0).build();
+                                                                                    .longitude(event.getLongitude()).latitude(event.getLatitude()).build();
 
                                                                             Amplify.API.mutate(ModelMutation.update(eventOne),
                                                                                     response -> {

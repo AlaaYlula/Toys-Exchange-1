@@ -137,6 +137,7 @@ public class ToyFragment extends Fragment {
 
                 }else if (condition.equals("SELL")){
                     mConditionSpinner.setVisibility(View.VISIBLE);
+
                     toyList = new ArrayList<>();
                     Amplify.API.query(ModelQuery.list(Toy.class), success -> {
                                 if (success.hasData()) {
@@ -352,8 +353,12 @@ public class ToyFragment extends Fragment {
                                                     Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
 
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
-                                                            response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
-                                                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                                            response -> {
+
+                                                            },
+                                                            error -> {
+
+                                                            }
                                                     );
                                                 }
                                             },

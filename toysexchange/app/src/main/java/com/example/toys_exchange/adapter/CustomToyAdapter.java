@@ -1,5 +1,9 @@
 package com.example.toys_exchange.adapter;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,11 +43,24 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
         return new CustomViewHolder(listItemView,listener);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
         holder.toyName.setText(toysData.get(position).getToyname());
         holder.toyPrice.setText(toysData.get(position).getPrice().toString());
+        String image = toysData.get(position).getImage();
+
+        Amplify.Storage.getUrl(
+                image,
+                result -> {
+                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
+                    runOnUiThread(()->{
+                        Picasso.get().load(result.getUrl().toString()).into(holder.toyImage);
+                    });
+                },
+                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+        );
 
     }
 

@@ -424,6 +424,31 @@ query SyncNotifications(
     startedAt
   }
 }
+query GetNotification($id: ID!) {
+  getNotification(id: $id) {
+    id
+    tokenid
+    accountid
+    createdAt
+    updatedAt
+  }
+}
+query ListNotifications(
+  $filter: ModelNotificationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      tokenid
+      accountid
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetUserWishList($id: ID!) {
   getUserWishList(id: $id) {
     id

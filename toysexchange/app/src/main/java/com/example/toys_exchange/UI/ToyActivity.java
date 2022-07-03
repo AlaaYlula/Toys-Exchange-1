@@ -71,6 +71,7 @@ public class ToyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy);
+        getSupportActionBar().setTitle("Add Toy");
 
 
         handler=new Handler(Looper.getMainLooper(),msg->{
@@ -88,7 +89,6 @@ public class ToyActivity extends AppCompatActivity {
 
         mSpinnerType=findViewById(R.id.spinner_type);
 
-        String price=toyPrice.getText().toString();
 
         setSpinner();
         authAttribute();
@@ -134,6 +134,8 @@ public class ToyActivity extends AppCompatActivity {
                 String toyCondition=mSpinnerCondition.getSelectedItem().toString();
                 String toyType=mSpinnerType.getSelectedItem().toString();
                 String contact=contactInfo.getText().toString();
+
+                String price=toyPrice.getText().toString();
 
 //                if(toyType.equals("REQUEST")){
 //                    toyPrice.setEnabled(false);
@@ -194,7 +196,6 @@ public class ToyActivity extends AppCompatActivity {
                                             .price(Double.parseDouble(price))
                                             .typetoy(Enum.valueOf(Typetoy.class, type))
                                             .build();
-
 
                                     // API save to backend
                                     Amplify.API.mutate(

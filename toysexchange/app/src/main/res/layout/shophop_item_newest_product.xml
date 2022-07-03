@@ -1,169 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<layout xmlns:app="http://schemas.android.com/apk/res-auto">-->
-
-<!--&lt;!&ndash;    <data>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <variable&ndash;&gt;-->
-<!--&lt;!&ndash;            name="model"&ndash;&gt;-->
-<!--&lt;!&ndash;            type="com.iqonic.shophop.models.ProductModel" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <variable&ndash;&gt;-->
-<!--&lt;!&ndash;            name="callback"&ndash;&gt;-->
-<!--&lt;!&ndash;            type="com.iqonic.shophop.base.BaseRecyclerAdapter.OnClickListener" />&ndash;&gt;-->
-<!--&lt;!&ndash;    </data>&ndash;&gt;-->
-    <androidx.cardview.widget.CardView
+   <androidx.cardview.widget.CardView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginStart="@dimen/sh_spacing_control"
         android:layout_marginEnd="@dimen/sh_spacing_control"
         android:layout_marginBottom="@dimen/sh_spacing_standard"
         app:cardCornerRadius="@dimen/sh_spacing_control_half"
         app:cardElevation="0dp"
         android:layout_height="wrap_content">
-        <RelativeLayout
-            android:id="@+id/listProductRaw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/ShopHop_itemText_background"
-            >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/ivImage"
-                android:layout_width="@dimen/_105sdp"
-                android:layout_height="match_parent"
-                android:layout_alignBottom="@id/llContent"
-                android:layout_alignParentTop="true"
-                android:contentDescription="@string/sh_text_todo"
-                android:scaleType="fitXY" />
 
-            <LinearLayout
-                android:id="@+id/llContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/ivImage"
-                android:orientation="vertical"
-                android:paddingStart="@dimen/sh_spacing_standard"
-                android:paddingEnd="@dimen/sh_spacing_standard">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivImage"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:adjustViewBounds="true"
+            android:elevation="@dimen/_8sdp"
+            android:scaleType="fitXY"
+            android:src="@color/cardview_dark_background"
+            app:shapeAppearanceOverlay="@style/roundiImage" />
 
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sh_spacing_control"
-                    android:singleLine="true"
-                    android:text="test"
-                    android:textAppearance="@style/FontSemiBold"
-                    android:textColor="@color/ShopHop_textColorPrimary"
-                    android:textSize="@dimen/sh_font_size_medium" />
+    </RelativeLayout>
 
-                <LinearLayout
-                    android:id="@+id/llProductColor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sh_spacing_standard"
-                    android:orientation="horizontal">
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/llProductSize"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sh_spacing_standard"
-                    android:orientation="horizontal">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/listProductRaw"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:elevation="@dimen/_30sdp"-->
+<!--        >-->
 
-                    <TextView
-                        android:id="@+id/tvType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Type"
-                        android:layout_marginRight="@dimen/_60sdp"
-                        android:textAppearance="@style/FontSemiBold"
-                        android:textColor="@color/ShopHop_textColorPrimary"
-                        android:textSize="@dimen/sh_font_size_small" />
-                    <TextView
-                        android:id="@+id/tvCondition"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="new"
-                        android:textAppearance="@style/FontSemiBold"
-                        android:textColor="@color/ShopHop_textColorPrimary"
-                        android:textSize="@dimen/sh_font_size_small" />
+<!--        <LinearLayout-->
+<!--            android:id="@+id/llContent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginTop="@dimen/_150sdp"-->
+<!--            android:paddingStart="@dimen/sh_spacing_standard"-->
+<!--            android:paddingEnd="@dimen/sh_spacing_standard">-->
 
-                </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/tvName"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_control"-->
+<!--                android:singleLine="true"-->
+<!--                android:text="test"-->
+<!--                android:textAppearance="@style/FontSemiBold"-->
+<!--                android:textColor="@color/ShopHop_textColorPrimary"-->
+<!--                android:textSize="@dimen/sh_font_size_medium" />-->
 
-                <!--                <TextView-->
-                <!--                    android:id="@+id/tvProductRate"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="@dimen/sh_spacing_standard"-->
-                <!--                    android:drawableEnd="@drawable/shophop_ic_star_black"-->
-                <!--                    android:drawablePadding="@dimen/sh_spacing_control"-->
-                <!--                    android:text="test"-->
-                <!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
-                <!--                    android:textSize="@dimen/sh_font_size_micro" />-->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/sh_spacing_standard"
-                    android:paddingBottom="@dimen/sh_spacing_control">
+<!--            <LinearLayout-->
+<!--                android:id="@+id/llProductSize"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_standard"-->
+<!--                android:orientation="horizontal">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvType"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Type"-->
+<!--                    android:textAppearance="@style/FontSemiBold"-->
+<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
+<!--                    android:textSize="@dimen/sh_font_size_small" />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvCondition"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="new"-->
+<!--                    android:textAppearance="@style/FontSemiBold"-->
+<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
+<!--                    android:textSize="@dimen/sh_font_size_small" />-->
+<!--            </LinearLayout>-->
 
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@style/FontSemiBold"
-                        android:textColor="@color/ShopHop_colorPrimary"
-                        android:textSize="@dimen/sh_font_size_medium"
-                        tools:text="$100" />
 
-                    <!--                    <TextView-->
-                    <!--                        android:id="@+id/toy_ActualPrice"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginStart="@dimen/sh_spacing_control"-->
-                    <!--                        android:layout_marginTop="@dimen/sh_spacing_control_half"-->
-                    <!--                        android:layout_marginEnd="@dimen/sh_spacing_control"-->
-                    <!--                        android:layout_toStartOf="@id/ivDislike"-->
-                    <!--                        android:layout_toEndOf="@id/toy_Price"-->
-                    <!--                        android:textAppearance="@style/FontSemiBold"-->
-                    <!--                        android:textColor="@color/ShopHop_dots_color"-->
-                    <!--                        android:textSize="@dimen/sh_font_size_micro"-->
-                    <!--                        tools:text="$100" />-->
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_standard"-->
+<!--                android:paddingBottom="@dimen/sh_spacing_control">-->
 
-                    <ImageView
-                        android:id="@+id/ivDislike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="@dimen/sh_spacing_control"
-                        android:background="@drawable/shophop_bg_circle"
-                        android:contentDescription="@string/sh_text_todo"
-                        android:padding="@dimen/sh_spacing_control"
-                        android:src="@drawable/shophop_ic_heart"
-                        android:visibility="visible" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvPrice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textAppearance="@style/FontSemiBold"-->
+<!--                    android:textColor="@color/ShopHop_colorPrimary"-->
+<!--                    android:textSize="@dimen/sh_font_size_medium"-->
+<!--                    tools:text="$100" />-->
 
-                    <ImageView
-                        android:id="@+id/ivlike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginStart="@dimen/sh_spacing_control"
-                        android:background="@drawable/shophop_bg_circle"
-                        android:backgroundTint="@color/ShopHop_favourite_background"
-                        android:contentDescription="@string/sh_text_todo"
+<!--            </RelativeLayout>-->
+<!--        </LinearLayout>-->
+<!--    </RelativeLayout>-->
 
-                        android:padding="@dimen/sh_spacing_control"
-                        android:src="@drawable/shophop_ic_heart_fill"
-                        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/ivLabelNew"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/sh_text_todo"
+        android:padding="@dimen/sh_spacing_control"
+        android:src="@drawable/ic_new__1_"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_170sdp"/>
+    <ImageView
+        android:id="@+id/ivLabelOld"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/sh_text_todo"
+        android:padding="@dimen/sh_spacing_control"
+        android:src="@drawable/ic_used1"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_167sdp"
 
-                </RelativeLayout>
-            </LinearLayout>
-        </RelativeLayout>
+        />
+    <ImageView
+        android:id="@+id/ivDislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-    </androidx.cardview.widget.CardView>
+        android:background="@drawable/shophop_bg_circle"
+        android:contentDescription="@string/sh_text_todo"
+        android:padding="@dimen/sh_spacing_control"
+        android:src="@drawable/shophop_ic_heart"
+        android:visibility="visible" />
+    <ImageView
+        android:id="@+id/ivlike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/sh_spacing_control"
+        android:background="@drawable/shophop_bg_circle"
+        android:backgroundTint="@color/ShopHop_favourite_background"
+        android:contentDescription="@string/sh_text_todo"
+
+        android:padding="@dimen/sh_spacing_control"
+        android:src="@drawable/shophop_ic_heart_fill"
+        android:visibility="gone" />
+</androidx.cardview.widget.CardView>
 
 <!--</layout>-->

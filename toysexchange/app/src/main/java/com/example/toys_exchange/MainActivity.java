@@ -43,7 +43,9 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Notification;
 import com.amplifyframework.datastore.generated.model.Toy;
+import com.example.toys_exchange.Firebase.FcnNotificationSender;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.EventDetailsActivity;
@@ -63,6 +65,15 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.FirebaseApp;
+
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -132,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
     private EventFragment eventFragment;
     private WishListFragment wishListFragment;
     private StoreFragment storeFragment;
+    private Notification notification;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+
     private String image;
     private String usernameDisplay;
     private String userBio;
@@ -145,6 +161,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shophop_activity_dashboard_shop);
 
+//        getLoginUserId();
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+        String cognitoId = logedInUser.getUserId();
+
 //        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
 
         getLoginUserId();
@@ -154,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
         ivWishList = findViewById(R.id.ivWishList);
         ivRecommendation = findViewById(R.id.ivRecommendation);
 
-        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-        String cognitoId =  logedInUser.getUserId();
+//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+//        String cognitoId =  logedInUser.getUserId();
 
 
         enable(ivHome);
@@ -289,6 +309,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void logout(){
         Amplify.Auth.signOut(()->{
             Log.i(TAG, "Signed out successfully");
@@ -322,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
         },error -> Log.e(TAG, error.toString()));
     }
 
-    public  void getLoginUserId() {
+    public void getLoginUserId() {
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();
         Amplify.API.query(

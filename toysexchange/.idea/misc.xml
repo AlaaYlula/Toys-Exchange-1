@@ -37,6 +37,7 @@
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_baseline_toys_24.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_cubes.xml" value="0.237" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_free.xml" value="0.149" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_gradient_black.xml" value="0.1475" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_new__1_.xml" value="0.1225" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_used.xml" value="0.1" />
@@ -143,7 +144,7 @@
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_bottom_bar.xml" value="0.24365942028985507" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_content_dash_board.xml" value="0.25" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_fragment_wishlist.xml" value="0.1884498480243161" />
-        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_newest_product.xml" value="0.489281210592686" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_newest_product.xml" value="0.6988795518207283" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_slider.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_wishlist.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_ads.xml" value="0.1" />

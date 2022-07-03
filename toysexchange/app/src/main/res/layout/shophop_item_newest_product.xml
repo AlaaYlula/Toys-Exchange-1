@@ -40,25 +40,9 @@
 <!--        android:elevation="@dimen/_30sdp"-->
 <!--        >-->
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/llContent"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_marginTop="@dimen/_150sdp"-->
-<!--            android:paddingStart="@dimen/sh_spacing_standard"-->
-<!--            android:paddingEnd="@dimen/sh_spacing_standard">-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/tvName"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/sh_spacing_control"-->
-<!--                android:singleLine="true"-->
-<!--                android:text="test"-->
-<!--                android:textAppearance="@style/FontSemiBold"-->
-<!--                android:textColor="@color/ShopHop_textColorPrimary"-->
-<!--                android:textSize="@dimen/sh_font_size_medium" />-->
+
+
 
 
 <!--            <LinearLayout-->
@@ -86,24 +70,86 @@
 <!--            </LinearLayout>-->
 
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginTop="@dimen/sh_spacing_standard"-->
-<!--                android:paddingBottom="@dimen/sh_spacing_control">-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tvPrice"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textAppearance="@style/FontSemiBold"-->
-<!--                    android:textColor="@color/ShopHop_colorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_medium"-->
-<!--                    tools:text="$100" />-->
-
-<!--            </RelativeLayout>-->
 <!--        </LinearLayout>-->
 <!--    </RelativeLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ivDislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/shophop_bg_circle"
+            android:contentDescription="@string/sh_text_todo"
+            android:padding="@dimen/sh_spacing_control"
+            android:src="@drawable/shophop_ic_heart"
+            android:visibility="visible"
+            />
+        <ImageView
+            android:id="@+id/ivlike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:background="@drawable/shophop_bg_circle"
+            android:backgroundTint="@color/ShopHop_favourite_background"
+            android:contentDescription="@string/sh_text_todo"
+            android:padding="@dimen/sh_spacing_control"
+            android:src="@drawable/shophop_ic_heart_fill"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="event"
+            android:layout_marginBottom="@dimen/_60sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/ShopHop_light_gray"
+            android:textSize="@dimen/_12sdp"
+            />
+
+        <TextView
+            android:id="@+id/tvType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvName"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_60sdp"
+            android:text="Type"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/ShopHop_textColorPrimary"
+            android:textSize="@dimen/sh_font_size_small"
+            />
+
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textAppearance="@style/FontSemiBold"
+            android:textColor="@color/ShopHop_colorPrimary"
+            android:textSize="@dimen/sh_font_size_medium"
+            tools:text="$100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/ivLabelNew"
@@ -129,29 +175,6 @@
         android:layout_marginStart="@dimen/_167sdp"
 
         />
-    <ImageView
-        android:id="@+id/ivDislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:background="@drawable/shophop_bg_circle"
-        android:contentDescription="@string/sh_text_todo"
-        android:padding="@dimen/sh_spacing_control"
-        android:src="@drawable/shophop_ic_heart"
-        android:visibility="visible" />
-    <ImageView
-        android:id="@+id/ivlike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/sh_spacing_control"
-        android:background="@drawable/shophop_bg_circle"
-        android:backgroundTint="@color/ShopHop_favourite_background"
-        android:contentDescription="@string/sh_text_todo"
-
-        android:padding="@dimen/sh_spacing_control"
-        android:src="@drawable/shophop_ic_heart_fill"
-        android:visibility="gone" />
 </androidx.cardview.widget.CardView>
 
-<!--</layout>-->

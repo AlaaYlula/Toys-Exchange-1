@@ -248,13 +248,13 @@ public class toyListActivity extends AppCompatActivity {
                 price = toyList.get(position).getPrice();
                 type = toyList.get(position).getTypetoy().toString();
                 condition = toyList.get(position).getCondition().toString();
-                URL = toyList.get(position).getImage();
+               // URL = toyList.get(position).getImage();
 
                 toyId = toyList.get(position).getId();
 
 
                 View layout = getLayoutInflater().inflate(R.layout.popup_update_toy, null);
-                ShowPopupToy(layout,position);
+                ShowPopupToy(layout,position,toyList.get(position).getImage());
             }
         });
 
@@ -267,7 +267,7 @@ public class toyListActivity extends AppCompatActivity {
     }
 
 
-    public void ShowPopupToy(View v,int position) {
+    public void ShowPopupToy(View v,int position,String urlBase) {
         TextView txtclose;
         MaterialButton btn_update;
         myDialog.setContentView(R.layout.popup_update_toy);
@@ -276,8 +276,8 @@ public class toyListActivity extends AppCompatActivity {
         btn_update =  myDialog.findViewById(R.id.btn_update);
         //Set defualt values
         imageUpdate = myDialog.findViewById(R.id.editImage);
-        getUrl(URL,imageUpdate);
-        //setToyImageInpopUp(imageUpdate);
+       // getUrl(URL,imageUpdate);
+        setToyImageInpopUp(imageUpdate);
 
         EditText toyTitle;
         EditText toyDescription;
@@ -513,7 +513,8 @@ public class toyListActivity extends AppCompatActivity {
                                 Log.i(TAG, "Successfully uploaded: " + result.getKey());
                                 URL=result.getKey();
                                 runOnUiThread(()->{
-                                    getUrl(URL,imageUpdate);
+                                 //   getUrl(URL,imageUpdate);
+                                    setToyImageInpopUp(imageUpdate);
                                 });
                             },
                             storageFailure -> Log.e(TAG, "Upload failed", storageFailure)

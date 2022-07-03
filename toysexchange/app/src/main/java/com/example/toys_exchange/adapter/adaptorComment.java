@@ -177,6 +177,8 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
             rlEditComment = itemView.findViewById(R.id.rlEditComment);
 
         }
+
+
         private void showPopupMenu(View view){
             PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
             popupMenu.inflate(R.menu.commint_option);

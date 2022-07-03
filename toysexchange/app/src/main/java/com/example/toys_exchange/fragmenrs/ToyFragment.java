@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -257,6 +258,8 @@ public class ToyFragment extends Fragment {
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
             recyclerView = mView.findViewById(R.id.recycler_view);
+
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             ToyAdapter toyAdapter = new ToyAdapter(toyList,new ToyAdapter.CustomClickListener() {
                 @Override

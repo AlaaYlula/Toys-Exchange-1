@@ -41,18 +41,23 @@ dependencies {
     // Library for payments Form
     implementation 'com.braintreepayments:card-form:5.4.0'
 
+
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    implementation 'com.amplifyframework:aws-api:1.35.3'
+    implementation 'com.amplifyframework:aws-api:1.35.4'
     implementation 'com.amplifyframework:aws-auth-cognito:1.35.4'
     implementation 'com.amplifyframework:aws-storage-s3:1.35.4'
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+
+
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

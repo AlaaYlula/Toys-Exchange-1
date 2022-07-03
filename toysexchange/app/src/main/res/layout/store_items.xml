@@ -50,6 +50,16 @@
                 tools:layout_editor_absoluteX="5dp"
                 tools:layout_editor_absoluteY="30dp" />
 
+            <TextView
+                android:id="@+id/txt_view_store_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Store location"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="30dp"
+                />
+
+
         </LinearLayout>
 
 

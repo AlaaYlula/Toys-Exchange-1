@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.MapActivity"
+    android:orientation="vertical">
+
+
+    <SearchView
+        android:id="@+id/sv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="5dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="search ..." />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sv_location" />
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/shophop_layout_ads" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shophop_bg_top_shadow">
+
+            <TextView
+                android:id="@+id/btn_add"
+                style="@style/ShopHopBottomButton.White"
+                android:text="Cancel"
+                android:textSize="@dimen/_16sdp"/>
+
+            <TextView
+                android:id="@+id/btn_close"
+                style="@style/ShopHopBottomButton.Primary"
+                android:text="Submit"
+                android:textSize="@dimen/_16sdp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

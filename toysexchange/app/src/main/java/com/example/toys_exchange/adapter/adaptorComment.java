@@ -190,6 +190,7 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         }
 
         private void showEditComment(int position){
+
             listener.onUpdateClick(position,rlEditComment,ivEditComment,etEditComment);
         }
 

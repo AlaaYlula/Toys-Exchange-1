@@ -13,8 +13,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,10 +35,15 @@ public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = EventActivity.class.getSimpleName() ;
 
-    Button addEvent;
+    Button btnSubmit;
     Button cancelAdd;
 
+    TextView location;
+
     String userId;
+
+    Double longitude;
+    Double latitude;
 
     private Handler handler;
 
@@ -45,10 +52,13 @@ public class EventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
-        getSupportActionBar().setTitle("Add Event");
+        setContentView(R.layout.toyexchange_activity_add_event);
+//        getSupportActionBar().setTitle("Add Event");
         enableLocation();
 
+        location=findViewById(R.id.tvLocation);
+
+        cancelAdd = findViewById(R.id.btnCancel);
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             // get the username
@@ -60,9 +70,18 @@ public class EventActivity extends AppCompatActivity {
         });
         authAttribute(); //get the username and userID
 
-        addEvent = findViewById(R.id.btn_addEvent);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
         addBtnListener(); // Listeners
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getApplicationContext(),MapActivity.class);
+                intent.putExtra("type","event");
+                startActivity(intent);
+            }
+        });
         
     }
     ///////////////////////////////////////////////////// Location //////////////////////////////////////////////
@@ -145,10 +164,10 @@ public class EventActivity extends AppCompatActivity {
 
     private void addBtnListener() {
 
-        addEvent.setOnClickListener(view -> {
+        btnSubmit.setOnClickListener(view -> {
 
-            EditText eventDescription = findViewById(R.id.description_event);
-            EditText eventTitle = findViewById(R.id.title_event);
+            EditText eventDescription = findViewById(R.id.etDescription);
+            EditText eventTitle = findViewById(R.id.etTitle);
 
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();
@@ -163,12 +182,25 @@ public class EventActivity extends AppCompatActivity {
                                     users.getData()) {
                                 Log.i(TAG, "User add this Event" + user);
                                 if (user.getIdcognito().equals(userId)) {
-                                    Event event = Event.builder()
-                                            .title(eventTitleText)
-                                            .eventdescription(eventDescriptionText)
-                                            .accountEventsaddedId(user.getId())
-                                            .build();
-                                    // API save to backend
+                                    Event event;
+                                    if(longitude!=null && latitude!=null){
+                                         event = Event.builder()
+                                                .title(eventTitleText)
+                                                .eventdescription(eventDescriptionText)
+                                                 .latitude(latitude)
+                                                 .longitude(longitude)
+                                                 .accountEventsaddedId(user.getId())
+                                                 .build();
+                                    }else {
+                                         event = Event.builder()
+                                                .title(eventTitleText)
+                                                .eventdescription(eventDescriptionText)
+                                                .accountEventsaddedId(user.getId())
+                                                .build();
+                                        // API save to backend
+
+                                    }
+
                                     Amplify.API.mutate(
                                             ModelMutation.create(event),
                                             success -> {
@@ -176,6 +208,9 @@ public class EventActivity extends AppCompatActivity {
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
                                     );
+
+
+
                                 }
                             }
                         }
@@ -184,12 +219,12 @@ public class EventActivity extends AppCompatActivity {
             );
 
             Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
-            addEvent.setBackgroundColor(Color.RED);
+            btnSubmit.setBackgroundColor(Color.RED);
         });
 
-//        cancelAdd.setOnClickListener(view -> {
-//           startActivity(new Intent(this, MainActivity.class));
-//        });
+        cancelAdd.setOnClickListener(view -> {
+           startActivity(new Intent(this, MainActivity.class));
+        });
     }
 
 
@@ -199,5 +234,12 @@ public class EventActivity extends AppCompatActivity {
         if (checkPermissions()) {
             enableLocation();
         }
+
+        Intent locationIntent=getIntent();
+        longitude= locationIntent.getDoubleExtra("longitude",0.0);
+        latitude= locationIntent.getDoubleExtra("latitude",0.0);
+
+        Log.i(TAG, "onCreate: long   "+longitude);
+        Log.i(TAG, "onCreate: lat   "+latitude);
     }
 }

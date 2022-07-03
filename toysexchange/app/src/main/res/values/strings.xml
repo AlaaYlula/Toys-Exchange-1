@@ -1,4 +1,6 @@
+
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="map_key" translatable="false">AIzaSyC7botDxlUaADl2ORy4qQcBk7XbcTISw84</string>
     <string name="app_name">toys-exchange</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -113,7 +115,9 @@
     <string name="sh_lbl_change_address">Change Address</string>
     <string name="sh_lbl_item_deliver_here">Item Deliver Here</string>
     <string name="sh_lbl_add_new_address">Add New address</string>
-    <string name="sh_lbl_current_location">Use Current Location</string>
+    <string name="sh_lbl_current_location">Set Event Location</string>
+    <string name="sh_lbl_see_location">See Event Location</string>
+
     <string name="sh_lbl_save_address">Save Address</string>
     <string name="sh_lbl_edit_address">Edit Address</string>
     <string name="sh_lbl_home">Home Address</string>

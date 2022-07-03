@@ -71,7 +71,7 @@ public class ToyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy);
-        getSupportActionBar().setTitle("Add Toy");
+//        getSupportActionBar().setTitle("Add Toy");
 
 
         handler=new Handler(Looper.getMainLooper(),msg->{
@@ -196,7 +196,6 @@ public class ToyActivity extends AppCompatActivity {
                                             .price(Double.parseDouble(price))
                                             .typetoy(Enum.valueOf(Typetoy.class, type))
                                             .build();
-
 
                                     // API save to backend
                                     Amplify.API.mutate(

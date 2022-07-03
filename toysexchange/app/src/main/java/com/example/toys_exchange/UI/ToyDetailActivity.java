@@ -52,6 +52,7 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
 
+
     private Handler handler;
     private Handler handler1;
     private Handler handler2;

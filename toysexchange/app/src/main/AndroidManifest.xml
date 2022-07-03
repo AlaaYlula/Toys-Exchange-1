@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/ShopHopAppTheme"
         >
 
         <meta-data
@@ -28,6 +29,7 @@
             android:name=".UI.StoreListActivity"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"
             />
 
         <activity
@@ -68,6 +70,7 @@
             android:name=".UI.eventListActivity"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"
             />
         <activity
             android:name=".profileActivity"
@@ -134,6 +137,7 @@
 
         <activity
             android:name=".WishListActivity"
+            android:parentActivityName=".profileActivity"
             android:exported="false"/>
 
 <!--        <service-->

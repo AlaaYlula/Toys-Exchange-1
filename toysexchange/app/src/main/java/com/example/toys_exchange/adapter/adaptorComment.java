@@ -151,9 +151,6 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
         OnItemClickListener listener;
 
 
-
-
-
         public CustomViewHolder(@NonNull View itemView ,
                                 List<Comment> commentsList,
                                 OnItemClickListener listener ) {

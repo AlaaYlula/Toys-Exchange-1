@@ -9,10 +9,6 @@
     </style>
 
 
-
-
-
-
     <style name="ShopHopAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ShopHop_colorPrimary</item>
         <item name="colorPrimaryDark">@color/ShopHop_colorPrimaryDark</item>
@@ -74,7 +70,7 @@
         <item name="android:paddingStart">@dimen/sh_spacing_standard</item>
         <item name="android:paddingEnd">@dimen/sh_spacing_standard</item>
         <item name="android:theme">@style/Theme.MaterialComponents.Light</item>
-        <item name="cornerRadius">@dimen/sh_spacing_xlarge</item>
+<!--        <item name="cornerRadius">@dimen/sh_spacing_xlarge</item>-->
 
     </style>
 

@@ -22,11 +22,14 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.Toy;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventDetailsActivity;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -97,7 +100,7 @@ public class EventFragment extends Fragment {
             //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
             recyclerView = mView.findViewById(R.id.recycler_view);
 
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+          //  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             CustomEventAdapter customAdapter = new CustomEventAdapter(eventList, new CustomEventAdapter.CustomClickListener() {
                 @Override
@@ -120,7 +123,7 @@ public class EventFragment extends Fragment {
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
             return  true;
         });
@@ -132,6 +135,8 @@ public class EventFragment extends Fragment {
                         Log.i("get toy ", event.toString());
                         eventList.add(event);
                     }
+                    // Sort the Created At
+                    Collections.sort(eventList,new SortByDate());
 
                     Bundle bundle =new Bundle();
                     bundle.putString("data", "done");
@@ -142,6 +147,14 @@ public class EventFragment extends Fragment {
                 },error -> Log.e("error: ","-> ",error)
         );
         super.onResume();
+    }
+    // Class to sort the comments by date
+    // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+    static class SortByDate implements Comparator<Event> {
+        @Override
+        public int compare(Event a, Event b) {
+            return a.getCreatedAt().compareTo(b.getCreatedAt());
+        }
     }
 
 

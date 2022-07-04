@@ -3,6 +3,7 @@ package com.example.toys_exchange;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -55,6 +56,11 @@ public class PaymentActivity extends AppCompatActivity {
        // setContentView(R.layout.activity_payment);
         setContentView(R.layout.payment_card);
 
+
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Payment");
 
         Intent intent = getIntent();
         toyId = intent.getStringExtra("toyId");

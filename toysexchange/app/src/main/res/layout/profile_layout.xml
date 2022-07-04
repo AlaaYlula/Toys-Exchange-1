@@ -75,6 +75,11 @@
                 android:text="@string/store_list" />
 
             <TextView
+                android:id="@+id/tvAttendList"
+                style="@style/ShopHopAccountLabel"
+                android:text="@string/attended_event" />
+
+            <TextView
                 android:id="@+id/tvWishlist"
                 style="@style/ShopHopAccountLabel"
                 android:text="@string/sh_lbl_wish_list" />

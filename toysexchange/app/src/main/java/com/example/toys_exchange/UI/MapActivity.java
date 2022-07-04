@@ -152,24 +152,37 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
 
+                String title;
+                String desc;
                 Intent intent=getIntent();
                 String typeActivity=intent.getStringExtra("type");
+
                 if(typeActivity.equals("store")){
+                     title=intent.getStringExtra("title");
+                     desc=intent.getStringExtra("desc");
                     Intent locationIntent=new Intent(getApplicationContext(),StoreAddActivity.class);
                     locationIntent.putExtra("longitude",searchedLongitude);
                     locationIntent.putExtra("latitude",searchedLatitude);
+                    locationIntent.putExtra("title",title);
+                    locationIntent.putExtra("desc",desc);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "onClick: store lang------------------------------->"+ searchedLongitude);
                     Log.i(TAG, "onClick: store lat------------------------------->"+ searchedLatitude);
                 }else if(typeActivity.equals("event")){
+                     title=intent.getStringExtra("title");
+                     desc=intent.getStringExtra("desc");
                     Intent locationIntent=new Intent(getApplicationContext(),EventActivity.class);
                     locationIntent.putExtra("longitude",searchedLongitude);
                     locationIntent.putExtra("latitude",searchedLatitude);
+                    locationIntent.putExtra("title",title);
+                    locationIntent.putExtra("desc",desc);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "onClick: event lang------------------------------->"+ searchedLongitude);
                     Log.i(TAG, "onClick: event lat------------------------------->"+ searchedLatitude);
+                    Log.i(TAG, "onClick: event title------------------------------->"+ title);
+                    Log.i(TAG, "onClick: event desc------------------------------->"+ desc);
                 }
 
             }

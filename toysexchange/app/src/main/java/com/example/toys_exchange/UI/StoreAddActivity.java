@@ -34,6 +34,9 @@ public class StoreAddActivity extends AppCompatActivity {
 
     TextView addLocation;
 
+    EditText storeDescription;
+    EditText storeTitle;
+
 
     Double longitude;
     Double latitude;
@@ -50,6 +53,8 @@ public class StoreAddActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Store");
 
 
+         storeDescription = findViewById(R.id.etDescription);
+         storeTitle = findViewById(R.id.etTitle);
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
@@ -62,6 +67,8 @@ public class StoreAddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(getApplicationContext(),MapActivity.class);
                 intent.putExtra("type","store");
+                intent.putExtra("title",storeTitle.getText().toString());
+                intent.putExtra("desc",storeDescription.getText().toString());
                 startActivity(intent);
             }
         });
@@ -76,8 +83,7 @@ public class StoreAddActivity extends AppCompatActivity {
 
         addStore.setOnClickListener(view -> {
 
-            EditText storeDescription = findViewById(R.id.etDescription);
-            EditText storeTitle = findViewById(R.id.etTitle);
+
 
             String storeDescriptionText = storeDescription.getText().toString();
             String storeTitleText = storeTitle.getText().toString();
@@ -154,6 +160,8 @@ public class StoreAddActivity extends AppCompatActivity {
         Intent locationIntent=getIntent();
         longitude= locationIntent.getDoubleExtra("longitude",0.0);
         latitude= locationIntent.getDoubleExtra("latitude",0.0);
+        storeTitle.setText(locationIntent.getStringExtra("title"));
+        storeDescription.setText(locationIntent.getStringExtra("desc"));
 
         Log.i(TAG, "onCreate: long   "+longitude);
         Log.i(TAG, "onCreate: lat   "+latitude);

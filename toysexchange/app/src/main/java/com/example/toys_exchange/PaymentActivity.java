@@ -163,15 +163,6 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     public void deleteToyFromAPI() {
-//        Amplify.API.mutate(ModelMutation.delete(toy),
-//                response -> {
-//                Log.i(TAG, "toy deleted from API:");
-//                    Toast toast = Toast.makeText(getApplicationContext(), "the item deleted", Toast.LENGTH_SHORT);
-//                    toast.show();
-//                },
-//                error -> Log.e(TAG, "Delete failed", error)
-//        );
-
         Amplify.API.query(
                 ModelQuery.list(UserWishList.class),
                 toys -> {

@@ -108,7 +108,7 @@ public class StoreFragment extends Fragment {
                     Double longitude=storeList.get(position).getLongitude();
                     Double latitude=storeList.get(position).getLatitude();
                     if(longitude!=null && latitude!=null){
-                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
+                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
                         startActivity(intent);
                     }else {
                         Toast.makeText(getContext(), "no location provider", Toast.LENGTH_SHORT).show();

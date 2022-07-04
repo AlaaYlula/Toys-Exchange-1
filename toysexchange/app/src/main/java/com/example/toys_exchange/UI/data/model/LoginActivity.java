@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 // Whatever...
-                                                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                                dialog.cancel();
                                             }
                                         }).show();
                             }

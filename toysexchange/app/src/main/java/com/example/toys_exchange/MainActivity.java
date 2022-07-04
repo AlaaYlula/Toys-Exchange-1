@@ -244,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         userId =  sharedPreferences.getString(LoginActivity.USERNAME, "No Team setting");
         username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No Team setting");

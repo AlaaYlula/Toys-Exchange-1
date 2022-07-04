@@ -199,13 +199,11 @@ public class profileActivity extends AppCompatActivity {
         Amplify.API.query(ModelQuery.get(Account.class,userIdShared),
                 user -> {
                     if(user.hasData()) {
-                        Log.i(TAG, "check for Image ..... "+ user.getData().getImage());
-
-                        if(user.getData().getImage() != null)
-                            Log.i(TAG, "check for Image ..... Not null ");
-                        runOnUiThread(()->{
-                           getUrl(user.getData().getImage());
-                        });
+                        if(user.getData().getImage() != null) {
+                            runOnUiThread(() -> {
+                                getUrl(user.getData().getImage());
+                            });
+                        }
 
                     }
 

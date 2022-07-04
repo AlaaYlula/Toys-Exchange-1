@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -23,10 +24,12 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
+import com.example.toys_exchange.PaymentActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
+import com.example.toys_exchange.UI.toyListActivity;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
 
 import java.util.ArrayList;
@@ -43,6 +46,7 @@ public class WishListFragment extends Fragment {
     CustomToyAdapter customAdapter;
 
 
+    String userId;
 
     public WishListFragment() {
         // Required empty public constructor
@@ -123,7 +127,7 @@ public class WishListFragment extends Fragment {
         toyList = new ArrayList<>();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mView.getContext());
-        String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
+        userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
         getToys(userId);
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
@@ -149,7 +153,14 @@ public class WishListFragment extends Fragment {
                     intent.putExtra("toyId", toyList.get(position).getId());
                     startActivity(intent);
                 }
-            });
+
+                 @Override
+                 public void onBuy(int position) {
+                     Intent intent = new Intent(mView.getContext(), PaymentActivity.class);
+                     intent.putExtra("toyId",toyList.get(position).getId());
+                     startActivity(intent);
+                 }
+             });
 
             recyclerView.setAdapter(customAdapter);
             recyclerView.setHasFixedSize(true);
@@ -165,33 +176,57 @@ public class WishListFragment extends Fragment {
 
         });
     }
-    private void removeFromWishList(String toyId, List<Toy> toyList,int position, CustomToyAdapter customToyAdapter){
-        Amplify.API.query(
-                ModelQuery.list(UserWishList.class),
-                wishList -> {
+//    private void removeFromWishList(String toyId, List<Toy> toyList,int position, CustomToyAdapter customToyAdapter){
+//        Amplify.API.query(
+//                ModelQuery.list(UserWishList.class),
+//                wishList -> {
+//                    if(wishList.hasData()) {
+//                        for (UserWishList wishToy :
+//                                wishList.getData()) {
+//                            Amplify.API.query(
+//                                    ModelQuery.list(Account.class),
+//                                    accounts -> {
+//                                        if (Objects.equals(toyId, wishToy.getToy().getId())) {
+//                                            Log.i(TAG, "removeFromWishList: ***********************" + wishToy.getAccount().getId());
+//                                            Amplify.API.mutate(ModelMutation.delete(wishToy),
+//                                                    response -> {
+//                                                        Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
+//                                                        toyList.remove(position);
+//                                                        customToyAdapter.notifyItemRemoved(position);
+//                                                    },
+//                                                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+//                                            );
+//                                        }
+//                                    },
+//                                    error -> Log.e(TAG, error.toString(), error)
+//                            );
+//                        }
+//                    }
+//                },
+//                error -> Log.e(TAG, error.toString(), error)
+//        );
+//    }
+private void removeFromWishList(String toyId, List<Toy> toyList,int position, CustomToyAdapter customToyAdapter){
+    Amplify.API.query(
+            ModelQuery.list(UserWishList.class),
+            wishList -> {
+                if(wishList.hasData()) {
                     for (UserWishList wishToy :
                             wishList.getData()) {
-                        Amplify.API.query(
-                                ModelQuery.list(Account.class),
-                                accounts -> {
-                                    if(Objects.equals(toyId, wishToy.getToy().getId())){
-                                        Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
-
-                                        Amplify.API.mutate(ModelMutation.delete(wishToy),
-                                                response ->{
-                                                    Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
-                                                    toyList.remove(position);
-                                                    customToyAdapter.notifyItemRemoved(position);
-                                                } ,
-                                                error -> Log.e("MyAmplifyApp", "Create failed", error)
-                                        );
-                                    }
-                                },
-                                error -> Log.e(TAG, error.toString(), error)
-                        );
+                        if(wishToy.getToy().getId().equals(toyId) && wishToy.getAccount().getId().equals(userId)){
+                            Amplify.API.mutate(ModelMutation.delete(wishToy),
+                                                    response -> {
+                                                        Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
+                                                        toyList.remove(position);
+                                                        customToyAdapter.notifyItemRemoved(position);
+                                                    },
+                                                    error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                            );
+                        }
                     }
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-    }
+                }
+            },
+            error -> Log.e(TAG, error.toString(), error)
+    );
+}
 }

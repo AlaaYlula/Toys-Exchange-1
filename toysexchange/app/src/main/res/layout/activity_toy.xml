@@ -27,12 +27,16 @@
                 android:id="@+id/spinner_type"
                 android:layout_width="@dimen/_158sdp"
                 android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:prompt="@string/hint_resource"
                 />
 
             <Spinner
                 android:id="@+id/spinner_condition"
                 android:layout_width="@dimen/_158sdp"
                 android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:prompt="@string/hint_resource_condition"
                 />
 
         </LinearLayout>

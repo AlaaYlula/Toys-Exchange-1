@@ -361,5 +361,7 @@
     <string name="store_list">My Stores</string>
     <string name="store_title">title</string>
     <string name="default_notification_channel_id" />
+    <string name="hint_resource">Toy Type</string>
+    <string name="hint_resource_condition">Toy Condition</string>
 
 </resources>

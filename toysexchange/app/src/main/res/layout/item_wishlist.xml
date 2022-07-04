@@ -10,14 +10,16 @@
     android:layout_marginEnd="@dimen/sh_spacing_standard_new"
     android:layout_marginBottom="@dimen/sh_spacing_standard_new"
     android:background="@color/ShopHop_itemText_background"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:elevation="@dimen/_5sdp"
+
+    >
 
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="@dimen/_70sdp"
-        android:layout_height="match_parent"
-        android:layout_alignBottom="@id/llButton"
+        android:layout_height="@dimen/_80sdp"
         android:layout_alignParentTop="true"
         android:background="@drawable/shophop_bg_ractangal_stroked"
         android:contentDescription="@string/sh_text_todo"
@@ -34,9 +36,10 @@
         android:layout_toEndOf="@id/ivImage"
         android:singleLine="true"
         android:text="@string/toy_name"
+        android:textStyle="bold"
         android:textAppearance="@style/FontSemiBold"
         android:textColor="@color/ShopHop_textColorPrimary"
-        android:textSize="@dimen/sh_font_size_medium" />
+        android:textSize="@dimen/sh_font_size_large" />
 
     <TextView
         android:id="@+id/tvPrice"
@@ -65,59 +68,86 @@
         android:textSize="@dimen/sh_font_size_nano"
         tools:text="$100" />
 
+
+    <TextView
+        android:id="@+id/tvBin"
+        style="@style/ShopHopCartButton"
+        android:layout_marginLeft="@dimen/_150sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_toEndOf="@id/tvPrice"
+        app:drawableStartCompat="@drawable/shophop_ic_delete" />
+
+
     <LinearLayout
-        android:id="@+id/llButton"
+        android:id="@+id/Remove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvPrice"
-        android:layout_marginTop="@dimen/sh_spacing_standard"
-        android:layout_toEndOf="@id/ivImage"
-        android:orientation="horizontal">
+        android:layout_alignBottom="@+id/ivImage"
+        android:gravity="end"
+        android:layout_marginRight="@dimen/_5sdp"
 
-        <LinearLayout
-            android:id="@+id/AddToCart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
+        android:paddingTop="@dimen/sh_spacing_standard"
+        android:paddingBottom="@dimen/sh_spacing_standard">
 
+        <!--            <TextView-->
+        <!--                style="@style/ShopHopCartButton"-->
+        <!--                app:drawableStartCompat="@drawable/shophop_ic_delete" />-->
 
-            android:paddingTop="@dimen/sh_spacing_standard"
-            android:paddingBottom="@dimen/sh_spacing_standard">
+        <TextView
+            style="@style/ShopHopCartButton"
+            android:text="@string/sh_lbl_move_to_cart"
+            app:drawableStartCompat="@drawable/shophop_move_4" />
 
-            <TextView
-                style="@style/ShopHopCartButton"
-                android:text="@string/sh_lbl_move_to_cart"
-                app:drawableStartCompat="@drawable/shophop_move_4" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/sh_spacing_control_half"
-            android:layout_marginTop="@dimen/sh_spacing_control"
-            android:layout_marginBottom="@dimen/sh_spacing_control"
-            android:background="@color/ShopHop_view_color" />
-
-        <LinearLayout
-            android:id="@+id/Remove"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.2"
-            android:gravity="center"
-
-            android:paddingTop="@dimen/sh_spacing_standard"
-            android:paddingBottom="@dimen/sh_spacing_standard">
-
-            <TextView
-                style="@style/ShopHopCartButton"
-                app:drawableStartCompat="@drawable/shophop_ic_delete" />
+    </LinearLayout>
 
 
-            </LinearLayout>
 
-        </LinearLayout>
+
+
+
+
+
+
+
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/llButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/tvPrice"-->
+<!--        android:layout_marginTop="@dimen/sh_spacing_standard"-->
+<!--        android:layout_toEndOf="@id/ivImage"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/AddToCart"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+
+
+<!--            android:paddingTop="@dimen/sh_spacing_standard"-->
+<!--            android:paddingBottom="@dimen/sh_spacing_standard">-->
+
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                style="@style/ShopHopCartButton"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/sh_lbl_move_to_cart"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:drawableStartCompat="@drawable/shophop_move_4" />&ndash;&gt;-->
+
+<!--        </LinearLayout>-->
+
+<!--        <View-->
+<!--            android:layout_width="@dimen/_1sdp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="@dimen/sh_spacing_control_half"-->
+<!--            android:layout_marginTop="@dimen/sh_spacing_control"-->
+<!--            android:layout_marginBottom="@dimen/sh_spacing_control"-->
+<!--            android:background="@color/ShopHop_view_color" />-->
+
+<!--     -->
+
+<!--        </LinearLayout>-->
 
 </RelativeLayout>
 

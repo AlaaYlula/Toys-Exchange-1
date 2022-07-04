@@ -62,7 +62,7 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         holder.tvName.setText(toyList.get(position).getToyname());
 //        holder.tvCondition.setText(toyList.get(position).getCondition().toString());
         holder.tvType.setText(toyList.get(position).getTypetoy().toString());
-        holder.tvPrice.setText(toyList.get(position).getPrice().toString());
+        holder.tvPrice.setText(toyList.get(position).getPrice().toString() + " JD");
 
 
         if(toyList.get(position).getCondition().toString().equals("NEW")){

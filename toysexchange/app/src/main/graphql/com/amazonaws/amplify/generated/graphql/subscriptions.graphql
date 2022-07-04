@@ -10,14 +10,10 @@ subscription OnCreateToy {
     condition
     wishuser {
       nextToken
-      startedAt
     }
     contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -32,14 +28,10 @@ subscription OnUpdateToy {
     condition
     wishuser {
       nextToken
-      startedAt
     }
     contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -54,14 +46,10 @@ subscription OnDeleteToy {
     condition
     wishuser {
       nextToken
-      startedAt
     }
     contactinfo
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountToysId
   }
 }
@@ -74,9 +62,6 @@ subscription OnCreateStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -89,9 +74,6 @@ subscription OnUpdateStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -104,9 +86,6 @@ subscription OnDeleteStore {
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountStoresId
   }
 }
@@ -116,9 +95,6 @@ subscription OnCreateComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -129,9 +105,6 @@ subscription OnUpdateComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -142,9 +115,6 @@ subscription OnDeleteComment {
     text
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountCommentsId
     eventCommentsId
   }
@@ -158,33 +128,24 @@ subscription OnCreateAccount {
     bio
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateAccount {
@@ -196,33 +157,24 @@ subscription OnUpdateAccount {
     bio
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteAccount {
@@ -234,33 +186,24 @@ subscription OnDeleteAccount {
     bio
     toys {
       nextToken
-      startedAt
     }
     comments {
       nextToken
-      startedAt
     }
     stores {
       nextToken
-      startedAt
     }
     eventsadded {
       nextToken
-      startedAt
     }
     eventsattend {
       nextToken
-      startedAt
     }
     wishtoys {
       nextToken
-      startedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnCreateEvent {
@@ -270,19 +213,14 @@ subscription OnCreateEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -293,19 +231,14 @@ subscription OnUpdateEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -316,19 +249,14 @@ subscription OnDeleteEvent {
     eventdescription
     comments {
       nextToken
-      startedAt
     }
     usersattend {
       nextToken
-      startedAt
     }
     latitude
     longitude
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
     accountEventsaddedId
   }
 }
@@ -339,12 +267,6 @@ subscription OnCreateNotification {
     accountid
     createdAt
     updatedAt
-<<<<<<< HEAD
-    _version
-    _deleted
-    _lastChangedAt
-=======
->>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnUpdateNotification {
@@ -354,12 +276,6 @@ subscription OnUpdateNotification {
     accountid
     createdAt
     updatedAt
-<<<<<<< HEAD
-    _version
-    _deleted
-    _lastChangedAt
-=======
->>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnDeleteNotification {
@@ -369,12 +285,6 @@ subscription OnDeleteNotification {
     accountid
     createdAt
     updatedAt
-<<<<<<< HEAD
-    _version
-    _deleted
-    _lastChangedAt
-=======
->>>>>>> 064162f1f57a59bd7883b9dc9847e07102548ca4
   }
 }
 subscription OnCreateUserWishList {
@@ -393,9 +303,6 @@ subscription OnCreateUserWishList {
       contactinfo
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountToysId
     }
     account {
@@ -406,15 +313,9 @@ subscription OnCreateUserWishList {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateUserWishList {
@@ -433,9 +334,6 @@ subscription OnUpdateUserWishList {
       contactinfo
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountToysId
     }
     account {
@@ -446,15 +344,9 @@ subscription OnUpdateUserWishList {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteUserWishList {
@@ -473,9 +365,6 @@ subscription OnDeleteUserWishList {
       contactinfo
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountToysId
     }
     account {
@@ -486,15 +375,9 @@ subscription OnDeleteUserWishList {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnCreateUserAttendEvent {
@@ -510,9 +393,6 @@ subscription OnCreateUserAttendEvent {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -522,16 +402,10 @@ subscription OnCreateUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnUpdateUserAttendEvent {
@@ -547,9 +421,6 @@ subscription OnUpdateUserAttendEvent {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -559,16 +430,10 @@ subscription OnUpdateUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }
 subscription OnDeleteUserAttendEvent {
@@ -584,9 +449,6 @@ subscription OnDeleteUserAttendEvent {
       bio
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
     event {
       id
@@ -596,15 +458,9 @@ subscription OnDeleteUserAttendEvent {
       longitude
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
       accountEventsaddedId
     }
     createdAt
     updatedAt
-    _version
-    _deleted
-    _lastChangedAt
   }
 }

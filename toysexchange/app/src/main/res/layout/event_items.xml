@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,57 +14,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         style="@style/CardViewStyle"
         android:background="@color/teal_200"
         android:layout_margin="@dimen/_10sdp"
-        app:cardElevation="@dimen/_8sdp"
-
+        app:cardElevation="@dimen/_5sdp"
         >
-       <androidx.constraintlayout.widget.ConstraintLayout
+       <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_margin="@dimen/_10sdp"
            app:cardElevation="@dimen/_8sdp"
-
            >
-<!--           <ImageView-->
-<!--               android:id="@+id/event_img"-->
-<!--               android:layout_width="200dp"-->
-<!--               android:layout_height="150dp"-->
-<!--               app:layout_constraintStart_toStartOf="parent"-->
-<!--               app:layout_constraintEnd_toEndOf="parent"-->
-<!--               app:layout_constraintTop_toTopOf="parent"-->
-<!--               android:src="@color/cardview_dark_background"-->
-<!--               />-->
 
            <ImageView
                android:layout_width="@dimen/_20sdp"
                android:layout_height="@dimen/_20sdp"
                android:src="@drawable/ic_event"
-               app:layout_constraintEnd_toEndOf="@+id/event_name"
-               app:layout_constraintLeft_toLeftOf="@+id/event_name"
+               android:layout_alignParentEnd="true"
+               android:layout_centerVertical="true"
+               android:layout_marginEnd="@dimen/_16sdp"
                tools:ignore="MissingConstraints" />
 
            <TextView
                android:id="@+id/event_name"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_margin="10dp"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentStart="true"
+               android:layout_marginStart="@dimen/_10sdp"
+               android:layout_marginEnd="@dimen/_40sdp"
+               android:layout_marginTop="@dimen/_5sdp"
                android:text="ssssssssssssssssss"
                android:textAllCaps="true"
-               app:layout_constraintBaseline_toTopOf="@id/event_description"
+               android:fontFamily="@font/montserrat_bold"
                />
 
            <TextView
                android:id="@+id/event_description"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_margin="10dp"
-               app:layout_constraintBottom_toBottomOf="@+id/event_name"
+               android:layout_marginStart="@dimen/_10sdp"
+               android:layout_marginEnd="@dimen/_40sdp"
+               android:layout_below="@+id/event_name"
                android:text="ssssssssssssssssss"
                />
 
-       </androidx.constraintlayout.widget.ConstraintLayout>
+       </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>

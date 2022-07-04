@@ -222,27 +222,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        TextView eventAttended = findViewById(R.id.attended_event);
-        eventAttended.setOnClickListener(view -> {
-            Intent intent = new Intent(this, EventAttendList.class);
-            intent.putExtra("loginUserId",acc_id);
-            intent.putExtra("cognitoId",cognitoId);
-            startActivity(intent);
-        });
-
-        TextView myEvent = findViewById(R.id.my_event);
-        myEvent.setOnClickListener(view -> {
-            Intent intent = new Intent(this, eventListActivity.class);
-            intent.putExtra("userId", acc_id);
-            intent.putExtra("cognitoId",cognitoId);
-            startActivity(intent);
-        });
-        TextView myToys = findViewById(R.id.my_toys);
-        myToys.setOnClickListener(view -> {
-            Intent intent = new Intent(this, toyListActivity.class);
-            startActivity(intent);
-        });
-
 
         TextView addEvent = findViewById(R.id.addEvent);
         addEvent.setOnClickListener(view -> {
@@ -271,6 +250,10 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "SharedPreferences => " + userId);
 
 
+        MaterialButton btnLogout = findViewById(R.id.logout);
+        btnLogout.setOnClickListener(view -> {
+            logout();
+        });
 
 //        TextView tvSetting = findViewById(R.id.tvSetting);
 //        tvSetting.setOnClickListener(view -> {
@@ -287,30 +270,30 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_setting:
-                Toast.makeText(this, "Setting ", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_profile:
-                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, profileActivity.class));
-
-                return true;
-            case R.id.logout:
-                logout();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu,menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_setting:
+//                Toast.makeText(this, "Setting ", Toast.LENGTH_SHORT).show();
+//                return true;
+//            case R.id.action_profile:
+//                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(this, profileActivity.class));
+//
+//                return true;
+//            case R.id.logout:
+//                logout();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
 
     private void logout(){
@@ -402,7 +385,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-
     /////////////////////////////////////////////////////// Image ..............................
     private void pictureUpload() {
         // Launches photo picker in single-select mode.
@@ -412,6 +394,7 @@ public class MainActivity extends AppCompatActivity {
 
         startActivityForResult(intent, REQUEST_CODE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -586,7 +569,6 @@ public class MainActivity extends AppCompatActivity {
             );
         });
     }
-
 
     public void firebaseAction()
     {

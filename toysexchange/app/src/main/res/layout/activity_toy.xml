@@ -1,96 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.ToyActivity"
-    android:orientation="vertical"
-    android:layout_margin="16dp">
+    android:background="@color/ShopHop_background_color"
+    tools:context=".UI.ToyActivity">
 
-    <Spinner
-        android:id="@+id/spinner_type"
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_below="@+id/toolbar_lay"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_txt_toy_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Toy Name "
-        android:inputType="text"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
-        android:padding="@dimen/_5sdp"/>
-    <EditText
-        android:id="@+id/edit_txt_toy_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Toy Description "
-        android:inputType="text"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
-        android:padding="@dimen/_5sdp"/>
-    <EditText
-        android:id="@+id/edit_txt_toy_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="Enter Toy Cost"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
-        android:padding="@dimen/_5sdp"/>
 
-    <EditText
-        android:id="@+id/edit_txt_contact_nfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Your Contact Info "
-        android:inputType="text"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
-        android:padding="@dimen/_5sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_16sdp">
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="@dimen/_158sdp"
+                android:layout_height="wrap_content"
+                />
 
-    <Spinner
-        android:id="@+id/spinner_condition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+            <Spinner
+                android:id="@+id/spinner_condition"
+                android:layout_width="@dimen/_158sdp"
+                android:layout_height="wrap_content"
+                />
 
-    <Button
-        android:id="@+id/btn_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:padding="10dp"
-        android:text="Upload Image"
-        android:shadowColor="@color/ShopHop_colorPrimary"
-        style="@style/ShopHopMaterialButtonStyle.Filled"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_add_toy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
-        android:padding="10dp"
-        android:text="Add toy "
-        android:shadowColor="@color/ShopHop_colorPrimary"
-        style="@style/ShopHopMaterialButtonStyle.Filled"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
 
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_txt_toy_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:hint="Toy Name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etToyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_txt_toy_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:gravity="top"
+            android:hint="Toy Description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:shadowColor="@color/ShopHop_colorPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_txt_toy_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:gravity="top"
+            android:hint="Toy Cost">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="0.0"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:shadowColor="@color/ShopHop_colorPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_txt_contact_nfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:gravity="top"
+            android:hint="Contact Information">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etContactInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:shadowColor="@color/ShopHop_colorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_xlarge"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:background="@drawable/shophop_button_color_orange"
+            android:text="Upload Image"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_add_toy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_xlarge"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:background="@drawable/shophop_button_color_orange"
+            android:text="Add Toy"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
+

@@ -2,8 +2,10 @@ package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -29,18 +32,22 @@ public class StoreAddActivity extends AppCompatActivity {
     Button addStore;
     String cognitoId;
 
-    Button addLocation;
+    TextView addLocation;
 
 
     Double longitude;
     Double latitude;
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_add);
-       // getSupportActionBar().setTitle("Add Store");
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add Store");
 
 
 
@@ -48,7 +55,7 @@ public class StoreAddActivity extends AppCompatActivity {
         cognitoId = logedInUser.getUserId();
 
         addStore = findViewById(R.id.btn_addStore);
-        addLocation=findViewById(R.id.btn_add_location);
+        addLocation=findViewById(R.id.tvLocation);
 
         addLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +76,8 @@ public class StoreAddActivity extends AppCompatActivity {
 
         addStore.setOnClickListener(view -> {
 
-            EditText storeDescription = findViewById(R.id.description_store);
-            EditText storeTitle = findViewById(R.id.title_store);
+            EditText storeDescription = findViewById(R.id.etDescription);
+            EditText storeTitle = findViewById(R.id.etTitle);
 
             String storeDescriptionText = storeDescription.getText().toString();
             String storeTitleText = storeTitle.getText().toString();

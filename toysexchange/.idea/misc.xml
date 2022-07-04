@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic_event.xml" value="0.1455" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_active.xml" value="0.1585" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_inactive.xml" value="0.1585" />
@@ -175,6 +176,12 @@
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_verification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/ASAC/final-project/Toys-Exchange/toysexchange/app/src/main/res/layout/signup.xml" value="0.20416666666666666" />
 =======
+=======
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.25" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_event_detail.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_newest_product.xml" value="0.1884498480243161" />
+>>>>>>> 8fc95cf086c39b41ed4e40ec48d168b5cadaec46
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_list.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_store_list.xml" value="0.20416666666666666" />

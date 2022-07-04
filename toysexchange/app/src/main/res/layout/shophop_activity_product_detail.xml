@@ -25,8 +25,8 @@
                 android:fitsSystemWindows="true"
                 app:collapsedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:contentScrim="@color/ShopHop_white"
-                app:expandedTitleMarginBottom="@dimen/_32sdp"
-                app:expandedTitleMarginStart="@dimen/sh_spacing_standard_new"
+                app:expandedTitleMarginBottom="@dimen/_14sdp"
+                app:expandedTitleMarginStart="@dimen/_50sdp"
                 app:expandedTitleTextAppearance="@style/ShopHopCollapsedAppBar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@string/app_name"
@@ -43,16 +43,15 @@
                         android:id="@+id/rlViewPager"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_270sdp"
-                        android:background="@color/ShopHop_item_background">
+                        >
 
                         <ImageView
                             android:id="@+id/productViewPager"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginBottom="0dp"
+                           android:layout_margin="@dimen/_16sdp"
                             android:fitsSystemWindows="true"
                             android:overScrollMode="never" />
 
@@ -177,13 +176,81 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:foregroundGravity="fill"
+                    android:overScrollMode="never"
                     app:dividerColor="@color/ShopHop_light_gray"
                     app:dividerInsetEnd="16dp"
                     app:dividerInsetStart="16dp"
-                    android:overScrollMode="never"
-                    android:foregroundGravity="fill"
-                    app:tabMode="fixed"
-                    />
+                    app:tabMode="fixed" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivProfileImage"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_below="@+id/mDivider"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/shophop_ic_walk"
+                    app:civ_border_color="@color/ShopHop_view_color"
+                    app:civ_border_width="@dimen/_2sdp" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mDivider"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_toEndOf="@+id/ivProfileImage"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="name"
+                    android:textSize="@dimen/_12sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivProfileImage"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_16sdp">
+                        <TextView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:text="Content"
+                            android:textAlignment="center"
+                            />
+                        <TextView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:text="NEW"
+                            android:textAlignment="center"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Condition"
+                            android:textAlignment="center"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_16sdp"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+
+
+                </LinearLayout>
+
+
+
 
 <!--                <com.google.android.material.tabs.TabLayout-->
 <!--                    android:id="@+id/productTabs"-->
@@ -224,11 +291,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shophop_bg_top_shadow">
-
-                <TextView
-                    android:id="@+id/btnAddCard"
-                    style="@style/ShopHopBottomButton.White"
-                    android:text="@string/sh_lbl_add_to_cart" />
 
                 <TextView
                     android:id="@+id/btnBuyNow"

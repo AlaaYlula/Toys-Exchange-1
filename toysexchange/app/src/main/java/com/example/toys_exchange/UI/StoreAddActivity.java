@@ -1,8 +1,10 @@
 package com.example.toys_exchange.UI;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,6 +25,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Store;
 import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 
 public class StoreAddActivity extends AppCompatActivity {
     private static final String TAG = StoreAddActivity.class.getSimpleName() ;
@@ -76,58 +79,75 @@ public class StoreAddActivity extends AppCompatActivity {
 
         addStore.setOnClickListener(view -> {
 
-            EditText storeDescription = findViewById(R.id.description_store);
-            EditText storeTitle = findViewById(R.id.title_store);
+            EditText storeDescription = findViewById(R.id.etDescription);
+            EditText storeTitle = findViewById(R.id.etTitle);
 
             String storeDescriptionText = storeDescription.getText().toString();
             String storeTitleText = storeTitle.getText().toString();
 
-            Log.i(TAG, "ID Cognito => "+ cognitoId);
-            Amplify.API.query(
-                    ModelQuery.list(Account.class),
-                    users -> {
-                        Log.i(TAG, "Users => "+ users.getData());
-                        if(users.hasData()) {
-                            for (Account user :
-                                    users.getData()) {
-                                Log.i(TAG, "User add this Event" + user);
-                                if (user.getIdcognito().equals(cognitoId)) {
+            if(storeDescriptionText.length()>0 && storeTitleText.length()>0 && longitude!=0.0 & latitude!=0.0){
+                Log.i(TAG, "ID Cognito => "+ cognitoId);
+                Amplify.API.query(
+                        ModelQuery.list(Account.class),
+                        users -> {
+                            Log.i(TAG, "Users => "+ users.getData());
+                            if(users.hasData()) {
+                                for (Account user :
+                                        users.getData()) {
+                                    Log.i(TAG, "User add this Event" + user);
+                                    if (user.getIdcognito().equals(cognitoId)) {
 
-                                    Store store;
-                                    if(longitude!=null && latitude!=null){
-                                         store = Store.builder()
-                                                .storename(storeTitleText)
-                                                .storedescription(storeDescriptionText)
-                                                .accountStoresId(user.getId())
-                                                .latitude(latitude)
-                                                .longitude(longitude)
-                                                .build();
-                                    }else {
-                                        store = Store.builder()
-                                                .storename(storeTitleText)
-                                                .storedescription(storeDescriptionText)
-                                                .accountStoresId(user.getId())
-                                                .build();
+                                        Store store;
+                                        if(longitude!=null && latitude!=null){
+                                            store = Store.builder()
+                                                    .storename(storeTitleText)
+                                                    .storedescription(storeDescriptionText)
+                                                    .accountStoresId(user.getId())
+                                                    .latitude(latitude)
+                                                    .longitude(longitude)
+                                                    .build();
+                                        }else {
+                                            store = Store.builder()
+                                                    .storename(storeTitleText)
+                                                    .storedescription(storeDescriptionText)
+                                                    .accountStoresId(user.getId())
+                                                    .build();
+                                        }
+
+                                        // API save to backend
+                                        Amplify.API.mutate(
+                                                ModelMutation.create(store),
+                                                success -> {
+                                                    Log.i(TAG, "Saved item API: " + success.getData());
+                                                },
+                                                error -> Log.e(TAG, "Could not save item to API", error)
+                                        );
+
                                     }
-
-                                    // API save to backend
-                                    Amplify.API.mutate(
-                                            ModelMutation.create(store),
-                                            success -> {
-                                                Log.i(TAG, "Saved item API: " + success.getData());
-                                            },
-                                            error -> Log.e(TAG, "Could not save item to API", error)
-                                    );
-
                                 }
                             }
-                        }
-                    },
-                    error -> Log.e(TAG, error.toString(), error)
-            );
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
 
-            Toast.makeText(getApplicationContext(), "Store Added", Toast.LENGTH_SHORT).show();
-            addStore.setBackgroundColor(Color.RED);
+                Toast.makeText(getApplicationContext(), "Store Added", Toast.LENGTH_SHORT).show();
+                addStore.setBackgroundColor(Color.RED);
+            }else {
+                if (!isFinishing()){
+                    new AlertDialog.Builder(StoreAddActivity.this)
+                            .setTitle("Error")
+                            .setMessage("you should add title and description and location ")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Whatever...
+                                    dialog.cancel();
+                                }
+                            }).show();
+                }
+            }
+
         });
 
         cancelAdd.setOnClickListener(view -> {
@@ -146,4 +166,5 @@ public class StoreAddActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: lat   "+latitude);
         super.onResume();
     }
+
 }

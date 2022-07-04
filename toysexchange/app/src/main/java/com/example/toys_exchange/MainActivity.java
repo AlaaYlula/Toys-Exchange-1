@@ -571,8 +571,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void firebaseAction()
-    {
+    public void firebaseAction() {
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();

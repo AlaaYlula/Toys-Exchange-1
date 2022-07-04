@@ -82,8 +82,8 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
         holder.eventName.setText(eventList.get(position).getTitle());
-        if(eventList.get(position).getEventdescription().length()>20){
-            holder.eventDescription.setText(eventList.get(position).getEventdescription().substring(0,20)+"... ");
+        if(eventList.get(position).getEventdescription().length()>100){
+            holder.eventDescription.setText(eventList.get(position).getEventdescription().substring(0,100)+"... ");
         }else {
             holder.eventDescription.setText(eventList.get(position).getEventdescription());
         }

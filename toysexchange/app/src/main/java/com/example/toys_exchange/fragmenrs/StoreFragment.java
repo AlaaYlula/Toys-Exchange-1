@@ -66,6 +66,59 @@ public class StoreFragment extends Fragment {
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
         getLoginUserId();
+
+        storeList =new ArrayList<>();
+
+        handler = new Handler(Looper.getMainLooper(), msg ->{
+
+            recyclerView = mView.findViewById(R.id.recycler_view);
+
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+
+            StoreAdapter customAdapter = new StoreAdapter(storeList, new StoreAdapter.CustomClickListener() {
+                @Override
+                public void onClickListener(int position) {
+                    Double longitude=storeList.get(position).getLongitude();
+                    Double latitude=storeList.get(position).getLatitude();
+                    if(longitude!=null && latitude!=null){
+                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getContext(), "no location provider", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+            recyclerView.setAdapter(customAdapter);
+
+            recyclerView.setHasFixedSize(true);
+
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+            recyclerView.setHasFixedSize(true);
+            return  true;
+        });
+
+
+        Amplify.API.query(ModelQuery.list(Store.class), success ->{
+
+                    for(Store store: success.getData()){
+                        Log.i("get store ", store.toString());
+                        storeList.add(store);
+                    }
+                    // Sort the Created At
+                    Collections.sort(storeList,new SortByDate());
+
+                    Bundle bundle =new Bundle();
+                    bundle.putString("data", "done");
+
+                    Message message = new Message();
+                    message.setData(bundle);
+                    handler.sendMessage(message);
+                },error -> Log.e("error: ","-> ",error)
+        );
+
+
         return mView;
     }
 
@@ -94,60 +147,61 @@ public class StoreFragment extends Fragment {
         cognitoId = logedInUser.getUserId();
         getLoginUserId();
 
-        storeList =new ArrayList<>();
-
-        handler = new Handler(Looper.getMainLooper(), msg ->{
-
-            recyclerView = mView.findViewById(R.id.recycler_view);
-
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
-
-            StoreAdapter customAdapter = new StoreAdapter(storeList, new StoreAdapter.CustomClickListener() {
-                @Override
-                public void onClickListener(int position) {
-                    Double longitude=storeList.get(position).getLongitude();
-                    Double latitude=storeList.get(position).getLatitude();
-                    if(longitude!=null && latitude!=null){
-                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude));
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(getContext(), "no location provider", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            });
-
-            recyclerView.setAdapter(customAdapter);
-
-            recyclerView.setHasFixedSize(true);
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-            recyclerView.setHasFixedSize(true);
-            return  true;
-        });
-
-
-        Amplify.API.query(ModelQuery.list(Store.class), success ->{
-
-                    for(Store store: success.getData()){
-                        Log.i("get store ", store.toString());
-                        storeList.add(store);
-                    }
-            // Sort the Created At
-            Collections.sort(storeList,new SortByDate());
-
-                    Bundle bundle =new Bundle();
-                    bundle.putString("data", "done");
-
-                    Message message = new Message();
-                    message.setData(bundle);
-                    handler.sendMessage(message);
-                },error -> Log.e("error: ","-> ",error)
-        );
+//        storeList =new ArrayList<>();
+//
+//        handler = new Handler(Looper.getMainLooper(), msg ->{
+//
+//            recyclerView = mView.findViewById(R.id.recycler_view);
+//
+//            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
+//
+//            StoreAdapter customAdapter = new StoreAdapter(storeList, new StoreAdapter.CustomClickListener() {
+//                @Override
+//                public void onClickListener(int position) {
+//                    Double longitude=storeList.get(position).getLongitude();
+//                    Double latitude=storeList.get(position).getLatitude();
+//                    if(longitude!=null && latitude!=null){
+//                        Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
+//                        startActivity(intent);
+//                    }else {
+//                        Toast.makeText(getContext(), "no location provider", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//            });
+//
+//            recyclerView.setAdapter(customAdapter);
+//
+//            recyclerView.setHasFixedSize(true);
+//
+//            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+//            recyclerView.setHasFixedSize(true);
+//            return  true;
+//        });
+//
+//
+//        Amplify.API.query(ModelQuery.list(Store.class), success ->{
+//
+//                    for(Store store: success.getData()){
+//                        Log.i("get store ", store.toString());
+//                        storeList.add(store);
+//                    }
+//            // Sort the Created At
+//            Collections.sort(storeList,new SortByDate());
+//
+//                    Bundle bundle =new Bundle();
+//                    bundle.putString("data", "done");
+//
+//                    Message message = new Message();
+//                    message.setData(bundle);
+//                    handler.sendMessage(message);
+//                },error -> Log.e("error: ","-> ",error)
+//        );
         super.onResume();
     }
     // Class to sort the comments by date
     // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+
     static class SortByDate implements Comparator<Store> {
         @Override
         public int compare(Store a, Store b) {

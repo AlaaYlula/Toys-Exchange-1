@@ -44,25 +44,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_200sdp">
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/tvDescription"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/_16sdp"-->
-<!--                            android:layout_marginTop="@dimen/_70sdp"-->
-<!--                            android:layout_marginEnd="0dp"-->
-<!--                            android:overScrollMode="never"-->
-<!--                            android:text="Description"-->
-<!--                            android:textColor="@color/ShopHop_textColorSecondary" />-->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/ivProfileImage"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:src="@drawable/shophop_ic_walk"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_40sdp" />
+
+                        <TextView
+                            android:id="@+id/tvUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_45sdp"
+                            android:layout_toEndOf="@id/ivProfileImage"
+                            android:overScrollMode="never"
+                            android:text=""
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/ShopHop_textColorSecondary" />
 
                         <TextView
                             android:id="@+id/tvEventDescription"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvUserName"
                             android:layout_marginStart="@dimen/_30sdp"
-                            android:layout_marginTop="@dimen/_70sdp"
                             android:layout_marginEnd="@dimen/_30sdp"
                             android:overScrollMode="always"
+                            android:layout_marginTop="@dimen/_12sdp"
                             android:text="Lorem Ipsum is simply text of the printing and typesetting industry."
                             android:textColor="@color/ShopHop_textColorPrimary" />
 

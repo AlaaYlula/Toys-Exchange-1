@@ -114,10 +114,10 @@
                 style="@style/ShopHopCartButton"
                 app:drawableStartCompat="@drawable/shophop_ic_delete" />
 
-          
+
             </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
 </RelativeLayout>
 

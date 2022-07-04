@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ShopHop_background_color"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar_lay"
@@ -25,10 +25,9 @@
             android:layout_marginStart="@dimen/sh_spacing_standard_new"
             android:layout_marginTop="@dimen/sh_spacing_standard_new"
             android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-            android:background="@drawable/shophop_bg_ractangle_rounded_stroke"
             android:hint="Event Title">
 
-            <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +46,6 @@
             android:layout_marginStart="@dimen/sh_spacing_standard_new"
             android:layout_marginTop="@dimen/sh_spacing_standard_new"
             android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-            android:background="@drawable/shophop_bg_ractangle_rounded_stroke"
             android:gravity="top"
             android:hint="Event Description">
 
@@ -92,28 +90,29 @@
                 tools:ignore="MissingPrefix" />
         </RelativeLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/btnSubmit"
-            style="@style/ShopHopMaterialButtonStyle.Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/sh_spacing_standard_new"
             android:layout_marginTop="@dimen/sh_spacing_xlarge"
             android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-            android:shadowColor="@color/ShopHop_colorPrimary"
+            android:background="@drawable/shophop_button_color_orange"
             android:text="@string/sh_lbl_submit"
-            android:textAppearance="@style/FontMedium" />
-        <com.google.android.material.button.MaterialButton
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/btnCancel"
-            style="@style/ShopHopMaterialButtonStyle.Stroked"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/sh_spacing_standard_new"
             android:layout_marginTop="@dimen/sh_spacing_xlarge"
             android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-            android:shadowColor="@color/ShopHop_colorPrimary"
             android:text="Cancel"
-            android:textAppearance="@style/FontMedium" />
+            android:background="@drawable/shophop_button_color_orange"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

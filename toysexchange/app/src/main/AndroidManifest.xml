@@ -52,7 +52,8 @@
         <activity
             android:name=".UI.StoreAddActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.EventAttendList"
             android:exported="false"
@@ -92,7 +93,8 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            />
 
         <activity
             android:name=".PaymentActivity"

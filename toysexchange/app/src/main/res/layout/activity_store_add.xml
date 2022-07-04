@@ -1,135 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ShopHop_background_color"
+    android:orientation="vertical"
     tools:context=".UI.StoreAddActivity">
 
 
-    <TextView
-        android:id="@+id/addStore"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Add Store"
+        android:layout_above="@id/banner_container"
+        android:layout_below="@id/toolbar_lay"
+        android:orientation="vertical">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/title_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:hint="Store Title">
 
-        android:textColor="@color/black"
-        android:textSize="@dimen/_24sdp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:gravity="top"
+            android:hint="Store Description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:lines="7"
+                android:shadowColor="@color/ShopHop_colorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlUseCurrentLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:background="@drawable/shophop_bg_ractangal"
+            android:backgroundTint="@color/ShopHop_editText_background"
+            android:padding="@dimen/sh_spacing_middle">
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableStart="@drawable/shophop_ic_my_location"
+                android:drawablePadding="@dimen/sh_spacing_standard"
+                android:drawableTint="@color/ShopHop_radiobuttonTint"
+                android:gravity="center"
+                android:text="@string/sh_lbl_current_location"
+                android:textAppearance="@style/FontSemiBold"
+                android:textColor="@color/ShopHop_radiobuttonTint"
+                android:textSize="@dimen/_15sdp"
+                tools:ignore="MissingPrefix" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_addStore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_xlarge"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:background="@drawable/shophop_button_color_orange"
+            android:text="@string/sh_lbl_submit"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/banner_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
+        android:layout_alignParentBottom="true">
 
-        android:layout_marginBottom="24dp"
-        android:text="Title"
-        android:textSize="@dimen/_18sdp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/title_store"
-        app:layout_constraintStart_toStartOf="@+id/title_store" />
+        <include layout="@layout/shophop_layout_ads" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/title_store"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="86dp"-->
-<!--        android:layout_marginBottom="87dp"-->
-<!--        android:inputType="text"-->
-<!--        android:text="Title"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/description_store"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        />-->
+    </LinearLayout>
 
-
-    <EditText
-        android:id="@+id/title_store"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:inputType="text"
-        android:hint="Title"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        android:padding="@dimen/_5sdp"
-        android:selectAllOnFocus="true"
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="24dp"
-        android:text="Description"
-        android:textSize="@dimen/_18sdp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/description_store"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/description_store"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:inputType="text"
-        android:text="Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/btn_add_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="226dp"
-        android:text="add location "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="268dp"-->
-<!--        android:hint="Description"-->
-<!--        android:inputType="text"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/btn_addStore"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.495"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:padding="@dimen/_5sdp"-->
-<!--        android:selectAllOnFocus="true"-->
-<!--        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"/>-->
-
-
-    <Button
-        android:id="@+id/btn_addStore"
-        style="@style/ShopHopMaterialButtonStyle.Filled"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="52dp"
-
-        android:layout_marginStart="160dp"
-
-        android:background="@drawable/shophop_bg_ractangle_rounded_inactive"
-        android:shadowColor="@color/ShopHop_colorPrimary"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

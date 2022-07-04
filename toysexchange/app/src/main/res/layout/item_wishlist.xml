@@ -70,9 +70,9 @@
     <TextView
         android:id="@+id/tvBin"
         style="@style/ShopHopCartButton"
-        android:layout_marginLeft="@dimen/_150sdp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_toEndOf="@id/tvPrice"
+        android:layout_marginEnd="@dimen/_16sdp"
         app:drawableStartCompat="@drawable/shophop_ic_delete" />
 
 
@@ -94,7 +94,8 @@
         <TextView
             style="@style/ShopHopCartButton"
             android:text="@string/sh_lbl_move_to_cart"
-            app:drawableStartCompat="@drawable/shophop_move_4" />
+            android:textSize="@dimen/_16sdp"
+            app:drawableStartCompat="@drawable/ic_pay" />
 
     </LinearLayout>
 

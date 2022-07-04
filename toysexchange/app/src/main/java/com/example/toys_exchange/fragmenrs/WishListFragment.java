@@ -62,6 +62,7 @@ public class WishListFragment extends Fragment {
 
 
         mView = inflater.inflate(R.layout.activity_wish_list, container, false);
+        getWishListRecycler();
         return mView;
 
 }
@@ -114,7 +115,7 @@ public class WishListFragment extends Fragment {
     @Override
     public void onResume() {
 
-        getWishListRecycler();
+//        getWishListRecycler();
         super.onResume();
     }
 

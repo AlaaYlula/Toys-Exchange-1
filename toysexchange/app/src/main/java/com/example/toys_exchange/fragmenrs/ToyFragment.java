@@ -105,7 +105,6 @@ public class ToyFragment extends Fragment {
         super.onResume();
     }
 
-
     private void setSpinnerWithRadioButton(){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, toyRadioButton);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -311,7 +310,6 @@ public class ToyFragment extends Fragment {
 
     }
 
-
     private void getLoginUserId() {
         Amplify.API.query(
                 ModelQuery.list(Account.class),
@@ -359,6 +357,7 @@ public class ToyFragment extends Fragment {
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
+
     private void removeFromWishList(String toyId){
         Amplify.API.query(
                 ModelQuery.list(UserWishList.class),

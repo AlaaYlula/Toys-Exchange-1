@@ -11,6 +11,8 @@
         android:id="@+id/txtclose"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:text="X"
         android:textStyle="bold"
         android:layout_gravity="end"
@@ -31,76 +33,120 @@
             app:civ_border_color="@color/ShopHop_white"
             app:civ_border_width="@dimen/sh_spacing_control" />
 
-        <RelativeLayout
-            android:id="@+id/rlUsername"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_16sdp"
-            style="@style/comment">
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:hint="User Name">
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Username "
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/montserrat_bold"/>
-
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tvNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_25sdp"
-                android:layout_toRightOf="@id/tvName"
-                android:text="User Name" />
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp" />
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/rlBio"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/_16sdp"
-            style="@style/comment">
-            <TextView
-                android:id="@+id/tvBio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Bio  "
-                android:textSize="@dimen/_12sdp"
-                android:fontFamily="@font/montserrat_bold"/>
+            android:layout_marginStart="@dimen/sh_spacing_standard_new"
+            android:layout_marginTop="@dimen/sh_spacing_standard_new"
+            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
+            android:gravity="top"
+            android:hint="Bio">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tvBioText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_25sdp"
-                android:layout_toRightOf="@id/tvBio"
-                android:text="Bio" />
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:lines="7"
+                android:shadowColor="@color/ShopHop_colorPrimary"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rlUsername"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:layout_margin="@dimen/_16sdp"-->
+<!--            style="@style/comment">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvName"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:text="Username "-->
+<!--                android:textSize="@dimen/_12sdp"-->
+<!--                android:fontFamily="@font/montserrat_bold"/>-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/tvNameText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_5sdp"-->
+<!--                android:layout_marginTop="@dimen/_2sdp"-->
+<!--                android:layout_marginEnd="@dimen/_25sdp"-->
+<!--                android:layout_toRightOf="@id/tvName"-->
+<!--                android:text="User Name" />-->
+
+<!--        </RelativeLayout>-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rlBio"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:layout_margin="@dimen/_16sdp"-->
+<!--            style="@style/comment">-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvBio"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:text="Bio  "-->
+<!--                android:textSize="@dimen/_12sdp"-->
+<!--                android:fontFamily="@font/montserrat_bold"/>-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/tvBioText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/_5sdp"-->
+<!--                android:layout_marginTop="@dimen/_2sdp"-->
+<!--                android:layout_marginEnd="@dimen/_25sdp"-->
+<!--                android:layout_toRightOf="@id/tvBio"-->
+<!--                android:text="Bio" />-->
 
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_update"
         style="@style/ShopHopMaterialButtonStyle.Filled"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
+        android:layout_margin="@dimen/_16sdp"
         android:text="Update" />
 
 </LinearLayout>

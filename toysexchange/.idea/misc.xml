@@ -3,10 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_store_add.xml" value="0.1884498480243161" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.25" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_update_toy.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_wish_list.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/item_wishlist.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/popup_update_event.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/popup_update_toy.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/popup_update_window.xml" value="0.1884498480243161" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_event_detail.xml" value="0.1884498480243161" />
-        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_fragment_sign_in.xml" value="0.1884498480243161" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_newest_product.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toolbar.xml" value="0.33" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toy_delete_layout.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toy_layout.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/layout/toys_items.xml" value="0.1884498480243161" />
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_details.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event_list.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/user/ASAC/aya/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_store_list.xml" value="0.20416666666666666" />

@@ -6,9 +6,7 @@
     android:id="@+id/listProductRaw"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/sh_spacing_standard_new"
-    android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-    android:layout_marginBottom="@dimen/sh_spacing_standard_new"
+    android:layout_margin="@dimen/_16sdp"
     android:background="@color/ShopHop_itemText_background"
     android:orientation="horizontal">
 

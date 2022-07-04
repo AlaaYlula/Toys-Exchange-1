@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_toy.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_wish_list.xml" value="0.1" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/item_wishlist.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Computergy World/Desktop/final/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/HP/.gradle/caches/transforms-3/f5afbe245d43f3927d4781e9c77bd966/transformed/appcompat-1.4.2/res/layout/support_simple_spinner_dropdown_item.xml" value="0.17916666666666667" />
+=======
+>>>>>>> 88258a8198720b39316ac4aea31bfa68839b3263
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_walk_1.xml" value="0.1805" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_walk_3.xml" value="0.1805" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_ic_wallet_line.xml" value="0.1805" />
@@ -45,8 +48,14 @@
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/popup_update_window.xml" value="0.151268115942029" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/profile_layout.xml" value="0.151268115942029" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_dashboard_shop.xml" value="0.19746376811594202" />
+<<<<<<< HEAD
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_event_detail.xml" value="0.151268115942029" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.17291666666666666" />
+=======
+        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_event_detail.xml" value="0.2" />
+        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_activity_product_detail.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_app_bar_dash_board.xml" value="0.12135416666666667" />
+>>>>>>> 88258a8198720b39316ac4aea31bfa68839b3263
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_item_newest_product.xml" value="0.1" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_ads.xml" value="0.16510416666666666" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_layout_sidebar.xml" value="0.151268115942029" />

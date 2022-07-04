@@ -94,15 +94,18 @@ public class adaptorComment extends RecyclerView.Adapter<adaptorComment.CustomVi
                     user -> {
                        runOnUiThread(()->{
                            holder.username.setText(user.getData().getUsername());
-                           Amplify.Storage.getUrl(
-                                   user.getData().getImage(),
-                                   result -> {
-                                       runOnUiThread(()->{
-                                           Picasso.get().load(result.getUrl().toString()).into(holder.image);
-                                       });
-                                   },
-                                   error -> Log.e("MyAmplifyApp", "URL generation failure", error)
-                           );
+                           String image1= user.getData().getImage();
+                           if(image1!=null) {
+                               Amplify.Storage.getUrl(
+                                       image1,
+                                       result -> {
+                                           runOnUiThread(() -> {
+                                               Picasso.get().load(result.getUrl().toString()).into(holder.image);
+                                           });
+                                       },
+                                       error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+                               );
+                           }
                        });
                     },
                     error -> Log.e("Adaptor", error.toString(), error)

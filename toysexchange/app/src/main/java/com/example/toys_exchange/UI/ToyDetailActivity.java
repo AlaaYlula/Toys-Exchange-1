@@ -208,8 +208,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void firebaseAction()
-    {
+    public void firebaseAction() {
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();

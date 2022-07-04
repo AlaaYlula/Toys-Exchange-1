@@ -81,7 +81,14 @@ public class WishListActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
-            });
+
+                 @Override
+                 public void onBuy(int position) {
+                     Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                     intent.putExtra("toyId",toyList.get(position).getId());
+                     startActivity(intent);
+                 }
+             });
 
             recyclerView.setAdapter(customAdapter);
             recyclerView.setHasFixedSize(true);
@@ -149,8 +156,11 @@ public class WishListActivity extends AppCompatActivity {
                                         Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                 response ->{
                                                     Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
-                                                    toyList.remove(position);
-                                                    customToyAdapter.notifyItemRemoved(position);
+                                                    runOnUiThread(()->{
+                                                        toyList.remove(position);
+                                                        customToyAdapter.notifyItemRemoved(position);
+                                                    });
+
                                                 } ,
                                                 error -> Log.e("MyAmplifyApp", "Create failed", error)
                                         );

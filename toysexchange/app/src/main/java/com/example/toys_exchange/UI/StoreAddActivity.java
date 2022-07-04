@@ -23,6 +23,7 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Store;
+import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
@@ -30,6 +31,7 @@ public class StoreAddActivity extends AppCompatActivity {
     private static final String TAG = StoreAddActivity.class.getSimpleName() ;
 
     Button addStore;
+    Button cancelAdd;
     String cognitoId;
 
     TextView addLocation;
@@ -56,6 +58,7 @@ public class StoreAddActivity extends AppCompatActivity {
 
         addStore = findViewById(R.id.btn_addStore);
         addLocation=findViewById(R.id.tvLocation);
+        cancelAdd = findViewById(R.id.btnCancel);
 
         addLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +148,10 @@ public class StoreAddActivity extends AppCompatActivity {
                 }
             }
 
+        });
+
+        cancelAdd.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
         });
 
     }

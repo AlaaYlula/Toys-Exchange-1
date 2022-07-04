@@ -538,7 +538,9 @@ public class MainActivity extends AppCompatActivity {
                     ModelQuery.get(Account.class, userId),
                     accs -> {
                         if(accs.hasData()) {
-                            getUrl(accs.getData().getImage(),imageView);
+                            if(accs.getData().getImage()!=null) {
+                                getUrl(accs.getData().getImage(), imageView);
+                            }
                         }
                     },
                     error -> Log.e(TAG, error.toString(), error)

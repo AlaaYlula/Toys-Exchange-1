@@ -605,6 +605,9 @@ public class MainActivity extends AppCompatActivity {
                                                     .accountid(acc_id)
                                                     .build();
 
+                                            Log.i(TAG, "notif: " + notification );
+
+
                                             Amplify.API.query(
                                                     ModelQuery.list(Notification.class),
                                                     notify -> {
@@ -614,7 +617,7 @@ public class MainActivity extends AppCompatActivity {
                                                             Log.i(TAG, "ayaaa99:  " + acc_id);
                                                             Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
 
-                                                            if(!noti.getAccountid().equals(acc_id)) {
+                                                            if(!noti.getTokenid().equals(token)) {
                                                                 Amplify.API.mutate(
                                                                         ModelMutation.create(notification),
                                                                         success -> {
@@ -634,9 +637,6 @@ public class MainActivity extends AppCompatActivity {
                                 },
                                 error -> Log.e(TAG, error.toString(), error)
                         );
-
-//                        id: ID!tokenid: Stringaccountid:
-
 
                         // Log and toast
 //                        String msg = getString(R.string.msg_token_fmt, token);

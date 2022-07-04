@@ -1,11 +1,7 @@
 package com.example.toys_exchange.UI;
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,8 +9,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -139,7 +133,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         toyId = toyIntent.getStringExtra("toyId");
 
 
-        toyDescription=findViewById(R.id.tvDescription);
+        toyDescription=findViewById(R.id.tvUserName);
         toyDescription.setText(description);
 
         toyCondition=findViewById(R.id.tvCondition);

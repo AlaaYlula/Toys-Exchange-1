@@ -31,6 +31,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.Typetoy;
+import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
@@ -57,6 +58,7 @@ public class ToyActivity extends AppCompatActivity {
 
     Button uploadImage;
     Button addToy;
+    Button cancelAdd;
 
     Handler handler;
 
@@ -91,6 +93,7 @@ public class ToyActivity extends AppCompatActivity {
 
          uploadImage=findViewById(R.id.btn_upload);
          addToy=findViewById(R.id.btn_add_toy);
+        cancelAdd = findViewById(R.id.btnCancel);
 
         mSpinnerType=findViewById(R.id.spinner_type);
 
@@ -155,6 +158,10 @@ public class ToyActivity extends AppCompatActivity {
 
         uploadImage.setOnClickListener(view -> {
             pictureUpload();
+        });
+
+        cancelAdd.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
         });
 
     }
@@ -407,13 +414,6 @@ public class ToyActivity extends AppCompatActivity {
         Log.i(TAG, "sharedImg: id"+userId);
 
     }
-
-
-
-
-
-
-
 }
 
 

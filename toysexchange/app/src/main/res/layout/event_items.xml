@@ -45,7 +45,6 @@
                android:layout_marginStart="@dimen/_10sdp"
                android:layout_marginEnd="@dimen/_40sdp"
                android:layout_marginTop="@dimen/_5sdp"
-               android:text="event name"
                android:textAllCaps="true"
                android:fontFamily="@font/montserrat_bold"
                />
@@ -57,7 +56,6 @@
                android:layout_marginStart="@dimen/_10sdp"
                android:layout_marginEnd="@dimen/_40sdp"
                android:layout_below="@+id/event_name"
-               android:text="event Description"
                />
 
        </RelativeLayout>

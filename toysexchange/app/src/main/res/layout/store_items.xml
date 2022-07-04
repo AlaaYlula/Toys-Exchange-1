@@ -49,7 +49,6 @@ android:elevation="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="ssssssssssssssssss"
             android:textAllCaps="true"
             android:fontFamily="@font/montserrat_bold"
             />
@@ -62,7 +61,6 @@ android:elevation="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_40sdp"
             android:layout_below="@+id/username_store"
-            android:text="ssssssssssssssssss"
             />
 
 
@@ -74,7 +72,6 @@ android:elevation="@dimen/_8sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_40sdp"
             android:layout_below="@+id/store_title"
-            android:text="ssssssssssssssssss"
             />
 
     </RelativeLayout>

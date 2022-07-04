@@ -105,7 +105,6 @@ public class ToyFragment extends Fragment {
         super.onResume();
     }
 
-
     private void setSpinnerWithRadioButton(){
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, toyRadioButton);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
@@ -293,8 +292,11 @@ public class ToyFragment extends Fragment {
                     intent.putExtra("description", toyList.get(position).getToydescription());
                     intent.putExtra("image", toyList.get(position).getImage());
                     intent.putExtra("price", toyList.get(position).getPrice());
-                    intent.putExtra("condition", toyList.get(position).getCondition());
+                    intent.putExtra("condition", toyList.get(position).getCondition().toString());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
                     intent.putExtra("toyId",toyList.get(position).getId());
+                    intent.putExtra("userToyId",toyList.get(position).getAccountToysId());
                     startActivity(intent);
                 }
             });
@@ -307,7 +309,6 @@ public class ToyFragment extends Fragment {
         });
 
     }
-
 
     private void getLoginUserId() {
         Amplify.API.query(
@@ -356,6 +357,7 @@ public class ToyFragment extends Fragment {
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
+
     private void removeFromWishList(String toyId){
         Amplify.API.query(
                 ModelQuery.list(UserWishList.class),

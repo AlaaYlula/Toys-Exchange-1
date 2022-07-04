@@ -14,6 +14,22 @@
         app:contentInsetStartWithNavigation="0dp"
         app:layout_scrollFlags="scroll|enterAlways"
         app:popupTheme="@style/ShopHopAppTheme.PopupOverlay"
-        app:titleTextColor="@color/ShopHop_textColorPrimary" />
+        app:titleTextColor="@color/ShopHop_textColorPrimary" >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/toyexchange"
+                />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
 </com.google.android.material.appbar.AppBarLayout>

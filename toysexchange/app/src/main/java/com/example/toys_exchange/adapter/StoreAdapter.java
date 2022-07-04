@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -66,7 +67,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.CustomViewHo
 
         TextView storeName;
         TextView description;
-        TextView storeLocation;
+        ImageView storeLocation;
         TextView username;
 
 

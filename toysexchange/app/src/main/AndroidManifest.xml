@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -7,6 +8,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
+
 
     <application
         android:name=".AmplifyApplication"
@@ -15,6 +18,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/ShopHopAppTheme"
         >
 
         <meta-data
@@ -25,6 +29,7 @@
             android:name=".UI.StoreListActivity"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"
             />
 
         <activity
@@ -47,7 +52,8 @@
         <activity
             android:name=".UI.StoreAddActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.EventAttendList"
             android:exported="false"
@@ -59,11 +65,13 @@
         <activity
             android:name=".UI.toyListActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme" />
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"/>
         <activity
             android:name=".UI.eventListActivity"
             android:exported="false"
             android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".profileActivity"
             />
         <activity
             android:name=".profileActivity"
@@ -85,7 +93,8 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            />
 
         <activity
             android:name=".PaymentActivity"
@@ -128,15 +137,24 @@
             </intent-filter>
         </activity>
 
-
         <activity
             android:name=".WishListActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/ShopHopAppTheme">
-        </activity>
+            android:parentActivityName=".profileActivity"
+            android:exported="false"/>
 
+<!--        <service-->
+<!--            android:name=".java.MyFirebaseMessagingService"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
+<!--        <meta-data-->
+<!--            android:name="com.google.firebase.messaging.default_notification_channel_id"-->
+<!--            android:value="@string/default_notification_channel_id" />-->
+
+<!--        </activity>-->
 
     </application>
 

@@ -28,16 +28,6 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/_30sdp">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/ivProfileImage"-->
-<!--                android:layout_width="@dimen/_120sdp"-->
-<!--                android:layout_height="@dimen/_120sdp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_margin="@dimen/sh_spacing_standard_new"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/shophop_ic_walk"-->
-<!--                app:civ_border_color="@color/ShopHop_view_color"-->
-<!--                app:civ_border_width="@dimen/_4sdp" />-->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivProfileImage"

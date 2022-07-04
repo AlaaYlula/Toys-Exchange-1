@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,15 +24,19 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Store;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserWishList;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.EventActivity;
+import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.ToyDetailActivity;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
 import com.example.toys_exchange.adapter.ToyAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -180,6 +185,8 @@ public class ToyFragment extends Fragment {
                             }, error -> Log.e("error: ", "-> ", error)
                     );
                 }
+//                // Sort the Created At
+//                Collections.sort(toyList,new SortByDate());
             }
 
             @Override
@@ -188,7 +195,14 @@ public class ToyFragment extends Fragment {
             }
         });
     }
-
+    // Class to sort the comments by date
+    // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+    static class SortByDate implements Comparator<Toy> {
+        @Override
+        public int compare(Toy a, Toy b) {
+            return a.getCreatedAt().compareTo(b.getCreatedAt());
+        }
+    }
     private void setToyRadioButtonConditionListener(){
         mConditionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -257,6 +271,8 @@ public class ToyFragment extends Fragment {
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
             recyclerView = mView.findViewById(R.id.recycler_view);
+
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             ToyAdapter toyAdapter = new ToyAdapter(toyList,new ToyAdapter.CustomClickListener() {
                 @Override

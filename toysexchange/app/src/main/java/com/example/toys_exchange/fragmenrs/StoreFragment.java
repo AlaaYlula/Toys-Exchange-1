@@ -30,6 +30,8 @@ import com.example.toys_exchange.adapter.CustomEventAdapter;
 import com.example.toys_exchange.adapter.StoreAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class StoreFragment extends Fragment {
@@ -119,7 +121,7 @@ public class StoreFragment extends Fragment {
 
             recyclerView.setHasFixedSize(true);
 
-            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
             recyclerView.setHasFixedSize(true);
             return  true;
         });
@@ -131,6 +133,8 @@ public class StoreFragment extends Fragment {
                         Log.i("get store ", store.toString());
                         storeList.add(store);
                     }
+            // Sort the Created At
+            Collections.sort(storeList,new SortByDate());
 
                     Bundle bundle =new Bundle();
                     bundle.putString("data", "done");
@@ -142,6 +146,13 @@ public class StoreFragment extends Fragment {
         );
         super.onResume();
     }
-
+    // Class to sort the comments by date
+    // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+    static class SortByDate implements Comparator<Store> {
+        @Override
+        public int compare(Store a, Store b) {
+            return a.getCreatedAt().compareTo(b.getCreatedAt());
+        }
+    }
 
 }

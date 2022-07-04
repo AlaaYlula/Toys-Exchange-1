@@ -360,5 +360,6 @@
     <string name="add_store">"Add Store "</string>
     <string name="store_list">My Stores</string>
     <string name="store_title">title</string>
+    <string name="default_notification_channel_id" />
 
 </resources>

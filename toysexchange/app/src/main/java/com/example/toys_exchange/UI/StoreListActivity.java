@@ -1,6 +1,7 @@
 package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,11 +16,14 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
+import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.Store;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.StoreDeleteAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class StoreListActivity extends AppCompatActivity {
@@ -37,6 +41,11 @@ public class StoreListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Stores List");
+
         handler = new Handler(Looper.getMainLooper(), msg -> {
             setUserStore();
             return true;
@@ -102,6 +111,8 @@ public class StoreListActivity extends AppCompatActivity {
                                                 storeList.add(store);
                                             }
                                         }
+                                        // Sort the Created At
+                                        Collections.sort(storeList,new SortByDate());
                                     }
                                     handler.sendMessage(new Message());
 
@@ -113,8 +124,14 @@ public class StoreListActivity extends AppCompatActivity {
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
-
-
+    }
+    // Class to sort the comments by date
+    // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+    static class SortByDate implements Comparator<Store> {
+        @Override
+        public int compare(Store a, Store b) {
+            return a.getCreatedAt().compareTo(b.getCreatedAt());
+        }
     }
 
     private void getLoginUserId() {

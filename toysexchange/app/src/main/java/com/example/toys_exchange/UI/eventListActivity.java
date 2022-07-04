@@ -3,10 +3,14 @@ package com.example.toys_exchange.UI;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 
 import android.os.Bundle;
@@ -14,6 +18,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -22,14 +31,17 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Comment;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.UserAttendEvent;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.adapter.CustomEventAdapter;
 import com.example.toys_exchange.adapter.CustomToyAdapter;
 import com.example.toys_exchange.adapter.EventDeleteAdapter;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class eventListActivity extends AppCompatActivity {
@@ -44,17 +56,29 @@ public class eventListActivity extends AppCompatActivity {
     Account acc;
     List<Account> acclist = new ArrayList<>();
     public String userId;
+    Event eventOne;
 
     String cognitoId;
     private String loginUserId;
     private String loginUserName;
 
     EventDeleteAdapter customEventAdapter;
+
+    Dialog myDialog;
+
+    public String title;
+    public String body;
+    public String eventId;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Events List");
 
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
@@ -66,6 +90,8 @@ public class eventListActivity extends AppCompatActivity {
         cognitoId = logedInUser.getUserId();
         getEvents();
 
+        myDialog = new Dialog(this);
+
     }
 
     @Override
@@ -76,14 +102,10 @@ public class eventListActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    private void getEvents()
-    {
+    private void getEvents() {
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String dima =  logedInUser.getUserId();
-        Log.i(TAG, "Dima " + dima);
-        Log.i(TAG, "yousssi: " + logedInUser.getUserId());
-//        String accId = "userId";
         final String[] acId = new String[1];
         runOnUiThread(() -> {
             Amplify.API.query(
@@ -108,11 +130,11 @@ public class eventListActivity extends AppCompatActivity {
                                         for (Event events :
                                                 success.getData()) {
                                             eventList.add(events);
-//                                                acc_id = acc.getId().toString();
-//                                                Log.i(TAG, "InEvent: " + acc.getId());
                                             Log.i(TAG, "InEvent: " + eventList);
                                         }
                                         runOnUiThread(() -> {
+                                            // Sort the Created At
+                                            Collections.sort(eventList,new SortByDate());
                                             handler.sendMessage(new Message());
                                         });
                                     });
@@ -126,6 +148,14 @@ public class eventListActivity extends AppCompatActivity {
             );
         });
 
+    }
+    // Class to sort the comments by date
+    // https://www.delftstack.com/howto/java/how-to-sort-objects-in-arraylist-by-date-in-java/
+    static class SortByDate implements Comparator<Event> {
+        @Override
+        public int compare(Event a, Event b) {
+            return a.getCreatedAt().compareTo(b.getCreatedAt());
+        }
     }
 
     private void getEventByUser() {
@@ -209,15 +239,11 @@ public class eventListActivity extends AppCompatActivity {
 
             @Override
             public void onUpdateClickListener(int position) {
-                Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
-                intent.putExtra("eventTitle",eventList.get(position).getTitle());
-                intent.putExtra("description",eventList.get(position).getEventdescription());
-                intent.putExtra("userID",eventList.get(position).getAccountEventsaddedId());
-                intent.putExtra("eventID",eventList.get(position).getId());
-                intent.putExtra("cognitoID",cognitoId);
-                intent.putExtra("loginUserID",acc_id);
-                intent.putExtra("loginUserName",loginUserName);
-                startActivity(intent);
+                title = eventList.get(position).getTitle();
+                body = eventList.get(position).getEventdescription();
+                eventId = eventList.get(position).getId();
+                View layout = getLayoutInflater().inflate(R.layout.popup_update_event, null);
+                ShowPopup(layout,position);
             }
 
         });
@@ -247,6 +273,98 @@ public class eventListActivity extends AppCompatActivity {
         );
 
     }
+
+    public void ShowPopup(View v,int position) {
+        TextView txtclose;
+        MaterialButton btn_update;
+        myDialog.setContentView(R.layout.popup_update_event);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        btn_update =  myDialog.findViewById(R.id.btn_update);
+        //Set defualt values
+        EditText eventTitle;
+        EditText eventDescription;
+
+        eventTitle = myDialog.findViewById(R.id.etTitle);
+        eventDescription = myDialog.findViewById(R.id.etDescription);
+
+        eventTitle.setText(title);
+        eventDescription.setText(body);
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+
+
+            }
+        });
+        btn_update.setOnClickListener(view->{
+
+
+            String title = eventTitle.getText().toString();
+            String description = eventDescription.getText().toString();
+            updateEvent(title,description,position);
+
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+    private void updateEvent(String title , String description,int position) {
+        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
+
+        runOnUiThread(() -> {
+            Amplify.API.query(
+                    ModelQuery.list(Account.class, Account.IDCOGNITO.eq(logedInUser.getUserId())),
+                    allUsers -> {
+                        if(allUsers.hasData()) {
+                            for (Account acc :
+                                    allUsers.getData()) {
+                                if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
+                                    acclist.add(acc);
+                                    acc_id = acc.getId();
+                                    Amplify.API.query(ModelQuery.list(Event.class, Event.ID.eq(eventId)),
+                                            events -> {
+                                                if(events.hasData()){
+                                                    for(Event event : events.getData()){
+                                                        if(event.getId().equals(eventId)){
+                                                            eventOne = Event.builder().title(title)
+                                                                    .eventdescription(description)
+                                                                    .id(eventId)
+                                                                    .accountEventsaddedId(acc_id)
+                                                                    .longitude(event.getLongitude()).latitude(event.getLatitude()).build();
+
+                                                            Amplify.API.mutate(ModelMutation.update(eventOne),
+                                                                    response -> {
+                                                                        runOnUiThread(()->{
+                                                                            Toast.makeText(eventListActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                                                                eventList.remove(position);
+                                                                                eventList.add(position,eventOne);
+                                                                                customEventAdapter.notifyItemChanged(position);
+
+                                                                        });
+                                                                        // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                                                        Log.i(TAG, "Event updated " + response);
+                                                                    },
+                                                                    error -> Log.e(TAG, "update failed", error)
+                                                            );
+                                                        }
+                                                    }
+                                                }
+
+                                            },
+                                            error -> Log.e(TAG, "onClick: "));
+                                }
+                            }
+                        }
+                    },
+                    error -> Log.e(TAG, error.toString(), error)
+            );
+        });
+          }
+
+
 }
 
 

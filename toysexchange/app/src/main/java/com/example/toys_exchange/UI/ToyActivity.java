@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -71,7 +72,10 @@ public class ToyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toy);
-//        getSupportActionBar().setTitle("Add Toy");
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add Toy");
 
 
         handler=new Handler(Looper.getMainLooper(),msg->{
@@ -201,6 +205,11 @@ public class ToyActivity extends AppCompatActivity {
                                     Amplify.API.mutate(
                                             ModelMutation.create(oneToy),
                                             success -> {
+                                                runOnUiThread(()->{
+                                                    Toast.makeText(ToyActivity.this, "Toy Added", Toast.LENGTH_SHORT).show();
+
+                                                });
+
                                                 Log.i(TAG, "Saved item API: " + success.getData());
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
@@ -306,6 +315,8 @@ public class ToyActivity extends AppCompatActivity {
                             file,
                             result -> {
                                 Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                Toast.makeText(ToyActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
+
                                 URL=result.getKey();
                             },
                             storageFailure -> Log.e(TAG, "Upload failed", storageFailure)

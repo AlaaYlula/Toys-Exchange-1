@@ -132,7 +132,7 @@ public class StoreAddActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // Whatever...
-                                    startActivity(new Intent(StoreAddActivity.this,StoreAddActivity.class));
+                                    dialog.cancel();
                                 }
                             }).show();
                 }

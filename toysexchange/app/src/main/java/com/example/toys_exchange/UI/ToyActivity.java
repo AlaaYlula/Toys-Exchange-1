@@ -2,6 +2,7 @@ package com.example.toys_exchange.UI;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -137,12 +139,24 @@ public class ToyActivity extends AppCompatActivity {
 
                 String price=toyPrice.getText().toString();
 
-//                if(toyType.equals("REQUEST")){
-//                    toyPrice.setEnabled(false);
-//                    uploadImage.setEnabled(false);
-//                }
+                if(name.length()>0 && description.length()>0 && toyCondition.length()>0 && toyType.length()>0 && contactInfo.length()==10){
+                    saveToCloud(name,description,price,toyCondition,contact,toyType);
+                }else {
+                    if (!isFinishing()){
+                        new AlertDialog.Builder(ToyActivity.this)
+                                .setTitle("Error")
+                                .setMessage("you should add toy name, description, condition, type and contact info ")
+                                .setCancelable(false)
+                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Whatever...
+                                        dialog.cancel();
+                                    }
+                                }).show();
+                    }
+                }
 
-                saveToCloud(name,description,price,toyCondition,contact,toyType);
 
 
             }

@@ -3,6 +3,7 @@ package com.example.toys_exchange.UI;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -182,52 +184,70 @@ public class EventActivity extends AppCompatActivity {
             String eventDescriptionText = eventDescription.getText().toString();
             String eventTitleText = eventTitle.getText().toString();
 
-            Log.i(TAG, "ID Cognito => "+ userId);
-            Amplify.API.query(
-                    ModelQuery.list(Account.class),
-                    users -> {
-                        Log.i(TAG, "Users => "+ users.getData());
-                        if(users.hasData()) {
-                            for (Account user :
-                                    users.getData()) {
-                                Log.i(TAG, "User add this Event" + user);
-                                if (user.getIdcognito().equals(userId)) {
-                                    Event event;
-                                    if(longitude!=null && latitude!=null){
-                                         event = Event.builder()
-                                                .title(eventTitleText)
-                                                .eventdescription(eventDescriptionText)
-                                                 .latitude(latitude)
-                                                 .longitude(longitude)
-                                                 .accountEventsaddedId(user.getId())
-                                                 .build();
-                                    }else {
-                                         event = Event.builder()
-                                                .title(eventTitleText)
-                                                .eventdescription(eventDescriptionText)
-                                                .accountEventsaddedId(user.getId())
-                                                .build();
-                                        // API save to backend
+            if(eventDescriptionText.length()>0 && eventTitleText.length()>0 && longitude!=0.0 & latitude!=0.0){
+                Log.i(TAG, "ID Cognito => "+ userId);
+                Amplify.API.query(
+                        ModelQuery.list(Account.class),
+                        users -> {
+                            Log.i(TAG, "Users => "+ users.getData());
+                            if(users.hasData()) {
+                                for (Account user :
+                                        users.getData()) {
+                                    Log.i(TAG, "User add this Event" + user);
+                                    if (user.getIdcognito().equals(userId)) {
+                                        Event event;
+                                        if(longitude!=null && latitude!=null){
+                                            event = Event.builder()
+                                                    .title(eventTitleText)
+                                                    .eventdescription(eventDescriptionText)
+                                                    .latitude(latitude)
+                                                    .longitude(longitude)
+                                                    .accountEventsaddedId(user.getId())
+                                                    .build();
+                                        }else {
+                                            event = Event.builder()
+                                                    .title(eventTitleText)
+                                                    .eventdescription(eventDescriptionText)
+                                                    .accountEventsaddedId(user.getId())
+                                                    .build();
+                                            // API save to backend
 
-                                    }
+                                        }
 
-                                    Amplify.API.mutate(
-                                            ModelMutation.create(event),
-                                            success -> {
-                                                Log.i(TAG, "Saved item API: " + success.getData());
-                                            },
-                                            error -> Log.e(TAG, "Could not save item to API", error)
-                                    );
+                                        Amplify.API.mutate(
+                                                ModelMutation.create(event),
+                                                success -> {
+                                                    Log.i(TAG, "Saved item API: " + success.getData());
+                                                },
+                                                error -> Log.e(TAG, "Could not save item to API", error)
+                                        );
 //                                    firebaseAction();
+                                    }
                                 }
                             }
-                        }
-                    },
-                    error -> Log.e(TAG, error.toString(), error)
-            );
+                        },
+                        error -> Log.e(TAG, error.toString(), error)
+                );
 
-            Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
-            btnSubmit.setBackgroundColor(Color.RED);
+                Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
+                btnSubmit.setBackgroundColor(Color.RED);
+            }else {
+                if (!isFinishing()){
+                    new AlertDialog.Builder(EventActivity.this)
+                            .setTitle("Error")
+                            .setMessage("you should add title and description and location ")
+                            .setCancelable(false)
+                            .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Whatever...
+                                    dialog.cancel();
+                                }
+                            }).show();
+                }
+            }
+
+
         });
 
         cancelAdd.setOnClickListener(view -> {

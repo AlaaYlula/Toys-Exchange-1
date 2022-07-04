@@ -77,7 +77,8 @@
             android:name=".profileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"
-            android:theme="@style/ShopHopAppTheme" />
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.ToyDetailActivity"
             android:exported="false"
@@ -139,8 +140,11 @@
 
         <activity
             android:name=".WishListActivity"
+            android:exported="false"
+            android:theme="@style/ShopHopAppTheme"
             android:parentActivityName=".profileActivity"
-            android:exported="false"/>
+           />
+
 
 <!--        <service-->
 <!--            android:name=".java.MyFirebaseMessagingService"-->

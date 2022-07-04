@@ -64,6 +64,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.toyexchange_activity_add_event);
+
         Toolbar toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -232,6 +233,8 @@ public class EventActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
             btnSubmit.setBackgroundColor(Color.RED);
+
+            startActivity(new Intent(this,MainActivity.class));
         });
 
         cancelAdd.setOnClickListener(view -> {

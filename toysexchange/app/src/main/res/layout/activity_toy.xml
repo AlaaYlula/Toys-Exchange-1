@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ShopHop_background_color"
-    tools:context=".UI.ToyActivity"
-    android:orientation="vertical">
+    tools:context=".UI.ToyActivity">
 
     <include
         android:id="@+id/toolbar_lay"
@@ -15,9 +14,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/banner_container"
-        android:layout_below="@id/toolbar_lay"
+        android:layout_below="@+id/toolbar_lay"
         android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_16sdp">
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="@dimen/_158sdp"
+                android:layout_height="wrap_content"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_condition"
+                android:layout_width="@dimen/_158sdp"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_txt_toy_name"
@@ -102,22 +121,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/spinner_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp" />
-
-        <Spinner
-            android:id="@+id/spinner_condition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp" />
-
         <Button
             android:id="@+id/btn_upload"
             android:layout_width="match_parent"
@@ -143,14 +146,5 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/banner_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <include layout="@layout/shophop_layout_ads" />
-
-    </LinearLayout>
-
 </RelativeLayout>
+

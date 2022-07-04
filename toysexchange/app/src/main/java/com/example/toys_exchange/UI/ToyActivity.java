@@ -79,10 +79,10 @@ public class ToyActivity extends AppCompatActivity {
             return true;
         });
 
-         toyName=findViewById(R.id.edit_txt_toy_name);
-         toyDescription=findViewById(R.id.edit_txt_toy_description);
-         toyPrice=findViewById(R.id.edit_txt_toy_price);
-         contactInfo=findViewById(R.id.edit_txt_contact_nfo);
+         toyName=findViewById(R.id.etToyName);
+         toyDescription=findViewById(R.id.etDescription);
+         toyPrice=findViewById(R.id.etPrice);
+         contactInfo=findViewById(R.id.etContactInfo);
 
          uploadImage=findViewById(R.id.btn_upload);
          addToy=findViewById(R.id.btn_add_toy);

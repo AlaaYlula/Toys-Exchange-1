@@ -2,6 +2,7 @@ package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -26,13 +28,14 @@ public class StoreAddActivity extends AppCompatActivity {
     Button addStore;
     String cognitoId;
 
-    Button addLocation;
+    TextView addLocation;
 
 
     Double longitude;
     Double latitude;
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +43,12 @@ public class StoreAddActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle("Add Store");
 
 
+
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
 
         addStore = findViewById(R.id.btn_addStore);
-        addLocation=findViewById(R.id.btn_add_location);
+        addLocation=findViewById(R.id.tvLocation);
 
         addLocation.setOnClickListener(new View.OnClickListener() {
             @Override

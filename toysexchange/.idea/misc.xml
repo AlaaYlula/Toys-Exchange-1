@@ -21,6 +21,9 @@
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_event.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/HP/IdeaProjects/Labwork_level2/project/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_toy.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/drawable/rounded_corner.xml" value="0.19" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/drawable/shape_white.xml" value="0.203" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_bg_ractangle_rounded_stroke.xml" value="0.1" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/drawable/shophop_button_color_orange.xml" value="0.203" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_event.xml" value="0.264" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/activity_store_add.xml" value="0.264" />
@@ -29,7 +32,10 @@
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_comment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/fragment_wish_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/item_wishlist.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_bg_ractangle_white_base.xml" value="0.24923076923076923" />
         <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/shophop_fragment_sign_in.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/test.xml" value="0.253125" />
+        <entry key="..\:/Users/Rawzi Homran/Desktop/Toys-Exchange/toysexchange/app/src/main/res/layout/toyexchange_activity_add_event.xml" value="0.264" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable-v24/shophop_ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/sohai/java/Toys-Exchange/toysexchange/app/src/main/res/drawable/ic__01.xml" value="0.1" />

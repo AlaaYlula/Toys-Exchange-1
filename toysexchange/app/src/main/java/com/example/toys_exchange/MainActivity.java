@@ -1,24 +1,34 @@
 package com.example.toys_exchange;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +37,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
@@ -48,10 +59,17 @@ import com.example.toys_exchange.fragmenrs.EventFragment;
 import com.example.toys_exchange.fragmenrs.StoreFragment;
 import com.example.toys_exchange.fragmenrs.ToyFragment;
 import com.example.toys_exchange.fragmenrs.WishListFragment;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_CODE = 123;
+    private String URL;
+    CircleImageView imageView;
+
     private static final String TOY_ID = "toyId";
     private FloatingActionButton mAdd;
     private TextView mProfile;
@@ -113,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
     private String image;
     private String usernameDisplay;
     private String userBio;
+
+    Dialog myDialog;
+    CircleImageView imageUpdate;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -224,14 +249,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        TextView tvSetting = findViewById(R.id.tvSetting);
-        tvSetting.setOnClickListener(view -> {
-            startActivity(new Intent(this,MainActivity2.class));
-        });
-
+//        TextView tvSetting = findViewById(R.id.tvSetting);
+//        tvSetting.setOnClickListener(view -> {
+//            startActivity(new Intent(this,MainActivity2.class));
+//        });
+        myDialog = new Dialog(this);
 
     }
-
 
 
     @Override
@@ -315,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     runOnUiThread(()->{
                         // For Set the Image
-                        CircleImageView imageView = findViewById(R.id.civProfile);
+                         imageView = findViewById(R.id.civProfile);
                         getUrl(image,imageView);
 
                         TextView txtDisplayName = findViewById(R.id.txtDisplayName);
@@ -354,7 +378,166 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-    private void getUrl(String image , CircleImageView imageView){
+
+    /////////////////////////////////////////////////////// Image ..............................
+    private void pictureUpload() {
+        // Launches photo picker in single-select mode.
+        // This means that the user can select one photo or video.
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != Activity.RESULT_OK) {
+            // Handle error
+            Log.e(TAG, "onActivityResult: Error getting image from device");
+            return;
+        }
+        switch(requestCode) {
+            case REQUEST_CODE:
+                // Get photo picker response for single select.
+                Uri currentUri = data.getData();
+
+                // Do stuff with the photo/video URI.
+                Log.i(TAG, "onActivityResult: the uri is => " + currentUri);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String userIdForImageName =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
+
+                try {
+                    Bitmap bitmap = getBitmapFromUri(currentUri);
+
+                    File file = new File(getApplicationContext().getFilesDir(), username+userIdForImageName+".jpg");
+                    OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    os.close();
+
+                    // upload to s3
+                    // uploads the file
+                    Amplify.Storage.uploadFile(
+                            username+userIdForImageName+".jpg",
+                            file,
+                            result -> {
+                                Toast.makeText(MainActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
+                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                URL=result.getKey();
+                                runOnUiThread(()->{
+                                    //getUrl(URL,imageView);
+                                    getUrl(URL,imageUpdate);
+                                });
+                            },
+                            storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
+                    );
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+        }
+
+    }
+
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+
+        return image;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void ShowPopup(View v) {
+        TextView txtclose;
+        MaterialButton btn_update;
+        myDialog.setContentView(R.layout.popup_update_window);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        btn_update =  myDialog.findViewById(R.id.btn_update);
+        //Set defualt values
+        EditText textUsername;
+        EditText textBio;
+
+        textUsername = myDialog.findViewById(R.id.tvNameText);
+        textBio = myDialog.findViewById(R.id.tvBioText);
+        imageUpdate = myDialog.findViewById(R.id.editImage);
+
+        setUserImageInpopUp(imageUpdate);
+        textUsername.setText(usernameDisplay);
+        textBio.setText(userBio);
+        ////////
+        imageUpdate.setOnClickListener(view->{
+            pictureUpload();
+        });
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+                getLoginUserId();
+            }
+        });
+        btn_update.setOnClickListener(view->{
+
+
+            String username = textUsername.getText().toString();
+            String bio = textBio.getText().toString();
+            String url = URL;
+
+            updateUserBio(username,bio,url);
+
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
+
+    private void updateUserBio(String username , String bio, String url) {
+        Amplify.API.query(ModelQuery.get(Account.class,userId),
+                user -> {
+                    if(user.hasData()) {
+                        runOnUiThread(()->{
+                            Account userInfo;
+                            if(URL!=null){
+                                userInfo = Account.builder()
+                                        .username(username)
+                                        .idcognito(user.getData().getIdcognito())
+                                        .image(url)
+                                        .bio(bio)
+                                        .id(user.getData().getId())
+                                        .build();
+                            }else{
+                                userInfo = Account.builder()
+                                        .username(username)
+                                        .idcognito(user.getData().getIdcognito())
+                                        .image(user.getData().getImage())
+                                        .bio(bio)
+                                        .id(user.getData().getId())
+                                        .build();
+                            }
+
+
+                            Amplify.API.mutate(ModelMutation.update(userInfo),
+                                    response -> {
+                                        runOnUiThread(() -> {
+                                            Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                        });
+                                        // https://www.youtube.com/watch?v=LQmGU3UCOPQ
+                                        Log.i(TAG, "Bio updated " + response);
+                                    },
+                                    error -> Log.e(TAG, "update failed", error)
+                            );
+                        });
+
+                    }
+
+                },
+                error -> Log.e(TAG, error.toString(), error)
+        );
+    }
+
+    public void getUrl(String image,CircleImageView imageView){
         Amplify.Storage.getUrl(
                 image,
                 result -> {
@@ -364,6 +547,20 @@ public class MainActivity extends AppCompatActivity {
                 },
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
         );
+    }
+
+    private void setUserImageInpopUp(CircleImageView imageView) {
+        runOnUiThread(() -> {
+            Amplify.API.query(
+                    ModelQuery.get(Account.class, userId),
+                    accs -> {
+                        if(accs.hasData()) {
+                            getUrl(accs.getData().getImage(),imageView);
+                        }
+                    },
+                    error -> Log.e(TAG, error.toString(), error)
+            );
+        });
     }
 }
 

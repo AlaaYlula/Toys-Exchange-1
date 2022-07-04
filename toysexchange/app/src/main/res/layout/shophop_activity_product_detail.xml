@@ -70,75 +70,6 @@
                         android:textAppearance="@style/FontMedium"
                         android:textColor="@color/ShopHop_colorPrimary"
                         android:textSize="@dimen/sh_font_size_large" />
-
-<!--                    <RelativeLayout-->
-<!--                        android:id="@+id/rlInfo"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_below="@id/tvPrice"-->
-<!--                        android:background="@color/ShopHop_white"-->
-<!--                        android:layout_marginTop="@dimen/sh_spacing_control"-->
-<!--                        >-->
-
-<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:id="@+id/tvItemProductRating"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_alignParentTop="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_standard_new"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginTop="0dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:background="@drawable/shophop_bg_ractangle_rounded"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:backgroundTint="@color/ShopHop_light_green"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:drawableEnd="@drawable/shophop_ic_star_black"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:drawablePadding="@dimen/sh_spacing_control"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:drawableTint="@color/ShopHop_white"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:paddingStart="@dimen/sh_spacing_middle"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:paddingTop="@dimen/sh_spacing_control_half"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:paddingEnd="@dimen/sh_spacing_xmedium"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:paddingBottom="@dimen/sh_spacing_control_half"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_white"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:id="@+id/tvItemProductReview"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_centerVertical="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_toStartOf="@id/tvItemProductDiscount"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_toEndOf="@id/tvItemProductRating"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_textColorSecondary"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:id="@+id/tvItemProductOriginalPrice"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_alignParentEnd="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_centerVertical="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginEnd="@dimen/sh_spacing_standard_new"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:gravity="center_vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textAppearance="@style/FontMedium"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_textColorSecondary"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:text="200"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;                        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:id="@+id/tvItemProductDiscount"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_alignParentTop="true"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginStart="@dimen/sh_spacing_control"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_marginTop="3dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:layout_toStartOf="@id/tvItemProductOriginalPrice"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textColor="@color/ShopHop_light_green"&ndash;&gt;-->
-<!--&lt;!&ndash;                            android:textSize="@dimen/sh_font_size_small"&ndash;&gt;-->
-<!--&lt;!&ndash;                            tools:text="50% off" />&ndash;&gt;-->
-<!--                    </RelativeLayout>-->
-
                 </RelativeLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -169,7 +100,6 @@
                 android:paddingBottom="@dimen/_30sdp"
                 android:orientation="vertical">
 
-
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/mDivider"
                     android:layout_width="match_parent"
@@ -183,14 +113,13 @@
                     app:dividerInsetStart="16dp"
                     app:tabMode="fixed" />
 
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivProfileImage"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_below="@+id/mDivider"
-                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_16sdp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/shophop_ic_walk"
@@ -210,6 +139,7 @@
                     android:textSize="@dimen/_12sdp" />
 
                 <LinearLayout
+                    android:id="@+id/llInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ivProfileImage"
@@ -222,17 +152,20 @@
                         android:orientation="horizontal"
                         android:layout_marginTop="@dimen/_16sdp">
                         <TextView
+                            android:id="@+id/tvContact"
                             android:layout_width="@dimen/_100sdp"
                             android:layout_height="wrap_content"
                             android:text="Content"
                             android:textAlignment="center"
                             />
                         <TextView
+                            android:id="@+id/tvType"
                             android:layout_width="@dimen/_100sdp"
                             android:layout_height="wrap_content"
                             android:text="NEW"
                             android:textAlignment="center"/>
                         <TextView
+                            android:id="@+id/tvCondition"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Condition"
@@ -241,39 +174,14 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_16sdp"
                         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
 
-
                 </LinearLayout>
 
-
-
-
-<!--                <com.google.android.material.tabs.TabLayout-->
-<!--                    android:id="@+id/productTabs"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="@dimen/sh_spacing_standard_new"-->
-<!--                    android:layout_marginEnd="@dimen/sh_spacing_standard_new"-->
-<!--                    android:background="@color/ShopHop_light_gray"-->
-<!--                    app:tabGravity="fill"-->
-<!--                    app:tabIndicator="@color/ShopHop_textColorSecondary"-->
-<!--                    app:tabIndicatorColor="@color/ShopHop_colorPrimary"-->
-<!--                    app:tabIndicatorFullWidth="true"-->
-<!--                    app:tabIndicatorHeight="@dimen/sh_spacing_control_half"-->
-<!--                    app:tabMode="fixed"-->
-<!--                    app:tabSelectedTextColor="@color/ShopHop_colorPrimary"-->
-<!--                    app:tabTextAppearance="@style/ShopHopTabLayout"-->
-<!--                    app:tabTextColor="@color/ShopHop_textColorPrimary" />-->
-
-<!--                <androidx.viewpager.widget.ViewPager-->
-<!--                    android:id="@+id/ViewPagerInfo"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_below="@id/productTabs" />-->
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -301,7 +209,6 @@
 
         </LinearLayout>
 
-
         <ImageView
             android:id="@+id/ivFavourite"
             android:layout_width="@dimen/_28sdp"
@@ -319,27 +226,5 @@
             android:visibility="visible"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="top|end" />
-
-<!--    <ImageView-->
-<!--        android:id="@+id/ivDislike"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clickable="true"-->
-
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_centerVertical="true"-->
-<!--        android:layout_marginTop="@dimen/_30sdp"-->
-<!--        android:layout_marginEnd="@dimen/_8sdp"-->
-
-<!--        android:background="@drawable/shophop_bg_circle"-->
-<!--        android:backgroundTint="@color/ShopHop_favourite_background"-->
-<!--        android:contentDescription="@string/sh_text_todo"-->
-
-<!--        android:padding="@dimen/sh_spacing_standard"-->
-<!--        app:layout_anchor="@id/app_bar"-->
-<!--        app:layout_anchorGravity="top|end"-->
-
-<!--        android:src="@drawable/shophop_ic_heart_fill"-->
-<!--        android:visibility="gone" />-->
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

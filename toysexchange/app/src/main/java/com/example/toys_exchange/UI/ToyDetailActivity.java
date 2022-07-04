@@ -1,5 +1,7 @@
 package com.example.toys_exchange.UI;
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,6 +47,8 @@ import com.squareup.picasso.Picasso;
 import java.net.URL;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ToyDetailActivity extends AppCompatActivity {
 
     private static final String TAG = ToyDetailActivity.class.getSimpleName();
@@ -80,10 +84,13 @@ public class ToyDetailActivity extends AppCompatActivity {
     ImageView ivFavourite;
     ImageView ivDislike;
     ImageView removeFromWishList;
-
+    CircleImageView ivProfileImage;
+    TextView tvName;
     TextView btnBuyNow;
 
     String acc_id;
+
+    String userToyId;
 
     Double price;
 
@@ -96,16 +103,17 @@ public class ToyDetailActivity extends AppCompatActivity {
 
 
         handler=new Handler(Looper.getMainLooper(), msg->{
-            //Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("idCognito").toString());
-            // Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("loggedUser").toString());
             loggedAccountId=msg.getData().get("loggedUser").toString();
             idCognito=msg.getData().get("idCognito").toString();
             return true;
         });
 
         handler1=new Handler(Looper.getMainLooper(), msg->{
-            //   Log.i(TAG, "onCreate: --------------------->"+msg.getData().get("username").toString());
-            toyUser.setText(msg.getData().get("username").toString());
+            tvName.setText(msg.getData().get("username").toString());
+            if(msg.getData().get("userImage") != null){
+                getUserImage(msg.getData().get("userImage").toString());
+            }
+
             return true;
         });
 
@@ -122,7 +130,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent toyIntent = getIntent();
-        String name= toyIntent.getStringExtra("toyName");
         String description= toyIntent.getStringExtra("description");
          price= toyIntent.getDoubleExtra("price",0.0);
         String condition= toyIntent.getStringExtra("condition");
@@ -131,28 +138,36 @@ public class ToyDetailActivity extends AppCompatActivity {
         String contactInfo= toyIntent.getStringExtra("contactInfo");
         toyId = toyIntent.getStringExtra("toyId");
 
-//        toyName=findViewById(R.id.txt_view_name);
-//        toyDescription=findViewById(R.id.txt_view_description);
-//        toyCondition=findViewById(R.id.txt_view_condition);
-//        contactMe=findViewById(R.id.txt_view_contact);
-        toyPrice=findViewById(R.id.tvPrice);
-//        toyName=findViewById(R.id.txt_view_name);
-//        toyDescription=findViewById(R.id.txt_view_description);
-//        toyCondition=findViewById(R.id.txt_view_condition);
-//        contactMe=findViewById(R.id.txt_view_contact);
-//        toyPrice=findViewById(R.id.txt_view_price);
-//        toyType=findViewById(R.id.txt_view_type);
 
+        toyDescription=findViewById(R.id.tvDescription);
+        toyDescription.setText(description);
+
+        toyCondition=findViewById(R.id.tvCondition);
+        toyCondition.setText(condition);
+
+        contactMe=findViewById(R.id.tvContact);
+        contactMe.setText(contactInfo);
+
+        toyType=findViewById(R.id.tvType);
+        toyType.setText(type);
+
+        toyPrice=findViewById(R.id.tvPrice);
         toyPrice.setText(price +" Jd");
+
+        tvName = findViewById(R.id.tvName);
+
+
 
         addToWishList=findViewById(R.id.ivFavourite);
         removeFromWishList=findViewById(R.id.ivDislike);
         toyImage=findViewById(R.id.productViewPager);
 
+        userToyId = toyIntent.getStringExtra("userToyId");
+        getUserName(userToyId);
 
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
+        userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
 
         collapsingToolBar.setTitle(toyIntent.getStringExtra("toyName"));
 
@@ -191,11 +206,9 @@ public class ToyDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
-    public void firebaseAction()
-    {
+    public void firebaseAction() {
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();
@@ -276,17 +289,17 @@ public class ToyDetailActivity extends AppCompatActivity {
         notificationSender.SendNotifications();
     }
 
-
-    public void getUserName(){
+    public void getUserName(String id){
         Amplify.API.query(
                 ModelQuery.list(Account.class),
                 accounts -> {
                   //  Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
                     for (Account user :
                             accounts.getData()) {
-                        if (user.getId().equals(userId)) {
+                        if (user.getId().equals(id)) {
                             Bundle bundle=new Bundle();
                             bundle.putString("username",user.getUsername());
+                            bundle.putString("userImage",user.getImage());
 
                             Message message = new Message();
                             message.setData(bundle);
@@ -482,6 +495,29 @@ public class ToyDetailActivity extends AppCompatActivity {
                     });
                 },
                 error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+        );
+    }
+
+    private void getUserImage(String image){
+
+        ivProfileImage = findViewById(R.id.ivProfileImage);
+        Amplify.API.query(
+                ModelQuery.get(Account.class,userToyId),
+                user -> {
+                    runOnUiThread(()->{
+//                        holder.username.setText(user.getData().getUsername());
+                        Amplify.Storage.getUrl(
+                                image,
+                                result -> {
+                                    runOnUiThread(()->{
+                                        Picasso.get().load(result.getUrl().toString()).into(ivProfileImage);
+                                    });
+                                },
+                                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+                        );
+                    });
+                },
+                error -> Log.e("Adaptor", error.toString(), error)
         );
     }
 }

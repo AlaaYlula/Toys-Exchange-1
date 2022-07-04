@@ -23,6 +23,7 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Store;
+import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
@@ -30,9 +31,13 @@ public class StoreAddActivity extends AppCompatActivity {
     private static final String TAG = StoreAddActivity.class.getSimpleName() ;
 
     Button addStore;
+    Button cancelAdd;
     String cognitoId;
 
     TextView addLocation;
+
+    EditText storeDescription;
+    EditText storeTitle;
 
 
     Double longitude;
@@ -50,18 +55,23 @@ public class StoreAddActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Store");
 
 
+         storeDescription = findViewById(R.id.etDescription);
+         storeTitle = findViewById(R.id.etTitle);
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         cognitoId = logedInUser.getUserId();
 
         addStore = findViewById(R.id.btn_addStore);
         addLocation=findViewById(R.id.tvLocation);
+        cancelAdd = findViewById(R.id.btnCancel);
 
         addLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(getApplicationContext(),MapActivity.class);
                 intent.putExtra("type","store");
+                intent.putExtra("title",storeTitle.getText().toString());
+                intent.putExtra("desc",storeDescription.getText().toString());
                 startActivity(intent);
             }
         });
@@ -76,8 +86,7 @@ public class StoreAddActivity extends AppCompatActivity {
 
         addStore.setOnClickListener(view -> {
 
-            EditText storeDescription = findViewById(R.id.etDescription);
-            EditText storeTitle = findViewById(R.id.etTitle);
+
 
             String storeDescriptionText = storeDescription.getText().toString();
             String storeTitleText = storeTitle.getText().toString();
@@ -147,6 +156,10 @@ public class StoreAddActivity extends AppCompatActivity {
 
         });
 
+        cancelAdd.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+        });
+
     }
 
     @Override
@@ -154,6 +167,8 @@ public class StoreAddActivity extends AppCompatActivity {
         Intent locationIntent=getIntent();
         longitude= locationIntent.getDoubleExtra("longitude",0.0);
         latitude= locationIntent.getDoubleExtra("latitude",0.0);
+        storeTitle.setText(locationIntent.getStringExtra("title"));
+        storeDescription.setText(locationIntent.getStringExtra("desc"));
 
         Log.i(TAG, "onCreate: long   "+longitude);
         Log.i(TAG, "onCreate: lat   "+latitude);

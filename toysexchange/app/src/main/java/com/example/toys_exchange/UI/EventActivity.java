@@ -51,6 +51,11 @@ public class EventActivity extends AppCompatActivity {
     Button cancelAdd;
 
     TextView location;
+    EditText eventDescription;
+    EditText eventTitle;
+
+    String eventDescriptionText;
+    String eventTitleText;
 
     String userId;
 
@@ -72,6 +77,12 @@ public class EventActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Add Event");
         enableLocation();
+
+         eventDescription = findViewById(R.id.etDescription);
+         eventTitle = findViewById(R.id.etTitle);
+
+         eventDescriptionText = eventDescription.getText().toString();
+         eventTitleText = eventTitle.getText().toString();
 
         location=findViewById(R.id.tvLocation);
 
@@ -96,6 +107,8 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(getApplicationContext(),MapActivity.class);
                 intent.putExtra("type","event");
+                intent.putExtra("title",eventTitle.getText().toString());
+                intent.putExtra("desc",eventDescription.getText().toString());
                 startActivity(intent);
             }
         });
@@ -183,11 +196,11 @@ public class EventActivity extends AppCompatActivity {
 
         btnSubmit.setOnClickListener(view -> {
 
-            EditText eventDescription = findViewById(R.id.etDescription);
-            EditText eventTitle = findViewById(R.id.etTitle);
-
-            String eventDescriptionText = eventDescription.getText().toString();
-            String eventTitleText = eventTitle.getText().toString();
+//            EditText eventDescription = findViewById(R.id.etDescription);
+//            EditText eventTitle = findViewById(R.id.etTitle);
+//
+            eventDescriptionText = eventDescription.getText().toString();
+            eventTitleText = eventTitle.getText().toString();
 
             if(eventDescriptionText.length()>0 && eventTitleText.length()>0 && longitude!=0.0 & latitude!=0.0){
                 Log.i(TAG, "ID Cognito => "+ userId);
@@ -270,7 +283,11 @@ public class EventActivity extends AppCompatActivity {
         Intent locationIntent=getIntent();
         longitude= locationIntent.getDoubleExtra("longitude",0.0);
         latitude= locationIntent.getDoubleExtra("latitude",0.0);
+        eventTitle.setText(locationIntent.getStringExtra("title"));
+        eventDescription.setText(locationIntent.getStringExtra("desc"));
 
+        Log.i(TAG, "onResume:eventTitleText " + eventTitleText);
+        Log.i(TAG, "onResume:eventDescriptionText " + eventDescriptionText);
         Log.i(TAG, "onCreate: long   "+longitude);
         Log.i(TAG, "onCreate: lat   "+latitude);
     }

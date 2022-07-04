@@ -90,17 +90,33 @@
                 tools:ignore="MissingPrefix" />
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_addStore"
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            style="@style/ShopHopMaterialButtonStyle.Stroked"
+            android:layout_width="@dimen/_158sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/sh_spacing_standard_new"
-            android:layout_marginTop="@dimen/sh_spacing_xlarge"
-            android:layout_marginEnd="@dimen/sh_spacing_standard_new"
-            android:background="@drawable/shophop_button_color_orange"
-            android:text="@string/sh_lbl_submit"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:text="Cancel"
+            android:textAppearance="@style/FontMedium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_addStore"
+            style="@style/ShopHopMaterialButtonStyle.Filled"
+            android:layout_width="@dimen/_158sdp"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/ShopHop_colorPrimary"
+            android:text="Submit"
+            android:textAppearance="@style/FontMedium" />
+
     </LinearLayout>
 
     <LinearLayout

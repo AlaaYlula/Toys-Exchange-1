@@ -606,30 +606,12 @@ public class MainActivity extends AppCompatActivity {
 
                                             Log.i(TAG, "notif: " + notification );
 
-
-                                            Amplify.API.query(
-                                                    ModelQuery.list(Notification.class),
-                                                    notify -> {
-                                                        for (Notification noti:
-                                                                notify.getData()) {
-
-                                                            Log.i(TAG, "ayaaa99:  " + acc_id);
-                                                            Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
-
-                                                            if(!noti.getTokenid().equals(token)) {
-                                                                Amplify.API.mutate(
-                                                                        ModelMutation.create(notification),
-                                                                        success -> {
-                                                                            Log.i(TAG, "Saved item API: " + success.getData());
-                                                                        },
-                                                                        error -> Log.e(TAG, "Could not save item to API", error)
-                                                                );
-                                                            }
-
-                                                        }
-
+                                            Amplify.API.mutate(
+                                                    ModelMutation.create(notification),
+                                                    success -> {
+                                                        Log.i(TAG, "Saved item API: " + success.getData());
                                                     },
-                                                    error -> Log.e(TAG, error.toString(), error)
+                                                    error -> Log.e(TAG, "Could not save item to API", error)
                                             );
                                         }
                                     }

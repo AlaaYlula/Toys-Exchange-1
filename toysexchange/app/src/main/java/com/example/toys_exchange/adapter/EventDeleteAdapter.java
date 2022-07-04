@@ -50,7 +50,7 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItemView = layoutInflater.inflate(R.layout.event_delete_layout,parent,false);
+        View listItemView = layoutInflater.inflate(R.layout.activity_user_event,parent,false);
 
         return new CustomViewHolder(listItemView , listener);
     }
@@ -58,6 +58,12 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         holder.eventName.setText(eventsList.get(position).getTitle());
+        String desc = eventsList.get(position).getEventdescription();
+        if(desc.length() > 100){
+            holder.eventDescription.setText(desc.substring(0,100)+"...");
+        }else {
+            holder.eventDescription.setText(desc);
+        }
 
     }
     
@@ -70,14 +76,9 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 
     class CustomViewHolder extends RecyclerView.ViewHolder  implements PopupMenu.OnMenuItemClickListener {
 
-        ImageView eventImage;
         TextView eventName;
-        boolean click = true;
-        Button deleteBtn;
-        PopupWindow pw;
-        Button updateBtn;
+        TextView eventDescription;
         CustomClickListener listener;
-        LayoutInflater inflater;
 
         ImageView ivEventOption;
 
@@ -88,43 +89,14 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
             this.listener = listener;
 
             eventName = itemView.findViewById(R.id.event_name);
-            eventImage = itemView.findViewById(R.id.event_img);
-            deleteBtn = itemView.findViewById(R.id.delete_event);
-            updateBtn = itemView.findViewById(R.id.update_event);
+            eventDescription = itemView.findViewById(R.id.event_description);
 
             ivEventOption = itemView.findViewById(R.id.ivEventOption);
 
 
-
-            deleteBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener!=null){
-                        int position = getAdapterPosition();
-                        if(position!=RecyclerView.NO_POSITION){
-                            listener.onDeleteClickListener(position);
-                        }
-                    }
-                }
-            });
-
             ivEventOption.setOnClickListener(view->{
                 showPopupMenu(view);
             });
-//            updateBtn.setOnClickListener(new View.OnClickListener(){
-//                        @Override
-//                        public void onClick(View v) {
-//                            if(listener!=null){
-//                                int position = getAdapterPosition();
-//                                if(position!=RecyclerView.NO_POSITION){
-//                                    listener.onUpdateClickListener(position);
-//                                }
-//                            }
-//                }
-//
-//            });
-
-
 
             itemView.setOnClickListener(view -> {
                 listener.ontItemClickListener(getAdapterPosition());

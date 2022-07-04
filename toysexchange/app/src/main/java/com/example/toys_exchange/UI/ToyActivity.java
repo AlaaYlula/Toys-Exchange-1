@@ -33,6 +33,7 @@ import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Condition;
 import com.amplifyframework.datastore.generated.model.Toy;
 import com.amplifyframework.datastore.generated.model.Typetoy;
+import com.example.toys_exchange.MainActivity;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 
@@ -59,13 +60,14 @@ public class ToyActivity extends AppCompatActivity {
 
     Button uploadImage;
     Button addToy;
+    Button cancelAdd;
 
     Handler handler;
 
     String userId;
 
     String[] conditions=new String[]{"NEW","USED"};
-    String[] types=new String[]{ "SELL","REQUEST", "DONATION" };
+    String[] types=new String[]{"SELL","REQUEST", "DONATION" };
 
     boolean flag=false;
 
@@ -93,6 +95,7 @@ public class ToyActivity extends AppCompatActivity {
 
          uploadImage=findViewById(R.id.btn_upload);
          addToy=findViewById(R.id.btn_add_toy);
+        cancelAdd = findViewById(R.id.btnCancel);
 
         mSpinnerType=findViewById(R.id.spinner_type);
 
@@ -171,6 +174,10 @@ public class ToyActivity extends AppCompatActivity {
             pictureUpload();
         });
 
+        cancelAdd.setOnClickListener(view -> {
+            startActivity(new Intent(this, MainActivity.class));
+        });
+
     }
 
     public void setSpinner(){
@@ -180,6 +187,7 @@ public class ToyActivity extends AppCompatActivity {
                 conditions);
         mSpinnerCondition=findViewById(R.id.spinner_condition);
         mSpinnerCondition.setAdapter(conditionAdapter);
+        mSpinnerCondition.setPrompt("Toy Condition");
 
 
         ArrayAdapter<String> typeAdapter=new ArrayAdapter<>(
@@ -188,6 +196,7 @@ public class ToyActivity extends AppCompatActivity {
                 types);
 
         mSpinnerType.setAdapter(typeAdapter);
+        mSpinnerType.setPrompt("Toy Type");
     }
 
     public void saveToCloud(String name,String description ,String price ,String condition, String contact, String type){
@@ -222,7 +231,7 @@ public class ToyActivity extends AppCompatActivity {
                                             success -> {
                                                 runOnUiThread(()->{
                                                     Toast.makeText(ToyActivity.this, "Toy Added", Toast.LENGTH_SHORT).show();
-
+                                                    startActivity(new Intent(this, MainActivity.class));
                                                 });
 
                                                 Log.i(TAG, "Saved item API: " + success.getData());
@@ -421,13 +430,6 @@ public class ToyActivity extends AppCompatActivity {
         Log.i(TAG, "sharedImg: id"+userId);
 
     }
-
-
-
-
-
-
-
 }
 
 

@@ -234,7 +234,11 @@ public class eventListActivity extends AppCompatActivity {
                 intent.putExtra("cognitoID",cognitoId);
                 intent.putExtra("loginUserID",acc_id);
                 intent.putExtra("loginUserName",loginUserName);
+                intent.putExtra("longitude",eventList.get(position).getLongitude());
+                intent.putExtra("latitude",eventList.get(position).getLatitude());
                 startActivity(intent);
+
+
             }
 
             @Override

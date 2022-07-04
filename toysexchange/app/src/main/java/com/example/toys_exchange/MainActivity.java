@@ -271,32 +271,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu,menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_setting:
-//                Toast.makeText(this, "Setting ", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.action_profile:
-//                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(this, profileActivity.class));
-//
-//                return true;
-//            case R.id.logout:
-//                logout();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-
     private void logout(){
         Amplify.Auth.signOut(()->{
             Log.i(TAG, "Signed out successfully");
@@ -347,9 +321,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     runOnUiThread(()->{
                         // For Set the Image
-                         imageView = findViewById(R.id.civProfile);
-                        getUrl(image,imageView);
-
+                        if(image != null) {
+                            imageView = findViewById(R.id.civProfile);
+                            getUrl(image, imageView);
+                        }
                         TextView txtDisplayName = findViewById(R.id.txtDisplayName);
                         txtDisplayName.setText(usernameDisplay);
                     });
@@ -607,30 +582,12 @@ public class MainActivity extends AppCompatActivity {
 
                                             Log.i(TAG, "notif: " + notification );
 
-
-                                            Amplify.API.query(
-                                                    ModelQuery.list(Notification.class),
-                                                    notify -> {
-                                                        for (Notification noti:
-                                                                notify.getData()) {
-
-                                                            Log.i(TAG, "ayaaa99:  " + acc_id);
-                                                            Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
-
-                                                            if(!noti.getTokenid().equals(token)) {
-                                                                Amplify.API.mutate(
-                                                                        ModelMutation.create(notification),
-                                                                        success -> {
-                                                                            Log.i(TAG, "Saved item API: " + success.getData());
-                                                                        },
-                                                                        error -> Log.e(TAG, "Could not save item to API", error)
-                                                                );
-                                                            }
-
-                                                        }
-
+                                            Amplify.API.mutate(
+                                                    ModelMutation.create(notification),
+                                                    success -> {
+                                                        Log.i(TAG, "Saved item API: " + success.getData());
                                                     },
-                                                    error -> Log.e(TAG, error.toString(), error)
+                                                    error -> Log.e(TAG, "Could not save item to API", error)
                                             );
                                         }
                                     }

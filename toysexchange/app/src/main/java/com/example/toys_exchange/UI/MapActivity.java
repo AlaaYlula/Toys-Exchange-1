@@ -220,9 +220,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             LatLng coordinate = new LatLng(latitude, longitude);
 
-                            googleMap.addMarker(new MarkerOptions()
-                                    .position(coordinate)
-                                    .title("Marker"));
+
 
 //                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20.0f));

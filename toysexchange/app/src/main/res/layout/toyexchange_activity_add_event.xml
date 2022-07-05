@@ -102,19 +102,22 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             style="@style/ShopHopMaterialButtonStyle.Stroked"
-            android:layout_width="@dimen/_158sdp"
+            android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:textAppearance="@style/FontMedium" />
+            android:textAppearance="@style/FontMedium"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSubmit"
             style="@style/ShopHopMaterialButtonStyle.Filled"
-            android:layout_width="@dimen/_158sdp"
+            android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:shadowColor="@color/ShopHop_colorPrimary"
             android:text="Submit"
-            android:textAppearance="@style/FontMedium" />
+            android:textAppearance="@style/FontMedium"
+            android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
 

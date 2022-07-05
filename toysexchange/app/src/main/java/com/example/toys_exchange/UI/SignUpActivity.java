@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.edtFirstName);
         final EditText emailEditText = findViewById(R.id.edtEmail);
         final EditText passwordEditText =findViewById(R.id.edtPassword);
-        final EditText edtConfirmPassword =findViewById(R.id.edtConfirmPassword);
+//        final EditText edtConfirmPassword =findViewById(R.id.edtConfirmPassword);
         final MaterialButton signUpButton = findViewById(R.id.btnSignUp);
         final MaterialButton signIpButton = findViewById(R.id.btnSignIn);
 //        loadingProgressBar = findViewById(R.id.loading);

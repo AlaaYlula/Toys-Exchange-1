@@ -120,9 +120,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
 
                     Log.i(TAG, "geoLocate: --------------------------->"+address);
-
-
-
                 }
                 return false;
             }
@@ -193,6 +190,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap=googleMap;
+        enableLocation();
     }
 
 
@@ -220,9 +218,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             LatLng coordinate = new LatLng(latitude, longitude);
 
-
-
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
+//                            googleMap.addMarker(new MarkerOptions()
+//                                    .position(coordinate)
+//                                    .title("Marker"));
+                           googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20.0f));
                         }
                     }

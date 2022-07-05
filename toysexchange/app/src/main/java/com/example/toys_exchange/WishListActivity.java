@@ -43,9 +43,8 @@ public class WishListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list);
         Toolbar toolBar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Wish List");
+
+//        getSupportActionBar().setTitle("Wish List");
 
         recyclerView = findViewById(R.id.recycler_wish_list);
 
@@ -81,7 +80,14 @@ public class WishListActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
-            });
+
+                 @Override
+                 public void onBuy(int position) {
+                     Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                     intent.putExtra("toyId",toyList.get(position).getId());
+                     startActivity(intent);
+                 }
+             });
 
             recyclerView.setAdapter(customAdapter);
             recyclerView.setHasFixedSize(true);
@@ -149,8 +155,11 @@ public class WishListActivity extends AppCompatActivity {
                                         Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                 response ->{
                                                     Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
-                                                    toyList.remove(position);
-                                                    customToyAdapter.notifyItemRemoved(position);
+                                                    runOnUiThread(()->{
+                                                        toyList.remove(position);
+                                                        customToyAdapter.notifyItemRemoved(position);
+                                                    });
+
                                                 } ,
                                                 error -> Log.e("MyAmplifyApp", "Create failed", error)
                                         );

@@ -1,6 +1,8 @@
 package com.example.toys_exchange.UI;
 
 
+import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -39,11 +41,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EventDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = EventDetailsActivity.class.getSimpleName();
@@ -81,6 +86,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
     TextView showLocation;
 
     Intent passedIntent;
+    String userAddEventId;
     private String titleText;
     private String descriptionText;
 
@@ -120,16 +126,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
             return true;
         });
 
-//        username = findViewById(R.id.username_event);
-//        title = findViewById(R.id.title_eventDetail);
-//        titleText = passedIntent.getStringExtra("eventTitle");
-//        title.setText(titleText);
-//        description = findViewById(R.id.description_eventDetail);
-//        descriptionText = passedIntent.getStringExtra("description");
-//        description.setText(descriptionText);
-//        username = findViewById(R.id.username_event);
-//        title = findViewById(R.id.title_eventDetail);
-//        title.setText(passedIntent.getStringExtra("eventTitle"));
 
         title = findViewById(R.id.toolbar_layout);
         title.setTitle(passedIntent.getStringExtra("eventTitle"));
@@ -138,23 +134,8 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
         description = findViewById(R.id.tvEventDescription);
         description.setText(passedIntent.getStringExtra("description"));
 
-
-//        updateBtn = findViewById(R.id.btn_update_EventDetails);
-//
-//        updateBtn.setOnClickListener(view -> {
-//            Intent intent = new Intent(getApplicationContext(), UpdateEventActivity.class);
-//            intent.putExtra("eventTitle",passedIntent.getStringExtra("eventTitle"));
-//            intent.putExtra("description",passedIntent.getStringExtra("description"));
-//            intent.putExtra("userID",passedIntent.getStringExtra("userID"));
-//            intent.putExtra("eventID",passedIntent.getStringExtra("eventID"));
-//            intent.putExtra("cognitoID",passedIntent.getStringExtra("cognitoID"));
-//            intent.putExtra("loginUserID",passedIntent.getStringExtra("loginUserID"));
-//            intent.putExtra("loginUserName",passedIntent.getStringExtra("loginUserName"));
-//            startActivity(intent);
-//        });
-
-
-
+         userAddEventId =  passedIntent.getStringExtra("userID");
+        getUserNameAndImage(userAddEventId);
 
         setEventValues();
 
@@ -178,6 +159,34 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
             }
         });
 
+    }
+
+    private void getUserNameAndImage(String userAddEventId ) {
+        CircleImageView image = findViewById(R.id.ivProfileImage);
+        TextView username = findViewById(R.id.tvUserName);
+        Amplify.API.query(
+                ModelQuery.get(Account.class,userAddEventId),
+                user -> {
+                    runOnUiThread(()->{
+                        username.setText(user.getData().getUsername());
+                        String image1= user.getData().getImage();
+                        if(image1!=null) {
+                            Amplify.Storage.getUrl(
+                                    image1,
+                                    result -> {
+                                        runOnUiThread(() -> {
+
+                                            Picasso.get().load(result.getUrl().toString()).into(image);
+
+                                        });
+                                    },
+                                    error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+                            );
+                        }
+                    });
+                },
+                error -> Log.e("Adaptor", error.toString(), error)
+        );
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -329,7 +338,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                    if(event.getAccountEventsaddedId().equals(loginUserIdFromMain)){
                                        btnAttend.setVisibility(View.INVISIBLE);
                                    }
-//                                   username.setText(useradd.getData().getUsername());
                                });
 
                                 },
@@ -347,7 +355,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                                 if (event.getAccountEventsaddedId().equals(loginUserIdFromMain)) {
                                                     btnAttend.setVisibility(View.INVISIBLE);
                                                 }
-                                              //  username.setText(useradd.getData().getUsername());
                                             });
                                         }
                                     },
@@ -481,14 +488,11 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0) {
                 recyclerViewWork();
-
             }
             return true;
         });
-
-        //getUserAttend();
+        getUserNameAndImage(userAddEventId);
         getCommentsList();
-       // setEventValues();
         super.onResume();
     }
 

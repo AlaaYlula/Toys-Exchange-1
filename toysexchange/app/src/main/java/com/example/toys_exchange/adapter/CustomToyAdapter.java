@@ -80,7 +80,7 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
         TextView toyPrice;
         CustomClickListener listener;
 
-        TextView Remove;
+        TextView tvBin;
         LinearLayout AddToCart;
         public CustomViewHolder(@NonNull View itemView, CustomClickListener listener) {
             super(itemView);
@@ -90,14 +90,18 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
             toyName = itemView.findViewById(R.id.tvName);
             toyImage = itemView.findViewById(R.id.ivImage);
             toyPrice = itemView.findViewById(R.id.tvPrice);
-            Remove = itemView.findViewById(R.id.tvBin);
-
+            tvBin = itemView.findViewById(R.id.tvBin);
+            AddToCart = itemView.findViewById(R.id.Remove);
 //            itemView.setOnClickListener(view -> {
 //                listener.onTaskClickListener(getAdapterPosition());
 //            });
 
-            Remove.setOnClickListener(view -> {
+            tvBin.setOnClickListener(view -> {
                 listener.onRemoveClickListener(getAdapterPosition());
+            });
+
+            AddToCart.setOnClickListener(view -> {
+                listener.onBuy(getLayoutPosition());
             });
 
             itemView.setOnClickListener(view -> {
@@ -111,5 +115,6 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
     public interface CustomClickListener{
         void onRemoveClickListener(int position);
         void ontItemClickListener(int position);
+        void onBuy(int position);
     }
 }

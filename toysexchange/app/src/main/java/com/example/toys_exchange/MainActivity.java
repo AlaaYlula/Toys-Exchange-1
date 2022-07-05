@@ -271,32 +271,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu,menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_setting:
-//                Toast.makeText(this, "Setting ", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.action_profile:
-//                Toast.makeText(this, "Copyrig ht 2022 ", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(this, profileActivity.class));
-//
-//                return true;
-//            case R.id.logout:
-//                logout();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-
     private void logout(){
         Amplify.Auth.signOut(()->{
             Log.i(TAG, "Signed out successfully");
@@ -347,9 +321,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     runOnUiThread(()->{
                         // For Set the Image
-                         imageView = findViewById(R.id.civProfile);
-                        getUrl(image,imageView);
-
+                        if(image != null) {
+                            imageView = findViewById(R.id.civProfile);
+                            getUrl(image, imageView);
+                        }
                         TextView txtDisplayName = findViewById(R.id.txtDisplayName);
                         txtDisplayName.setText(usernameDisplay);
                     });

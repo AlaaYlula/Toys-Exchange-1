@@ -3,6 +3,7 @@ package com.example.toys_exchange;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -49,15 +50,24 @@ public class PaymentActivity extends AppCompatActivity {
     String toyId;
     AlertDialog.Builder alertBuilder;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.activity_payment);
         setContentView(R.layout.payment_card);
 
+
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Payment");
+
+        Intent intent = getIntent();
+        toyId = intent.getStringExtra("toyId");
+
         CardForm cardForm = findViewById(R.id.card_form);
         Button buy = findViewById(R.id.btnBuy);
+
 
         // https://www.codingdemos.com/android-credit-card-form-tutorial/
         cardForm.cardRequired(true)
@@ -70,9 +80,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         // Make the CVV number invisible
         cardForm.getCvvEditText().setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
-        Intent intent = getIntent();
 
-         toyId = intent.getStringExtra("toyId");
 
         getToy();
 
@@ -144,41 +152,28 @@ public class PaymentActivity extends AppCompatActivity {
         Amplify.API.query(
                 ModelQuery.list(Toy.class),
                 toys -> {
-                    //  Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
                     for (Toy toyRec :
                             toys.getData()) {
                         if (toyRec.getId().equals(toyId)) {
-                            toy = toyRec;
-
+                            runOnUiThread(()->{
+                                toy = toyRec;
+                            });
                         }
                     }
-                    runOnUiThread(()->{
-//                        toyName.setText(toy.getToyname());
-//                        toyCost.setText(toy.getPrice().toString());
 
-                    });
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
     }
 
     public void deleteToyFromAPI() {
-//        Amplify.API.mutate(ModelMutation.delete(toy),
-//                response -> {
-//                Log.i(TAG, "toy deleted from API:");
-//                    Toast toast = Toast.makeText(getApplicationContext(), "the item deleted", Toast.LENGTH_SHORT);
-//                    toast.show();
-//                },
-//                error -> Log.e(TAG, "Delete failed", error)
-//        );
-
         Amplify.API.query(
                 ModelQuery.list(UserWishList.class),
                 toys -> {
                     if(toys.hasData()) {
                         for (UserWishList toyRec :
                                 toys.getData()) {
-                            if(toyRec.getToy().getId().equals(toy.getId()))                                     {
+                            if(toyRec.getToy().getId().equals(toyId))                                     {
                                 Amplify.API.mutate(ModelMutation.delete(toyRec),
                                         response ->{
                                             Log.i(TAG, "Toy wishList deleted " + response);
@@ -190,6 +185,7 @@ public class PaymentActivity extends AppCompatActivity {
                     }
 
                     runOnUiThread(()->{
+                        getToy();
                         Amplify.API.mutate(ModelMutation.delete(toy),
                                 response ->{
                                     // https://www.youtube.com/watch?v=LQmGU3UCOPQ

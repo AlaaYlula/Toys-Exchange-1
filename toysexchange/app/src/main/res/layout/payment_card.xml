@@ -5,24 +5,32 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".PaymentActivity">
 
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar" />
+
 <com.braintreepayments.cardform.view.CardForm
     android:id="@+id/card_form"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
+    android:layout_below="@+id/toolbar_lay"
+    android:layout_marginTop="@dimen/_16sdp"
     />
 
-<Button
-    android:id="@+id/btnBuy"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="10dp"
-    android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:layout_marginTop="10dp"
-    android:background="@color/colorAccent"
-    android:text="Buy"
-    android:textColor="@android:color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBuy"
+        style="@style/ShopHopMaterialButtonStyle.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:shadowColor="@color/ShopHop_colorPrimary"
+        android:text="Buy"
+        android:textAppearance="@style/FontMedium" />
 
 </RelativeLayout>

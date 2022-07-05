@@ -157,7 +157,7 @@
                         <ImageView
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="@dimen/_20sdp"
-                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginStart="@dimen/_32sdp"
                             android:src="@drawable/ic_address_book" />
 
                         <TextView
@@ -171,7 +171,7 @@
                         <ImageView
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="@dimen/_20sdp"
-                            android:src="@drawable/ic_text" />
+                            android:src="@drawable/ic_info_icon" />
 
                         <TextView
                             android:id="@+id/tvType"

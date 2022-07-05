@@ -117,37 +117,9 @@ public class PaymentActivity extends AppCompatActivity {
                  Toast.makeText(PaymentActivity.this, "Please complete the form", Toast.LENGTH_LONG).show();
              }
          });
-//        toyName = findViewById(R.id.item_name);
-//      //  toyName.setText(toy.getToyname());
-//
-//        toyCost = findViewById(R.id.item_cost);
-//        //toyCost.setText(toy.getPrice().toString());
-//
-//
-//        btn = findViewById(R.id.buy_toy);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                deleteToyFromAPI();
-//            }
-//        });
+
     }
 
-//    public void onClickRadioButton(View view) {
-//        boolean checked = ((RadioButton) view).isChecked();
-//
-//        RelativeLayout relativeLayout = findViewById(R.id.relativeLayout);
-//
-//        switch (view.getId()) {
-//            case R.id.creditCard:
-//                if(checked)
-//                    relativeLayout.setVisibility(View.VISIBLE);
-//                break;
-//            case R.id.cash:
-//                if(checked)
-//                    relativeLayout.setVisibility(View.INVISIBLE);
-//                break;
-//        }
-//    }
     public void getToy(){
         Amplify.API.query(
                 ModelQuery.list(Toy.class),

@@ -37,9 +37,7 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
 
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String dima =  logedInUser.getUserId();
-        Log.i(TAG, "Dima " + dima);
-        Log.i(TAG, "yousssi: " + logedInUser.getUserId());
-        //        String accId = "userId";
+
         final String[] acId = new String[1];
 
         runOnUiThread(() -> {
@@ -53,12 +51,9 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
                                 if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
                                     acclist.add(acc);
                                     acc_id = acc.getId().toString();
-                                    Log.i(TAG, "CusInGetEventsList: " + acc.getId());
                                 }
                             }
                         }
-//                        Log.i(TAG, "Account Id" + acId[0]);
-
                     },
                     error -> Log.e(TAG, error.toString(), error)
             );
@@ -87,7 +82,6 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
         }else {
             holder.eventDescription.setText(eventList.get(position).getEventdescription());
         }
-        Log.i(TAG, "onBindViewHolder: " + acc_id);
 
     }
 
@@ -108,11 +102,9 @@ public class CustomEventAdapter extends RecyclerView.Adapter<CustomEventAdapter.
             this.listener = listener;
 
             eventName = itemView.findViewById(R.id.event_name);
-          //  eventImage = itemView.findViewById(R.id.event_img);
             eventDescription = itemView.findViewById(R.id.event_description);
 
             getUserId();
-            Log.i(TAG, "CustomViewHolder: " + acc_id);
 
             itemView.setOnClickListener(view -> {
                 listener.onTaskClickListener(getAdapterPosition());

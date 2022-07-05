@@ -105,7 +105,6 @@ public class StoreListActivity extends AppCompatActivity {
                                     if(stores.hasData()) {
                                         for (Store store :
                                                 stores.getData()) {
-                                            Log.i(TAG, "store not  added " + store.getStorename());
                                             if (store.getAccountStoresId().equals(loginUserId)) {
                                                 Log.i(TAG, "store added " + store.getStorename());
                                                 storeList.add(store);
@@ -134,20 +133,4 @@ public class StoreListActivity extends AppCompatActivity {
         }
     }
 
-    private void getLoginUserId() {
-        Amplify.API.query(
-                ModelQuery.list(Account.class),
-                allUsers -> {
-                    for (Account userAc:
-                            allUsers.getData()) {
-                        if(userAc.getIdcognito().equals(cognitoId)){
-                            loginUserId = userAc.getId();
-                        }
-                    }
-
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-
-    }
 }

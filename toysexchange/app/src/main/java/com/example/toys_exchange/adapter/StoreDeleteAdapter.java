@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +30,7 @@ public class StoreDeleteAdapter extends RecyclerView.Adapter<StoreDeleteAdapter.
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View listItemView = layoutInflater.inflate(R.layout.store_list_delete,parent,false);
+        View listItemView = layoutInflater.inflate(R.layout.activity_user_store,parent,false);
         return new CustomViewHolder(listItemView, listener);
     }
 
@@ -48,7 +49,7 @@ public class StoreDeleteAdapter extends RecyclerView.Adapter<StoreDeleteAdapter.
 
         TextView storeName;
         TextView description;
-        Button deleteBtn;
+        ImageView deleteBtn;
 
         CustomClickListener listener;
 

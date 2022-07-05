@@ -60,6 +60,8 @@ android:elevation="@dimen/_8sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_40sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/ShopHop_colorPrimary"
             android:layout_below="@+id/username_store"
             />
 

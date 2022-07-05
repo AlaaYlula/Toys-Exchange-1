@@ -60,7 +60,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
     public void onBindViewHolder(@NonNull ToyAdapter.CustomViewHolder holder, int position) {
 
         holder.tvName.setText(toyList.get(position).getToyname());
-//        holder.tvCondition.setText(toyList.get(position).getCondition().toString());
         holder.tvType.setText(toyList.get(position).getTypetoy().toString());
         holder.tvPrice.setText(toyList.get(position).getPrice().toString() + " JD");
 
@@ -90,7 +89,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                                 wishList.getData()) {
                             if(wishToy.getAccount().getId().equals(userID) && wishToy.getToy().getId().equals(toyList.get(position).getId())) {
                                 runOnUiThread(() -> {
-                                    Log.i(TAG, "liked");
                                     holder.ivDislike.setVisibility(View.GONE);
                                     holder.ivlike.setVisibility(View.VISIBLE);
                                 });
@@ -106,7 +104,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
         Amplify.Storage.getUrl(
                 image,
                 result -> {
-                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
                     runOnUiThread(()->{
                         Picasso.get().load(result.getUrl().toString()).into(holder.ivImage);
                     });
@@ -130,7 +127,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
                                 wishList.getData()) {
                             if(wishToy.getAccount().getId().equals(userID) && wishToy.getToy().getId().equals(toyId)){
                                 isliked = "like";
-
                             }
 
                         }
@@ -173,7 +169,6 @@ public class ToyAdapter extends RecyclerView.Adapter<ToyAdapter.CustomViewHolder
             ivlike = itemView.findViewById(R.id.ivlike);
 
             tvName = itemView.findViewById(R.id.tvName);
-//            tvCondition = itemView.findViewById(R.id.tvCondition);
             tvType = itemView.findViewById(R.id.tvType);
             tvPrice = itemView.findViewById(R.id.tvPrice);
 

@@ -43,19 +43,17 @@ public class WishListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list);
         Toolbar toolBar = findViewById(R.id.toolbar);
-
-//        getSupportActionBar().setTitle("Wish List");
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Wish List");
 
         recyclerView = findViewById(R.id.recycler_wish_list);
 
-//        Context context = getApplicationContext();
-//        SharedPreferences sharedPref = context.getSharedPreferences("userData", Context.MODE_PRIVATE);
-//        String userId = sharedPref.getString("userId", "");
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String userId =  sharedPreferences.getString(LoginActivity.USERNAME, "");
-        Log.i(TAG, "getUserId: -----------------------------------<> " + userId);
+
         getToys(userId);
+
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
 
@@ -109,7 +107,6 @@ public class WishListActivity extends AppCompatActivity {
                 wishList -> {
                     if (wishList.hasData()) {
                         for (UserWishList wishToy : wishList.getData()) {
-                            Log.i(TAG , "WishToy object =>>>>>>>>>>>>>>" + wishToy);
                             if (wishToy!= null && wishToy.getAccount().getId().equals(userId)) {
                                 toyIds.add(wishToy.getToy().getId());
                             }
@@ -150,11 +147,8 @@ public class WishListActivity extends AppCompatActivity {
                                 ModelQuery.list(Account.class),
                                 accounts -> {
                                     if(Objects.equals(toyId, wishToy.getToy().getId())){
-                                        Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
-
                                         Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                 response ->{
-                                                    Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId());
                                                     runOnUiThread(()->{
                                                         toyList.remove(position);
                                                         customToyAdapter.notifyItemRemoved(position);

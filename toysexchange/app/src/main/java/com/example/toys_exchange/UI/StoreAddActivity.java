@@ -76,9 +76,6 @@ public class StoreAddActivity extends AppCompatActivity {
             }
         });
 
-        Log.i(TAG, "onCreate: long   "+longitude);
-        Log.i(TAG, "onCreate: lat   "+latitude);
-
         addBtnListener(); // Listeners
     }
 
@@ -92,15 +89,12 @@ public class StoreAddActivity extends AppCompatActivity {
             String storeTitleText = storeTitle.getText().toString();
 
             if(storeDescriptionText.length()>0 && storeTitleText.length()>0 && longitude!=0.0 & latitude!=0.0){
-                Log.i(TAG, "ID Cognito => "+ cognitoId);
                 Amplify.API.query(
                         ModelQuery.list(Account.class),
                         users -> {
-                            Log.i(TAG, "Users => "+ users.getData());
                             if(users.hasData()) {
                                 for (Account user :
                                         users.getData()) {
-                                    Log.i(TAG, "User add this Event" + user);
                                     if (user.getIdcognito().equals(cognitoId)) {
 
                                         Store store;
@@ -137,7 +131,7 @@ public class StoreAddActivity extends AppCompatActivity {
                 );
 
                 Toast.makeText(getApplicationContext(), "Store Added", Toast.LENGTH_SHORT).show();
-                addStore.setBackgroundColor(Color.RED);
+                startActivity(new Intent(this,MainActivity.class));
             }else {
                 if (!isFinishing()){
                     new AlertDialog.Builder(StoreAddActivity.this)
@@ -170,8 +164,6 @@ public class StoreAddActivity extends AppCompatActivity {
         storeTitle.setText(locationIntent.getStringExtra("title"));
         storeDescription.setText(locationIntent.getStringExtra("desc"));
 
-        Log.i(TAG, "onCreate: long   "+longitude);
-        Log.i(TAG, "onCreate: lat   "+latitude);
         super.onResume();
     }
 

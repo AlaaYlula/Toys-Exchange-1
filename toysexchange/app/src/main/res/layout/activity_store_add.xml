@@ -83,7 +83,7 @@
                 android:drawablePadding="@dimen/sh_spacing_standard"
                 android:drawableTint="@color/ShopHop_radiobuttonTint"
                 android:gravity="center"
-                android:text="@string/sh_lbl_current_location"
+                android:text="@string/sh_lbl_current_location_store"
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/ShopHop_radiobuttonTint"
                 android:textSize="@dimen/_15sdp"

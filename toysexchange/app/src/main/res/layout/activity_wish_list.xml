@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WishListActivity">
-
+    <include
+        android:id="@+id/toolbar_lay"
+        layout="@layout/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_wish_list"

@@ -29,19 +29,18 @@
 
 
             <ImageView
-                android:id="@+id/ivEventOption"
+                android:id="@+id/delete_store"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:src="@drawable/shophop_ic_more_vert_black_24dp"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@drawable/shophop_ic_delete"
+                tools:ignore="MissingConstraints" />
 
 
             <TextView
-                android:id="@+id/event_name"
+                android:id="@+id/username_store"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -50,16 +49,29 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/ShopHop_colorPrimary"
                 android:textAllCaps="true" />
 
+
             <TextView
-                android:id="@+id/event_description"
+                android:id="@+id/store_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/event_name"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/ShopHop_colorPrimary"
+                android:layout_below="@+id/username_store"
+                />
+
+
+
+            <TextView
+                android:id="@+id/store_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_below="@+id/store_title"
                 />
 
         </RelativeLayout>

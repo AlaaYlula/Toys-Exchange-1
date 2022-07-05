@@ -83,7 +83,7 @@
                 android:drawablePadding="@dimen/sh_spacing_standard"
                 android:drawableTint="@color/ShopHop_radiobuttonTint"
                 android:gravity="center"
-                android:text="@string/sh_lbl_current_location"
+                android:text="@string/sh_lbl_current_location_store"
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/ShopHop_radiobuttonTint"
                 android:textSize="@dimen/_15sdp"
@@ -103,19 +103,22 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             style="@style/ShopHopMaterialButtonStyle.Stroked"
-            android:layout_width="@dimen/_158sdp"
+            android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:textAppearance="@style/FontMedium" />
+            android:textAppearance="@style/FontMedium"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_addStore"
             style="@style/ShopHopMaterialButtonStyle.Filled"
-            android:layout_width="@dimen/_158sdp"
+            android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:shadowColor="@color/ShopHop_colorPrimary"
             android:text="Submit"
-            android:textAppearance="@style/FontMedium" />
+            android:textAppearance="@style/FontMedium"
+            android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
 

@@ -21,8 +21,6 @@ import java.util.Arrays;
 public class VerificationActivity extends AppCompatActivity {
 
     private static final String TAG = VerificationActivity.class.getSimpleName();
-//    private String username = "username";
-//    private String userId = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +46,10 @@ public class VerificationActivity extends AppCompatActivity {
                 email,
                 code,
                 result -> {
-
-                    Log.i(TAG, result.isSignUpComplete() ? "Confirm signUp succeeded" : "Confirm sign up not complete");
                     // Add the user To API
                     Account user = Account.builder()
                             .username(username)
                             .idcognito(userId)
-//                            .bio(" ")
-//                            .image(" ")
                             .build();
 
                     // API save to backend

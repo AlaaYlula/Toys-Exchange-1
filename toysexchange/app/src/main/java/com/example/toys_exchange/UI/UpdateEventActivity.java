@@ -99,14 +99,11 @@ public class UpdateEventActivity extends AppCompatActivity {
                                 if (acc.getIdcognito().equals(logedInUser.getUserId())) { //
                                     acclist.add(acc);
                                     acc_id = acc.getId().toString();
-                                    Log.i(TAG, "InGetEventsList: " + acc_id);
-
 
                                     updateForm.setOnClickListener(
                                             new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
-//                                Event eventOne = Event.builder().title("aya").eventdescription("good").build();
                                                     Amplify.API.query(ModelQuery.list(Event.class, Event.ID.eq(eventId)),
                                                             events -> {
                                                                 if(events.hasData()){

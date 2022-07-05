@@ -37,11 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
         final EditText usernameEditText = findViewById(R.id.edtFirstName);
         final EditText emailEditText = findViewById(R.id.edtEmail);
         final EditText passwordEditText =findViewById(R.id.edtPassword);
-//        final EditText edtConfirmPassword =findViewById(R.id.edtConfirmPassword);
         final MaterialButton signUpButton = findViewById(R.id.btnSignUp);
         final MaterialButton signIpButton = findViewById(R.id.btnSignIn);
-//        loadingProgressBar = findViewById(R.id.loading);
-
 
         passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -57,7 +54,6 @@ public class SignUpActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loadingProgressBar.setVisibility(View.VISIBLE);
 
                 String username = usernameEditText.getText().toString();
 
@@ -80,9 +76,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         Amplify.Auth.signUp(email, password, options,
                 result -> {
-                    Log.i(TAG, "Result: " + result.toString());
-
-//                    loadingProgressBar.setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent(SignUpActivity.this, VerificationActivity.class);
                     intent.putExtra(EMAIL, email);

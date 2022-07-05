@@ -213,7 +213,6 @@ public class ToyActivity extends AppCompatActivity {
                                 users.getData()) {
                             Log.i(TAG, "User add this Event" + user);
                             if (user.getIdcognito().equals(userId)) {
-//                                if(Objects.equals(type, "SELL")){
                                     Toy oneToy=Toy.builder()
                                             .toyname(name)
                                             .toydescription(description)
@@ -233,61 +232,9 @@ public class ToyActivity extends AppCompatActivity {
                                                     Toast.makeText(ToyActivity.this, "Toy Added", Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(this, MainActivity.class));
                                                 });
-
-                                                Log.i(TAG, "Saved item API: " + success.getData());
                                             },
                                             error -> Log.e(TAG, "Could not save item to API", error)
                                     );
-                                //}
-//                                else if(Objects.equals(type, "DONATION")) {
-//                                    Toy oneToy=Toy.builder()
-//                                            .toyname(name)
-//                                            .toydescription(description)
-//                                            .image(URL)
-//                                            .condition(Enum.valueOf(Condition.class, condition))
-//                                            .accountToysId(user.getId())
-//                                            .contactinfo(contact)
-//                                            .price(Double.parseDouble(price))
-//                                            .typetoy(Enum.valueOf(Typetoy.class, type))
-//                                            .build();
-//
-////                                    Amplify.DataStore.save(oneToy,
-////                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-////                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-////                                    );
-//                                    // API save to backend
-//                                    Amplify.API.mutate(
-//                                            ModelMutation.create(oneToy),
-//                                            success -> {
-//                                                Log.i(TAG, "Saved item API: " + success.getData());
-//                                            },
-//                                            error -> Log.e(TAG, "Could not save item to API", error)
-//                                    );
-//                                }else if(Objects.equals(type, "REQUEST")){
-//                                    Toy oneToy=Toy.builder()
-//                                            .toyname(name)
-//                                            .toydescription(description)
-//                                            .image(URL)
-//                                            .condition(Enum.valueOf(Condition.class, condition))
-//                                            .accountToysId(user.getId())
-//                                            .contactinfo(contact)
-//                                            .price(Double.parseDouble(price))
-//                                            .typetoy(Enum.valueOf(Typetoy.class, type))
-//                                            .build();
-//
-////                                    Amplify.DataStore.save(oneToy,
-////                                            success -> Log.i(TAG, "Saved item DataStore: " + success),
-////                                            error -> Log.e(TAG, "Could not save item to DataStore", error)
-////                                    );
-//                                    // API save to backend
-//                                    Amplify.API.mutate(
-//                                            ModelMutation.create(oneToy),
-//                                            success -> {
-//                                                Log.i(TAG, "Saved item API: " + success.getData());
-//                                            },
-//                                            error -> Log.e(TAG, "Could not save item to API", error)
-//                                    );
-//                                }
 
                             }
                         }
@@ -367,7 +314,6 @@ public class ToyActivity extends AppCompatActivity {
     private void authAttribute(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
-                    Log.i(TAG, "User attributes = " + attributes.get(0).getValue());
                     //  Send message to the handler to show the User name >>
                     Bundle bundle = new Bundle();
                     bundle.putString("id",  attributes.get(0).getValue());
@@ -399,8 +345,6 @@ public class ToyActivity extends AppCompatActivity {
                         try {
                             Bitmap bitmap = getBitmapFromUri(imgUri);
 
-                            Log.i(TAG, "sharedImg: id"+userId);
-
                             File file = new File(getApplicationContext().getFilesDir(), "imgUri"+attributes.get(0).getValue()+".jpg");
                             OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
@@ -412,7 +356,7 @@ public class ToyActivity extends AppCompatActivity {
                                     "imgUri1"+attributes.get(0).getValue()+".jpg",
                                     file,
                                     result -> {
-                                        Log.i(TAG, "Successfully uploaded: " + result.getKey());
+                                        Toast.makeText(ToyActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
                                         URL=result.getKey();
                                     },
                                     storageFailure -> Log.e(TAG, "Upload failed", storageFailure)

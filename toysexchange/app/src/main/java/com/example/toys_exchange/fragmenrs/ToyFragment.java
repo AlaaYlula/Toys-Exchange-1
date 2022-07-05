@@ -236,10 +236,8 @@ public class ToyFragment extends Fragment {
                     Amplify.API.query(ModelQuery.list(Toy.class), success ->{
                                 if(success.hasData()) {
                                     for (Toy toy : success.getData()) {
-                                        Log.i("get toy ", toy.toString());
                                         if (toy.getTypetoy().toString().equals("SELL")
                                                 && toy.getCondition().toString().equals("USED")){
-                                            Log.i("get toy Used ", toy.toString());
                                             toyList.add(toy);
 
                                         }
@@ -270,8 +268,6 @@ public class ToyFragment extends Fragment {
         handler = new Handler(Looper.getMainLooper(), msg -> {
 
             recyclerView = mView.findViewById(R.id.recycler_view);
-
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             ToyAdapter toyAdapter = new ToyAdapter(toyList,new ToyAdapter.CustomClickListener() {
                 @Override
@@ -368,8 +364,6 @@ public class ToyFragment extends Fragment {
                                             ModelQuery.list(Account.class),
                                             accounts -> {
                                                 if(Objects.equals(toyId, wishToy.getToy().getId())){
-                                                    Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
-
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
                                                             response -> {
 

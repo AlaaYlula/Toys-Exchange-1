@@ -65,8 +65,6 @@ public class EventActivity extends AppCompatActivity {
 
     private Handler handler;
 
-    private final int PERMISSION_ID = 44;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +116,6 @@ public class EventActivity extends AppCompatActivity {
     private void authAttribute(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
-                    Log.i(TAG, "Attributes => "+ attributes);
                     //  Send message to the handler to get the user Id >>
                     Bundle bundle = new Bundle();
                     bundle.putString("name",  attributes.get(2).getValue());
@@ -137,22 +134,16 @@ public class EventActivity extends AppCompatActivity {
 
         btnSubmit.setOnClickListener(view -> {
 
-//            EditText eventDescription = findViewById(R.id.etDescription);
-//            EditText eventTitle = findViewById(R.id.etTitle);
-//
             eventDescriptionText = eventDescription.getText().toString();
             eventTitleText = eventTitle.getText().toString();
 
             if(eventDescriptionText.length()>0 && eventTitleText.length()>0 && longitude!=0.0 & latitude!=0.0){
-                Log.i(TAG, "ID Cognito => "+ userId);
                 Amplify.API.query(
                         ModelQuery.list(Account.class),
                         users -> {
-                            Log.i(TAG, "Users => "+ users.getData());
                             if(users.hasData()) {
                                 for (Account user :
                                         users.getData()) {
-                                    Log.i(TAG, "User add this Event" + user);
                                     if (user.getIdcognito().equals(userId)) {
                                         Event event;
                                         if(longitude!=null && latitude!=null){
@@ -169,7 +160,6 @@ public class EventActivity extends AppCompatActivity {
                                                     .eventdescription(eventDescriptionText)
                                                     .accountEventsaddedId(user.getId())
                                                     .build();
-                                            // API save to backend
 
                                         }
 
@@ -180,7 +170,6 @@ public class EventActivity extends AppCompatActivity {
                                                 },
                                                 error -> Log.e(TAG, "Could not save item to API", error)
                                         );
-//                                    firebaseAction();
                                     }
                                 }
                             }
@@ -189,7 +178,7 @@ public class EventActivity extends AppCompatActivity {
                 );
 
                 Toast.makeText(getApplicationContext(), "Event Added", Toast.LENGTH_SHORT).show();
-                btnSubmit.setBackgroundColor(Color.RED);
+                startActivity(new Intent(this,MainActivity.class));
             }else {
                 if (!isFinishing()){
                     new AlertDialog.Builder(EventActivity.this)
@@ -224,10 +213,6 @@ public class EventActivity extends AppCompatActivity {
         eventTitle.setText(locationIntent.getStringExtra("title"));
         eventDescription.setText(locationIntent.getStringExtra("desc"));
 
-        Log.i(TAG, "onResume:eventTitleText " + eventTitleText);
-        Log.i(TAG, "onResume:eventDescriptionText " + eventDescriptionText);
-        Log.i(TAG, "onCreate: long   "+longitude);
-        Log.i(TAG, "onCreate: lat   "+latitude);
     }
 
 
@@ -259,8 +244,6 @@ public class EventActivity extends AppCompatActivity {
                                             allUsers.getData()) {
                                         if(userAc.getIdcognito().equals(cognitoId)){
                                             acc_id = userAc.getId();
-                                            Log.i(TAG, "ayahh: " + acc_id);
-
                                             Notification notification = Notification.builder()
                                                     .tokenid(token)
                                                     .accountid(acc_id)
@@ -292,13 +275,6 @@ public class EventActivity extends AppCompatActivity {
                                 error -> Log.e(TAG, error.toString(), error)
                         );
 
-//                        id: ID!tokenid: Stringaccountid:
-
-
-                        // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d("TOKEN", token);
-                        Log.i(TAG, "TOKEN: " + token);
                         Toast.makeText(EventActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });

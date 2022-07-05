@@ -35,20 +35,24 @@
         <activity
             android:name=".UI.MapActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.UpdateCommentActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".UI.UpdateToyActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.UpdateEventActivity"
             android:exported="false"
-            android:theme="@style/ShopHopAppTheme"/>
+            android:theme="@style/ShopHopAppTheme"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".UI.StoreAddActivity"
             android:exported="false"
@@ -100,7 +104,7 @@
         <activity
             android:name=".PaymentActivity"
             android:exported="false"
-            android:parentActivityName=".UI.ToyDetailActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/ShopHopAppTheme"/>
 
         <activity

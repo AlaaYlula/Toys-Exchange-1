@@ -34,24 +34,31 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvAppName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sh_font_size_xxlarge"
-                    android:textAppearance="@style/FontBold"
-                    android:textColor="@color/ShopHop_textColorPrimary"
-                    android:text="@string/sh_lbl_shop"/>
-                <TextView
-                    android:id="@+id/tvSubname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sh_font_size_xxlarge"
-                    android:textAppearance="@style/FontBold"
-                    android:textColor="@color/ShopHop_colorPrimary"
-                    android:text="@string/sh_lbl_hop"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/tvAppName"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="@dimen/sh_font_size_xxlarge"-->
+<!--                    android:textAppearance="@style/FontBold"-->
+<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
+<!--                    android:text="@string/sh_lbl_shop"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvSubname"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="@dimen/sh_font_size_xxlarge"-->
+<!--                    android:textAppearance="@style/FontBold"-->
+<!--                    android:textColor="@color/ShopHop_colorPrimary"-->
+<!--                    android:text="@string/sh_lbl_hop"/>-->
+                <ImageView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:background="@drawable/toyexchange"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="@dimen/sh_spacing_xxlarge"

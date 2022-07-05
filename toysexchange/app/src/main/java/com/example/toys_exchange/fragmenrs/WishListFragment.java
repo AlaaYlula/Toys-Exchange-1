@@ -65,7 +65,7 @@ public class WishListFragment extends Fragment {
         // Inflate the layout for this fragment
 
 
-        mView = inflater.inflate(R.layout.activity_wish_list, container, false);
+        mView = inflater.inflate(R.layout.fragment_wish_list, container, false);
         getWishListRecycler();
         return mView;
 

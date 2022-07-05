@@ -36,6 +36,7 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Account;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.example.toys_exchange.UI.EventAttendList;
 import com.example.toys_exchange.UI.StoreListActivity;
 import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.example.toys_exchange.UI.eventListActivity;
@@ -123,6 +124,19 @@ public class profileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        /////////////////////////////////////////// add Image /////////////////////
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No username");
+        userIdShared =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
+        Log.i(TAG, "SharedPreferences => " + username);
+
+        imageView = findViewById(R.id.ivProfileImage);
+        getUser();
+
+
         ////////////////*********             Wish List Button                **********//////////////////
 
         TextView wishList = findViewById(R.id.tvWishlist);
@@ -138,6 +152,21 @@ public class profileActivity extends AppCompatActivity {
 
         TextView btnEvents = findViewById(R.id.eventList);
         btnEvents.setOnClickListener(mClickEventsList);
+
+
+        ////////////////*********             Attend List Button                **********//////////////////
+
+        TextView attendEvent = findViewById(R.id.tvAttendList);
+        attendEvent.setOnClickListener(view -> {
+            Intent attendIntent = new Intent(this, EventAttendList.class);
+            attendIntent.putExtra("cognitoId",cognitoId);
+            attendIntent.putExtra("loginUserId", userIdShared);
+            startActivity(attendIntent);
+        });
+
+
+
+
 
 
         ////////////////*********             Toys List Button                **********//////////////////
@@ -173,15 +202,6 @@ public class profileActivity extends AppCompatActivity {
         MaterialButton btnLogout = findViewById(R.id.logout);
         btnLogout.setOnClickListener(mClickLogout);
 
-        /////////////////////////////////////////// add Image /////////////////////
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No username");
-        userIdShared =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
-        Log.i(TAG, "SharedPreferences => " + username);
-
-         imageView = findViewById(R.id.ivProfileImage);
-         getUser();
 
 }
 

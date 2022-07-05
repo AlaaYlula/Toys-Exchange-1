@@ -221,8 +221,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //                            googleMap.addMarker(new MarkerOptions()
 //                                    .position(coordinate)
 //                                    .title("Marker"));
-
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
+                           googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20.0f));
                         }
                     }

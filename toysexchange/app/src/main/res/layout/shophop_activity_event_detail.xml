@@ -44,6 +44,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_200sdp">
 
+
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/ivProfileImage"
                             android:layout_width="@dimen/_30sdp"
@@ -64,15 +65,16 @@
                             android:fontFamily="@font/montserrat_bold"
                             android:textColor="@color/ShopHop_textColorSecondary" />
 
+
                         <TextView
                             android:id="@+id/tvEventDescription"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tvUserName"
                             android:layout_marginStart="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_16sdp"
                             android:layout_marginEnd="@dimen/_30sdp"
                             android:overScrollMode="always"
-                            android:layout_marginTop="@dimen/_12sdp"
                             android:text="Lorem Ipsum is simply text of the printing and typesetting industry."
                             android:textColor="@color/ShopHop_textColorPrimary" />
 

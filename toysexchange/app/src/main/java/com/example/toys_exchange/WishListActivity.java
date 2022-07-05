@@ -43,9 +43,8 @@ public class WishListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list);
         Toolbar toolBar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Wish List");
+
+//        getSupportActionBar().setTitle("Wish List");
 
         recyclerView = findViewById(R.id.recycler_wish_list);
 

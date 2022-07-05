@@ -83,7 +83,6 @@
         android:layout_alignBottom="@+id/ivImage"
         android:gravity="end"
         android:layout_marginRight="@dimen/_5sdp"
-
         android:paddingTop="@dimen/sh_spacing_standard"
         android:paddingBottom="@dimen/sh_spacing_standard">
 

@@ -1,7 +1,6 @@
 package com.example.toys_exchange.UI;
 
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -113,10 +111,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
 
         updateForm = findViewById(R.id.btn_updateComment);
 
-//        titEvent = passedIntent.getStringExtra("title");
-
-
-
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0) {
@@ -142,14 +136,11 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
         // The Add Comment Button
         addComment = findViewById(R.id.btnComment);
         btnAttend = findViewById(R.id.btnAttend);
-//        deleteComment = findViewById(R.id.btn_deleteComment);
         addBtnListner();
 
         showLocation=findViewById(R.id.tvLocation);
         showLocation.setOnClickListener(view -> {
 
-            Log.i(TAG, "onCreate:lan "+longitude);
-            Log.i(TAG, "onCreate:lat "+latitude);
             if(latitude!=0 && longitude!=0){
                 Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+latitude+","+longitude+"?q="+latitude+","+longitude+"name"));
                 startActivity(intent);
@@ -175,9 +166,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                     image1,
                                     result -> {
                                         runOnUiThread(() -> {
-
                                             Picasso.get().load(result.getUrl().toString()).into(image);
-
                                         });
                                     },
                                     error -> Log.e("MyAmplifyApp", "URL generation failure", error)
@@ -205,12 +194,9 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                 Amplify.API.mutate(
                         ModelMutation.create(commentAPI),
                         success -> {
-                            Log.i(TAG, "Saved item API: " + success.getData());
                             runOnUiThread(() -> {
                                 comment.setText("");
-                                Toast.makeText(getApplicationContext(), "Comment Added", Toast.LENGTH_SHORT).show();
                                 commentsListDatabase.add(commentAPI);
-                                //commentRecyclerViewAdapter.notifyDataSetChanged();
 
                                 Bundle bundle = new Bundle();
                                 bundle.putString("commentsListUpdate", "commentsListUpdate");
@@ -249,10 +235,9 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                                 Amplify.API.mutate(
                                                         ModelMutation.create(userAttendEvent),
                                                         success -> {
-                                                            Log.i(TAG, "Saved item API: " + success.getData());
                                                             runOnUiThread(() -> {
                                                                 btnAttend.setText("Un Attend");
-                                                                Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
+                                                          //      Toast.makeText(getApplicationContext(), "user Attend", Toast.LENGTH_SHORT).show();
                                                             });
                                                         },
                                                         error -> Log.e(TAG, "Could not save item to API", error)
@@ -276,11 +261,8 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                                     runOnUiThread(() -> {
                                         Amplify.API.mutate(ModelMutation.delete(user),
                                                 response ->{
-                                                    Log.i(TAG, "UserAttendEvent deleted " + response);
-
                                                     runOnUiThread(() -> {
                                                         btnAttend.setText("Attend");
-
                                                     });
 
                                             },
@@ -385,10 +367,7 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                         Collections.sort(commentsListDatabase, new SortByDate());
                     }
 
-//                    // Use To do Sync
-                  //  runOnUiThread(() -> {
-//                        commentsListDatabase.addAll(commentsListDatabase);
-//                        commentRecyclerViewAdapter.notifyDataSetChanged();
+
                         Bundle bundle = new Bundle();
                         bundle.putString("commentsListUpdate", "commentsListUpdate");
 
@@ -396,7 +375,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                         message.setData(bundle);
 
                         handler.sendMessage(message);
-                  //  });
                 },
                 error -> Log.e(TAG, error.toString(), error)
         );
@@ -433,7 +411,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                 Amplify.API.mutate(ModelMutation.delete(commentsListDatabase.get(position)),
                         response -> {
                             // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                            Log.i(TAG, "comment deleted " + response);
                             commentsListDatabase.remove(position);
                             commentRecyclerViewAdapter.notifyItemRemoved(position);
                         },
@@ -455,14 +432,12 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
                             response -> {
 
                                 runOnUiThread(() -> {
-                                    Log.i(TAG, "comment id: " + response.getData().getText());
                                     rlEditComment.setVisibility(View.GONE);
                                     commentsListDatabase.remove(position);
                                     commentsListDatabase.add(position,newComment);
                                     commentRecyclerViewAdapter.notifyItemChanged(position);
                                 });
                                 // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                Log.i(TAG, "Event updated " + response);
                             },
                             error -> Log.e(TAG, "update failed", error)
                     );
@@ -483,7 +458,6 @@ public class EventDetailsActivity extends AppCompatActivity implements OnMapRead
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {
-        Log.i(TAG, "onResume: called - The App is VISIBLE");
 
         handler = new Handler(Looper.getMainLooper(), msg -> {
             if(commentsListDatabase.size()!=0) {

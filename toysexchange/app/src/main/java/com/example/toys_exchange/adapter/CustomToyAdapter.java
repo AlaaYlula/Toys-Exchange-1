@@ -48,19 +48,19 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
 
         holder.toyName.setText(toysData.get(position).getToyname());
-        holder.toyPrice.setText(toysData.get(position).getPrice().toString());
+        holder.toyPrice.setText(toysData.get(position).getPrice().toString()+" Jd");
         String image = toysData.get(position).getImage();
-
-        Amplify.Storage.getUrl(
-                image,
-                result -> {
-                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
-                    runOnUiThread(()->{
-                        Picasso.get().load(result.getUrl().toString()).into(holder.toyImage);
-                    });
-                },
-                error -> Log.e("MyAmplifyApp", "URL generation failure", error)
-        );
+        if(image!=null) {
+            Amplify.Storage.getUrl(
+                    image,
+                    result -> {
+                        runOnUiThread(() -> {
+                            Picasso.get().load(result.getUrl().toString()).into(holder.toyImage);
+                        });
+                    },
+                    error -> Log.e("MyAmplifyApp", "URL generation failure", error)
+            );
+        }
 
     }
 
@@ -69,9 +69,6 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
         return toysData.size();
     }
 
-    public void onTaskClickListener(int position) {
-
-    }
 
     static class CustomViewHolder extends RecyclerView.ViewHolder{
 
@@ -92,9 +89,6 @@ public class CustomToyAdapter extends RecyclerView.Adapter<CustomToyAdapter.Cust
             toyPrice = itemView.findViewById(R.id.tvPrice);
             tvBin = itemView.findViewById(R.id.tvBin);
             AddToCart = itemView.findViewById(R.id.Remove);
-//            itemView.setOnClickListener(view -> {
-//                listener.onTaskClickListener(getAdapterPosition());
-//            });
 
             tvBin.setOnClickListener(view -> {
                 listener.onRemoveClickListener(getAdapterPosition());

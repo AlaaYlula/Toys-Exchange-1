@@ -27,15 +27,6 @@
            app:cardElevation="@dimen/_8sdp"
            >
 
-<!--           <ImageView-->
-<!--               android:layout_width="@dimen/_20sdp"-->
-<!--               android:layout_height="@dimen/_20sdp"-->
-<!--               android:src="@drawable/ic_event"-->
-<!--               android:layout_alignParentEnd="true"-->
-<!--               android:layout_centerVertical="true"-->
-<!--               android:layout_marginEnd="@dimen/_16sdp"-->
-<!--               tools:ignore="MissingConstraints" />-->
-
            <TextView
                android:id="@+id/event_name"
                android:layout_width="match_parent"
@@ -46,6 +37,7 @@
                android:layout_marginEnd="@dimen/_40sdp"
                android:layout_marginTop="@dimen/_5sdp"
                android:textAllCaps="true"
+               android:textColor="@color/ShopHop_colorPrimary"
                android:fontFamily="@font/montserrat_bold"
                />
 

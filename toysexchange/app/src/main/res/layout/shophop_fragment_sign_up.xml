@@ -118,18 +118,18 @@
                 android:inputType="textPassword"
                 android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/edtConfirmPassword"
-                style="@style/ShopHopEditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/sh_spacing_standard"
-                android:layout_marginTop="@dimen/sh_spacing_smlarge"
-                android:layout_marginEnd="@dimen/sh_spacing_standard"
-                android:hint="@string/sh_hint_confirm_password"
-                android:autofillHints="@string/sh_hint_confirm_password"
-                android:inputType="textPassword"
-                android:singleLine="true" />
+<!--            <EditText-->
+<!--                android:id="@+id/edtConfirmPassword"-->
+<!--                style="@style/ShopHopEditTextStyle"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="@dimen/sh_spacing_standard"-->
+<!--                android:layout_marginTop="@dimen/sh_spacing_smlarge"-->
+<!--                android:layout_marginEnd="@dimen/sh_spacing_standard"-->
+<!--                android:hint="@string/sh_hint_confirm_password"-->
+<!--                android:autofillHints="@string/sh_hint_confirm_password"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:singleLine="true" />-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSignUp"

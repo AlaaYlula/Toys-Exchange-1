@@ -131,7 +131,6 @@ public class profileActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         username =  sharedPreferences.getString(LoginActivity.NAMEUSERNAME, "No username");
         userIdShared =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
-        Log.i(TAG, "SharedPreferences => " + username);
 
         imageView = findViewById(R.id.ivProfileImage);
         getUser();
@@ -207,7 +206,6 @@ public class profileActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.i(TAG, "OnResume ...........");
 
         logedInUser = Amplify.Auth.getCurrentUser();
         authAttribute();
@@ -290,7 +288,6 @@ public class profileActivity extends AppCompatActivity {
     private void authSession(String method) {
         Amplify.Auth.fetchAuthSession(
                 result -> {
-                    Log.i(TAG, "Auth Session => " + method + result.toString());
                     if(result.isSignedIn())
                     {
                         Bundle bundle = new Bundle();

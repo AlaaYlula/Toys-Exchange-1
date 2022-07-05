@@ -214,7 +214,6 @@ public class toyListActivity extends AppCompatActivity {
                                 Amplify.API.mutate(ModelMutation.delete(toyList.get(position)),
                                         response ->{
                                             // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                            Log.i(TAG, "Toy deleted " + response);
                                             toyList.remove(position);
                                             toyDeleteAdapter.notifyItemRemoved(position);
                                         },
@@ -252,8 +251,6 @@ public class toyListActivity extends AppCompatActivity {
                 price = toyList.get(position).getPrice();
                 type = toyList.get(position).getTypetoy().toString();
                 condition = toyList.get(position).getCondition().toString();
-               // URL = toyList.get(position).getImage();
-
                 toyId = toyList.get(position).getId();
 
 
@@ -280,7 +277,6 @@ public class toyListActivity extends AppCompatActivity {
         btn_update =  myDialog.findViewById(R.id.btn_update);
         //Set defualt values
         imageUpdate = myDialog.findViewById(R.id.editImage);
-       // getUrl(URL,imageUpdate);
         setToyImageInpopUp(imageUpdate);
 
         EditText toyTitle;
@@ -495,7 +491,6 @@ public class toyListActivity extends AppCompatActivity {
                 Uri currentUri = data.getData();
 
                 // Do stuff with the photo/video URI.
-                Log.i(TAG, "onActivityResult: the uri is => " + currentUri);
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 String userIdForImageName =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
 
@@ -514,7 +509,6 @@ public class toyListActivity extends AppCompatActivity {
                             file,
                             result -> {
                                 Toast.makeText(toyListActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
-                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
                                 URL=result.getKey();
                                 runOnUiThread(()->{
                                     getUrl(URL,imageUpdate);

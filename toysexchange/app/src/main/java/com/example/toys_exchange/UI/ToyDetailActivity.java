@@ -112,12 +112,7 @@ public class ToyDetailActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
         CollapsingToolbarLayout collapsingToolBar = findViewById(R.id.toolbar_layout);
-//        toyUser=findViewById(R.id.txt_view_user_name);
 
         Toolbar toolBar = findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
@@ -229,8 +224,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                             allUsers.getData()) {
                                         if(userAc.getIdcognito().equals(cognitoId)){
                                             acc_id = userAc.getId();
-                                            Log.i(TAG, "ayahh: " + acc_id);
-
                                             Notification notification = Notification.builder()
                                                     .tokenid(token)
                                                     .accountid(acc_id)
@@ -241,9 +234,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                                                     notify -> {
                                                         for (Notification noti:
                                                                 notify.getData()) {
-
-                                                            Log.i(TAG, "ayaaa99:  " + acc_id);
-                                                            Log.i(TAG, "ayaaa999:  " + noti.getAccountid());
 
                                                             if(!noti.getAccountid().equals(acc_id)) {
                                                                 Amplify.API.mutate(
@@ -266,13 +256,7 @@ public class ToyDetailActivity extends AppCompatActivity {
                                 error -> Log.e(TAG, error.toString(), error)
                         );
 
-//                        id: ID!tokenid: Stringaccountid:
-
-
-                        // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
                         Log.d("TOKEN", token);
-                        Log.i(TAG, "TOKEN: " + token);
                         Toast.makeText(ToyDetailActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -307,16 +291,13 @@ public class ToyDetailActivity extends AppCompatActivity {
     }
 
     public void addToWish(){
-        Log.i(TAG, "TEST => ");
         Amplify.API.query(
                 ModelQuery.list(Toy.class,Toy.ID.eq(toyId)),
                 toys -> {
-                 //   Log.i(TAG, "getToys addToWish: ************************"+toys.getData());
                     for (Toy toy :
                             toys.getData()) {
                               Amplify.Auth.fetchUserAttributes(
                                  attributes -> {
-                                   Log.i(TAG, "User attributes = addToWish " + attributes.get(0).getValue());
                                    String id=attributes.get(0).getValue();
                                        Amplify.API.query(
                                             ModelQuery.list(Account.class),
@@ -363,18 +344,16 @@ public class ToyDetailActivity extends AppCompatActivity {
                             wishList.getData()) {
                         Amplify.Auth.fetchUserAttributes(
                                 attributes -> {
-                                    Log.i(TAG, "User attributes = addToWish " + attributes.get(0).getValue());
                                     String id=attributes.get(0).getValue();
 
                                     Amplify.API.query(
                                             ModelQuery.list(Account.class),
                                             accounts -> {
                                                 if(Objects.equals(toyId, wishToy.getToy().getId())){
-                                                    Log.i(TAG, "removeFromWishList: ***********************"+wishToy.getAccount().getId());
 
                                                     Amplify.API.mutate(ModelMutation.delete(wishToy),
-                                                            response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
-                                                            error -> Log.e("MyAmplifyApp", "Create failed", error)
+                                                            response -> Log.i(TAG, "Todo with id: " + response.getData().getId()),
+                                                            error -> Log.e(TAG, "Create failed", error)
                                                     );
                                                 }
                                             },
@@ -393,39 +372,13 @@ public class ToyDetailActivity extends AppCompatActivity {
 
     }
 
-    public void identify(){
-        Amplify.API.query(
-                ModelQuery.list(UserWishList.class),
-                wishList -> {
-                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
-                    if(wishList.hasData()){
-                        for (UserWishList wishToy :
-                                wishList.getData()) {
-                            if(wishToy.getAccount().getId().equals(loggedAccountId) && wishToy.getToy().getId().equals(toyId)){
-                                    addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
-                                    count=1;
-                                    Log.i(TAG, "identify: in fav "+count);
-
-                            }
-
-                        }
-                    }
-                },
-                error -> Log.e(TAG, error.toString(), error)
-        );
-
-
-    }
 
     public void getLoggedInAccount(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
-                    Log.i(TAG, "User attributes = " + attributes.get(0).getValue());
-
                     Amplify.API.query(
                             ModelQuery.list(Account.class),
                             accounts -> {
-                                //  Log.i(TAG, "getUserName: -----------------------------------<>"+accounts.getData());
                                 for (Account user :
                                         accounts.getData()) {
                                     if (user.getIdcognito().equals(attributes.get(0).getValue())) {
@@ -433,25 +386,17 @@ public class ToyDetailActivity extends AppCompatActivity {
                                         Amplify.API.query(
                                                 ModelQuery.list(UserWishList.class),
                                                 wishList -> {
-                                                    Log.i(TAG, "identify: id-----------------------------------> " + loggedAccountId);
                                                     if(wishList.hasData()){
                                                         for (UserWishList wishToy :
                                                                 wishList.getData()) {
                                                             if(wishToy.getAccount().getId().equals(user.getId()) && wishToy.getToy().getId().equals(toyId)){
 
-
-//                                                                addToWishList.setColorFilter(getResources().getColor(R.color.purple_500));
-//                                                                addToWishList.setBackground(getDrawable(R.drawable.shophop_ic_heart_fill));
-
-                                                                //ivFavourite.setColorFilter(getResources().getColor(R.color.purple_500));
                                                                runOnUiThread(()->{
                                                                    addToWishList.setImageDrawable(getDrawable(R.drawable.shophop_ic_heart_fill));
                                                                    addToWishList.setBackground(getDrawable(R.drawable.shophop_bg_circle_primary_light));
                                                                });
 
-
                                                                 count=1;
-                                                                Log.i(TAG, "identify: in fav "+count);
 
                                                             }
 
@@ -483,7 +428,6 @@ public class ToyDetailActivity extends AppCompatActivity {
         Amplify.Storage.getUrl(
                 image,
                 result -> {
-                    Log.i("MyAmplifyApp", "Successfully generated: " + result.getUrl());
                     runOnUiThread(()->{
                         Picasso.get().load(result.getUrl().toString()).into(toyImage);
                     });
@@ -499,7 +443,6 @@ public class ToyDetailActivity extends AppCompatActivity {
                 ModelQuery.get(Account.class,userToyId),
                 user -> {
                     runOnUiThread(()->{
-//                        holder.username.setText(user.getData().getUsername());
                         Amplify.Storage.getUrl(
                                 image,
                                 result -> {

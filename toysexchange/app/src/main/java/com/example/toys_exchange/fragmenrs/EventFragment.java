@@ -97,10 +97,7 @@ public class EventFragment extends Fragment {
 
         handler = new Handler(Looper.getMainLooper(), msg ->{
 
-            //    GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);
             recyclerView = mView.findViewById(R.id.recycler_view);
-
-          //  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2, LinearLayoutManager.VERTICAL,false);
 
             CustomEventAdapter customAdapter = new CustomEventAdapter(eventList, new CustomEventAdapter.CustomClickListener() {
                 @Override
@@ -132,7 +129,6 @@ public class EventFragment extends Fragment {
         Amplify.API.query(ModelQuery.list(Event.class), success ->{
 
                     for(Event event: success.getData()){
-                        Log.i("get toy ", event.toString());
                         eventList.add(event);
                     }
                     // Sort the Created At

@@ -64,10 +64,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(navigateToSignUpIntent);
         });
 
-//        signUpPrompt.setOnClickListener(view -> {
-//            Intent navigateToSignUpIntent = new Intent(this, SignUpActivity.class);
-//            startActivity(navigateToSignUpIntent);
-//        });
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
@@ -101,11 +97,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loadingProgressBar.setVisibility(View.VISIBLE);
-
                 login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
-
             }
         });
     }
@@ -127,10 +120,6 @@ public class LoginActivity extends AppCompatActivity {
                 email,
                 password,
                 result -> {
-                    Log.i(TAG, result.isSignInComplete() ? "Sign in succeeded" : "Sign in not complete");
-
-//                    loadingProgressBar.setVisibility(View.INVISIBLE);
-
                     getLoggedInAccountData();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 },
@@ -164,16 +153,12 @@ public class LoginActivity extends AppCompatActivity {
     private void getLoggedInAccountData(){
         Amplify.Auth.fetchUserAttributes(
                 attributes -> {
-                    Log.i(TAG, "User attributes = " + attributes.get(0).getValue());
                     Amplify.API.query(
                             ModelQuery.list(Account.class),
                             accounts -> {
-                                Log.i(TAG, "getUserName: -----------------------------------<> " + accounts.getData());
                                 for (Account user : accounts.getData()) {
                                     if (user.getIdcognito().equals(attributes.get(0).getValue())) {
                                         runOnUiThread(()->{
-                                            Log.i(TAG, "getUserId: -----------------------------------<> " + user.getId());
-
                                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                                             SharedPreferences.Editor preferenceEditor = sharedPreferences.edit();
 
@@ -182,9 +167,6 @@ public class LoginActivity extends AppCompatActivity {
                                             preferenceEditor.putString(NAMEUSERNAME, user.getUsername());
                                             preferenceEditor.apply();
                                         });
-
-                                        // create shared preference object and set up an editor
-
 
                                     }
                                 }

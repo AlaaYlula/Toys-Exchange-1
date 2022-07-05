@@ -130,8 +130,6 @@ public class EventDeleteAdapter extends RecyclerView.Adapter<EventDeleteAdapter.
 
 
     private void showEditEvent(int position){
-
-    //    listener.onUpdateClickListener(position,rlEditComment,ivEditComment,etEditComment);
         listener.onUpdateClickListener(position);
     }
 

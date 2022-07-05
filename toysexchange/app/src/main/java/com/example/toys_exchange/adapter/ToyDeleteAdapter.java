@@ -63,16 +63,17 @@ public class ToyDeleteAdapter extends RecyclerView.Adapter<ToyDeleteAdapter.Cust
         }
 
         String image = toysList.get(position).getImage();
-        Amplify.Storage.getUrl(
-                image,
-                result -> {
-                    Log.i(TAG, "Successfully generated: " + result.getUrl());
-                    runOnUiThread(()->{
-                        Picasso.get().load(result.getUrl().toString()).into(holder.ivImage);
-                    });
-                },
-                error -> Log.e(TAG, "URL generation failure", error)
-        );
+        if(image!=null) {
+            Amplify.Storage.getUrl(
+                    image,
+                    result -> {
+                        runOnUiThread(() -> {
+                            Picasso.get().load(result.getUrl().toString()).into(holder.ivImage);
+                        });
+                    },
+                    error -> Log.e(TAG, "URL generation failure", error)
+            );
+        }
 
 
     }

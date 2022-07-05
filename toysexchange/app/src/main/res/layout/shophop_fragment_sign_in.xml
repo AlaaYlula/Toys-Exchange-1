@@ -92,20 +92,21 @@
                 android:inputType="textPassword"
                 android:singleLine="true" />
 
-            <TextView
-                android:id="@+id/tvForget"
-                style="@style/ShopHopEditTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:paddingEnd="@dimen/sh_spacing_middle"
-                android:paddingStart="@dimen/sh_spacing_control_half"
-                android:text="@string/sh_lbl_forgot"
-                android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/ShopHop_colorPrimary"
-                android:textSize="@dimen/sh_font_size_medium"
-                android:theme="@style/Widget.MaterialComponents.Button.TextButton"
-                tools:ignore="RelativeOverlap" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvForget"-->
+<!--                style="@style/ShopHopEditTextStyle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginEnd="-15dp"-->
+<!--                android:paddingStart="@dimen/sh_spacing_control_half"-->
+<!--                android:paddingEnd="@dimen/sh_spacing_middle"-->
+<!--                android:text="@string/sh_lbl_forgot"-->
+<!--                android:textAppearance="@style/FontSemiBold"-->
+<!--                android:textColor="@color/ShopHop_colorPrimary"-->
+<!--                android:textSize="@dimen/sh_font_size_medium"-->
+<!--                android:theme="@style/Widget.MaterialComponents.Button.TextButton"-->
+<!--                tools:ignore="RelativeOverlap" />-->
         </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton

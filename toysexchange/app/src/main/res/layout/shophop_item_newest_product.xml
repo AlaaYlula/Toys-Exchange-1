@@ -51,48 +51,6 @@
     </RelativeLayout>
 
 
-
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/listProductRaw"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:elevation="@dimen/_30sdp"-->
-<!--        >-->
-
-
-
-
-
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/llProductSize"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="@dimen/sh_spacing_standard"-->
-<!--                android:orientation="horizontal">-->
-<!--                <TextView-->
-<!--                    android:id="@+id/tvType"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Type"-->
-<!--                    android:textAppearance="@style/FontSemiBold"-->
-<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_small" />-->
-<!--                <TextView-->
-<!--                    android:id="@+id/tvCondition"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="new"-->
-<!--                    android:textAppearance="@style/FontSemiBold"-->
-<!--                    android:textColor="@color/ShopHop_textColorPrimary"-->
-<!--                    android:textSize="@dimen/sh_font_size_small" />-->
-<!--            </LinearLayout>-->
-
-
-
-<!--        </LinearLayout>-->
-<!--    </RelativeLayout>-->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -104,12 +104,10 @@ public class UpdateCommentActivity extends AppCompatActivity {
                         Comment newComment = Comment.builder().text(commentText.getText().toString())
                                 .id(commentId).accountCommentsId(accCommentId)
                                 .eventCommentsId(eventCommentId).build();
-                        Log.i(TAG, "comment id: " + commentId);
-                        Log.i(TAG, "comment id: " + text);
+
                         Amplify.API.mutate(ModelMutation.update(newComment),
                                 response -> {
                                     runOnUiThread(() -> {
-                                        Log.i(TAG, "comment id: " + response.getData().getText());
                                         Toast.makeText(UpdateCommentActivity.this, "Updated", Toast.LENGTH_SHORT).show();
                                     });
                                     // https://www.youtube.com/watch?v=LQmGU3UCOPQ

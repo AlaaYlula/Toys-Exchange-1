@@ -75,7 +75,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             googleMap.addMarker(new MarkerOptions()
                     .position(coordinate)
                     .title(" location "));
-//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20f));
         }
     };
@@ -90,8 +89,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         enableLocation();
-//
-//        search=findViewById(R.id.sv_location);
         search=findViewById(R.id.sv_location);
         supportMapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
 
@@ -118,11 +115,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     LatLng latLng=new LatLng(address.getLatitude(),address.getLongitude());
                     googleMap.addMarker(new MarkerOptions().position(latLng).title(txt));
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
-
-                    Log.i(TAG, "geoLocate: --------------------------->"+address);
-
-
-
                 }
                 return false;
             }
@@ -167,8 +159,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     locationIntent.putExtra("desc",desc);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onClick: store lang------------------------------->"+ searchedLongitude);
-                    Log.i(TAG, "onClick: store lat------------------------------->"+ searchedLatitude);
                 }else if(typeActivity.equals("event")){
                      title=intent.getStringExtra("title");
                      desc=intent.getStringExtra("desc");
@@ -179,10 +169,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     locationIntent.putExtra("desc",desc);
                     startActivity(locationIntent);
                     Toast.makeText(getApplicationContext(), "location added ", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onClick: event lang------------------------------->"+ searchedLongitude);
-                    Log.i(TAG, "onClick: event lat------------------------------->"+ searchedLatitude);
-                    Log.i(TAG, "onClick: event title------------------------------->"+ title);
-                    Log.i(TAG, "onClick: event desc------------------------------->"+ desc);
+
                 }
 
             }
@@ -193,6 +180,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         this.googleMap=googleMap;
+        enableLocation();
     }
 
 
@@ -220,10 +208,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             LatLng coordinate = new LatLng(latitude, longitude);
 
-
-
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20.0f));
+//                            googleMap.addMarker(new MarkerOptions()
+//                                    .position(coordinate)
+//                                    .title("Marker"));
+                         //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
+                          //  googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 20.0f));
                         }
                     }
                 });

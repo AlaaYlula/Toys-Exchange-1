@@ -161,13 +161,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shophop_activity_dashboard_shop);
 
-//        getLoginUserId();
         AuthUser logedInUser = Amplify.Auth.getCurrentUser();
         String cognitoId = logedInUser.getUserId();
 
         firebaseAction();
 
-//        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
+        // https://droidbyme.medium.com/android-material-design-tabs-tab-layout-with-swipe-884085ae80ff
 
         getLoginUserId();
 
@@ -175,9 +174,6 @@ public class MainActivity extends AppCompatActivity {
         ivEventList = findViewById(R.id.ivEventList);
         ivWishList = findViewById(R.id.ivWishList);
         ivRecommendation = findViewById(R.id.ivRecommendation);
-
-//        AuthUser logedInUser = Amplify.Auth.getCurrentUser();
-//        String cognitoId =  logedInUser.getUserId();
 
 
         enable(ivHome);
@@ -256,10 +252,7 @@ public class MainActivity extends AppCompatActivity {
             logout();
         });
 
-//        TextView tvSetting = findViewById(R.id.tvSetting);
-//        tvSetting.setOnClickListener(view -> {
-//            startActivity(new Intent(this,MainActivity2.class));
-//        });
+
         myDialog = new Dialog(this);
 
     }
@@ -286,14 +279,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void authSession(String method){
         Amplify.Auth.fetchAuthSession(result ->{
-            Log.i(TAG, "Auth Session => " + method + result.toString()) ;
-
             AWSCognitoAuthSession cognitoAuthSession = (AWSCognitoAuthSession) result;
 
             switch(cognitoAuthSession.getIdentityId().getType()) {
                 case SUCCESS:
                 {
-                    Log.i("AuthQuickStart", "IdentityId: " + cognitoAuthSession.getIdentityId().getValue());
                     userId = cognitoAuthSession.getIdentityId().getValue();
                     break;
                 }
@@ -386,7 +376,6 @@ public class MainActivity extends AppCompatActivity {
                 Uri currentUri = data.getData();
 
                 // Do stuff with the photo/video URI.
-                Log.i(TAG, "onActivityResult: the uri is => " + currentUri);
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 String userIdForImageName =  sharedPreferences.getString(LoginActivity.USERNAME, "No User Id");
 
@@ -405,10 +394,8 @@ public class MainActivity extends AppCompatActivity {
                             file,
                             result -> {
                                 Toast.makeText(MainActivity.this, "Successfully uploaded", Toast.LENGTH_SHORT).show();
-                                Log.i(TAG, "Successfully uploaded: " + result.getKey());
                                 URL=result.getKey();
                                 runOnUiThread(()->{
-                                    //getUrl(URL,imageView);
                                     getUrl(URL,imageUpdate);
                                 });
                             },
@@ -507,7 +494,6 @@ public class MainActivity extends AppCompatActivity {
                                             Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
                                         });
                                         // https://www.youtube.com/watch?v=LQmGU3UCOPQ
-                                        Log.i(TAG, "Bio updated " + response);
                                     },
                                     error -> Log.e(TAG, "update failed", error)
                             );
@@ -582,8 +568,6 @@ public class MainActivity extends AppCompatActivity {
                                                     .accountid(acc_id)
                                                     .build();
 
-                                            Log.i(TAG, "notif: " + notification );
-
                                             Amplify.API.mutate(
                                                     ModelMutation.create(notification),
                                                     success -> {
@@ -598,10 +582,7 @@ public class MainActivity extends AppCompatActivity {
                         );
 
                         // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
                         Log.d("TOKEN", token);
-                        Log.i(TAG, "TOKEN: " + token);
-//                        Toast.makeText(PaymentActivity.this, token, Toast.LENGTH_SHORT).show();
                     }
                 });
     }

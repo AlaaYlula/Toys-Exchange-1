@@ -92,7 +92,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,22 +105,24 @@
             style="@style/ShopHopMaterialButtonStyle.Stroked"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_10sdp"
             android:text="Cancel"
             android:textAppearance="@style/FontMedium"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
+            />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_addStore"
             style="@style/ShopHopMaterialButtonStyle.Filled"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:shadowColor="@color/ShopHop_colorPrimary"
             android:text="Submit"
-            android:textAppearance="@style/FontMedium"
-            android:layout_marginLeft="10dp"/>
+            android:textAppearance="@style/FontMedium"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/banner_container"

@@ -18,6 +18,7 @@ import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.toys_exchange.R;
+import com.example.toys_exchange.UI.data.model.LoggedInUser;
 import com.google.android.material.button.MaterialButton;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -62,6 +63,10 @@ public class SignUpActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
 
             }
+        });
+
+        signIpButton.setOnClickListener(view -> {
+            startActivity(new Intent(this, LoggedInUser.class));
         });
     }
 

@@ -55,7 +55,7 @@
         <item name="android:textColor">@color/ShopHop_textColorPrimary</item>
         <item name="android:textSize">@dimen/sh_font_size_medium</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/shophop_bg_ractangle_rounded_active</item>
+<!--        <item name="android:background">@drawable/shophop_bg_ractangle_rounded_active</item>-->
 
     </style>
 

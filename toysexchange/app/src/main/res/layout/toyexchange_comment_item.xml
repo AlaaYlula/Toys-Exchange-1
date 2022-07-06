@@ -10,9 +10,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/_16sdp"
+
         android:layout_marginBottom="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
+
         style="@style/comment">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -41,10 +41,9 @@
             android:id="@+id/tvComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tvName"
+            android:layout_below="@+id/tvName"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginBottom="-24dp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_toRightOf="@id/ivProfileImage"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
 
@@ -57,6 +56,19 @@
             android:src="@drawable/shophop_ic_more_vert_black_24dp" />
 
     </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/mDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/rlComment"
+        android:foregroundGravity="fill"
+        android:overScrollMode="never"
+        app:dividerColor="@color/ShopHop_light_gray"
+        app:dividerInsetEnd="16dp"
+        app:dividerInsetStart="16dp"
+        app:tabMode="fixed" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/rlEditComment"
         android:layout_width="match_parent"

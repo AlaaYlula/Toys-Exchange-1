@@ -61,6 +61,7 @@
         <activity
             android:name=".UI.EventAttendList"
             android:exported="false"
+            android:parentActivityName=".profileActivity"
             android:theme="@style/ShopHopAppTheme"/>
         <activity
             android:name=".MainActivity2"

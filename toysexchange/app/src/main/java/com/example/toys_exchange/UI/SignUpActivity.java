@@ -19,6 +19,7 @@ import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.example.toys_exchange.R;
 import com.example.toys_exchange.UI.data.model.LoggedInUser;
+import com.example.toys_exchange.UI.data.model.LoginActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -66,7 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         signIpButton.setOnClickListener(view -> {
-            startActivity(new Intent(this, LoggedInUser.class));
+            startActivity(new Intent(this, LoginActivity.class));
         });
     }
 

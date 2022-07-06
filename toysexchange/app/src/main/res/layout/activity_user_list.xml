@@ -16,15 +16,27 @@
         app:cardCornerRadius="@dimen/sh_spacing_control_half"
         app:cardElevation="0dp"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:adjustViewBounds="true"
+                android:elevation="@dimen/_8sdp"
+                android:scaleType="fitXY"
+                android:src="@color/cardview_light_background"
+                app:shapeAppearanceOverlay="@style/roundiImage" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivImage"
                 android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
@@ -35,21 +47,55 @@
                 android:src="@color/cardview_dark_background"
                 app:shapeAppearanceOverlay="@style/roundiImage" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_200sdp"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/_16sdp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/shape"
-                android:elevation="@dimen/_8sdp"
-                android:scaleType="fitXY"
-                app:shapeAppearanceOverlay="@style/roundiImage" />
 
+            <!--        <com.google.android.material.imageview.ShapeableImageView-->
+            <!--            android:layout_width="@dimen/_200sdp"-->
+            <!--            android:layout_height="@dimen/_200sdp"-->
+            <!--            android:layout_marginStart="@dimen/_16sdp"-->
+            <!--            android:layout_marginTop="@dimen/_25sdp"-->
+            <!--            android:layout_marginEnd="@dimen/_16sdp"-->
+            <!--            android:layout_marginBottom="@dimen/_16sdp"-->
+            <!--            android:adjustViewBounds="true"-->
+            <!--            android:background="@drawable/shape"-->
+            <!--            android:elevation="@dimen/_8sdp"-->
+            <!--            android:scaleType="fitXY"-->
+            <!--            app:shapeAppearanceOverlay="@style/roundiImage" />-->
 
         </RelativeLayout>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:id="@+id/ivImage"-->
+<!--                android:layout_width="@dimen/_200sdp"-->
+<!--                android:layout_height="@dimen/_200sdp"-->
+<!--                android:layout_marginStart="@dimen/_16sdp"-->
+<!--                android:layout_marginTop="@dimen/_16sdp"-->
+<!--                android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                android:layout_marginBottom="@dimen/_16sdp"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:elevation="@dimen/_8sdp"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@color/cardview_dark_background"-->
+<!--                app:shapeAppearanceOverlay="@style/roundiImage" />-->
+
+<!--            <com.google.android.material.imageview.ShapeableImageView-->
+<!--                android:layout_width="@dimen/_200sdp"-->
+<!--                android:layout_height="@dimen/_200sdp"-->
+<!--                android:layout_marginStart="@dimen/_16sdp"-->
+<!--                android:layout_marginTop="@dimen/_16sdp"-->
+<!--                android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                android:layout_marginBottom="@dimen/_16sdp"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:background="@drawable/shape"-->
+<!--                android:elevation="@dimen/_8sdp"-->
+<!--                android:scaleType="fitXY"-->
+<!--                app:shapeAppearanceOverlay="@style/roundiImage" />-->
+
+
+<!--        </RelativeLayout>-->
 
         <ImageView
             android:id="@+id/ivToyOption"
@@ -101,7 +147,6 @@
                 android:layout_marginBottom="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/ShopHop_light_gray"
                 />
 
             <TextView
@@ -114,7 +159,6 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:text="Type"
                 android:textAppearance="@style/FontSemiBold"
-                android:textColor="@color/ShopHop_light_gray"
                 android:textSize="@dimen/sh_font_size_small"
                 />
 
@@ -130,7 +174,8 @@
                 android:textAppearance="@style/FontSemiBold"
                 android:textColor="@color/ShopHop_colorPrimary"
                 android:textSize="@dimen/sh_font_size_medium"
-                tools:text="$100" />
+                tools:text="$100"
+                android:fontFamily="@font/montserrat_bold"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -147,15 +147,17 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llInfo"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_115sdp"
         android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
@@ -164,8 +166,9 @@
             android:layout_height="wrap_content"
             android:text="Cancel"
             android:textAppearance="@style/FontMedium"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_10sdp"
+        />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_toy"
@@ -173,11 +176,13 @@
             android:layout_width="@dimen/_140sdp"
             android:layout_height="wrap_content"
             android:shadowColor="@color/ShopHop_colorPrimary"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:text="Submit"
             android:textAppearance="@style/FontMedium"
-            android:layout_marginLeft="10dp"/>
+            />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
 

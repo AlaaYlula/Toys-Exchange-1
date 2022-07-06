@@ -1,6 +1,7 @@
 package com.example.toys_exchange.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +34,11 @@ public class EventAttendList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_attend_list);
+        Toolbar toolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Attend Event List");
+
         Intent passedIntent = getIntent();
         loginUserIdFromProfile = passedIntent.getStringExtra("loginUserId");
         cognitoId = passedIntent.getStringExtra("cognitoId");

@@ -142,15 +142,16 @@ public class WishListFragment extends Fragment {
 
                 @Override
                 public void ontItemClickListener(int position) {
-                    Intent intent = new Intent(mView.getContext(), ToyDetailActivity.class);
+                    Intent intent = new Intent(getContext(), ToyDetailActivity.class);
                     intent.putExtra("toyName", toyList.get(position).getToyname());
                     intent.putExtra("description", toyList.get(position).getToydescription());
                     intent.putExtra("image", toyList.get(position).getImage());
                     intent.putExtra("price", toyList.get(position).getPrice());
                     intent.putExtra("condition", toyList.get(position).getCondition().toString());
-                    intent.putExtra("contactInfo", toyList.get(position).getContactinfo());
-                    intent.putExtra("id", toyList.get(position).getAccountToysId());
-                    intent.putExtra("toyId", toyList.get(position).getId());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
+                    intent.putExtra("toyId",toyList.get(position).getId());
+                    intent.putExtra("userToyId",toyList.get(position).getAccountToysId());
                     startActivity(intent);
                 }
 

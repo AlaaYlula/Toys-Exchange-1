@@ -72,10 +72,12 @@ public class WishListActivity extends AppCompatActivity {
                     intent.putExtra("image", toyList.get(position).getImage());
                     intent.putExtra("price", toyList.get(position).getPrice());
                     intent.putExtra("condition", toyList.get(position).getCondition().toString());
-                    intent.putExtra("contactInfo", toyList.get(position).getContactinfo());
-                    intent.putExtra("id", toyList.get(position).getAccountToysId());
-                    intent.putExtra("toyId", toyList.get(position).getId());
+                    intent.putExtra("contactInfo",toyList.get(position).getContactinfo());
+                    intent.putExtra("toyType",toyList.get(position).getTypetoy().toString());
+                    intent.putExtra("toyId",toyList.get(position).getId());
+                    intent.putExtra("userToyId",toyList.get(position).getAccountToysId());
                     startActivity(intent);
+
 
                 }
 
